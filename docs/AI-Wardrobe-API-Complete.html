@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>AI Wardrobe — Complete API &amp; Auth Guide</title>
+<style>
+  @page { margin: 14mm 12mm; }
+  body { font-family: Segoe UI, Arial, sans-serif; font-size: 9.5pt; color: #0f172a; line-height: 1.45; max-width: 210mm; margin: 0 auto; padding: 12mm; }
+  h1 { color: #1e3a5f; font-size: 22pt; margin: 0 0 4px; }
+  h2 { color: #1e3a5f; font-size: 13pt; border-bottom: 2px solid #1e3a5f; margin-top: 18px; padding-bottom: 3px; page-break-after: avoid; }
+  h3 { font-size: 10.5pt; margin: 12px 0 4px; color: #334155; }
+  .sub { color: #64748b; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; font-size: 8.5pt; }
+  th, td { border: 1px solid #cbd5e1; padding: 4px 6px; vertical-align: top; }
+  th { background: #f1f5f9; text-align: left; }
+  pre { background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px; font-size: 8pt; overflow-wrap: anywhere; white-space: pre-wrap; page-break-inside: avoid; }
+  .m { font-family: Consolas, monospace; background: #e2e8f0; padding: 1px 4px; border-radius: 3px; font-size: 8pt; }
+  .auth-p { background: #ecfdf5; } .auth-u { background: #eff6ff; } .auth-a { background: #fef3c7; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<h1>AI Wardrobe API — Complete Reference</h1>
+<p class="sub"><strong>Base URL:</strong> <span class="m">https://appworkspro.com</span> &nbsp;|&nbsp; Prefix: <span class="m">/api/v1</span> &nbsp;|&nbsp; Envelope: <span class="m">{ "data", "error" }</span></p>
+
+<h2>1. Response envelope</h2>
+<pre>Success: { "data": { ... }, "error": null }
+Failure: { "data": null, "error": { "code": "UNAUTHORIZED", "message": "..." } }</pre>
+
+<h2>2. Access token (~10 min) &amp; interceptor</h2>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>Access token TTL</td><td><strong>600 seconds (10 minutes)</strong> — env <span class="m">ACCESS_TOKEN_TTL_SECONDS</span></td></tr>
+<tr><td>Refresh token TTL</td><td>30 days — rotates on each refresh</td></tr>
+<tr><td>Header</td><td><span class="m">Authorization: Bearer &lt;access_token&gt;</span></td></tr>
+</table>
+<h3>App must implement</h3>
+<ol>
+<li><strong>Proactive:</strong> call <span class="m">POST /auth/refresh</span> ~1 min before access expires.</li>
+<li><strong>Reactive:</strong> on <strong>401</strong>, refresh once, retry request once (mutex so only one refresh runs).</li>
+<li>Save <strong>new</strong> <span class="m">refresh_token</span> every time.</li>
+<li>Refresh returns 401 → clear storage → login screen.</li>
+</ol>
+<pre>POST /api/v1/auth/refresh
+{ "refresh_token": "..." }
+
+200 data: { "access_token", "refresh_token", "expires_at", "token_type": "Bearer" }</pre>
+
+<h3>OkHttp: skip interceptor for</h3>
+<p><span class="m">/auth/login</span>, <span class="m">/auth/register</span>, <span class="m">/auth/google</span>, <span class="m">/auth/refresh</span>, <span class="m">/auth/admin/login</span></p>
+
+<div class="page-break"></div>
+<h2>3. Authentication APIs</h2>
+<table>
+<tr><th>Method</th><th>Path</th><th>Auth</th><th>Body / notes</th><th>Success <span class="m">data</span></th></tr>
+<tr class="auth-p"><td>POST</td><td>/auth/register</td><td>Public</td><td>email, password (8+), display_name?</td><td>access_token, refresh_token, expires_at, user</td></tr>
+<tr class="auth-p"><td>POST</td><td>/auth/login</td><td>Public</td><td>email, password (app users only)</td><td>same session shape</td></tr>
+<tr class="auth-p"><td>POST</td><td>/auth/google</td><td>Public</td><td>id_token, device_id?</td><td>same + photo_url</td></tr>
+<tr class="auth-p"><td>POST</td><td>/auth/refresh</td><td>Public</td><td>refresh_token</td><td>new tokens</td></tr>
+<tr class="auth-u"><td>POST</td><td>/auth/logout</td><td>Optional</td><td>refresh_token?</td><td>{ logged_out: true }</td></tr>
+<tr class="auth-p"><td>POST</td><td>/auth/forgot-password</td><td>Public</td><td>email</td><td>{ message }</td></tr>
+<tr class="auth-p"><td>POST</td><td>/auth/reset-password</td><td>Public</td><td>token, new_password</td><td>success message</td></tr>
+<tr class="auth-a"><td>POST</td><td>/auth/admin/login</td><td>Public</td><td>email, password</td><td>admin session (dashboard only)</td></tr>
+</table>
+<pre>POST /auth/google
+{ "id_token": "&lt;Google SDK&gt;", "device_id": "optional" }
+
+POST /auth/login
+{ "email": "user@mail.com", "password": "********" }</pre>
+
+<h2>4. Public content (no token)</h2>
+<table>
+<tr><th>GET</th><th>Path</th><th>Query</th><th>data shape (summary)</th></tr>
+<tr><td></td><td>/app/metadata</td><td>locale?</td><td>app_name, version, feature_flags, privacy_url, …</td></tr>
+<tr><td></td><td>/languages</td><td></td><td>languages[]</td></tr>
+<tr><td></td><td>/onboarding/pages</td><td></td><td>pages[{ title, body, image_url }]</td></tr>
+<tr><td></td><td>/home/feed</td><td>gender=men|women</td><td>sections[{ items[{ style_id, thumbnail_url }] }]</td></tr>
+<tr><td></td><td>/catalog/{categoryId}</td><td>tab, gender</td><td>items[{ id, image_url, name }] — id = style_id</td></tr>
+<tr><td></td><td>/wardrobe/categories</td><td>gender</td><td>categories[]</td></tr>
+<tr><td></td><td>/files/{path}</td><td></td><td>binary image</td></tr>
+</table>
+<p>Headers: <span class="m">X-App-Locale: en</span> or <span class="m">Accept-Language</span></p>
+
+<div class="page-break"></div>
+<h2>5. User profile (Bearer)</h2>
+<table>
+<tr><th>Method</th><th>Path</th><th>Action</th><th>Body</th><th>data</th></tr>
+<tr class="auth-u"><td>GET</td><td>/users/me</td><td>Read profile</td><td>—</td><td>id, email, display_name, preferences</td></tr>
+<tr class="auth-u"><td>PATCH</td><td>/users/me</td><td>Edit name</td><td>display_name</td><td>id, display_name</td></tr>
+<tr class="auth-u"><td>DELETE</td><td>/users/me</td><td>Delete account</td><td>—</td><td>deleted</td></tr>
+<tr class="auth-u"><td>GET</td><td>/users/me/preferences</td><td>Read prefs</td><td>—</td><td>theme_mode, language_id, style_gender_preference</td></tr>
+<tr class="auth-u"><td>PATCH</td><td>/users/me/preferences</td><td>Edit prefs</td><td>notifications_enabled, language_id, …</td><td>updated prefs</td></tr>
+<tr class="auth-u"><td>POST</td><td>/users/me/avatar</td><td>Upload avatar</td><td>multipart image</td><td>photo_url</td></tr>
+<tr class="auth-u"><td>POST</td><td>/users/me/fcm-token</td><td>FCM register</td><td>fcm_token, platform, device_id?</td><td>device_id, registered_at</td></tr>
+</table>
+
+<h2>6. Devices &amp; push</h2>
+<table>
+<tr><th>POST</th><th>/devices/register</th><th>fcm_token, platform (android|ios|web), device_id?, app_version?</th></tr>
+</table>
+
+<h2>7. Virtual try-on (generate)</h2>
+<table>
+<tr><th>Method</th><th>Path</th><th>Description</th></tr>
+<tr class="auth-u"><td>POST</td><td>/try-on/generate</td><td><strong>Start job</strong></td></tr>
+<tr class="auth-u"><td>GET</td><td>/try-on/jobs/{jobId}</td><td><strong>Poll</strong> status (2–3s interval)</td></tr>
+<tr class="auth-u"><td>DELETE</td><td>/try-on/jobs/{jobId}</td><td>Cancel</td></tr>
+</table>
+<pre>POST /try-on/generate
+{
+  "source_image_base64": "data:image/jpeg;base64,...",
+  "style_id": "style-01",
+  "category_id": "virtual_try_on",
+  "width": 768,
+  "height": 1024
+}
+
+200: { "job_id", "polling_url", "status": "queued" }
+
+GET /try-on/jobs/{id}
+200: {
+  "job_id", "status": "queued|processing|completed|failed",
+  "result_image_absolute_url": "https://appworkspro.com/uploads/...",
+  "error": null
+}</pre>
+
+<div class="page-break"></div>
+<h2>8. History / saved looks (CRUD)</h2>
+<table>
+<tr><th>Method</th><th>Path</th><th>Action</th><th>Body</th></tr>
+<tr class="auth-u"><td>GET</td><td>/history?page&limit&favorites</td><td>List</td><td>—</td></tr>
+<tr class="auth-u"><td>POST</td><td>/history</td><td><strong>Add</strong> look</td><td>image_url, style_id?, saved_to_wardrobe?, try_on_job_id?</td></tr>
+<tr class="auth-u"><td>GET</td><td>/history/{id}</td><td>Read one</td><td>—</td></tr>
+<tr class="auth-u"><td>PATCH</td><td>/history/{id}</td><td><strong>Edit</strong> favorite</td><td>is_favorite</td></tr>
+<tr class="auth-u"><td>DELETE</td><td>/history/{id}</td><td><strong>Delete</strong> one</td><td>—</td></tr>
+<tr class="auth-u"><td>DELETE</td><td>/history</td><td>Clear all (user)</td><td>—</td></tr>
+</table>
+<pre>GET /history?page=1&limit=20
+200: { "items": [{ "id", "image_absolute_url", "is_favorite", "created_at" }], "meta": { page, limit, total } }
+
+POST /history
+{ "image_url": "https://appworkspro.com/uploads/.../result.png", "style_id": "style-01", "saved_to_wardrobe": true }</pre>
+
+<h2>9. Wardrobe looks</h2>
+<table>
+<tr><th>GET</th><th>/wardrobe/looks?page&limit</th><th>User saved wardrobe items (auth)</th></tr>
+</table>
+
+<h2>10. Admin APIs (dashboard — role admin)</h2>
+<p>Login: <span class="m">POST /auth/admin/login</span>. All below need <span class="m">Authorization: Bearer</span>.</p>
+<table>
+<tr><th>GET</th><th>/admin/overview, /admin/me, /admin/users, /admin/devices, /admin/tokens</th></tr>
+<tr><th>GET</th><th>/admin/looks-history, /admin/try-on-jobs, /admin/broadcast, /admin/system-status</th></tr>
+<tr><th>GET/PATCH</th><th>/admin/catalog/categories, /admin/catalog/styles, /admin/home-feed, /admin/app-content</th></tr>
+<tr><th>GET</th><th>/admin/users/{id}/detail, /jobs, /looks, /sessions</th></tr>
+<tr><th>POST</th><th>/admin/broadcast (push campaign)</th></tr>
+<tr><th>DELETE</th><th>/admin/users/{id}, /admin/devices/{id}, tokens, sessions</th></tr>
+</table>
+
+<h2>11. HTTP status quick reference</h2>
+<table>
+<tr><th>Code</th><th>When</th></tr>
+<tr><td>200</td><td>OK — check error is null</td></tr>
+<tr><td>401</td><td>Bad/expired access → refresh or re-login</td></tr>
+<tr><td>422</td><td>Validation — missing fields</td></tr>
+<tr><td>429</td><td>Rate limit</td></tr>
+<tr><td>502</td><td>Try-on / BFL failed</td></tr>
+</table>
+
+<p class="sub" style="margin-top:24px;">Generated from api.aioutfitchanger.com — See also docs/MOBILE_AUTH_INTERCEPTOR.md</p>
+</body>
+</html>

@@ -10,7 +10,8 @@
     "sync:env": "node scripts/sync-env-local.mjs",
     "seed": "node scripts/seed-admin.mjs",
     "check:env": "node scripts/check-env.mjs",
-    "docs:pdf": "node -e \"console.log('Open docs/AI-Wardrobe-Mobile-API.html in Chrome → Print → Save as PDF')\"",
+    "docs:pdf": "node -e \"console.log('Open docs/AI-Wardrobe-API-Complete.html in Chrome → Print → Save as PDF')\"",
+    "docs:generate-pdf": "node scripts/generate-api-pdf.mjs",
     "test:api": "node scripts/api-smoke-test.mjs",
     "test:tryon": "node scripts/try-on-quick-poll.mjs",
     "pm2:prod": "pm2 startOrReload deploy/ecosystem.config.cjs --env production"
@@ -29,6 +30,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "puppeteer": "^24.0.0",
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
@@ -38,5 +40,8 @@
     "eslint-config-next": "16.2.9",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "puppeteer@24.43.1": true
   }
 }
