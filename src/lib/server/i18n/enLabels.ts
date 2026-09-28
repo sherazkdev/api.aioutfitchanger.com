@@ -1,0 +1,22 @@
+/** Fallback English copy when DB has only title_key (legacy seed). */
+export const EN_LABELS: Record<string, string> = {
+  homeVirtualTryOn: "Virtual Try-On",
+  homeHairStyles: "Hair Styles",
+  homeHairColor: "Hair Color",
+  homeBeardStyles: "Beard Styles",
+  homeHijab: "Hijab",
+  homeOccasions: "Occasions",
+  homeBeautyLab: "Beauty Lab",
+  homeCoupleDuo: "Couple / Duo",
+  hijabTabEveryday: "Everyday",
+  hijabTabFormal: "Formal",
+  hijabTabOccasion: "Occasion",
+  styleTabWomen: "Women",
+  styleTabMen: "Men",
+  tryOnTabAll: "All",
+  wardrobePakistaniTraditional: "Pakistani Traditional",
+  wardrobeIndianEthnic: "Indian Ethnic",
+  wardrobeArabian: "Arabian",
+  wardrobeChinese: "Chinese",
+  wardrobeKorean: "Korean",
+};

@@ -1,0 +1,391 @@
+{
+  "suite": "api-smoke-test",
+  "base_url": "http://localhost:3000",
+  "started_at": "2026-09-25T08:00:05.719Z",
+  "finished_at": "2026-09-25T08:00:42.980Z",
+  "duration_ms": 37261,
+  "node": "v24.18.1",
+  "git_commit": "d66667c",
+  "summary": {
+    "total": 53,
+    "passed": 53,
+    "failed": 0
+  },
+  "results": [
+    {
+      "name": "auth admin login",
+      "pass": true,
+      "status": 200,
+      "method": "POST",
+      "path": "/api/v1/auth/admin/login",
+      "sample": "access_token received"
+    },
+    {
+      "name": "auth register",
+      "pass": true,
+      "status": 200,
+      "method": "POST",
+      "path": "/api/v1/auth/register"
+    },
+    {
+      "name": "public GET /api/v1/app/metadata",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/app/metadata"
+    },
+    {
+      "name": "public GET /api/v1/languages",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/languages"
+    },
+    {
+      "name": "public GET /api/v1/onboarding/pages",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/onboarding/pages"
+    },
+    {
+      "name": "public GET /api/v1/home/feed",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/home/feed"
+    },
+    {
+      "name": "public GET /api/v1/wardrobe/categories",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/wardrobe/categories"
+    },
+    {
+      "name": "public GET /api/v1/catalog/virtual_try_on",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/catalog/virtual_try_on"
+    },
+    {
+      "name": "user unauthorized GET /users/me",
+      "pass": true,
+      "status": 401,
+      "method": "GET",
+      "path": "/api/v1/users/me"
+    },
+    {
+      "name": "user GET /api/v1/users/me",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/users/me"
+    },
+    {
+      "name": "user GET /api/v1/users/me/preferences",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/users/me/preferences"
+    },
+    {
+      "name": "user GET /api/v1/history?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/history?page=1&limit=5"
+    },
+    {
+      "name": "user GET /api/v1/wardrobe/looks?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/wardrobe/looks?page=1&limit=5"
+    },
+    {
+      "name": "user GET /api/v1/home/feed",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/home/feed"
+    },
+    {
+      "name": "user POST /users/me/fcm-token",
+      "pass": true,
+      "status": 200,
+      "method": "POST",
+      "path": "/api/v1/users/me/fcm-token"
+    },
+    {
+      "name": "user POST /devices/register",
+      "pass": true,
+      "status": 200,
+      "method": "POST",
+      "path": "/api/v1/devices/register"
+    },
+    {
+      "name": "user POST /history persist",
+      "pass": true,
+      "status": 200,
+      "method": "POST",
+      "path": "/api/v1/history",
+      "note": "image stored under /uploads/looks/",
+      "sample": "/uploads/looks/6ab62a078aecec12cdc0f86e/ff82d14f-1d29-4b1e-a412-df710bc2a75c.png"
+    },
+    {
+      "name": "user GET /history/:id",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/history/6ab62a288aecec12cdc0f870"
+    },
+    {
+      "name": "user PATCH /history/:id favorite",
+      "pass": true,
+      "status": 200,
+      "method": "PATCH",
+      "path": "/api/v1/history/6ab62a288aecec12cdc0f870"
+    },
+    {
+      "name": "user POST /try-on/generate",
+      "pass": true,
+      "status": 502,
+      "method": "POST",
+      "path": "/api/v1/try-on/generate"
+    },
+    {
+      "name": "admin unauthorized overview",
+      "pass": true,
+      "status": 401,
+      "method": "GET",
+      "path": "/api/v1/admin/overview"
+    },
+    {
+      "name": "admin GET /api/v1/admin/overview?days=7",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/overview?days=7"
+    },
+    {
+      "name": "admin GET /api/v1/admin/me",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/me"
+    },
+    {
+      "name": "admin GET /api/v1/admin/users?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/users?page=1&limit=5"
+    },
+    {
+      "name": "admin GET /api/v1/admin/tokens?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/tokens?page=1&limit=5"
+    },
+    {
+      "name": "admin GET /api/v1/admin/devices?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/devices?page=1&limit=5"
+    },
+    {
+      "name": "admin GET /api/v1/admin/looks-history?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/looks-history?page=1&limit=5"
+    },
+    {
+      "name": "admin GET /api/v1/admin/try-on-jobs?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/try-on-jobs?page=1&limit=5"
+    },
+    {
+      "name": "admin GET /api/v1/admin/broadcast",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/broadcast"
+    },
+    {
+      "name": "admin GET /api/v1/admin/system-status",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/system-status"
+    },
+    {
+      "name": "admin GET /api/v1/admin/audit-log?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/audit-log?page=1&limit=5"
+    },
+    {
+      "name": "admin GET /api/v1/admin/audit-log?summary=1",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/audit-log?summary=1"
+    },
+    {
+      "name": "admin GET /api/v1/admin/catalog/categories",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/catalog/categories"
+    },
+    {
+      "name": "admin GET /api/v1/admin/catalog/styles?page=1&limit=5",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/catalog/styles?page=1&limit=5"
+    },
+    {
+      "name": "admin GET /api/v1/admin/home-feed",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/home-feed"
+    },
+    {
+      "name": "admin GET /api/v1/admin/wardrobe/categories",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/wardrobe/categories"
+    },
+    {
+      "name": "admin GET /api/v1/admin/app-content",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/app-content"
+    },
+    {
+      "name": "admin GET user/detail",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/users/6ab62a078aecec12cdc0f86e/detail"
+    },
+    {
+      "name": "admin GET user/jobs",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/users/6ab62a078aecec12cdc0f86e/jobs"
+    },
+    {
+      "name": "admin GET user/looks",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/users/6ab62a078aecec12cdc0f86e/looks"
+    },
+    {
+      "name": "admin GET user/sessions",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/users/6ab62a078aecec12cdc0f86e/sessions"
+    },
+    {
+      "name": "admin GET looks-history/:id",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/looks-history/6ab62a288aecec12cdc0f870"
+    },
+    {
+      "name": "admin GET try-on-jobs/:id",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/try-on-jobs/6ab62a288aecec12cdc0f871"
+    },
+    {
+      "name": "admin GET tokens/families/:id",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/tokens/families/IPmnLHXAHckO6B9gedFR6A"
+    },
+    {
+      "name": "auth user login",
+      "pass": true,
+      "status": 200,
+      "method": "POST",
+      "path": "/api/v1/auth/login"
+    },
+    {
+      "name": "auth refresh",
+      "pass": true,
+      "status": 200,
+      "method": "POST",
+      "path": "/api/v1/auth/refresh"
+    },
+    {
+      "name": "auth forgot-password",
+      "pass": true,
+      "status": 200,
+      "method": "POST",
+      "path": "/api/v1/auth/forgot-password"
+    },
+    {
+      "name": "admin GET broadcast/:id",
+      "pass": true,
+      "status": 0,
+      "method": "GET",
+      "path": "skipped no campaigns"
+    },
+    {
+      "name": "admin GET users/:id",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/users/6ab62a078aecec12cdc0f86e"
+    },
+    {
+      "name": "admin GET tokens/export",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/tokens/export"
+    },
+    {
+      "name": "admin GET audit-log csv",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/audit-log?export=csv&limit=1"
+    },
+    {
+      "name": "admin GET catalog category by id",
+      "pass": true,
+      "status": 200,
+      "method": "GET",
+      "path": "/api/v1/admin/catalog/categories?category_id=virtual_try_on"
+    },
+    {
+      "name": "not found GET /history/badid",
+      "pass": true,
+      "status": 404,
+      "method": "GET",
+      "path": "/api/v1/history/000000000000000000000000"
+    }
+  ],
+  "failures": []
+}

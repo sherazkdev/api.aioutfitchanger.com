@@ -1,0 +1,44 @@
+{
+  "base": "http://localhost:3000",
+  "steps": [
+    {
+      "step": "catalog",
+      "ok": true
+    },
+    {
+      "step": "download_inputs",
+      "ok": true
+    },
+    {
+      "step": "auth",
+      "ok": true
+    },
+    {
+      "step": "generate",
+      "ok": false,
+      "http": 502
+    }
+  ],
+  "ok": false,
+  "style": {
+    "id": "pakistani_women_01",
+    "name": "Emerald Shalwar",
+    "image_url": "/media/outfits/pakistani-01.jpg"
+  },
+  "generate": {
+    "status": 502,
+    "body": {
+      "data": null,
+      "error": {
+        "code": "TRY_ON_FAILED",
+        "message": "Cannot read properties of undefined (reading 'toLowerCase')"
+      }
+    }
+  },
+  "output_dir": "D:/ai-outfit-changer/scripts/test-reports/try-on-1790319710666",
+  "proof_files": [
+    "input-style.jpg",
+    "input-person.jpg"
+  ],
+  "hint": "Add BFL_API_KEY to .env.local and restart: npx next start -p 3000"
+}
