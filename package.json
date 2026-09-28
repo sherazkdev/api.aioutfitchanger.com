@@ -10,6 +10,7 @@
     "sync:env": "node scripts/sync-env-local.mjs",
     "seed": "node scripts/seed-admin.mjs",
     "check:env": "node scripts/check-env.mjs",
+    "docs:pdf": "node -e \"console.log('Open docs/AI-Wardrobe-Mobile-API.html in Chrome → Print → Save as PDF')\"",
     "test:api": "node scripts/api-smoke-test.mjs",
     "test:tryon": "node scripts/try-on-quick-poll.mjs",
     "pm2:prod": "pm2 startOrReload deploy/ecosystem.config.cjs --env production"

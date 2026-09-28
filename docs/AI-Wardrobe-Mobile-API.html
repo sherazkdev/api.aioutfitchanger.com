@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Wardrobe — Mobile API Reference</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --accent: #1e3a5f;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+      --ok: #166534;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      line-height: 1.55;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 4rem;
+      font-size: 11pt;
+    }
+    h1 { font-size: 1.85rem; color: var(--accent); margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.35rem;
+      margin-top: 2rem;
+      page-break-after: avoid;
+    }
+    h3 { font-size: 1rem; margin-top: 1.25rem; color: var(--ink); }
+    .subtitle { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; }
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1.25rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--code-bg); font-weight: 600; }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      page-break-inside: avoid;
+    }
+    code { font-family: Consolas, "Courier New", monospace; }
+    .endpoint {
+      background: #fff;
+      border-left: 4px solid var(--accent);
+      padding: 0.5rem 0.75rem;
+      margin: 0.5rem 0;
+      font-family: Consolas, monospace;
+      font-size: 0.88rem;
+    }
+    .flow { background: #f8fafc; border: 1px solid var(--border); padding: 1rem; border-radius: 8px; }
+    ul { margin: 0.4rem 0; padding-left: 1.25rem; }
+    @media print {
+      body { padding: 1rem; font-size: 10pt; }
+      h2 { page-break-before: auto; }
+      a { color: var(--ink); text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AI Wardrobe — Mobile API Reference</h1>
+  <p class="subtitle">
+    Connect Android / iOS to the backend &nbsp;·&nbsp;
+    <strong>Production base URL:</strong> <code>https://appworkspro.com</code>
+  </p>
+
+  <h2>1. How every response works</h2>
+  <p>All <code>/api/v1/*</code> JSON endpoints use the same envelope:</p>
+  <pre>{
+  "data": { ... },   // present on success
+  "error": null
+}
+
+// On failure:
+{
+  "data": null,
+  "error": { "code": "VALIDATION", "message": "..." }
+}</pre>
+  <p>Your app should: parse JSON → if <code>error !== null</code> show message → else use <code>data</code>.</p>
+
+  <h2>2. Headers</h2>
+  <table>
+    <tr><th>Header</th><th>Value</th></tr>
+    <tr><td><code>Content-Type</code></td><td><code>application/json</code> on POST/PATCH</td></tr>
+    <tr><td><code>Authorization</code></td><td><code>Bearer &lt;access_token&gt;</code> after login</td></tr>
+    <tr><td><code>X-App-Locale</code></td><td>Optional: <code>en</code>, <code>ur</code>, …</td></tr>
+  </table>
+
+  <h2>3. Authentication</h2>
+
+  <h3>Google Sign-In (Android)</h3>
+  <div class="endpoint">POST /api/v1/auth/google</div>
+  <pre>{
+  "id_token": "&lt;from Google Sign-In SDK&gt;",
+  "device_id": "optional"
+}</pre>
+  <p><span class="badge">200 data</span></p>
+  <pre>{
+  "access_token": "eyJ...",
+  "refresh_token": "eyJ...",
+  "expires_at": "2026-09-28T12:00:00.000Z",
+  "token_type": "Bearer",
+  "user": {
+    "id": "...",
+    "email": "user@gmail.com",
+    "display_name": "Name",
+    "photo_url": "https://...",
+    "role": "user"
+  }
+}</pre>
+
+  <h3>Email register / login</h3>
+  <div class="endpoint">POST /api/v1/auth/register</div>
+  <pre>{ "email": "...", "password": "min8chars", "display_name": "..." }</pre>
+  <div class="endpoint">POST /api/v1/auth/login</div>
+  <pre>{ "email": "...", "password": "..." }</pre>
+  <p>Same token + <code>user</code> object as Google. Admin accounts cannot use <code>/auth/login</code>.</p>
+
+  <h3>Refresh token</h3>
+  <div class="endpoint">POST /api/v1/auth/refresh</div>
+  <pre>{ "refresh_token": "..." }</pre>
+  <pre>{
+  "access_token": "...",
+  "refresh_token": "...",
+  "expires_at": "...",
+  "token_type": "Bearer"
+}</pre>
+  <p>Store the <strong>new</strong> refresh token after each refresh.</p>
+
+  <h2>4. App flow (recommended)</h2>
+  <div class="flow">
+    <ol>
+      <li><code>GET /api/v1/app/metadata</code> — version, feature flags</li>
+      <li><code>GET /api/v1/languages</code> · <code>GET /api/v1/onboarding/pages</code></li>
+      <li>Login → save <code>access_token</code> + <code>refresh_token</code></li>
+      <li><code>POST /api/v1/devices/register</code> — FCM token</li>
+      <li><code>GET /api/v1/home/feed?gender=women</code></li>
+      <li><code>GET /api/v1/catalog/virtual_try_on</code> — list styles</li>
+      <li>Try-on → generate → poll job → save history</li>
+    </ol>
+  </div>
+
+  <h2>5. Public content APIs</h2>
+  <table>
+    <tr><th>Method</th><th>Path</th><th>Purpose</th></tr>
+    <tr><td>GET</td><td>/api/v1/app/metadata</td><td>App name, version, URLs, feature_flags</td></tr>
+    <tr><td>GET</td><td>/api/v1/languages</td><td>Supported languages</td></tr>
+    <tr><td>GET</td><td>/api/v1/onboarding/pages</td><td>Onboarding slides</td></tr>
+    <tr><td>GET</td><td>/api/v1/home/feed?gender=men|women</td><td>Home sections + style cards</td></tr>
+    <tr><td>GET</td><td>/api/v1/catalog/virtual_try_on?tab=&amp;gender=</td><td>Styles for try-on</td></tr>
+    <tr><td>GET</td><td>/api/v1/wardrobe/categories</td><td>Wardrobe browse</td></tr>
+  </table>
+
+  <h3>Catalog item (use id as style_id)</h3>
+  <pre>{
+  "category_id": "virtual_try_on",
+  "items": [
+    {
+      "id": "style-01",
+      "image_url": "/styles/01.svg",
+      "name": "Green Dress",
+      "tab_id": "all",
+      "gender_tab_id": "women"
+    }
+  ]
+}</pre>
+
+  <h2>6. Virtual try-on</h2>
+  <div class="endpoint">POST /api/v1/try-on/generate</div>
+  <p><span class="badge">Auth required</span></p>
+  <pre>{
+  "source_image_base64": "data:image/jpeg;base64,...",
+  "style_id": "style-01",
+  "category_id": "virtual_try_on",
+  "width": 768,
+  "height": 1024
+}</pre>
+  <p><span class="badge">200 data</span></p>
+  <pre>{
+  "job_id": "66f1...",
+  "polling_url": "/api/v1/try-on/jobs/66f1...",
+  "status": "queued"
+}</pre>
+
+  <div class="endpoint">GET /api/v1/try-on/jobs/{job_id}</div>
+  <p>Poll every 2–3s until <code>status</code> is <code>completed</code> or <code>failed</code>.</p>
+  <pre>{
+  "job_id": "66f1...",
+  "status": "completed",
+  "result_image_url": "/uploads/looks/.../result.png",
+  "result_image_absolute_url": "https://appworkspro.com/uploads/looks/.../result.png",
+  "error": null
+}</pre>
+  <table>
+    <tr><th>status</th><th>Action</th></tr>
+    <tr><td>queued / processing</td><td>Keep polling</td></tr>
+    <tr><td>completed</td><td>Show <code>result_image_absolute_url</code></td></tr>
+    <tr><td>failed</td><td>Show <code>error</code></td></tr>
+  </table>
+
+  <h2>7. History (saved looks)</h2>
+  <div class="endpoint">POST /api/v1/history</div>
+  <pre>{
+  "image_url": "https://appworkspro.com/uploads/.../result.png",
+  "style_id": "style-01",
+  "saved_to_wardrobe": true,
+  "try_on_job_id": "66f1..."
+}</pre>
+  <div class="endpoint">GET /api/v1/history?page=1&amp;limit=20</div>
+  <pre>{
+  "items": [
+    {
+      "id": "...",
+      "image_absolute_url": "https://appworkspro.com/uploads/...",
+      "is_favorite": false,
+      "saved_to_wardrobe": true,
+      "created_at": "2026-09-28T10:00:00.000Z"
+    }
+  ],
+  "meta": { "page": 1, "limit": 20, "total": 5 }
+}</pre>
+  <div class="endpoint">PATCH /api/v1/history/{id}</div>
+  <pre>{ "is_favorite": true, "saved_to_wardrobe": true }</pre>
+
+  <h2>8. User &amp; push</h2>
+  <div class="endpoint">GET /api/v1/users/me</div>
+  <div class="endpoint">PATCH /api/v1/users/me/preferences</div>
+  <div class="endpoint">POST /api/v1/devices/register</div>
+  <pre>{
+  "fcm_token": "...",
+  "platform": "android",
+  "device_id": "...",
+  "app_version": "1.0.0"
+}</pre>
+
+  <h2>9. Images</h2>
+  <p>Use <code>*_absolute_url</code> fields in the app UI. Paths like <code>/uploads/looks/...</code> are served at:</p>
+  <pre>https://appworkspro.com/uploads/looks/{userId}/{file}.png</pre>
+
+  <h2>10. Errors (common)</h2>
+  <table>
+    <tr><th>HTTP</th><th>code</th><th>Meaning</th></tr>
+    <tr><td>401</td><td>UNAUTHORIZED</td><td>Bad login or expired token → refresh or re-login</td></tr>
+    <tr><td>422</td><td>VALIDATION</td><td>Missing/invalid body fields</td></tr>
+    <tr><td>429</td><td>RATE_LIMIT</td><td>Too many requests</td></tr>
+    <tr><td>502</td><td>TRY_ON_FAILED</td><td>AI provider error</td></tr>
+  </table>
+
+  <p style="margin-top:2rem;color:var(--muted);font-size:0.85rem;">
+    Full Markdown: <code>docs/MOBILE_APP_API.md</code> · Endpoint table: <code>docs/API_ENDPOINTS_TABLE.md</code><br />
+    Admin dashboard uses <code>POST /api/v1/auth/admin/login</code> — not for mobile apps.
+  </p>
+
+</body>
+</html>
