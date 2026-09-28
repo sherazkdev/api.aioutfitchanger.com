@@ -9,6 +9,7 @@
     "lint": "eslint",
     "sync:env": "node scripts/sync-env-local.mjs",
     "seed": "node scripts/seed-admin.mjs",
+    "clear:demo-content": "node scripts/clear-demo-content.mjs",
     "check:env": "node scripts/check-env.mjs",
     "docs:pdf": "node -e \"console.log('Open docs/AI-Wardrobe-API-Complete.html in Chrome → Print → Save as PDF')\"",
     "docs:generate-pdf": "node scripts/generate-api-pdf.mjs",

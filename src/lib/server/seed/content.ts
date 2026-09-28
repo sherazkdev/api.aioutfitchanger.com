@@ -20,6 +20,9 @@ function enMap(text: string): Record<string, string> {
 }
 
 export async function ensureContentSeed(): Promise<void> {
+  if (process.env.DISABLE_CONTENT_SEED === "1" || process.env.DISABLE_CONTENT_SEED === "true") {
+    return;
+  }
   try {
     await connectMongo();
     await ensureLanguageCatalog();
