@@ -11,13 +11,17 @@ CERTBOT_EMAIL="${CERTBOT_EMAIL:-admin@appworkspro.com}"
 cd "$APP_ROOT"
 echo "==> $APP_ROOT"
 
-if [[ ! -f .env.local ]]; then
-  echo "ERROR: Create .env.local on the server (APP_URL=https://$DOMAIN, MONGODB_URI, secrets)."
+ENV_FILE=".env.local"
+if [[ ! -f "$ENV_FILE" ]]; then
+  ENV_FILE=".env"
+fi
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "ERROR: Create .env.local or .env on the server (APP_URL=https://$DOMAIN, MONGODB_URI, secrets)."
   exit 1
 fi
 
-grep -q '^APP_URL=' .env.local || echo "APP_URL=https://$DOMAIN" >> .env.local
-grep -q '^NODE_ENV=' .env.local || echo "NODE_ENV=production" >> .env.local
+grep -q '^APP_URL=' "$ENV_FILE" || echo "APP_URL=https://$DOMAIN" >> "$ENV_FILE"
+grep -q '^NODE_ENV=' "$ENV_FILE" || echo "NODE_ENV=production" >> "$ENV_FILE"
 
 echo "==> npm ci && build"
 npm ci

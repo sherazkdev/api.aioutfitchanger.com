@@ -6,7 +6,10 @@ const fs = require("fs");
 const path = require("path");
 
 function loadEnvLocal() {
-  const file = path.join(__dirname, "..", ".env.local");
+  const root = path.join(__dirname, "..");
+  const file = fs.existsSync(path.join(root, ".env.local"))
+    ? path.join(root, ".env.local")
+    : path.join(root, ".env");
   if (!fs.existsSync(file)) return {};
   const out = {};
   for (const line of fs.readFileSync(file, "utf8").split(/\r?\n/)) {
