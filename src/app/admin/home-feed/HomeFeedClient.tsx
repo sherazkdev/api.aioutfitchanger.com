@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Pencil, Search, Trash2 } from "lucide-react";
 import PageHeader from "@/components/dashboard/PageHeader";
+import { PremiumImageStack } from "@/components/dashboard/PremiumImage";
 import { apiFetch } from "@/lib/api/client";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +18,7 @@ type SectionRow = {
   type: string;
   category_id: string | null;
   published: boolean;
+  preview_thumbnails?: string[];
 };
 
 export default function HomeFeedClient() {
@@ -101,6 +103,7 @@ export default function HomeFeedClient() {
           <thead>
             <tr className="border-b border-gray-100 bg-gray-50/50 text-left dark:border-gray-800">
               <th className="table-head px-4 py-3">Order</th>
+              <th className="table-head px-4 py-3">Preview</th>
               <th className="table-head px-4 py-3">Section</th>
               <th className="table-head px-4 py-3">Layout</th>
               <th className="table-head px-4 py-3">Linked category</th>
@@ -110,14 +113,17 @@ export default function HomeFeedClient() {
             </tr>
           </thead>
           <tbody>
-            {loading && <tr><td colSpan={7} className="px-4 py-10 text-center text-sm text-gray-500">Loading…</td></tr>}
-            {error && !loading && <tr><td colSpan={7} className="px-4 py-10 text-center text-sm text-red-600">{error}</td></tr>}
+            {loading && <tr><td colSpan={8} className="px-4 py-10 text-center text-sm text-gray-500">Loading…</td></tr>}
+            {error && !loading && <tr><td colSpan={8} className="px-4 py-10 text-center text-sm text-red-600">{error}</td></tr>}
             {!loading && !error && filtered.length === 0 && (
-              <tr><td colSpan={7} className="px-4 py-10 text-center text-sm text-gray-500">No sections</td></tr>
+              <tr><td colSpan={8} className="px-4 py-10 text-center text-sm text-gray-500">No sections</td></tr>
             )}
             {filtered.map((row) => (
               <tr key={row.id} className="border-b border-gray-50 dark:border-gray-800/60">
                 <td className="px-4 py-3 text-sm tabular-nums">{row.sort_order + 1}</td>
+                <td className="px-4 py-3">
+                  <PremiumImageStack urls={row.preview_thumbnails ?? []} max={3} size="xs" />
+                </td>
                 <td className="px-4 py-3 text-sm font-medium">{row.title}</td>
                 <td className="px-4 py-3 text-sm text-gray-600">{row.type.replace(/_/g, " ")}</td>
                 <td className="px-4 py-3 font-mono text-xs">{row.category_id ?? "—"}</td>

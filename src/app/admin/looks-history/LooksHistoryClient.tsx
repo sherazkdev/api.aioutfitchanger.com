@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { useCallback, useEffect, useState } from "react";
 import { useDebouncedValue } from "@/lib/hooks/useDebouncedValue";
 import { RefreshCw, Search, ChevronRight } from "lucide-react";
@@ -90,9 +90,7 @@ export default function LooksHistoryClient() {
               items.map((row) => (
                 <tr key={row.id} className="border-b">
                   <td className="px-4 py-3">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-lg">
-                      <Image src={row.image_url} alt="" fill className="object-cover" unoptimized sizes="40px" />
-                    </div>
+                    <PremiumImage src={row.image_url} alt="" size="sm" shape="card" />
                   </td>
                   <td className="px-4 py-3 text-sm">{row.user_email}</td>
                   <td className="px-4 py-3 font-mono text-xs">{row.style_id ?? "—"}</td>

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
-import RemoteImage from "@/components/dashboard/RemoteImage";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import TokenFamilyPanel, { type TokenFamilyData } from "@/components/dashboard/TokenFamilyPanel";
 import {
   Users,
@@ -537,13 +537,7 @@ export default function TokenManagementClient() {
                           <td className="px-3 py-3 font-mono text-xs text-gray-700 dark:text-gray-300">{sessionLabel(row)}</td>
                           <td className="px-3 py-3">
                             <div className="flex items-center gap-2.5">
-                              {row.user?.photo_url ? (
-                                <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full ring-1 ring-gray-100">
-                                  <RemoteImage src={row.user.photo_url} alt="" fill className="object-cover" sizes="32px" />
-                                </div>
-                              ) : (
-                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-[10px]">?</span>
-                              )}
+                              <PremiumImage src={row.user?.photo_url} alt="" size="xs" shape="circle" />
                               <div className="min-w-0">
                                 <p className="truncate text-sm font-medium text-gray-900 dark:text-gray-100">{row.user?.email ?? "—"}</p>
                                 <div className="mt-0.5 flex flex-wrap items-center gap-1.5">

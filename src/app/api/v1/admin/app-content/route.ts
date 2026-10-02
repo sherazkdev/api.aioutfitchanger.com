@@ -6,6 +6,7 @@ import { AppLanguage } from "@/lib/server/models/AppLanguage";
 import { OnboardingPage } from "@/lib/server/models/OnboardingPage";
 import { jsonError, jsonOk } from "@/lib/server/http";
 import { handleApiRoute } from "@/lib/server/routeHandler";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
 import { ensureContentSeed } from "@/lib/server/seed/content";
 import { computeContentCompletion } from "@/lib/server/admin/contentCompletion";
 import { invalidatePublicContentCache } from "@/lib/server/cache/invalidate";
@@ -56,7 +57,7 @@ export async function GET(req: Request) {
         sort_order: p.sortOrder,
         title: p.title,
         body: p.body,
-        image_url: p.imageUrl,
+        image_url: p.imageUrl ? normalizePublicImageUrl(p.imageUrl) : undefined,
       })),
       languages: languages.map((l) => ({
         id: l.languageId,

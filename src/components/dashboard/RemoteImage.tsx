@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
 
 /** Remote user/content URLs — always unoptimized to avoid hostname config crashes */
 export default function RemoteImage({
@@ -14,8 +15,9 @@ export default function RemoteImage({
   fill?: boolean;
   sizes?: string;
 }) {
-  if (!src) return null;
+  const resolved = normalizePublicImageUrl(src);
+  if (!resolved) return null;
   return (
-    <Image src={src} alt={alt} fill={fill} sizes={sizes} className={className} unoptimized />
+    <Image src={resolved} alt={alt} fill={fill} sizes={sizes} className={className} unoptimized />
   );
 }

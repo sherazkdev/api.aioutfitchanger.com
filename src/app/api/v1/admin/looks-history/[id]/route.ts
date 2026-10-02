@@ -3,6 +3,7 @@ import { requireAuth } from "@/lib/server/auth/requireAuth";
 import { LookHistory } from "@/lib/server/models/LookHistory";
 import { jsonError, jsonOk } from "@/lib/server/http";
 import { handleApiRoute } from "@/lib/server/routeHandler";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
 
 export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> }) {
   const auth = await requireAuth(_req, ["admin"]);
@@ -27,8 +28,8 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
             photo_url: user.photoUrl,
           }
         : null,
-      image_url: row.imageUrl,
-      source_image_url: row.sourceImageUrl ?? null,
+      image_url: normalizePublicImageUrl(row.imageUrl),
+      source_image_url: row.sourceImageUrl ? normalizePublicImageUrl(row.sourceImageUrl) : null,
       style_id: row.styleId ?? null,
       category_id: row.categoryId ?? null,
       is_favorite: Boolean(row.isFavorite),

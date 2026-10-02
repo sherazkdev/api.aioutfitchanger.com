@@ -6,6 +6,7 @@ import { jsonError, jsonOk } from "@/lib/server/http";
 import { handleApiRoute } from "@/lib/server/routeHandler";
 import { ensureContentSeed } from "@/lib/server/seed/content";
 import { invalidatePublicContentCache } from "@/lib/server/cache/invalidate";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
 
 function localizedTitle(map: unknown, fallback: string): string {
   if (map && typeof map === "object" && "en" in map && typeof (map as { en: unknown }).en === "string") {
@@ -24,16 +25,28 @@ export async function GET(req: Request) {
     const rows = await WardrobeCategory.find().sort({ sortOrder: 1 }).lean();
 
     return jsonOk({
-      items: rows.map((c) => ({
+      items: rows.map((c) => {
+        const previewItems = c.previewItems ?? [];
+        const preview_image_url = previewItems
+          .map((p) => normalizePublicImageUrl(p.thumbnailUrl ?? ""))
+          .find(Boolean) ?? "";
+        const preview_thumbnails = previewItems
+          .map((p) => normalizePublicImageUrl(p.thumbnailUrl ?? ""))
+          .filter(Boolean)
+          .slice(0, 4);
+        return {
         id: String(c._id),
         category_id: c.categoryId,
         title: localizedTitle(c.titleLocalized, c.titleKey),
         title_key: c.titleKey,
         sort_order: c.sortOrder,
-        styles_count: c.previewItems?.length ?? 0,
+        styles_count: previewItems.length,
         gender_scope: c.genderScope,
         enabled: (c as { enabled?: boolean }).enabled !== false,
-      })),
+        preview_image_url,
+        preview_thumbnails,
+      };
+      }),
     });
   });
 }

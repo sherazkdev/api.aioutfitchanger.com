@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
@@ -48,17 +48,13 @@ export default function LookDetailsClient() {
       <p className="text-sm text-gray-500">{data.user?.email} · {formatDateTime(data.created_at)}</p>
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <div className="card p-4">
-          <p className="mb-2 text-sm font-medium">Result</p>
-          <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
-            <Image src={data.image_url} alt="" fill className="object-cover" unoptimized />
-          </div>
+          <p className="mb-3 text-sm font-medium">Result</p>
+          <PremiumImage src={data.image_url} alt="Look result" size="hero" shape="card" className="mx-auto max-w-sm" />
         </div>
         {data.source_image_url && (
           <div className="card p-4">
-            <p className="mb-2 text-sm font-medium">Source</p>
-            <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
-              <Image src={data.source_image_url} alt="" fill className="object-cover" unoptimized />
-            </div>
+            <p className="mb-3 text-sm font-medium">Source</p>
+            <PremiumImage src={data.source_image_url} alt="Source photo" size="hero" shape="card" className="mx-auto max-w-sm" />
           </div>
         )}
       </div>

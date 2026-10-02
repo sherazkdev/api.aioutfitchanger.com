@@ -4,6 +4,7 @@ import { LookHistory } from "@/lib/server/models/LookHistory";
 import { User } from "@/lib/server/models/User";
 import { jsonOk } from "@/lib/server/http";
 import { handleApiRoute } from "@/lib/server/routeHandler";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
 
 export async function GET(req: Request) {
   const auth = await requireAuth(req, ["admin"]);
@@ -58,8 +59,8 @@ export async function GET(req: Request) {
         user_id: user?._id ? String(user._id) : String(r.userId),
         user_email: user?.email ?? "—",
         user_name: user?.displayName ?? "—",
-        image_url: r.imageUrl,
-        source_image_url: r.sourceImageUrl ?? null,
+        image_url: normalizePublicImageUrl(r.imageUrl),
+        source_image_url: r.sourceImageUrl ? normalizePublicImageUrl(r.sourceImageUrl) : null,
         style_id: r.styleId ?? null,
         category_id: r.categoryId ?? null,
         is_favorite: Boolean(r.isFavorite),

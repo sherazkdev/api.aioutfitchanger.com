@@ -1,22 +1,21 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Search, ChevronDown, ChevronRight, ChevronUp, Pencil, Shirt, Scissors, Palette, User, Calendar, Plus } from "lucide-react";
+import { Search, ChevronDown, Pencil } from "lucide-react";
 import PageHeader from "@/components/dashboard/PageHeader";
-import Button from "@/components/ui/Button";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { apiFetch } from "@/lib/api/client";
-import { cn } from "@/lib/utils";
 
-type CatRow = { id: string; category_id: string; title_key: string; title: string; gender_scope: string; items_count: number; tabs_count: number };
-
-const icons: Record<string, React.ReactNode> = {
-  shirt: <Shirt className="h-4 w-4" />,
-  scissors: <Scissors className="h-4 w-4" />,
-  palette: <Palette className="h-4 w-4" />,
-  user: <User className="h-4 w-4" />,
-  hijab: <User className="h-4 w-4" />,
-  calendar: <Calendar className="h-4 w-4" />,
+type CatRow = {
+  id: string;
+  category_id: string;
+  title_key: string;
+  title: string;
+  gender_scope: string;
+  items_count: number;
+  tabs_count: number;
+  preview_image_url?: string;
 };
 
 export default function CategoriesPage() {
@@ -80,9 +79,11 @@ export default function CategoriesPage() {
                 <tr key={cat.id} className="border-b border-gray-50 transition-colors hover:bg-gray-50/50 dark:hover:bg-gray-800/50">
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-2.5">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-500">
-                        {icons.shirt}
-                      </span>
+                      {cat.preview_image_url ? (
+                        <PremiumImage src={cat.preview_image_url} alt="" size="sm" shape="card" />
+                      ) : (
+                        <PremiumImage size="sm" shape="rounded" />
+                      )}
                       <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{cat.title}</span>
                     </div>
                   </td>

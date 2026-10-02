@@ -6,6 +6,7 @@ import { jsonError, jsonOk } from "@/lib/server/http";
 import { handleApiRoute } from "@/lib/server/routeHandler";
 import { ensureContentSeed } from "@/lib/server/seed/content";
 import { invalidatePublicContentCache } from "@/lib/server/cache/invalidate";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
 
 function localizedTitle(map: unknown, fallback: string): string {
   if (map && typeof map === "object" && "en" in map && typeof (map as { en: unknown }).en === "string") {
@@ -24,7 +25,11 @@ export async function GET(req: Request) {
     const rows = await HomeFeedSection.find().sort({ sortOrder: 1 }).lean();
 
     return jsonOk({
-      items: rows.map((s) => ({
+      items: rows.map((s) => {
+        const thumbUrls = (s.items ?? [])
+          .map((it) => normalizePublicImageUrl(it.thumbnailUrl ?? ""))
+          .filter(Boolean);
+        return {
         id: String(s._id),
         section_id: s.sectionId,
         title: localizedTitle(s.titleLocalized, s.titleKey),
@@ -34,13 +39,16 @@ export async function GET(req: Request) {
         type: s.type,
         category_id: s.categoryId ?? null,
         published: (s as { published?: boolean }).published !== false,
+        preview_image_url: thumbUrls[0] ?? "",
+        preview_thumbnails: thumbUrls.slice(0, 4),
         items: (s.items ?? []).map((it) => ({
           style_id: it.styleId ?? "",
           category_id: it.categoryId ?? null,
-          thumbnail_url: it.thumbnailUrl ?? "",
+          thumbnail_url: normalizePublicImageUrl(it.thumbnailUrl ?? ""),
           label: it.label ?? it.labelKey ?? "",
         })),
-      })),
+      };
+      }),
     });
   });
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Copy } from "lucide-react";
@@ -64,9 +64,7 @@ export default function JobDetailsClient() {
       <div className="grid gap-6 xl:grid-cols-[1fr_300px]">
         <div className="card p-5">
           {job.result_url ? (
-            <div className="relative mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-xl border">
-              <Image src={job.result_url} alt="Result" fill className="object-cover" unoptimized />
-            </div>
+            <PremiumImage src={job.result_url} alt="Result" size="hero" shape="card" className="mx-auto max-w-sm" />
           ) : (
             <p className="text-sm text-gray-500">No result image stored for this job.</p>
           )}

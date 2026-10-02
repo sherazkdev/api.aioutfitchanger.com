@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { RefreshCw, Search, ChevronRight } from "lucide-react";
@@ -138,9 +138,7 @@ export default function TryOnJobsClient() {
                     </td>
                     <td className="px-5 py-4">
                       {job.result_url ? (
-                        <div className="relative h-9 w-9 overflow-hidden rounded-full ring-1 ring-gray-100 dark:ring-gray-700">
-                          <Image src={job.result_url} alt="" fill className="object-cover" sizes="36px" unoptimized />
-                        </div>
+                        <PremiumImage src={job.result_url} alt="" size="sm" shape="circle" />
                       ) : job.status === "failed" ? (
                         <span className="text-sm text-gray-500 dark:text-gray-400">No result</span>
                       ) : (

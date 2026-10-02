@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChevronDown, ChevronUp, Pencil, Search, Trash2 } from "lucide-react";
 import PageHeader from "@/components/dashboard/PageHeader";
@@ -174,11 +174,7 @@ export default function StyleCatalogClient() {
                 <tr key={row.id} className="border-b border-gray-50 dark:border-gray-800/60">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-gray-100">
-                        {row.image_url ? (
-                          <Image src={row.image_url} alt="" fill className="object-cover" sizes="40px" unoptimized />
-                        ) : null}
-                      </div>
+                      <PremiumImage src={row.image_url} alt={row.name} size="sm" shape="card" />
                       <span className="text-sm font-medium">{row.name}</span>
                     </div>
                   </td>

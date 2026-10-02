@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import RemoteImage from "@/components/dashboard/RemoteImage";
-import { RefreshCw, Search, ChevronRight, User } from "lucide-react";
+import PremiumImage from "@/components/dashboard/PremiumImage";
+import { RefreshCw, Search, ChevronRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import TablePagination from "@/components/dashboard/TablePagination";
 import { apiFetch } from "@/lib/api/client";
@@ -135,15 +135,7 @@ export default function UsersPage() {
                   <tr key={u.id} className="border-b border-gray-50 transition-colors hover:bg-gray-50/50 dark:border-gray-800">
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-2.5">
-                        {u.photo_url ? (
-                          <div className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-gray-100">
-                            <RemoteImage src={u.photo_url} alt="" fill className="object-cover" sizes="32px" />
-                          </div>
-                        ) : (
-                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
-                            <User className="h-4 w-4 text-gray-400" />
-                          </div>
-                        )}
+                        <PremiumImage src={u.photo_url} alt="" size="xs" shape="circle" />
                         <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{u.display_name ?? "User"}</span>
                       </div>
                     </td>

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import Image from "next/image";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { Copy, Smartphone } from "lucide-react";
 import PageHeader from "@/components/dashboard/PageHeader";
 import Button from "@/components/ui/Button";
@@ -152,11 +152,7 @@ export default function UserDetailPage() {
       />
 
       <div className="flex items-center gap-4">
-        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-gray-100">
-          {data.profile.photo_url ? (
-            <Image src={data.profile.photo_url} alt="" fill className="object-cover" unoptimized />
-          ) : null}
-        </div>
+        <PremiumImage src={data.profile.photo_url} alt="" size="md" shape="circle" />
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-base font-semibold text-gray-900 dark:text-gray-100">{name}</span>
@@ -280,10 +276,8 @@ export default function UserDetailPage() {
             <ul className="space-y-3">
               {activityTimeline.map((ev) => (
                 <li key={ev.id} className="flex gap-3 border-b border-gray-50 pb-3 last:border-0 dark:border-gray-800/60">
-                  {ev.kind === "look" && ev.preview_url ? (
-                    <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-100">
-                      <Image src={ev.preview_url} alt="" fill className="object-cover" sizes="40px" unoptimized />
-                    </div>
+                  {ev.kind === "look" ? (
+                    <PremiumImage src={ev.preview_url} alt="" size="sm" shape="card" />
                   ) : (
                     <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-blue-500" />
                   )}

@@ -1,6 +1,6 @@
 "use client";
 
-import RemoteImage from "@/components/dashboard/RemoteImage";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { Copy, X } from "lucide-react";
 import { formatDateTime } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -86,13 +86,13 @@ export default function TokenFamilyPanel({
           <>
             <p className="mt-4 text-[11px] font-medium uppercase tracking-wide text-gray-400">Account</p>
             <div className="mt-2 flex items-center gap-3 rounded-xl border border-gray-100 bg-gray-50/60 p-3 dark:border-gray-800 dark:bg-gray-900/30">
-              {family.user.photo_url ? (
-                <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full ring-2 ring-white dark:ring-gray-800">
-                  <RemoteImage src={family.user.photo_url} alt="" fill className="object-cover" sizes="44px" />
-                </div>
-              ) : (
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-200 text-sm">?</span>
-              )}
+              <PremiumImage
+                src={family.user.photo_url}
+                alt=""
+                size="md"
+                shape="circle"
+                className="ring-2 ring-white dark:ring-gray-800"
+              />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">
                   {family.user.display_name ?? family.user.email}

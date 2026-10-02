@@ -6,6 +6,7 @@ import { jsonError, jsonOk } from "@/lib/server/http";
 import { handleApiRoute } from "@/lib/server/routeHandler";
 import { ensureContentSeed } from "@/lib/server/seed/content";
 import { invalidatePublicContentCache } from "@/lib/server/cache/invalidate";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
 
 export async function GET(req: Request) {
   const auth = await requireAuth(req, ["admin"]);
@@ -31,6 +32,7 @@ export async function GET(req: Request) {
       gender: string;
       sort_order: number;
       enabled: boolean;
+      prompt_command: string;
     }[] = [];
 
     for (const cat of categories) {
@@ -44,10 +46,11 @@ export async function GET(req: Request) {
           category_id: cat.categoryId,
           style_id: item.id,
           name,
-          image_url: item.imageUrl,
+          image_url: normalizePublicImageUrl(item.imageUrl),
           gender: item.gender ?? "women",
           sort_order: item.sortOrder ?? 0,
           enabled: (item as { enabled?: boolean }).enabled !== false,
+          prompt_command: (item as { promptCommand?: string }).promptCommand ?? "",
         });
       }
     }

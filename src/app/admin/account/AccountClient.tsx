@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Eye, EyeOff, Laptop, Lock, Smartphone } from "lucide-react";
@@ -250,11 +250,7 @@ export default function AccountClient() {
           <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Profile</h2>
           <div className="mt-4 flex flex-col gap-5 sm:flex-row">
             <div className="flex flex-col items-center gap-2 sm:items-start">
-              <div className="relative h-20 w-20 overflow-hidden rounded-full bg-gray-100 ring-2 ring-white shadow-sm">
-                {profile.photo_url ? (
-                  <Image src={profile.photo_url} alt="" fill className="object-cover" unoptimized />
-                ) : null}
-              </div>
+              <PremiumImage src={profile.photo_url} alt="" size="lg" shape="circle" className="ring-2 ring-white" />
               <Button type="button" variant="outline" size="sm" onClick={onAvatarPick} disabled={avatarUploading}>
                 {avatarUploading ? "Uploading…" : "Upload avatar"}
               </Button>

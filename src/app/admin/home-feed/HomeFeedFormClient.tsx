@@ -106,7 +106,7 @@ export default function HomeFeedFormClient({ mode }: { mode: "add" | "edit" }) {
       return;
     }
     const sectionMongoId = res.data?.id ?? (mode === "edit" ? id : "");
-    if (sectionMongoId && type === "image_rail") {
+    if (sectionMongoId && (type === "image_rail" || type === "category_cards")) {
       const itemsRes = await apiFetch("/api/v1/admin/home-feed", {
         method: "PATCH",
         body: JSON.stringify({
@@ -169,6 +169,63 @@ export default function HomeFeedFormClient({ mode }: { mode: "add" | "edit" }) {
           Published (visible in app)
         </label>
 
+        {type === "category_cards" && (
+          <div className="space-y-3 border-t border-gray-100 pt-4 dark:border-gray-800">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">Category cards</p>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setItems((prev) => [...prev, { style_id: "", category_id: "", label: "", thumbnail_url: "" }])}
+              >
+                <Plus className="h-3.5 w-3.5" /> Add card
+              </Button>
+            </div>
+            {items.length === 0 ? (
+              <p className="text-xs text-gray-500">No cards yet. Add categories shown on the home screen.</p>
+            ) : (
+              <ul className="space-y-3">
+                {items.map((it, index) => (
+                  <li key={index} className="rounded-lg border border-gray-100 p-3 dark:border-gray-800">
+                    <div className="mb-2 flex items-center justify-between gap-2">
+                      <span className="text-xs font-medium text-gray-500">Card {index + 1}</span>
+                      <div className="flex gap-1">
+                        <button type="button" className="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => moveItem(index, -1)} aria-label="Move up">
+                          <ChevronUp className="h-4 w-4 text-gray-500" />
+                        </button>
+                        <button type="button" className="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => moveItem(index, 1)} aria-label="Move down">
+                          <ChevronDown className="h-4 w-4 text-gray-500" />
+                        </button>
+                        <button
+                          type="button"
+                          className="rounded p-1 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30"
+                          onClick={() => setItems((prev) => prev.filter((_, i) => i !== index))}
+                          aria-label="Remove card"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      <Input label="Category ID" value={it.category_id ?? ""} onChange={(e) => updateItem(index, { category_id: e.target.value })} />
+                      <Input label="Label" value={it.label ?? ""} onChange={(e) => updateItem(index, { label: e.target.value })} />
+                      <ImageUrlOrUpload
+                        compact
+                        label="Card image"
+                        folder="home-feed"
+                        value={it.thumbnail_url ?? ""}
+                        onChange={(url) => updateItem(index, { thumbnail_url: url })}
+                        className="sm:col-span-2"
+                      />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+
         {type === "image_rail" && (
           <div className="space-y-3 border-t border-gray-100 pt-4 dark:border-gray-800">
             <div className="flex items-center justify-between">
@@ -211,6 +268,7 @@ export default function HomeFeedFormClient({ mode }: { mode: "add" | "edit" }) {
                       <Input label="Style ID" value={it.style_id} onChange={(e) => updateItem(index, { style_id: e.target.value })} />
                       <Input label="Label" value={it.label ?? ""} onChange={(e) => updateItem(index, { label: e.target.value })} />
                       <ImageUrlOrUpload
+                        compact
                         label="Thumbnail"
                         folder="home-feed"
                         value={it.thumbnail_url ?? ""}

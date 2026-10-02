@@ -6,6 +6,14 @@ import { logAdminAudit } from "@/lib/server/admin/auditLog";
 import { handleApiRoute } from "@/lib/server/routeHandler";
 import { ensureContentSeed } from "@/lib/server/seed/content";
 import { invalidatePublicContentCache } from "@/lib/server/cache/invalidate";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
+
+function categoryPreviewImageUrl(doc: { items?: { imageUrl?: string; enabled?: boolean; sortOrder?: number }[] }) {
+  const items = [...(doc.items ?? [])].filter((i) => i.enabled !== false);
+  items.sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
+  const first = items.find((i) => i.imageUrl?.trim());
+  return first?.imageUrl ? normalizePublicImageUrl(first.imageUrl) : "";
+}
 
 export async function GET(req: Request) {
   const auth = await requireAuth(req, ["admin"]);
@@ -29,6 +37,7 @@ export async function GET(req: Request) {
       gender_scope: c.genderScope,
       items_count: c.items?.length ?? 0,
       tabs_count: c.tabs?.length ?? 0,
+      preview_image_url: categoryPreviewImageUrl(c),
     }));
 
     if (q) {

@@ -3,6 +3,7 @@ import { requireAuth } from "@/lib/server/auth/requireAuth";
 import { TryOnJob } from "@/lib/server/models/TryOnJob";
 import { User } from "@/lib/server/models/User";
 import { jsonOk } from "@/lib/server/http";
+import { normalizePublicImageUrl } from "@/lib/content/publicImageUrl";
 
 export async function GET(req: Request) {
   const auth = await requireAuth(req, ["admin"]);
@@ -62,7 +63,7 @@ export async function GET(req: Request) {
         style_id: j.styleId,
         category_id: j.categoryId,
         status: j.status,
-        result_url: j.resultUrl,
+        result_url: j.resultUrl ? normalizePublicImageUrl(j.resultUrl) : null,
         error: j.errorMessage,
         created_at: j.createdAt ? new Date(j.createdAt).toISOString() : null,
       };

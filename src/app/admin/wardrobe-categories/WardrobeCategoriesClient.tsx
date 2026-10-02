@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Pencil, Search, Trash2 } from "lucide-react";
 import PageHeader from "@/components/dashboard/PageHeader";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { apiFetch } from "@/lib/api/client";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +17,7 @@ type WardrobeRow = {
   styles_count: number;
   gender_scope: string;
   enabled: boolean;
+  preview_image_url?: string;
 };
 
 export default function WardrobeCategoriesClient() {
@@ -135,7 +137,12 @@ export default function WardrobeCategoriesClient() {
             )}
             {filtered.map((row) => (
               <tr key={row.id} className="border-b border-gray-50 dark:border-gray-800/60">
-                <td className="px-4 py-3 text-sm font-medium">{row.title}</td>
+                <td className="px-4 py-3">
+                  <div className="flex items-center gap-3">
+                    <PremiumImage src={row.preview_image_url} alt="" size="sm" shape="card" />
+                    <span className="text-sm font-medium">{row.title}</span>
+                  </div>
+                </td>
                 <td className="px-4 py-3 font-mono text-xs text-gray-500">{row.category_id}</td>
                 <td className="px-4 py-3 text-sm capitalize">{row.gender_scope}</td>
                 <td className="px-4 py-3 text-sm">{row.styles_count}</td>

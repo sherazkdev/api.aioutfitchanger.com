@@ -1,4 +1,4 @@
-import RemoteImage from "@/components/dashboard/RemoteImage";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import { HangerIcon } from "@/components/icons/HangerIcon";
 import { cn } from "@/lib/utils";
 
@@ -37,11 +37,7 @@ export default function PhoneNotificationPreview({
                 </p>
                 <p className="mt-0.5 line-clamp-3 text-[11px] leading-snug text-gray-600 dark:text-gray-400">{displayBody}</p>
               </div>
-              {hasImage && (
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-100">
-                  <RemoteImage src={imageUrl!.trim()} alt="" fill className="object-cover" sizes="40px" />
-                </div>
-              )}
+              {hasImage ? <PremiumImage src={imageUrl} alt="" size="sm" shape="rounded" /> : null}
             </div>
           </div>
           <p className="mt-8 text-center text-[11px] font-medium text-gray-500/90">9:41</p>

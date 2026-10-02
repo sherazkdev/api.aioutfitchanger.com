@@ -10,6 +10,7 @@ import { isAdminDesignPreview } from "@/lib/admin/design-preview";
 import { formatCampaignSentAt } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import ImageUrlOrUpload from "@/components/admin/ImageUrlOrUpload";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 
 type TabId = "metadata" | "onboarding" | "languages" | "legal";
 
@@ -347,6 +348,7 @@ export default function AppContentClient() {
                 <thead>
                   <tr className="border-b border-[var(--color-border)] text-left">
                     <th className="table-head px-4 py-3">Order</th>
+                    <th className="table-head px-4 py-3">Image</th>
                     <th className="table-head px-4 py-3">Title</th>
                     <th className="table-head px-4 py-3">Body preview</th>
                     <th className="table-head px-4 py-3" />
@@ -354,11 +356,14 @@ export default function AppContentClient() {
                 </thead>
                 <tbody>
                   {onboarding.length === 0 ? (
-                    <tr><td colSpan={4} className="px-4 py-10 text-center text-sm text-gray-500">No onboarding pages</td></tr>
+                    <tr><td colSpan={5} className="px-4 py-10 text-center text-sm text-gray-500">No onboarding pages</td></tr>
                   ) : (
                     onboarding.map((p, i) => (
                       <tr key={p.id} className="border-b border-gray-50 hover:bg-gray-50/50 dark:border-gray-800/50 dark:hover:bg-gray-900/30">
                         <td className="px-4 py-3 text-sm tabular-nums text-gray-500">{String(p.sort_order).padStart(2, "0")}</td>
+                        <td className="px-4 py-3">
+                          <PremiumImage src={p.image_url} alt="" size="sm" shape="card" />
+                        </td>
                         <td className="px-4 py-3 text-sm font-medium">{p.title}</td>
                         <td className="max-w-md truncate px-4 py-3 text-sm text-gray-500">{p.body ?? "—"}</td>
                         <td className="px-4 py-3 text-right text-xs">

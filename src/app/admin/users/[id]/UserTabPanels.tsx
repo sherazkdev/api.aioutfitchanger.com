@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { ChevronRight, Heart } from "lucide-react";
@@ -184,9 +184,7 @@ export function UserLooksPanel({ userId, active }: { userId: string; active: boo
                   <tr key={l.id} className="border-b border-gray-50 dark:border-gray-800/50">
                     <td className="px-4 py-3 text-sm font-medium">{l.id.slice(-8)}</td>
                     <td className="px-4 py-3">
-                      <div className="relative h-10 w-10 overflow-hidden rounded-md bg-gray-100">
-                        {l.preview_url ? <Image src={l.preview_url} alt="" fill className="object-cover" unoptimized /> : null}
-                      </div>
+                      <PremiumImage src={l.preview_url} alt="" size="sm" shape="card" />
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-600">{l.style}</td>
                     <td className="px-4 py-3 text-sm text-gray-500">{formatCreatedShort(l.created_at)}</td>

@@ -9,6 +9,7 @@ import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
 import { apiFetch } from "@/lib/api/client";
 import ImageUrlOrUpload from "@/components/admin/ImageUrlOrUpload";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 
 type Cat = { category_id: string; title: string };
 
@@ -38,7 +39,7 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
 
   useEffect(() => {
     if (mode !== "edit" || !styleIdParam || !categoryIdParam) return;
-    apiFetch<{ items: { style_id: string; name: string; image_url: string; gender: string; enabled: boolean }[] }>(
+    apiFetch<{ items: { style_id: string; name: string; image_url: string; gender: string; enabled: boolean; prompt_command?: string }[] }>(
       `/api/v1/admin/catalog/styles?category_id=${encodeURIComponent(categoryIdParam)}`
     ).then((res) => {
       const row = res.data?.items.find((i) => i.style_id === styleIdParam);
@@ -47,6 +48,7 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
         setImageUrl(row.image_url);
         setGender(row.gender);
         setEnabled(row.enabled);
+        setPrompt(row.prompt_command ?? "");
       }
       setLoading(false);
     });
@@ -121,8 +123,14 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
             Visible in app catalog
           </label>
         </div>
-        <div className="card p-5">
-          <h2 className="mb-4 text-sm font-semibold">Prompt command</h2>
+        <div className="card p-5 space-y-4">
+          <div>
+            <h2 className="text-sm font-semibold">Prompt command</h2>
+            <p className="mt-1 text-xs text-gray-500">Reference image and text sent with try-on for this style.</p>
+          </div>
+          <div className="flex justify-center rounded-xl border border-dashed border-gray-200 bg-gray-50/50 p-4 dark:border-gray-700 dark:bg-gray-900/20">
+            <PremiumImage src={imageUrl} alt="Prompt reference" size="hero" shape="card" className="w-[min(100%,220px)]" />
+          </div>
           <Textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} rows={6} placeholder="Optional try-on prompt" />
         </div>
       </div>

@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    localPatterns: [
+      { pathname: "/media/**" },
+      { pathname: "/uploads/**" },
+    ],
     // Admin shows user avatars and try-on URLs from many hosts
     remotePatterns: [
       { protocol: "https", hostname: "**", pathname: "/**" },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import RemoteImage from "@/components/dashboard/RemoteImage";
+import PremiumImage from "@/components/dashboard/PremiumImage";
 import Link from "next/link";
 import StatCard from "@/components/dashboard/charts/StatCard";
 import TryOnActivityChart from "@/components/dashboard/charts/TryOnActivityChart";
@@ -227,15 +227,7 @@ export default function OverviewClient() {
                       </td>
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-2">
-                          {j.user_avatar ? (
-                            <div className="relative h-8 w-8 overflow-hidden rounded-full">
-                              <RemoteImage src={j.user_avatar} alt="" fill className="object-cover" sizes="32px" />
-                            </div>
-                          ) : (
-                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-xs dark:bg-gray-800">
-                              ?
-                            </span>
-                          )}
+                          <PremiumImage src={j.user_avatar} alt="" size="xs" shape="circle" />
                           <span className="text-[13px]">{j.user_name}</span>
                         </div>
                       </td>
