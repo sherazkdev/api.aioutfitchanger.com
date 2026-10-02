@@ -11,6 +11,7 @@
     "seed": "node scripts/seed-admin.mjs",
     "assets:sync": "node scripts/install-assets.mjs",
     "assets:seed": "node scripts/install-assets.mjs --seed",
+    "assets:seed-prompts": "node scripts/seed-prompts-only.mjs",
     "assets:verify": "node scripts/verify-assets.mjs",
     "clear:demo-content": "node scripts/clear-demo-content.mjs",
     "check:env": "node scripts/check-env.mjs",
