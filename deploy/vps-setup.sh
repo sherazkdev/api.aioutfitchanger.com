@@ -23,7 +23,14 @@ fi
 grep -q '^APP_URL=' "$ENV_FILE" || echo "APP_URL=https://$DOMAIN" >> "$ENV_FILE"
 grep -q '^NODE_ENV=' "$ENV_FILE" || echo "NODE_ENV=production" >> "$ENV_FILE"
 
-echo "==> npm ci && build"
+echo "==> npm ci && build (Node 22 + npm 11 for lockfile)"
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+# shellcheck source=/dev/null
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  . "$NVM_DIR/nvm.sh"
+  nvm use 22 >/dev/null
+  npm install -g npm@11 >/dev/null 2>&1 || true
+fi
 npm ci
 npm run build
 
