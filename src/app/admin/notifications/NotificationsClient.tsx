@@ -17,6 +17,7 @@ import {
   DEMO_SEND_RESULT,
 } from "@/lib/admin/notifications-demo";
 import { cn } from "@/lib/utils";
+import ImageUrlOrUpload from "@/components/admin/ImageUrlOrUpload";
 
 type Campaign = {
   id: string;
@@ -242,7 +243,7 @@ export default function NotificationsClient() {
           <div className="p-5 sm:p-6 xl:border-r xl:border-gray-100 dark:xl:border-gray-800">
             <div className="mb-5 border-b border-gray-100 pb-4 dark:border-gray-800">
               <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Compose notification</h2>
-              <p className="mt-0.5 text-xs text-gray-500">Title and body are required. Image URL is optional.</p>
+              <p className="mt-0.5 text-xs text-gray-500">Title and body are required. Image URL or upload is optional.</p>
             </div>
             <div className="space-y-4">
               <div>
@@ -266,12 +267,12 @@ export default function NotificationsClient() {
                 <p className="mt-1 text-right text-[11px] text-gray-400">{bodyChars} characters</p>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <FieldLabel>Image URL (optional)</FieldLabel>
-                  <input
-                    className={INPUT_CLASS}
+                <div className="sm:col-span-2">
+                  <ImageUrlOrUpload
+                    label="Notification image (optional)"
+                    folder="notifications"
                     value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
+                    onChange={setImageUrl}
                     placeholder="https://cdn.example.com/promo.jpg"
                   />
                 </div>

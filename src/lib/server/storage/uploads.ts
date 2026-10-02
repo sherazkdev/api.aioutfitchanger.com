@@ -1,5 +1,42 @@
+import { randomBytes } from "crypto";
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
+
+import {
+  ADMIN_CONTENT_UPLOAD_FOLDERS,
+  type AdminContentUploadFolder,
+} from "@/lib/admin/contentUploadFolders";
+
+const MAX_ADMIN_UPLOAD_BYTES = 5 * 1024 * 1024;
+
+export { ADMIN_CONTENT_UPLOAD_FOLDERS, type AdminContentUploadFolder };
+
+/** Save an admin-uploaded image under public/uploads/content/{folder}/ */
+export async function saveAdminContentImage(opts: {
+  folder: AdminContentUploadFolder;
+  buffer: Buffer;
+  contentType: string;
+}): Promise<string> {
+  if (opts.buffer.length === 0) throw new Error("EMPTY_IMAGE");
+  if (opts.buffer.length > MAX_ADMIN_UPLOAD_BYTES) throw new Error("FILE_TOO_LARGE");
+
+  const ct = opts.contentType.toLowerCase();
+  if (!ct.startsWith("image/")) throw new Error("INVALID_TYPE");
+
+  let ext = "jpg";
+  if (ct.includes("png")) ext = "png";
+  else if (ct.includes("webp")) ext = "webp";
+  else if (ct.includes("gif")) ext = "gif";
+  else if (ct.includes("jpeg") || ct.includes("jpg")) ext = "jpg";
+  else throw new Error("INVALID_TYPE");
+
+  const filename = `${Date.now()}-${randomBytes(8).toString("hex")}.${ext}`;
+  const dir = path.join(process.cwd(), "public", "uploads", "content", opts.folder);
+  await mkdir(dir, { recursive: true });
+  await writeFile(path.join(dir, filename), opts.buffer);
+
+  return `/uploads/content/${opts.folder}/${filename}`;
+}
 
 /** True when URL already points at this app's public/uploads tree. */
 export function isHostedUploadUrl(url: string): boolean {

@@ -3,6 +3,12 @@
 /out/
 .env*
 /public/uploads/
+/public/media/catalog/
+.asset-requirements/assets.zip
+.asset-requirements/_extract/
+.asset-requirements/_extracted/
+.asset-requirements/_extracted2/
+.asset-requirements/_extracted3/
 !.env.example
 *.tsbuildinfo
 next-env.d.ts

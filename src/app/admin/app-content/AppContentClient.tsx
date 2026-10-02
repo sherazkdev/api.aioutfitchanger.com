@@ -9,6 +9,7 @@ import { apiFetch } from "@/lib/api/client";
 import { isAdminDesignPreview } from "@/lib/admin/design-preview";
 import { formatCampaignSentAt } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import ImageUrlOrUpload from "@/components/admin/ImageUrlOrUpload";
 
 type TabId = "metadata" | "onboarding" | "languages" | "legal";
 
@@ -101,7 +102,7 @@ export default function AppContentClient() {
   const [tab, setTab] = useState<TabId>("metadata");
   const [draft, setDraft] = useState<Record<string, string | boolean>>({});
   const [stats, setStats] = useState<Record<string, string | number | null>>({});
-  const [onboarding, setOnboarding] = useState<{ id: string; title: string; sort_order: number; body?: string }[]>([]);
+  const [onboarding, setOnboarding] = useState<{ id: string; title: string; sort_order: number; body?: string; image_url?: string }[]>([]);
   const [languages, setLanguages] = useState<{ id: string; name: string; code: string; enabled: boolean; english_name?: string }[]>([]);
   const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -113,7 +114,7 @@ export default function AppContentClient() {
     apiFetch<{
       stats: Record<string, string | number | null>;
       draft: Record<string, string | boolean>;
-      onboarding_pages: { id: string; title: string; sort_order: number; body?: string }[];
+      onboarding_pages: { id: string; title: string; sort_order: number; body?: string; image_url?: string }[];
       languages: { id: string; name: string; code: string; enabled: boolean; english_name?: string }[];
     }>("/api/v1/admin/app-content").then((res) => {
       if (res.data) {
@@ -312,7 +313,12 @@ export default function AppContentClient() {
               <div className="space-y-3 border-b border-[var(--color-border)] bg-gray-50/50 px-5 py-4 dark:bg-gray-900/20">
                 <input className={INPUT_CLASS} placeholder="Title" value={onboardingEdit.title} onChange={(e) => setOnboardingEdit({ ...onboardingEdit, title: e.target.value })} />
                 <textarea className={cn(INPUT_CLASS, "min-h-[72px]")} placeholder="Body" value={onboardingEdit.body} onChange={(e) => setOnboardingEdit({ ...onboardingEdit, body: e.target.value })} />
-                <input className={INPUT_CLASS} placeholder="Image URL" value={onboardingEdit.image_url} onChange={(e) => setOnboardingEdit({ ...onboardingEdit, image_url: e.target.value })} />
+                <ImageUrlOrUpload
+                  label="Page image"
+                  folder="onboarding"
+                  value={onboardingEdit.image_url}
+                  onChange={(url) => setOnboardingEdit({ ...onboardingEdit, image_url: url })}
+                />
                 <div className="flex gap-2">
                   <Button
                     type="button"
@@ -356,7 +362,7 @@ export default function AppContentClient() {
                         <td className="px-4 py-3 text-sm font-medium">{p.title}</td>
                         <td className="max-w-md truncate px-4 py-3 text-sm text-gray-500">{p.body ?? "—"}</td>
                         <td className="px-4 py-3 text-right text-xs">
-                          <button type="button" className="text-blue-600 hover:underline" onClick={() => setOnboardingEdit({ id: p.id, title: p.title, body: p.body ?? "", image_url: "" })}>Edit</button>
+                          <button type="button" className="text-blue-600 hover:underline" onClick={() => setOnboardingEdit({ id: p.id, title: p.title, body: p.body ?? "", image_url: p.image_url ?? "" })}>Edit</button>
                           <span className="mx-1 text-gray-300">|</span>
                           <button type="button" className="text-gray-500 hover:text-gray-800" disabled={i === 0} onClick={() => moveOnboarding(i, -1)}>Up</button>
                           <button type="button" className="ml-1 text-gray-500 hover:text-gray-800" disabled={i === onboarding.length - 1} onClick={() => moveOnboarding(i, 1)}>Down</button>

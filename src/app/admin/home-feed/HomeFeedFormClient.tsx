@@ -8,6 +8,7 @@ import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
 import { apiFetch } from "@/lib/api/client";
+import ImageUrlOrUpload from "@/components/admin/ImageUrlOrUpload";
 
 type FeedItem = {
   style_id: string;
@@ -209,7 +210,13 @@ export default function HomeFeedFormClient({ mode }: { mode: "add" | "edit" }) {
                     <div className="grid gap-2 sm:grid-cols-2">
                       <Input label="Style ID" value={it.style_id} onChange={(e) => updateItem(index, { style_id: e.target.value })} />
                       <Input label="Label" value={it.label ?? ""} onChange={(e) => updateItem(index, { label: e.target.value })} />
-                      <Input label="Thumbnail URL" value={it.thumbnail_url ?? ""} onChange={(e) => updateItem(index, { thumbnail_url: e.target.value })} />
+                      <ImageUrlOrUpload
+                        label="Thumbnail"
+                        folder="home-feed"
+                        value={it.thumbnail_url ?? ""}
+                        onChange={(url) => updateItem(index, { thumbnail_url: url })}
+                        className="sm:col-span-2"
+                      />
                       <Input label="Category ID (optional)" value={it.category_id ?? ""} onChange={(e) => updateItem(index, { category_id: e.target.value })} />
                     </div>
                   </li>

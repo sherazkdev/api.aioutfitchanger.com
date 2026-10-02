@@ -12,6 +12,7 @@ import {
   styleCatalog,
   wardrobeCategories,
 } from "@/lib/mock-data";
+import { loadAssetCatalogSeed } from "./loadAssetCatalogSeed";
 
 let seeded = false;
 
@@ -32,6 +33,8 @@ export async function ensureContentSeed(): Promise<void> {
   }
   if (seeded) return;
 
+  const assetSeed = loadAssetCatalogSeed();
+
   if ((await AppMetadata.countDocuments()) === 0) {
     await AppMetadata.create({
       key: "default",
@@ -49,7 +52,7 @@ export async function ensureContentSeed(): Promise<void> {
   }
 
   if ((await OnboardingPage.countDocuments()) === 0) {
-    const pages = [
+    const pages = assetSeed?.onboardingPages ?? [
       {
         sortOrder: 1,
         title: "Virtual try-on",
@@ -79,7 +82,9 @@ export async function ensureContentSeed(): Promise<void> {
     );
   }
 
-  if ((await HomeFeedSection.countDocuments()) === 0) {
+  if ((await HomeFeedSection.countDocuments()) === 0 && assetSeed) {
+    await HomeFeedSection.insertMany(assetSeed.homeFeedSections);
+  } else if ((await HomeFeedSection.countDocuments()) === 0) {
     const beautyLab = homeFeedSections.find((s) => s.id === "beauty_lab");
     const couple = homeFeedSections.find((s) => s.id === "couple_duo");
 
@@ -137,7 +142,9 @@ export async function ensureContentSeed(): Promise<void> {
     ]);
   }
 
-  if ((await CatalogCategory.countDocuments()) === 0) {
+  if ((await CatalogCategory.countDocuments()) === 0 && assetSeed) {
+    await CatalogCategory.insertMany(assetSeed.catalogCategories);
+  } else if ((await CatalogCategory.countDocuments()) === 0) {
     const nameById = new Map(styleCatalog.map((s) => [s.id, s.name]));
 
     const catalogItems = styleCatalog.map((s, i) => ({
@@ -182,7 +189,9 @@ export async function ensureContentSeed(): Promise<void> {
     );
   }
 
-  if ((await WardrobeCategory.countDocuments()) === 0) {
+  if ((await WardrobeCategory.countDocuments()) === 0 && assetSeed) {
+    await WardrobeCategory.insertMany(assetSeed.wardrobeCategories);
+  } else if ((await WardrobeCategory.countDocuments()) === 0) {
     await WardrobeCategory.insertMany(
       wardrobeCategories.map((w, i) => {
         const previews =

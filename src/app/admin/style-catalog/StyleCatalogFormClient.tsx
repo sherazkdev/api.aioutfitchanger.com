@@ -8,6 +8,7 @@ import Select from "@/components/ui/Select";
 import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
 import { apiFetch } from "@/lib/api/client";
+import ImageUrlOrUpload from "@/components/admin/ImageUrlOrUpload";
 
 type Cat = { category_id: string; title: string };
 
@@ -104,7 +105,7 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
             readOnly={mode === "edit"}
             hint={mode === "edit" ? "ID cannot be changed" : "Leave blank to auto-generate"}
           />
-          <Input label="Image URL" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+          <ImageUrlOrUpload label="Style image" folder="catalog" value={imageUrl} onChange={setImageUrl} />
           <Select
             label="Gender"
             value={gender}
