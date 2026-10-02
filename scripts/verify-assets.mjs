@@ -22,10 +22,11 @@ function walkPng(dir, acc = []) {
   return acc;
 }
 
-// tar
+const unzip = spawnSync("unzip", ["-v"], { encoding: "utf8" });
 const tar = spawnSync("tar", ["--version"], { encoding: "utf8" });
-if (tar.status !== 0) issues.push("tar not in PATH (required to extract assets.zip on Linux VPS)");
-else ok.push(`tar available: ${(tar.stdout || tar.stderr || "").split("\n")[0].trim()}`);
+if (unzip.status === 0) ok.push(`unzip available: ${(unzip.stdout || "").split("\n")[0].trim()}`);
+else if (tar.status === 0) ok.push(`tar available (zip via tar): ${(tar.stdout || tar.stderr || "").split("\n")[0].trim()}`);
+else issues.push("Need unzip or tar to extract assets.zip (Linux: apt-get install -y unzip)");
 
 if (!existsSync(ZIP_PATH)) issues.push(`Missing ${ZIP_PATH}`);
 else ok.push(`assets.zip present (${Math.round(statSync(ZIP_PATH).size / 1e6)} MB)`);

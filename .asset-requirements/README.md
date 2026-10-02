@@ -38,7 +38,7 @@ curl -s "https://appworkspro.com/api/v1/catalog/beard_styles?gender=men" | head 
 curl -s "https://appworkspro.com/api/v1/home/feed?gender=women" | head -c 400
 ```
 
-Requirements on VPS: `tar`, Node, `MONGODB_URI` and `APP_URL=https://appworkspro.com` in `.env.local`, ~1 GB free disk during first extract.
+Requirements on VPS: **`unzip`** (`apt-get install -y unzip`), Node, `MONGODB_URI` and `APP_URL=https://appworkspro.com` in `.env.local`, ~1 GB free disk during first extract.
 
 **PNG vs WebP:** API paths use `.png` (same files as the mobile bundle). Flutter accepts these over HTTPS.
 

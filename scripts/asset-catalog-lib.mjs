@@ -62,15 +62,30 @@ export function publicImageUrl(suggestedPath) {
   return suggestedPath.replace(/\.webp$/i, ".png");
 }
 
+function extractZipArchive() {
+  mkdirSync(EXTRACT_DIR, { recursive: true });
+
+  // GNU tar on Linux cannot read .zip; unzip is standard on VPS.
+  const unzip = spawnSync("unzip", ["-oq", ZIP_PATH, "-d", EXTRACT_DIR], { stdio: "inherit" });
+  if (unzip.status === 0) return;
+
+  const tar = spawnSync("tar", ["-xf", ZIP_PATH, "-C", EXTRACT_DIR], { stdio: "inherit" });
+  if (tar.status === 0) return;
+
+  const hint =
+    unzip.error?.code === "ENOENT"
+      ? "Install unzip: apt-get install -y unzip"
+      : "Check assets.zip is valid; try: apt-get install -y unzip";
+  throw new Error(`Could not extract assets.zip (${hint})`);
+}
+
 export function ensureZipExtracted() {
   const marker = path.join(EXTRACT_DIR, "assets", "images");
   if (existsSync(marker)) return EXTRACT_DIR;
   if (!existsSync(ZIP_PATH)) {
     throw new Error(`Missing ${ZIP_PATH} — add assets.zip under .asset-requirements/`);
   }
-  mkdirSync(EXTRACT_DIR, { recursive: true });
-  const r = spawnSync("tar", ["-xf", ZIP_PATH, "-C", EXTRACT_DIR], { stdio: "inherit" });
-  if (r.status !== 0) throw new Error("tar extract failed (need tar in PATH)");
+  extractZipArchive();
   if (!existsSync(marker)) throw new Error("Extracted zip but assets/images not found");
   return EXTRACT_DIR;
 }
