@@ -54,6 +54,11 @@ async function main() {
   console.log(`  media copied: ${copied}, missing sources: ${missing}`);
 
   const payload = buildSeedPayload(rows);
+  const withPrompts = payload.catalogCategories.reduce(
+    (n, c) => n + (c.items?.filter((i) => i.promptCommand?.startsWith("COMMAND:")).length ?? 0),
+    0
+  );
+  console.log(`  catalog items with optimized prompts: ${withPrompts}/${rows.length}`);
   writeFileSync(GENERATED_JSON, JSON.stringify(payload, null, 2), "utf8");
   console.log("  wrote:", GENERATED_JSON);
 

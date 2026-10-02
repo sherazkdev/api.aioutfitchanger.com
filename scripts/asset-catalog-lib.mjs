@@ -5,7 +5,17 @@ import { fileURLToPath } from "url";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const ASSET_REQ = path.join(ROOT, ".asset-requirements");
-export const CSV_PATH = path.join(ASSET_REQ, "BACKEND_ASSET_CATALOG.csv");
+const NEW_REQ = path.join(ASSET_REQ, ".new-requirements");
+
+function pickCsv(name) {
+  const inNew = path.join(NEW_REQ, name);
+  if (existsSync(inNew)) return inNew;
+  return path.join(ASSET_REQ, name);
+}
+
+/** Prefer `.asset-requirements/.new-requirements/` when present (pre-backend audit drop). */
+export const CSV_PATH = pickCsv("BACKEND_ASSET_CATALOG.csv");
+export const PROMPT_CSV_PATH = pickCsv("BACKEND_PROMPT_CATALOG_OPTIMIZED.csv");
 export const ZIP_PATH = path.join(ASSET_REQ, "assets.zip");
 export const EXTRACT_DIR = path.join(ASSET_REQ, "_extract");
 export const PUBLIC_MEDIA = path.join(ROOT, "public", "media", "catalog");
@@ -159,7 +169,21 @@ function humanName(styleId) {
   return styleId.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-export function buildSeedPayload(rows) {
+export function loadPromptByStyleId() {
+  if (!existsSync(PROMPT_CSV_PATH)) return new Map();
+  const lines = readFileSync(PROMPT_CSV_PATH, "utf8").trim().split(/\r?\n/).filter(Boolean);
+  const map = new Map();
+  for (let i = 1; i < lines.length; i++) {
+    const parts = lines[i].split(",");
+    if (parts.length < 7) continue;
+    const styleId = parts[0].trim();
+    const promptCommand = parts.slice(6).join(",").trim();
+    if (styleId && promptCommand) map.set(styleId, promptCommand);
+  }
+  return map;
+}
+
+export function buildSeedPayload(rows, promptByStyleId = loadPromptByStyleId()) {
   const byCategory = new Map();
   for (const row of rows) {
     if (!byCategory.has(row.category_id)) byCategory.set(row.category_id, []);
@@ -185,7 +209,9 @@ export function buildSeedPayload(rows) {
       genderTabId: row.gender === "men" || row.gender === "women" ? row.gender : undefined,
       imageUrl: publicImageUrl(row.suggested_image_url_path),
       nameLocalized: enMap(humanName(row.style_id)),
-      promptCommand: `Apply ${row.style_id} exactly as shown in the reference image.`,
+      promptCommand:
+        promptByStyleId.get(row.style_id) ??
+        `Apply ${row.style_id} exactly as shown in the reference image.`,
       sortOrder: row.sort_order,
       gender: itemGender(row),
       enabled: true,
