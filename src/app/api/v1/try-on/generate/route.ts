@@ -2,6 +2,7 @@ import { connectMongo } from "@/lib/server/db";
 import { requireAuth } from "@/lib/server/auth/requireAuth";
 import { TryOnJob } from "@/lib/server/models/TryOnJob";
 import { bflStartGeneration, mapBflStatus } from "@/lib/server/bfl";
+import { buildTryOnBflPrompt, resolveCatalogPromptCommand } from "@/lib/server/bfl/resolveTryOnPrompt";
 import { getServerEnv } from "@/lib/server/env";
 import { jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
@@ -47,11 +48,18 @@ export async function POST(req: Request) {
   });
 
   try {
+    const hasReferenceStyle = Boolean(body.style_reference_image_base64?.trim());
+    const catalogCommand =
+      body.prompt?.trim() ||
+      (await resolveCatalogPromptCommand(body.style_id, body.category_id)) ||
+      `COMMAND: style_ref=${body.style_id} | category=${body.category_id ?? "virtual_try_on"} | pipeline=neutral | region=outfit | Apply outfit from reference image 2.`;
+
     const bflBody: Record<string, unknown> = {
-      prompt: body.prompt ?? `Apply outfit style ${body.style_id} to the person. Preserve face and pose.`,
+      prompt: buildTryOnBflPrompt(catalogCommand, hasReferenceStyle),
       input_image: body.source_image_base64,
       width: body.width ?? 768,
       height: body.height ?? 1024,
+      disable_pup: true,
     };
     if (body.style_reference_image_base64) {
       bflBody.input_image_2 = body.style_reference_image_base64;
