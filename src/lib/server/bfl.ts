@@ -17,11 +17,17 @@ export function extractBflResultUrl(poll: BflPollResponse): string | null {
   return typeof sample === "string" && sample.length > 0 ? sample : null;
 }
 
-export async function bflStartGeneration(body: Record<string, unknown>): Promise<BflGenerateResponse> {
+export type BflEngine = "flux-2-pro" | "vto-v2";
+
+function bflEndpoint(engine: BflEngine): string {
+  return engine === "vto-v2" ? "/v1/flux-tools/vto-v2" : "/v1/flux-2-pro";
+}
+
+async function bflPost(engine: BflEngine, body: Record<string, unknown>): Promise<BflGenerateResponse> {
   const env = getServerEnv();
   if (!env.BFL_API_KEY) throw new Error("BFL_NOT_CONFIGURED");
 
-  const res = await fetch(`${env.BFL_API_BASE}/v1/flux-2-pro`, {
+  const res = await fetch(`${env.BFL_API_BASE}${bflEndpoint(engine)}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -35,6 +41,16 @@ export async function bflStartGeneration(body: Record<string, unknown>): Promise
     throw new Error(`BFL_GENERATE_FAILED:${res.status}:${text}`);
   }
   return res.json() as Promise<BflGenerateResponse>;
+}
+
+/** General FLUX.2 Pro image edit (beard, hair, hijab, studio). */
+export async function bflStartGeneration(body: Record<string, unknown>): Promise<BflGenerateResponse> {
+  return bflPost("flux-2-pro", body);
+}
+
+/** BFL Virtual Try-On v2 — person + garment, identity/pose preserved. */
+export async function bflStartVtoV2(body: Record<string, unknown>): Promise<BflGenerateResponse> {
+  return bflPost("vto-v2", body);
 }
 
 export async function bflPollResult(pollingUrl: string): Promise<BflPollResponse> {

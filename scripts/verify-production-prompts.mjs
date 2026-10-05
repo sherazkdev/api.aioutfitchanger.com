@@ -32,11 +32,22 @@ const CATEGORIES = [
 ];
 
 async function getJson(p) {
-  const res = await fetch(`${base}${p}`);
-  return res.json();
+  const res = await fetch(`${base}${p}`, { headers: { Accept: "application/json" } });
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`${p} → HTTP ${res.status}, not JSON`);
+  }
 }
 
 const seen = new Map();
+for (const cat of CATEGORIES) {
+  const j = await getJson(`/api/v1/catalog/${cat}`);
+  for (const it of j.data?.items ?? []) {
+    if (!seen.has(it.id)) seen.set(it.id, it.prompt_command ?? "");
+  }
+}
 for (const g of ["men", "women"]) {
   for (const cat of CATEGORIES) {
     const j = await getJson(`/api/v1/catalog/${cat}?gender=${g}`);

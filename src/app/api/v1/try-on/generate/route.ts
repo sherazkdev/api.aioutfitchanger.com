@@ -1,8 +1,11 @@
 import { connectMongo } from "@/lib/server/db";
 import { requireAuth } from "@/lib/server/auth/requireAuth";
 import { TryOnJob } from "@/lib/server/models/TryOnJob";
-import { bflStartGeneration, mapBflStatus } from "@/lib/server/bfl";
-import { buildTryOnBflPrompt, resolveCatalogPromptCommand } from "@/lib/server/bfl/resolveTryOnPrompt";
+import { bflStartGeneration, bflStartVtoV2, mapBflStatus } from "@/lib/server/bfl";
+import { normalizeImageInput } from "@/lib/server/bfl/normalizeImageInput";
+import { resolveCatalogPromptCommand } from "@/lib/server/bfl/resolveTryOnPrompt";
+import { resolveGarmentImage } from "@/lib/server/bfl/resolveGarmentImage";
+import { buildFluxEditPrompt, buildVtoPrompt, shouldUseVtoEngine } from "@/lib/server/bfl/tryOnEngine";
 import { getServerEnv } from "@/lib/server/env";
 import { jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
@@ -48,24 +51,59 @@ export async function POST(req: Request) {
   });
 
   try {
-    const hasReferenceStyle = Boolean(body.style_reference_image_base64?.trim());
+    const person = normalizeImageInput(body.source_image_base64, "PERSON");
     const catalogCommand =
       body.prompt?.trim() ||
       (await resolveCatalogPromptCommand(body.style_id, body.category_id)) ||
       `COMMAND: style_ref=${body.style_id} | category=${body.category_id ?? "virtual_try_on"} | pipeline=neutral | region=outfit | Apply outfit from reference image 2.`;
 
-    const bflBody: Record<string, unknown> = {
-      prompt: buildTryOnBflPrompt(catalogCommand, hasReferenceStyle),
-      input_image: body.source_image_base64,
-      width: body.width ?? 768,
-      height: body.height ?? 1024,
-      disable_pup: true,
-    };
-    if (body.style_reference_image_base64) {
-      bflBody.input_image_2 = body.style_reference_image_base64;
+    const useVto = shouldUseVtoEngine(catalogCommand, body.category_id);
+
+    let started;
+    if (useVto) {
+      const garment = await resolveGarmentImage({
+        styleId: body.style_id,
+        categoryId: body.category_id,
+        styleReferenceBase64: body.style_reference_image_base64,
+        appOrigin: process.env.APP_URL ?? null,
+      });
+      const vtoBody: Record<string, unknown> = {
+        prompt: buildVtoPrompt(catalogCommand, body.style_id),
+        person: person.dataUrl,
+        garment: garment.dataUrl,
+        output_format: "jpeg",
+      };
+      started = await bflStartVtoV2(vtoBody);
+    } else {
+      const hasReferenceStyle = Boolean(body.style_reference_image_base64?.trim());
+      let inputImage2: string | undefined;
+      if (hasReferenceStyle) {
+        inputImage2 = normalizeImageInput(body.style_reference_image_base64!, "GARMENT").dataUrl;
+      } else {
+        try {
+          const garment = await resolveGarmentImage({
+            styleId: body.style_id,
+            categoryId: body.category_id,
+            styleReferenceBase64: null,
+            appOrigin: process.env.APP_URL ?? null,
+          });
+          inputImage2 = garment.dataUrl;
+        } catch {
+          // Localized edits may run text-only when no reference (legacy).
+        }
+      }
+
+      const bflBody: Record<string, unknown> = {
+        prompt: buildFluxEditPrompt(catalogCommand, Boolean(inputImage2)),
+        input_image: person.dataUrl,
+        width: body.width ?? 768,
+        height: body.height ?? 1024,
+        disable_pup: true,
+      };
+      if (inputImage2) bflBody.input_image_2 = inputImage2;
+      started = await bflStartGeneration(bflBody);
     }
 
-    const started = await bflStartGeneration(bflBody);
     job.externalJobId = started.id;
     job.pollingUrl = started.polling_url;
     job.status = mapBflStatus(started.status);
@@ -78,8 +116,21 @@ export async function POST(req: Request) {
       status: job.status,
     });
   } catch (e) {
+    const msg = e instanceof Error ? e.message : "BFL_ERROR";
+    if (msg.includes("GARMENT_NOT_FOUND") || msg.includes("GARMENT_FILE_MISSING")) {
+      job.status = "failed";
+      job.errorMessage = msg;
+      await job.save();
+      return jsonError("VALIDATION", "Garment reference image required but could not be resolved", 422);
+    }
+    if (msg.startsWith("PERSON_") || msg.startsWith("GARMENT_")) {
+      job.status = "failed";
+      job.errorMessage = msg;
+      await job.save();
+      return jsonError("VALIDATION", "Invalid image input", 422);
+    }
     job.status = "failed";
-    job.errorMessage = e instanceof Error ? e.message : "BFL_ERROR";
+    job.errorMessage = msg;
     await job.save();
     return jsonError("TRY_ON_FAILED", job.errorMessage, 502);
   }

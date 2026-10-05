@@ -27,6 +27,8 @@
     "docs:generate-pdf": "node scripts/generate-api-pdf.mjs",
     "test:api": "node scripts/api-smoke-test.mjs",
     "test:tryon": "node scripts/try-on-quick-poll.mjs",
+    "test:try-on-audit": "node scripts/try-on-audit.mjs",
+    "test:ai-module-audit": "node scripts/ai-module-audit.mjs",
     "pm2:prod": "pm2 startOrReload deploy/ecosystem.config.cjs --env production"
   },
   "dependencies": {
