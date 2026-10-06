@@ -14,6 +14,7 @@ import {
   ensureZipExtracted,
   loadCatalogRows,
   syncMediaFiles,
+  syncVirtualTryonGarmentRefs,
   GENERATED_JSON,
   enMap,
 } from "./asset-catalog-lib.mjs";
@@ -52,6 +53,9 @@ async function main() {
 
   const { copied, missing } = syncMediaFiles(rows, { extractDir });
   console.log(`  media copied: ${copied}, missing sources: ${missing}`);
+
+  const vto = syncVirtualTryonGarmentRefs(rows, { extractDir });
+  console.log(`  virtual_try_on garment overrides: ${vto.applied} applied, ${vto.skipped} skipped`);
 
   const payload = buildSeedPayload(rows);
   const withPrompts = payload.catalogCategories.reduce(

@@ -2,6 +2,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync } from "fs";
 import path from "path";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
+import { applyVirtualTryonGarmentOverrides } from "./virtual-tryon-garments.mjs";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const ASSET_REQ = path.join(ROOT, ".asset-requirements");
@@ -32,7 +33,18 @@ const CATEGORY_TAB_DEFAULTS = {
   virtual_try_on: ["tops", "shirts", "bottoms", "skirts", "jackets"],
   occasions: ["casual", "formal", "wedding"],
   presets: ["preset_interview", "preset_gym", "preset_wedding_guest"],
-  wardrobe_browse: ["chinese", "indian", "arabian", "korean", "pakistani"],
+  wardrobe_browse: [
+    "chinese",
+    "indian",
+    "arabian",
+    "korean",
+    "pakistani",
+    "tops",
+    "shirts",
+    "bottoms",
+    "skirts",
+    "jackets",
+  ],
 };
 
 const WARDROBE_REGIONS = [
@@ -117,6 +129,11 @@ export function syncMediaFiles(rows, { extractDir = EXTRACT_DIR, destRoot = PUBL
     copied++;
   }
   return { copied, missing };
+}
+
+/** Copy garment PNGs onto virtual_try_on paths (generate refs + legacy API thumbnails). */
+export function syncVirtualTryonGarmentRefs(rows, { extractDir = EXTRACT_DIR } = {}) {
+  return applyVirtualTryonGarmentOverrides(rows, extractDir, ROOT, publicImageUrl);
 }
 
 function categoryGenderScope(categoryId, rows) {

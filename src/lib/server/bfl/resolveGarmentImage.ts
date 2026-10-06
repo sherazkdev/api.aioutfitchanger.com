@@ -2,6 +2,7 @@ import { readFile } from "fs/promises";
 import path from "path";
 import { CatalogCategory } from "@/lib/server/models/CatalogCategory";
 import { normalizeImageInput } from "@/lib/server/bfl/normalizeImageInput";
+import { isWardrobeGarmentStyleId } from "@/lib/server/content/virtualTryOnCatalog";
 
 export type ResolvedGarment = {
   dataUrl: string;
@@ -10,11 +11,20 @@ export type ResolvedGarment = {
   imagePath?: string;
 };
 
+async function findItemInCategory(categoryId: string, styleId: string) {
+  const doc = await CatalogCategory.findOne({ categoryId }).lean();
+  return doc?.items?.find((i) => i.id === styleId) ?? null;
+}
+
 async function resolveCatalogItem(styleId: string, categoryId?: string | null) {
   if (categoryId) {
-    const doc = await CatalogCategory.findOne({ categoryId }).lean();
-    const item = doc?.items?.find((i) => i.id === styleId);
+    const item = await findItemInCategory(categoryId, styleId);
     if (item?.imageUrl) return item;
+
+    if (categoryId === "virtual_try_on" && isWardrobeGarmentStyleId(styleId)) {
+      const wardrobe = await findItemInCategory("wardrobe_browse", styleId);
+      if (wardrobe?.imageUrl) return wardrobe;
+    }
   }
   const hit = await CatalogCategory.findOne({ "items.id": styleId }).lean();
   return hit?.items?.find((i) => i.id === styleId) ?? null;

@@ -1,6 +1,8 @@
 import { ensureContentSeed } from "@/lib/server/seed/content";
 import { CatalogCategory } from "@/lib/server/models/CatalogCategory";
 import { mapCatalog } from "@/lib/server/content/mappers";
+import { shouldServeWardrobeForVirtualTryon } from "@/lib/server/content/virtualTryOnCatalog";
+import { readLocalized } from "@/lib/server/i18n/localizedString";
 import { jsonError, jsonOkLocalizedCached } from "@/lib/server/http";
 import { contentCacheMaxAgeSec, contentCacheTtlMs, getOrSet } from "@/lib/server/cache/ttl";
 import { resolveLocale } from "@/lib/server/i18n/locale";
@@ -16,14 +18,31 @@ export async function GET(req: Request, ctx: { params: Promise<{ categoryId: str
     const gender = url.searchParams.get("gender")?.toLowerCase() ?? undefined;
     const g = gender === "men" || gender === "women" ? gender : undefined;
 
+    const useWardrobeGrid = shouldServeWardrobeForVirtualTryon(categoryId, tab, g);
+    const lookupCategoryId = useWardrobeGrid ? "wardrobe_browse" : categoryId;
+
     const cacheAge = contentCacheMaxAgeSec();
     const payload = await getOrSet(
-      `catalog:${categoryId}:${locale}:${tab ?? ""}:${g ?? "all"}`,
+      `catalog:${categoryId}:${locale}:${tab ?? ""}:${g ?? "all"}:${useWardrobeGrid ? "wb" : "cat"}`,
       contentCacheTtlMs(),
       async () => {
-        const doc = await CatalogCategory.findOne({ categoryId }).lean();
+        const doc = await CatalogCategory.findOne({ categoryId: lookupCategoryId }).lean();
         if (!doc) return null;
-        return mapCatalog(doc as Parameters<typeof mapCatalog>[0], locale, tab, g);
+        const mapped = mapCatalog(doc as Parameters<typeof mapCatalog>[0], locale, tab, g);
+        if (useWardrobeGrid) {
+          const vto = await CatalogCategory.findOne({ categoryId: "virtual_try_on" }).lean();
+          return {
+            ...mapped,
+            category_id: "virtual_try_on",
+            title_key: vto?.titleKey ?? "homeVirtualTryOn",
+            title: readLocalized(
+              vto?.titleLocalized as Parameters<typeof readLocalized>[0],
+              locale,
+              vto?.titleKey ?? "homeVirtualTryOn"
+            ),
+          };
+        }
+        return mapped;
       }
     );
     if (!payload) return jsonError("NOT_FOUND", "Catalog category not found", 404);
