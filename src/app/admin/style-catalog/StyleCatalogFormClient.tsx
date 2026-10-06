@@ -25,6 +25,8 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [gender, setGender] = useState("women");
+  const [tabId, setTabId] = useState("");
+  const [categoryTabs, setCategoryTabs] = useState<{ id: string; title: string }[]>([]);
   const [prompt, setPrompt] = useState("");
   const [enabled, setEnabled] = useState(true);
   const [msg, setMsg] = useState<string | null>(null);
@@ -38,8 +40,20 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
   }, []);
 
   useEffect(() => {
+    if (!categoryId) {
+      setCategoryTabs([]);
+      return;
+    }
+    apiFetch<{ item: { tabs?: { id: string; title: string }[] } }>(
+      `/api/v1/admin/catalog/categories?category_id=${encodeURIComponent(categoryId)}`
+    ).then((res) => {
+      setCategoryTabs(res.data?.item?.tabs ?? []);
+    });
+  }, [categoryId]);
+
+  useEffect(() => {
     if (mode !== "edit" || !styleIdParam || !categoryIdParam) return;
-    apiFetch<{ items: { style_id: string; name: string; image_url: string; gender: string; enabled: boolean; prompt_command?: string }[] }>(
+    apiFetch<{ items: { style_id: string; name: string; image_url: string; gender: string; enabled: boolean; prompt_command?: string; tab_id?: string }[] }>(
       `/api/v1/admin/catalog/styles?category_id=${encodeURIComponent(categoryIdParam)}`
     ).then((res) => {
       const row = res.data?.items.find((i) => i.style_id === styleIdParam);
@@ -49,6 +63,7 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
         setGender(row.gender);
         setEnabled(row.enabled);
         setPrompt(row.prompt_command ?? "");
+        setTabId(row.tab_id ?? "");
       }
       setLoading(false);
     });
@@ -66,6 +81,7 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
           name,
           image_url: imageUrl,
           gender,
+          tab_id: tabId || undefined,
           prompt_command: prompt || undefined,
           enabled,
         },
@@ -117,6 +133,23 @@ export default function StyleCatalogFormClient({ mode }: { mode: "add" | "edit" 
               { value: "men", label: "Men" },
               { value: "both", label: "Both" },
             ]}
+          />
+          <Select
+            label="Catalog tab"
+            value={tabId}
+            onChange={(e) => setTabId(e.target.value)}
+            options={[
+              { value: "", label: categoryTabs.length ? "No tab / all" : "No tabs defined for category" },
+              ...categoryTabs.map((t) => ({
+                value: t.id,
+                label: t.title ? `${t.title} (${t.id})` : t.id,
+              })),
+            ]}
+            hint={
+              categoryTabs.length
+                ? "Must match a tab ID from Categories → Edit tabs."
+                : "Add tabs on the category edit screen first."
+            }
           />
           <label className="flex items-center gap-2 text-sm">
             <input type="checkbox" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} />

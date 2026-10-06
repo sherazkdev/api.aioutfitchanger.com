@@ -14,15 +14,43 @@ function tabTitle(
   return readLocalized(tab.titles, locale, tab.titleKey ?? undefined, tab.id ?? undefined);
 }
 
+/** App UI often sends short tab ids; CSV/seed use prefixed ids for presets. */
+const PRESET_TAB_ALIASES: Record<string, string> = {
+  interview: "preset_interview",
+  gym: "preset_gym",
+  wedding_guest: "preset_wedding_guest",
+  wedding: "preset_wedding_guest",
+  preset_interview: "preset_interview",
+  preset_gym: "preset_gym",
+  preset_wedding_guest: "preset_wedding_guest",
+};
+
+export function normalizeCatalogTab(categoryId: string, tab?: string) {
+  if (!tab || tab === "all") return tab;
+  if (categoryId === "presets") {
+    const key = tab.toLowerCase();
+    if (PRESET_TAB_ALIASES[key]) return PRESET_TAB_ALIASES[key];
+    if (key.startsWith("preset_")) return key;
+    return `preset_${key}`;
+  }
+  return tab;
+}
+
 export function mapCatalog(
   doc: CatalogCategoryDoc,
   locale: string,
   tab?: string,
   gender?: string
 ) {
+  const resolvedTab = normalizeCatalogTab(doc.categoryId, tab);
   let items = [...(doc.items ?? [])].filter((i) => (i as { enabled?: boolean }).enabled !== false);
-  if (tab) items = items.filter((i) => i.tabId === tab || tab === "all");
-  if (gender) items = items.filter((i) => i.gender === gender || i.genderTabId === gender);
+  if (resolvedTab) items = items.filter((i) => i.tabId === resolvedTab || resolvedTab === "all");
+  const genderScope = doc.genderScope ?? "both";
+  if (gender && genderScope === "both") {
+    items = items.filter(
+      (i) => i.gender === gender || i.genderTabId === gender || i.gender === "both"
+    );
+  }
 
   return {
     category_id: doc.categoryId,

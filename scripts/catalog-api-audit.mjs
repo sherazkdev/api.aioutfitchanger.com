@@ -39,8 +39,29 @@ async function headImage(urlPath) {
   }
 }
 
+async function assertItemCount(label, path, minCount) {
+  const { status, json } = await getJson(path);
+  const n = json?.data?.items?.length ?? 0;
+  if (status !== 200 || json?.error || n < minCount) {
+    return `${label}: expected >=${minCount} items, got ${n} (HTTP ${status})`;
+  }
+  return null;
+}
+
 async function main() {
   const issues = [];
+  const filterChecks = [
+    ["couple_duo men", "/api/v1/catalog/couple_duo?gender=men", 11],
+    ["couple_duo women", "/api/v1/catalog/couple_duo?gender=women", 11],
+    ["beard_styles women (men-only category)", "/api/v1/catalog/beard_styles?gender=women", 10],
+    ["presets gym tab alias", "/api/v1/catalog/presets?gender=men&tab=gym", 10],
+    ["presets preset_gym", "/api/v1/catalog/presets?gender=men&tab=preset_gym", 10],
+  ];
+  for (const [label, path, min] of filterChecks) {
+    const err = await assertItemCount(label, path, min);
+    if (err) issues.push(err);
+  }
+
   let totalItems = 0;
   let withPrompt = 0;
   let withImage = 0;

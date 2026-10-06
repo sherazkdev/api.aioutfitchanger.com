@@ -33,6 +33,7 @@ export async function GET(req: Request) {
       sort_order: number;
       enabled: boolean;
       prompt_command: string;
+      tab_id: string;
     }[] = [];
 
     for (const cat of categories) {
@@ -51,6 +52,7 @@ export async function GET(req: Request) {
           sort_order: item.sortOrder ?? 0,
           enabled: (item as { enabled?: boolean }).enabled !== false,
           prompt_command: (item as { promptCommand?: string }).promptCommand ?? "",
+          tab_id: item.tabId ?? "",
         });
       }
     }
@@ -159,7 +161,7 @@ export async function PATCH(req: Request) {
       if (existing) {
         existing.imageUrl = u.image_url;
         existing.gender = gender;
-        if (u.tab_id) existing.tabId = u.tab_id;
+        if (u.tab_id !== undefined) existing.tabId = u.tab_id.trim() || undefined;
         if (u.prompt_command !== undefined) existing.promptCommand = u.prompt_command;
         (existing as { enabled?: boolean }).enabled = u.enabled !== false;
         const map = existing.nameLocalized as Map<string, string> | undefined;

@@ -7,6 +7,7 @@ import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
 import { apiFetch } from "@/lib/api/client";
+import CategoryTabsEditor, { type CategoryTabDraft } from "./CategoryTabsEditor";
 
 export default function CategoryFormClient({ mode }: { mode: "add" | "edit" }) {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function CategoryFormClient({ mode }: { mode: "add" | "edit" }) {
   const [titleKey, setTitleKey] = useState("");
   const [title, setTitle] = useState("");
   const [genderScope, setGenderScope] = useState("both");
+  const [tabs, setTabs] = useState<CategoryTabDraft[]>([]);
   const [msg, setMsg] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(mode === "edit");
@@ -28,15 +30,29 @@ export default function CategoryFormClient({ mode }: { mode: "add" | "edit" }) {
       setLoading(false);
       return;
     }
-    apiFetch<{ item: { id: string; category_id: string; title_key: string; title: string; gender_scope: string } }>(
-      `/api/v1/admin/catalog/categories?category_id=${encodeURIComponent(categoryIdParam)}`
-    ).then((res) => {
+    apiFetch<{
+      item: {
+        id: string;
+        category_id: string;
+        title_key: string;
+        title: string;
+        gender_scope: string;
+        tabs?: { id: string; title_key: string; title: string }[];
+      };
+    }>(`/api/v1/admin/catalog/categories?category_id=${encodeURIComponent(categoryIdParam)}`).then((res) => {
       if (res.data?.item) {
         setRecordId(res.data.item.id);
         setCategoryId(res.data.item.category_id);
         setTitleKey(res.data.item.title_key);
         setTitle(res.data.item.title);
         setGenderScope(res.data.item.gender_scope);
+        setTabs(
+          (res.data.item.tabs ?? []).map((t) => ({
+            id: t.id,
+            title: t.title,
+            title_key: t.title_key,
+          }))
+        );
       }
       setLoading(false);
     });
@@ -54,6 +70,11 @@ export default function CategoryFormClient({ mode }: { mode: "add" | "edit" }) {
           title_key: titleKey,
           title,
           gender_scope: genderScope,
+          tabs: tabs.map((t) => ({
+            id: t.id,
+            title: t.title,
+            title_key: t.title_key || undefined,
+          })),
         },
       }),
     });
@@ -76,7 +97,7 @@ export default function CategoryFormClient({ mode }: { mode: "add" | "edit" }) {
         ]}
       />
       {msg && <p className="mb-4 text-sm text-red-600">{msg}</p>}
-      <div className="card max-w-2xl space-y-4 p-5">
+      <div className="card max-w-3xl space-y-6 p-5">
         <Input label="Category name (EN)" value={title} onChange={(e) => setTitle(e.target.value)} />
         <Input
           label="Category ID"
@@ -96,8 +117,10 @@ export default function CategoryFormClient({ mode }: { mode: "add" | "edit" }) {
             { value: "men", label: "Men" },
           ]}
         />
-        <p className="text-xs text-gray-500">Style tabs and items are managed from Style Catalog after the category is created.</p>
-        <Button variant="primary" onClick={save} disabled={saving}>{saving ? "Saving…" : "Save"}</Button>
+        <CategoryTabsEditor tabs={tabs} onChange={setTabs} />
+        <Button variant="primary" onClick={save} disabled={saving}>
+          {saving ? "Saving…" : "Save"}
+        </Button>
       </div>
     </div>
   );
