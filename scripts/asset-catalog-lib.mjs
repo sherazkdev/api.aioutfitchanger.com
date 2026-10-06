@@ -3,6 +3,7 @@ import path from "path";
 import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import { applyVirtualTryonGarmentOverrides } from "./virtual-tryon-garments.mjs";
+import { applyAiOutfitChangerZipOverrides } from "./ai-outfit-changer-zip-sync.mjs";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const ASSET_REQ = path.join(ROOT, ".asset-requirements");
@@ -134,6 +135,10 @@ export function syncMediaFiles(rows, { extractDir = EXTRACT_DIR, destRoot = PUBL
 /** Copy garment PNGs onto virtual_try_on paths (generate refs + legacy API thumbnails). */
 export function syncVirtualTryonGarmentRefs(rows, { extractDir = EXTRACT_DIR } = {}) {
   return applyVirtualTryonGarmentOverrides(rows, extractDir, ROOT, publicImageUrl);
+}
+
+export function syncAiOutfitChangerZipOverrides(rows) {
+  return applyAiOutfitChangerZipOverrides(rows);
 }
 
 function categoryGenderScope(categoryId, rows) {

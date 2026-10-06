@@ -20,6 +20,8 @@
     "test:prompts:before-after:all": "node scripts/prompt-before-after-verify.mjs --all",
     "test:style-repro-2x": "node scripts/style-repro-2x.mjs --all",
     "test:style-repro-2x:sample": "node scripts/style-repro-2x.mjs --max=15",
+    "test:catalog-verify-419": "node scripts/catalog-verify-419.mjs",
+    "assets:map-new-zip": "node scripts/ai-outfit-changer-zip-map.mjs",
     "verify:production-prompts": "node scripts/verify-production-prompts.mjs",
     "clear:demo-content": "node scripts/clear-demo-content.mjs",
     "check:env": "node scripts/check-env.mjs",

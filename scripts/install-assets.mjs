@@ -15,6 +15,7 @@ import {
   loadCatalogRows,
   syncMediaFiles,
   syncVirtualTryonGarmentRefs,
+  syncAiOutfitChangerZipOverrides,
   GENERATED_JSON,
   enMap,
 } from "./asset-catalog-lib.mjs";
@@ -53,6 +54,10 @@ async function main() {
 
   const { copied, missing } = syncMediaFiles(rows, { extractDir });
   console.log(`  media copied: ${copied}, missing sources: ${missing}`);
+
+  const ai = syncAiOutfitChangerZipOverrides(rows);
+  if (ai.missingZip) console.log("  ai_outfit_changer.zip: not found (skip new art overlay)");
+  else console.log(`  ai_outfit_changer.zip overlays: ${ai.applied} applied, ${ai.skipped} skipped`);
 
   const vto = syncVirtualTryonGarmentRefs(rows, { extractDir });
   console.log(`  virtual_try_on garment overrides: ${vto.applied} applied, ${vto.skipped} skipped`);
