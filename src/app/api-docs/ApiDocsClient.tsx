@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import {
+  applyTryOnSourceImageToRequestBody,
+  isTryOnGenerateRequestUrl,
+} from "./tryOnSwaggerImage";
 
 declare global {
   interface Window {
@@ -68,6 +72,18 @@ export function ApiDocsClient() {
         tryItOutEnabled: true,
         presets: [SwaggerUIBundle.presets.apis, standalone].filter(Boolean),
         layout: standalone ? "StandaloneLayout" : undefined,
+        requestInterceptor: (req: { url?: string; body?: string }) => {
+          const url = req.url ?? "";
+          if (!isTryOnGenerateRequestUrl(url) || !req.body) return req;
+          try {
+            const body = JSON.parse(req.body) as Record<string, unknown>;
+            applyTryOnSourceImageToRequestBody(body);
+            req.body = JSON.stringify(body);
+          } catch {
+            // Swagger may send non-JSON; leave unchanged
+          }
+          return req;
+        },
       });
     })();
   }, []);

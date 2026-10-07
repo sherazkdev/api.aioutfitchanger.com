@@ -1,4 +1,5 @@
 import { ApiDocsClient } from "./ApiDocsClient";
+import { TryOnImageUploadPanel } from "./TryOnImageUploadPanel";
 
 export const metadata = {
   title: "API Docs — AI Outfit Changer",
@@ -15,6 +16,7 @@ export default function ApiDocsPage() {
           <strong>Authorize</strong> with Bearer token from Login.
         </p>
       </div>
+      <TryOnImageUploadPanel />
       <ApiDocsClient />
     </main>
   );

@@ -68,10 +68,19 @@ export const mobileV1OpenApi = {
       TryOnGenerateRequest: {
         type: "object",
         required: ["source_image_base64", "style_id"],
+        example: {
+          source_image_base64: "",
+          style_id: "men_hair_styles_02",
+          category_id: "hair_styles",
+          person_gender: "men",
+          width: 768,
+          height: 1024,
+        },
         properties: {
           source_image_base64: {
             type: "string",
-            description: "data:image/jpeg;base64,... or raw base64",
+            description:
+              "Person photo. On /api-docs use the green **Choose image** bar above — base64 is injected on Execute. Or paste data:image/jpeg;base64,... (single line, no line breaks).",
           },
           style_id: { type: "string", example: "men_hair_styles_02" },
           category_id: {
