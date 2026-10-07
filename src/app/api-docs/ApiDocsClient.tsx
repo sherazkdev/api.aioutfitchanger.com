@@ -5,6 +5,8 @@ import {
   applyTryOnSourceImageToRequestBody,
   isTryOnGenerateRequestUrl,
 } from "./tryOnSwaggerImage";
+import { mountTryOnSwaggerUploadInjector } from "./swaggerTryOnInject";
+import "./swagger-tryon-upload.css";
 
 declare global {
   interface Window {
@@ -45,6 +47,7 @@ function loadStylesheet(href: string) {
 
 export function ApiDocsClient() {
   const mounted = useRef(false);
+  const teardownInject = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     if (mounted.current) return;
@@ -84,8 +87,17 @@ export function ApiDocsClient() {
           }
           return req;
         },
+        onComplete: () => {
+          const root = document.getElementById("swagger-ui");
+          if (root) teardownInject.current = mountTryOnSwaggerUploadInjector(root);
+        },
       });
     })();
+
+    return () => {
+      teardownInject.current?.();
+      teardownInject.current = null;
+    };
   }, []);
 
   return <div id="swagger-ui" className="min-h-[calc(100vh-80px)]" />;

@@ -80,7 +80,7 @@ export const mobileV1OpenApi = {
           source_image_base64: {
             type: "string",
             description:
-              "Person photo. On /api-docs use the green **Choose image** bar above — base64 is injected on Execute. Or paste data:image/jpeg;base64,... (single line, no line breaks).",
+              "Person photo. On /api-docs: use **file upload** in POST /try-on/generate (or top bar) — base64 is injected on Execute. Optional paste: data:image/jpeg;base64,... (single line).",
           },
           style_id: { type: "string", example: "men_hair_styles_02" },
           category_id: {
