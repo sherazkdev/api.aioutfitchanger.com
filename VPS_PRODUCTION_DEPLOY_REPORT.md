@@ -58,7 +58,8 @@ VPS key presence was **not audited** (no `VPS_SSH_PASS` / SSH key). Re-run: `VPS
 
 | Step | Result |
 |------|--------|
-| Previous commit (local before deploy commit) | `6513b26` |
+| Previous commit | `6513b26` |
+| Pushed commit (awaiting VPS pull) | `9bfb2b9` |
 | Deployed commit on VPS | **Not executed** — SSH unavailable |
 | Local `npm ci` on VPS | Skipped |
 | Local `npm run build` (pre-push) | **PASS** |
@@ -91,7 +92,7 @@ VPS key presence was **not audited** (no `VPS_SSH_PASS` / SSH key). Re-run: `VPS
 **On VPS after pull:** `chmod +x deploy/vps-production-deploy.sh && ./deploy/vps-production-deploy.sh`  
 Or: `pm2 reload ai-outfit-changer --update-env`
 
-**Rollback reference:** `PREVIOUS_COMMIT=6513b26` (update after VPS records current HEAD before pull)
+**Rollback reference:** On VPS before pull, run `git rev-parse HEAD` → `PREVIOUS_COMMIT`. Last known prod before this release: `6513b26`.
 
 ---
 
