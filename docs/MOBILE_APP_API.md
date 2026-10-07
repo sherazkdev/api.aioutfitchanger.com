@@ -371,9 +371,12 @@ Authorization: Bearer <access_token>
   "style_reference_image_base64": "optional second image",
   "prompt": "optional override",
   "width": 768,
-  "height": 1024
+  "height": 1024,
+  "person_gender": "women"
 }
 ```
+
+For `category_id: "couple_duo"`, send **`person_gender`** as `"men"` or `"women"` from the user’s current gender selection (do not infer from `style_id`). The server routes garment image 2 to `couple_XX_male.png` or `couple_XX_female.png`.
 
 **200 `data`:**
 

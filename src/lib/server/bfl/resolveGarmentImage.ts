@@ -3,6 +3,12 @@ import path from "path";
 import { CatalogCategory } from "@/lib/server/models/CatalogCategory";
 import { normalizeImageInput } from "@/lib/server/bfl/normalizeImageInput";
 import { isWardrobeGarmentStyleId } from "@/lib/server/content/virtualTryOnCatalog";
+import {
+  isCoupleDuoCombinedStyleId,
+  normalizePersonGender,
+  resolveCoupleDuoGarmentImageUrl,
+  type PersonGender,
+} from "@/lib/server/bfl/coupleDuoGarmentRouting";
 
 export type ResolvedGarment = {
   dataUrl: string;
@@ -49,11 +55,25 @@ function mimeFromPath(p: string): "image/jpeg" | "image/png" | "image/webp" {
   return "image/jpeg";
 }
 
+function resolveCoupleDuoCatalogGarmentUrl(styleId: string, personGender: PersonGender | null): string {
+  if (!isCoupleDuoCombinedStyleId(styleId)) {
+    throw new Error("GARMENT_NOT_FOUND");
+  }
+  if (!personGender) {
+    throw new Error("COUPLE_PERSON_GENDER_REQUIRED");
+  }
+  const split = resolveCoupleDuoGarmentImageUrl(styleId, personGender);
+  if (!split) throw new Error("GARMENT_NOT_FOUND");
+  return split;
+}
+
 export async function resolveGarmentImage(opts: {
   styleId: string;
   categoryId?: string | null;
   styleReferenceBase64?: string | null;
   appOrigin?: string | null;
+  /** Source person gender for couple_duo split routing (`men` | `women`). */
+  personGender?: string | null;
 }): Promise<ResolvedGarment> {
   const ref = opts.styleReferenceBase64?.trim();
   if (ref) {
@@ -61,12 +81,19 @@ export async function resolveGarmentImage(opts: {
     return { dataUrl: normalized.dataUrl, source: "client_base64", styleId: opts.styleId };
   }
 
-  const item = await resolveCatalogItem(opts.styleId, opts.categoryId);
-  if (!item?.imageUrl?.trim()) {
-    throw new Error("GARMENT_NOT_FOUND");
-  }
+  const categoryId = opts.categoryId ?? null;
+  const personGender = normalizePersonGender(opts.personGender);
 
-  const imageUrl = item.imageUrl.trim();
+  let imageUrl: string;
+  if (categoryId === "couple_duo" && isCoupleDuoCombinedStyleId(opts.styleId)) {
+    imageUrl = resolveCoupleDuoCatalogGarmentUrl(opts.styleId, personGender);
+  } else {
+    const item = await resolveCatalogItem(opts.styleId, categoryId);
+    if (!item?.imageUrl?.trim()) {
+      throw new Error("GARMENT_NOT_FOUND");
+    }
+    imageUrl = item.imageUrl.trim();
+  }
   if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
     const buf = await fetchRemote(imageUrl);
     const mime = mimeFromPath(imageUrl);

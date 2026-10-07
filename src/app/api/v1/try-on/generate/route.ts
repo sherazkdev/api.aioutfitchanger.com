@@ -1,6 +1,8 @@
 import { connectMongo } from "@/lib/server/db";
 import { requireAuth } from "@/lib/server/auth/requireAuth";
 import { TryOnJob } from "@/lib/server/models/TryOnJob";
+import { User } from "@/lib/server/models/User";
+import { normalizePersonGender } from "@/lib/server/bfl/coupleDuoGarmentRouting";
 import { bflStartGeneration, bflStartVtoV2, mapBflStatus } from "@/lib/server/bfl";
 import { normalizeImageInput } from "@/lib/server/bfl/normalizeImageInput";
 import { resolveCatalogPromptCommand } from "@/lib/server/bfl/resolveTryOnPrompt";
@@ -27,7 +29,7 @@ export async function POST(req: Request) {
     return jsonError("RATE_LIMIT", "Too many try-on requests", 429);
   }
 
-  const body = (await req.json()) as {
+  let body: {
     source_image_base64?: string;
     style_id?: string;
     category_id?: string;
@@ -35,13 +37,27 @@ export async function POST(req: Request) {
     prompt?: string;
     width?: number;
     height?: number;
+    /** Person / source gender for couple_duo split garment routing (`men` | `women`). */
+    person_gender?: string;
+    gender?: string;
   };
+  try {
+    body = await req.json();
+  } catch {
+    return jsonError("INVALID_JSON", "Request body must be valid JSON", 400);
+  }
 
   if (!body.source_image_base64 || !body.style_id) {
     return jsonError("VALIDATION", "source_image_base64 and style_id required", 422);
   }
 
   await connectMongo();
+
+  let personGender = normalizePersonGender(body.person_gender ?? body.gender);
+  if (!personGender) {
+    const user = await User.findById(auth.payload!.userId).select("preferences.styleGenderPreference").lean();
+    personGender = normalizePersonGender(user?.preferences?.styleGenderPreference ?? null);
+  }
 
   const job = await TryOnJob.create({
     userId: auth.payload!.userId,
@@ -66,9 +82,10 @@ export async function POST(req: Request) {
         categoryId: body.category_id,
         styleReferenceBase64: body.style_reference_image_base64,
         appOrigin: process.env.APP_URL ?? null,
+        personGender,
       });
       const vtoBody: Record<string, unknown> = {
-        prompt: buildVtoPrompt(catalogCommand, body.style_id),
+        prompt: buildVtoPrompt(catalogCommand, body.style_id, body.category_id),
         person: person.dataUrl,
         garment: garment.dataUrl,
         output_format: "jpeg",
@@ -86,6 +103,7 @@ export async function POST(req: Request) {
             categoryId: body.category_id,
             styleReferenceBase64: null,
             appOrigin: process.env.APP_URL ?? null,
+            personGender,
           });
           inputImage2 = garment.dataUrl;
         } catch {
@@ -117,6 +135,16 @@ export async function POST(req: Request) {
     });
   } catch (e) {
     const msg = e instanceof Error ? e.message : "BFL_ERROR";
+    if (msg.includes("COUPLE_PERSON_GENDER_REQUIRED")) {
+      job.status = "failed";
+      job.errorMessage = msg;
+      await job.save();
+      return jsonError(
+        "VALIDATION",
+        "person_gender (men|women) required for couple_duo try-on, or set style gender preference on your profile",
+        422
+      );
+    }
     if (msg.includes("GARMENT_NOT_FOUND") || msg.includes("GARMENT_FILE_MISSING")) {
       job.status = "failed";
       job.errorMessage = msg;

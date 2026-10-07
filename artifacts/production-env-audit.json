@@ -1,0 +1,480 @@
+{
+  "generated_at": "2026-10-07T07:36:44.288Z",
+  "phase_1_4_new_env_required": [],
+  "phase_1_4_notes": [
+    "Phase 1–4 uses existing BFL_API_KEY, BFL_API_BASE, MONGODB_URI, APP_URL for garment URL resolution and try-on.",
+    "Couple split routing requires APP_URL (HTTPS) so resolveGarmentImage can build absolute /media/catalog URLs.",
+    "BFL_POLL_MIN_INTERVAL_MS optional; defaults in pollThrottle.ts.",
+    "No new variables added to src/lib/server/env.ts Zod schema in Phase 1–4."
+  ],
+  "vps_meta": {},
+  "variables": [
+    {
+      "name": "ACCESS_TOKEN_TTL_SECONDS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Access token lifetime",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "ADMIN_EMAIL",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Admin bootstrap email",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/seed-admin.mjs"
+      ]
+    },
+    {
+      "name": "ADMIN_PASSWORD",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": true,
+      "purpose": "Admin bootstrap password",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/seed-admin.mjs"
+      ]
+    },
+    {
+      "name": "API_RATE_LIMIT_AUTH_PER_MIN",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Auth route rate limit",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "APP_URL",
+      "required": true,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Public HTTPS origin for absolute media/result URLs (couple split assets, uploads)",
+      "action": "KEEP",
+      "local_status": "INVALID FORMAT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/app/api/v1/admin/system-status/route.ts",
+        "src/app/api/v1/auth/forgot-password/route.ts",
+        "src/app/api/v1/try-on/generate/route.ts",
+        "src/lib/server/bfl/resolveGarmentImage.ts",
+        "src/lib/server/publicUrl.ts",
+        "src/lib/server/storage/uploads.ts"
+      ]
+    },
+    {
+      "name": "BFL_API_BASE",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "BFL API base URL",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/ai-module-audit.mjs",
+        "scripts/catalog-verify-419.mjs",
+        "scripts/prompt-before-after-verify.mjs",
+        "scripts/prompt-bfl-local-test.mjs",
+        "scripts/style-repro-2x.mjs",
+        "scripts/try-on-audit.mjs"
+      ]
+    },
+    {
+      "name": "BFL_API_KEY",
+      "required": true,
+      "runtime_or_build": "runtime",
+      "secret": true,
+      "purpose": "BFL/FLUX/VTO API key (try-on)",
+      "action": "KEEP",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/ai-module-audit.mjs",
+        "scripts/catalog-verify-419.mjs",
+        "scripts/prompt-before-after-verify.mjs",
+        "scripts/prompt-bfl-local-test.mjs",
+        "scripts/style-repro-2x.mjs",
+        "scripts/try-on-audit.mjs"
+      ]
+    },
+    {
+      "name": "BFL_POLL_MIN_INTERVAL_MS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Try-on job poll throttle",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/lib/server/tryOn/pollThrottle.ts"
+      ]
+    },
+    {
+      "name": "BROADCAST_SCHEDULER_INTERVAL_MS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Scheduled push poll interval",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/lib/server/broadcast/scheduler.ts"
+      ]
+    },
+    {
+      "name": "CONTENT_CACHE_TTL_SECONDS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Public content cache TTL",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/lib/server/cache/ttl.ts"
+      ]
+    },
+    {
+      "name": "DEFAULT_SOURCE_LOCALE",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Default i18n source locale",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/lib/server/i18n/locale.ts"
+      ]
+    },
+    {
+      "name": "DISABLE_CONTENT_SEED",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Skip demo content auto-seed",
+      "action": "OPTIONAL",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/lib/server/seed/content.ts"
+      ]
+    },
+    {
+      "name": "FIREBASE_CLIENT_EMAIL",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "FCM service account email",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/send-fcm-test.mjs"
+      ]
+    },
+    {
+      "name": "FIREBASE_PRIVATE_KEY",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": true,
+      "purpose": "FCM service account key",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/send-fcm-test.mjs"
+      ]
+    },
+    {
+      "name": "FIREBASE_PROJECT_ID",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "FCM Firebase project",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/send-fcm-test.mjs"
+      ]
+    },
+    {
+      "name": "GOOGLE_CLIENT_ID_ANDROID",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Google Sign-In Android aud",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "GOOGLE_CLIENT_ID_IOS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Google Sign-In iOS aud",
+      "action": "OPTIONAL",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "GOOGLE_CLIENT_ID_WEB",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Google Sign-In Web aud",
+      "action": "OPTIONAL",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "JWT_ACCESS_SECRET",
+      "required": true,
+      "runtime_or_build": "runtime",
+      "secret": true,
+      "purpose": "JWT access token signing",
+      "action": "KEEP",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "JWT_REFRESH_SECRET",
+      "required": true,
+      "runtime_or_build": "runtime",
+      "secret": true,
+      "purpose": "JWT refresh token signing",
+      "action": "KEEP",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "LIBRETRANSLATE_URL",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Optional LibreTranslate endpoint",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/lib/server/i18n/translate.ts"
+      ]
+    },
+    {
+      "name": "MONGODB_MAX_POOL_SIZE",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Mongo connection pool size",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/seed-admin.mjs"
+      ]
+    },
+    {
+      "name": "MONGODB_URI",
+      "required": true,
+      "runtime_or_build": "runtime",
+      "secret": true,
+      "purpose": "MongoDB connection",
+      "action": "KEEP",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/clear-demo-content.mjs",
+        "scripts/install-assets.mjs",
+        "scripts/seed-admin.mjs",
+        "scripts/seed-prompts-only.mjs"
+      ]
+    },
+    {
+      "name": "NEXT_PUBLIC_ADMIN_DESIGN_PREVIEW",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Admin UI mock data (client-exposed; non-secret)",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/lib/admin/design-preview.ts"
+      ]
+    },
+    {
+      "name": "NEXT_RUNTIME",
+      "required": false,
+      "runtime_or_build": "build_or_runtime",
+      "secret": false,
+      "purpose": "Next.js internal runtime flag",
+      "action": "OPTIONAL",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/instrumentation.ts"
+      ]
+    },
+    {
+      "name": "NODE_ENV",
+      "required": true,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Node environment",
+      "action": "KEEP",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/app/admin/error.tsx",
+        "src/app/api/v1/admin/system-status/route.ts",
+        "src/app/api/v1/auth/admin/login/route.ts",
+        "src/app/api/v1/auth/forgot-password/route.ts",
+        "src/app/api/v1/auth/google/route.ts",
+        "src/app/api/v1/auth/logout/route.ts",
+        "src/app/api/v1/auth/refresh/route.ts",
+        "src/app/api/v1/users/me/route.ts",
+        "src/app/error.tsx"
+      ]
+    },
+    {
+      "name": "PHASE4_BASE_URL",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Referenced in code; review",
+      "action": "VERIFY_VALUE",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/try-on-invalid-json.test.mjs"
+      ]
+    },
+    {
+      "name": "PORT",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Next listen port (PM2 uses 3020 via CLI)",
+      "action": "OPTIONAL",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "REFRESH_TOKEN_TTL_SECONDS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Refresh token lifetime",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": []
+    },
+    {
+      "name": "RESET_TOKEN_TTL_HOURS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Password reset token TTL",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/app/api/v1/auth/forgot-password/route.ts"
+      ]
+    },
+    {
+      "name": "USER_AUTH_CACHE_MS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Auth user cache TTL",
+      "action": "OPTIONAL",
+      "local_status": "PRESENT",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "src/lib/server/auth/userAuthCache.ts"
+      ]
+    },
+    {
+      "name": "VPS_APP_ROOT",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Referenced in code; review",
+      "action": "VERIFY_VALUE",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/generate-production-env-audit.mjs",
+        "scripts/vps-remote-deploy.mjs"
+      ]
+    },
+    {
+      "name": "VPS_HOST",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Referenced in code; review",
+      "action": "VERIFY_VALUE",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/generate-production-env-audit.mjs",
+        "scripts/vps-remote-deploy.mjs"
+      ]
+    },
+    {
+      "name": "VPS_SSH_PASS",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Referenced in code; review",
+      "action": "VERIFY_VALUE",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/generate-production-env-audit.mjs",
+        "scripts/vps-remote-deploy.mjs"
+      ]
+    },
+    {
+      "name": "VPS_USER",
+      "required": false,
+      "runtime_or_build": "runtime",
+      "secret": false,
+      "purpose": "Referenced in code; review",
+      "action": "VERIFY_VALUE",
+      "local_status": "MISSING",
+      "currently_present_on_vps": null,
+      "used_in": [
+        "scripts/generate-production-env-audit.mjs",
+        "scripts/vps-remote-deploy.mjs"
+      ]
+    }
+  ]
+}

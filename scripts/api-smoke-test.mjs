@@ -146,7 +146,12 @@ async function main() {
 
   const tryGen = await req("POST", "/api/v1/try-on/generate", {
     token: userToken,
-    body: { source_image_base64: "data:image/png;base64,iVBORw0KGgo=", style_id: "smoke" },
+    body: {
+      source_image_base64: "data:image/png;base64,iVBORw0KGgo=",
+      style_id: "women_tops_01",
+      category_id: "wardrobe_browse",
+      person_gender: "women",
+    },
     expectStatus: 200,
   });
   const tryGenPass =
@@ -154,6 +159,36 @@ async function main() {
     tryGen.status === 503 ||
     tryGen.status === 502;
   record("user POST /try-on/generate", { ...tryGen, pass: tryGenPass });
+
+  const badJsonHeaders = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${userToken}`,
+  };
+  const badJsonRes = await fetch(`${base}/api/v1/try-on/generate`, {
+    method: "POST",
+    headers: badJsonHeaders,
+    body: "{not-json",
+  });
+  const badJsonText = await badJsonRes.text();
+  let badJson = null;
+  try {
+    badJson = badJsonText ? JSON.parse(badJsonText) : null;
+  } catch {
+    badJson = null;
+  }
+  const badJsonPass =
+    badJsonRes.status === 400 &&
+    badJson?.error?.code === "INVALID_JSON" &&
+    badJson?.data === null &&
+    !/node_modules|\.ts:\d+|at\s+/.test(badJsonText);
+  record("user POST /try-on/generate malformed JSON", {
+    pass: badJsonPass,
+    status: badJsonRes.status,
+    path: "/api/v1/try-on/generate",
+    method: "POST",
+    note: badJsonPass ? "INVALID_JSON" : badJsonText.slice(0, 120),
+  });
 
   record("admin unauthorized overview", await req("GET", "/api/v1/admin/overview", { expectStatus: 401, expectError: true }));
 

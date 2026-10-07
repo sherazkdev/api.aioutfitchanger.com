@@ -1,5 +1,13 @@
 import { parseStyleCommand } from "@/lib/server/bfl/promptBuilder";
 import { buildTryOnBflPrompt } from "@/lib/server/bfl/resolveTryOnPrompt";
+import {
+  buildFullOutfitPhase2VtoPrompt,
+  shouldUseFullOutfitPhase2VtoPrompt,
+} from "@/lib/server/bfl/fullOutfitPhase2VtoPrompt";
+import {
+  buildWardrobePhase1VtoPrompt,
+  shouldUseWardrobePhase1VtoPrompt,
+} from "@/lib/server/bfl/wardrobePhase1VtoPrompt";
 
 const OUTFIT_CATEGORY_IDS = new Set([
   "virtual_try_on",
@@ -24,7 +32,17 @@ export function shouldUseVtoEngine(
   return false;
 }
 
-export function buildVtoPrompt(promptCommand: string | null | undefined, styleId: string): string {
+export function buildVtoPrompt(
+  promptCommand: string | null | undefined,
+  styleId: string,
+  categoryId?: string | null
+): string {
+  if (shouldUseWardrobePhase1VtoPrompt(promptCommand, categoryId)) {
+    return buildWardrobePhase1VtoPrompt(promptCommand, styleId, categoryId);
+  }
+  if (shouldUseFullOutfitPhase2VtoPrompt(promptCommand, categoryId)) {
+    return buildFullOutfitPhase2VtoPrompt(promptCommand, styleId, categoryId);
+  }
   const parsed = promptCommand ? parseStyleCommand(promptCommand.trim()) : null;
   const styleHint = parsed?.styleRef ?? styleId;
   return (
