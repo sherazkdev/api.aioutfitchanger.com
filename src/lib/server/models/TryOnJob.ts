@@ -15,6 +15,9 @@ const TryOnJobSchema = new Schema(
     },
     errorMessage: { type: String },
     resultUrl: { type: String },
+    provider: { type: String, enum: ["bfl", "byteplus"], default: "bfl" },
+    modelId: { type: String },
+    generationDurationMs: { type: Number },
   },
   { timestamps: true }
 );

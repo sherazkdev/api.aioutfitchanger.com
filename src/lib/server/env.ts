@@ -15,6 +15,11 @@ const envSchema = z.object({
   ADMIN_PASSWORD: z.string().optional(),
   BFL_API_KEY: z.string().optional(),
   BFL_API_BASE: z.string().url().default("https://api.bfl.ai"),
+  /** Global try-on provider; BytePlus applies to beauty FLUX path only (Phase 1). */
+  TRY_ON_PROVIDER: z.enum(["bfl", "byteplus"]).default("bfl"),
+  ARK_API_KEY: z.string().optional(),
+  ARK_BASE_URL: z.string().url().default("https://ark.ap-southeast.bytepluses.com/api/v3"),
+  ARK_MODEL: z.string().default("dola-seedream-5-0-flash-260915"),
   FIREBASE_PROJECT_ID: z.string().optional(),
   FIREBASE_CLIENT_EMAIL: z.string().optional(),
   FIREBASE_PRIVATE_KEY: z.string().optional(),
@@ -28,6 +33,11 @@ const envSchema = z.object({
 export type ServerEnv = z.infer<typeof envSchema>;
 
 let cached: ServerEnv | null = null;
+
+/** Test-only: clear cached parse after process.env changes. */
+export function resetServerEnvCache(): void {
+  cached = null;
+}
 
 export function getServerEnv(): ServerEnv {
   if (cached) return cached;

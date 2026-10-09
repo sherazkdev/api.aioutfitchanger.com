@@ -8,8 +8,10 @@ import { normalizeImageInput } from "@/lib/server/bfl/normalizeImageInput";
 import { resolveCatalogPromptCommand } from "@/lib/server/bfl/resolveTryOnPrompt";
 import { resolveGarmentImage } from "@/lib/server/bfl/resolveGarmentImage";
 import { buildFluxEditPrompt, buildVtoPrompt, shouldUseVtoEngine } from "@/lib/server/bfl/tryOnEngine";
+import { runBytePlusBeautyGeneration } from "@/lib/server/byteplus/provider";
 import { getServerEnv } from "@/lib/server/env";
 import { jsonError, jsonOk, rateLimit } from "@/lib/server/http";
+import { resolveTryOnImageProvider } from "@/lib/server/tryOn/providerSelection";
 
 export async function POST(req: Request) {
   let env;
@@ -18,10 +20,6 @@ export async function POST(req: Request) {
   } catch {
     return jsonError("SERVER_CONFIG", "Server not configured", 503);
   }
-  if (!env.BFL_API_KEY?.trim()) {
-    return jsonError("SERVER_CONFIG", "BFL_API_KEY not configured in .env.local", 503);
-  }
-
   const auth = await requireAuth(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
@@ -74,9 +72,28 @@ export async function POST(req: Request) {
       `COMMAND: style_ref=${body.style_id} | category=${body.category_id ?? "virtual_try_on"} | pipeline=neutral | region=outfit | Apply outfit from reference image 2.`;
 
     const useVto = shouldUseVtoEngine(catalogCommand, body.category_id);
+    const imageProvider = resolveTryOnImageProvider(catalogCommand, body.category_id, useVto);
+
+    if (useVto || imageProvider === "bfl") {
+      if (!env.BFL_API_KEY?.trim()) {
+        job.status = "failed";
+        job.errorMessage = "BFL_NOT_CONFIGURED";
+        await job.save();
+        return jsonError("SERVER_CONFIG", "BFL_API_KEY not configured in .env.local", 503);
+      }
+    }
+    if (imageProvider === "byteplus") {
+      if (!env.ARK_API_KEY?.trim()) {
+        job.status = "failed";
+        job.errorMessage = "BYTEPLUS_NOT_CONFIGURED";
+        await job.save();
+        return jsonError("SERVER_CONFIG", "ARK_API_KEY not configured for TRY_ON_PROVIDER=byteplus", 503);
+      }
+    }
 
     let started;
     if (useVto) {
+      job.provider = "bfl";
       const garment = await resolveGarmentImage({
         styleId: body.style_id,
         categoryId: body.category_id,
@@ -119,6 +136,36 @@ export async function POST(req: Request) {
         disable_pup: true,
       };
       if (inputImage2) bflBody.input_image_2 = inputImage2;
+
+      if (imageProvider === "byteplus") {
+        job.provider = "byteplus";
+        job.status = "processing";
+        await job.save();
+
+        const byteplus = await runBytePlusBeautyGeneration({
+          prompt: bflBody.prompt as string,
+          personDataUrl: person.dataUrl,
+          referenceDataUrl: inputImage2,
+          width: body.width ?? 768,
+          height: body.height ?? 1024,
+        });
+
+        job.modelId = byteplus.model;
+        job.generationDurationMs = byteplus.durationMs;
+        job.resultUrl = byteplus.resultUrl;
+        job.status = "completed";
+        job.externalJobId = `byteplus:${job._id}`;
+        await job.save();
+
+        return jsonOk({
+          job_id: String(job._id),
+          external_job_id: job.externalJobId,
+          polling_url: `/api/v1/try-on/jobs/${job._id}`,
+          status: job.status,
+        });
+      }
+
+      job.provider = "bfl";
       started = await bflStartGeneration(bflBody);
     }
 
@@ -134,7 +181,13 @@ export async function POST(req: Request) {
       status: job.status,
     });
   } catch (e) {
-    const msg = e instanceof Error ? e.message : "BFL_ERROR";
+    const msg = e instanceof Error ? e.message : "TRY_ON_ERROR";
+    if (msg.startsWith("BYTEPLUS_")) {
+      job.status = "failed";
+      job.errorMessage = msg;
+      await job.save();
+      return jsonError("TRY_ON_FAILED", job.errorMessage, 502);
+    }
     if (msg.includes("COUPLE_PERSON_GENDER_REQUIRED")) {
       job.status = "failed";
       job.errorMessage = msg;

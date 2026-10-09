@@ -24,6 +24,8 @@
     "test:full-outfit-phase2": "npx tsx --test scripts/full-outfit-phase2-prompt.test.ts",
     "test:couple-duo-routing": "npx tsx --test scripts/couple-duo-garment-routing.test.ts",
     "test:beauty-flux": "npx tsx --test scripts/beauty-flux-prompt.test.ts",
+    "test:byteplus-provider": "npx tsx --test scripts/byteplus-provider.test.ts",
+    "test:byteplus-beauty-smoke": "npx tsx scripts/byteplus-beauty-smoke.mjs",
     "test:try-on-invalid-json": "npx tsx --test scripts/try-on-invalid-json.test.mjs",
     "assets:map-new-zip": "node scripts/ai-outfit-changer-zip-map.mjs",
     "verify:production-prompts": "node scripts/verify-production-prompts.mjs",

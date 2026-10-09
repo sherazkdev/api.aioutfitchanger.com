@@ -49,7 +49,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ jobId: string }
     return jsonOk(jobPayload(job));
   }
 
-  if (!job.externalJobId) {
+  if (job.provider === "byteplus" || !job.externalJobId) {
     return jsonOk(jobPayload(job));
   }
 
