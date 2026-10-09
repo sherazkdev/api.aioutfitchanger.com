@@ -1,0 +1,32 @@
+[
+  {
+    "styleId": "women_hijab_01",
+    "w": 474,
+    "h": 525,
+    "outPath": "D:\\ai-outfit-changer\\artifacts\\hijab-identity-reference-test\\refs\\clean\\women_hijab_01.png"
+  },
+  {
+    "styleId": "women_hijab_02",
+    "w": 474,
+    "h": 522,
+    "outPath": "D:\\ai-outfit-changer\\artifacts\\hijab-identity-reference-test\\refs\\clean\\women_hijab_02.png"
+  },
+  {
+    "styleId": "women_hijab_04",
+    "w": 474,
+    "h": 522,
+    "outPath": "D:\\ai-outfit-changer\\artifacts\\hijab-identity-reference-test\\refs\\clean\\women_hijab_04.png"
+  },
+  {
+    "styleId": "women_hijab_05",
+    "w": 474,
+    "h": 522,
+    "outPath": "D:\\ai-outfit-changer\\artifacts\\hijab-identity-reference-test\\refs\\clean\\women_hijab_05.png"
+  },
+  {
+    "styleId": "women_hijab_08",
+    "w": 474,
+    "h": 522,
+    "outPath": "D:\\ai-outfit-changer\\artifacts\\hijab-identity-reference-test\\refs\\clean\\women_hijab_08.png"
+  }
+]

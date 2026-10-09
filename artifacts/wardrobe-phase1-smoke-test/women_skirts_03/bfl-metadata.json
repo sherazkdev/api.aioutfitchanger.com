@@ -1,0 +1,29 @@
+{
+  "style_id": "women_skirts_03",
+  "category_id": "wardrobe_browse",
+  "engine": "BFL Virtual Try-On v2",
+  "endpoint": "https://api.bfl.ai/v1/flux-tools/vto-v2",
+  "job_id": "c54d3913-cd2d-47f0-88e4-215556f2325f",
+  "polling_status": "ready",
+  "prompt_length": 590,
+  "bfl_start": {
+    "id": "c54d3913-cd2d-47f0-88e4-215556f2325f",
+    "polling_url": "https://api.us2.bfl.ai/v1/get_result?id=c54d3913-cd2d-47f0-88e4-215556f2325f",
+    "cost": 4.75,
+    "input_mp": 0.94,
+    "output_mp": 0.75
+  },
+  "bfl_poll": {
+    "id": "c54d3913-cd2d-47f0-88e4-215556f2325f",
+    "status": "Ready",
+    "result": {
+      "start_time": 1791287517.1940663,
+      "prompt": "Replace the existing skirt with the teal pleated midi skirt from Image 2. Keep the person's pose and everything else in Image 1 unchanged.",
+      "seed": 1486406193,
+      "sample": "https://delivery.us2.bfl.ai/durable/2026100611/c2d26a91-bf86-4cdf-9e53-883e85d376a3/49/52009407226c99/07226c997db041968862f000fbb32d6a/sample.jpeg?se=2026-10-06T12%3A02%3A00Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=h7zv6cid%2BPF6jTwLIFFGZifGPPBXwwLTO3JyMBAKqJY%3D"
+    },
+    "progress": null,
+    "details": null,
+    "preview": null
+  }
+}

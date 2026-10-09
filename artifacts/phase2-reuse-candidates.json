@@ -1,0 +1,115 @@
+{
+  "found": [],
+  "missing": [
+    {
+      "style_id": "couple_01",
+      "need": "couple_01_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_01",
+      "need": "couple_01_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_02",
+      "need": "couple_02_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_02",
+      "need": "couple_02_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_03",
+      "need": "couple_03_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_03",
+      "need": "couple_03_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_04",
+      "need": "couple_04_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_04",
+      "need": "couple_04_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_05",
+      "need": "couple_05_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_05",
+      "need": "couple_05_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_06",
+      "need": "couple_06_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_06",
+      "need": "couple_06_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_07",
+      "need": "couple_07_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_07",
+      "need": "couple_07_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_08",
+      "need": "couple_08_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_08",
+      "need": "couple_08_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_09",
+      "need": "couple_09_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_09",
+      "need": "couple_09_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_10",
+      "need": "couple_10_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_10",
+      "need": "couple_10_female.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_11",
+      "need": "couple_11_male.png",
+      "reason": "couple split not created yet"
+    },
+    {
+      "style_id": "couple_11",
+      "need": "couple_11_female.png",
+      "reason": "couple split not created yet"
+    }
+  ]
+}

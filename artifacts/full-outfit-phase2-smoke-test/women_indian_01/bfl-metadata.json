@@ -1,0 +1,9 @@
+{
+  "style_id": "women_indian_01",
+  "category_id": "wardrobe_browse",
+  "engine": "BFL Virtual Try-On v2 (Phase 2 prompt)",
+  "garment_url": "https://appworkspro.com/media/catalog/wardrobe_browse/women_indian_01.png",
+  "job_id": "dbd985d4-3ca1-4cb8-b6c3-3f23a437f1e1",
+  "polling_status": "ready",
+  "prompt_length": 859
+}

@@ -1,0 +1,464 @@
+{
+  "generatedAt": "2026-10-05T06:15:41.938Z",
+  "executiveSummary": "Real BFL tests executed for 6/6 in-repo modules. Single API entry: POST /api/v1/try-on/generate. Outfit regions use VTO v2; beauty regions use flux-2-pro. No background-removal or studio backend in this repo. Flutter still bypasses backend for production.",
+  "modules": [
+    {
+      "id": "outfit",
+      "label": "Full outfit change (outfit_change)",
+      "styleId": "women_outfit_change_01",
+      "categoryId": "outfit_change",
+      "region": "outfit",
+      "recommendedEndpoint": "/v1/flux-tools/vto-v2",
+      "backendFiles": [
+        "src/app/api/v1/try-on/generate/route.ts",
+        "src/lib/server/bfl/tryOnEngine.ts",
+        "src/lib/server/bfl/promptBuilder.ts"
+      ],
+      "maskInBackend": "none",
+      "testStatus": "YES",
+      "images": [
+        {
+          "file": "result-before.png",
+          "label": "Before (flux-2-pro)"
+        },
+        {
+          "file": "result.png",
+          "label": "After (VTO v2 backend)"
+        },
+        {
+          "file": "reference.png",
+          "label": "Garment reference"
+        },
+        {
+          "file": "source.png",
+          "label": "Source person"
+        }
+      ],
+      "runs": {
+        "legacyFlux2Pro": {
+          "ok": true,
+          "sample": "https://delivery.us8.bfl.ai/durable/2026100506/c2d26a91-bf86-4cdf-9e53-883e85d376a3/d8/9503216e954a6a/6e954a6afe1544ab87c9c1ed9d902951/sample.jpeg?se=2026-10-05T06%3A25%3A50Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=LG4DlvVAcJdC8TYWODyLkCqZAbBxGOMEPjfENCsiwUw%3D",
+          "jobId": "a367e17d-268e-40fd-be3c-0792a5ba9d64",
+          "endpoint": "/v1/flux-2-pro",
+          "promptLen": 680
+        },
+        "fixedVtoV2": {
+          "ok": true,
+          "sample": "https://delivery.us2.bfl.ai/durable/2026100506/c2d26a91-bf86-4cdf-9e53-883e85d376a3/7d/9602546831d73f/6831d73fe9f7472ea75543e1807b227f/sample.jpeg?se=2026-10-05T06%3A26%3A00Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=EgRQyjC3t2TBYzZrbjQ/%2BaoSi0G8o9N8MJk%2B7Os7aPQ%3D",
+          "jobId": "553dd5f7-49eb-400e-a8da-338384779ab7",
+          "endpoint": "/v1/flux-tools/vto-v2"
+        }
+      },
+      "scorecard": {
+        "realApiTested": "YES",
+        "realOutputInspected": "YES (automated run; manual visual in HTML images)",
+        "requestedTransformation": "PARTIAL",
+        "identityPreservation": "PARTIAL",
+        "posePreservation": "PASS",
+        "regionIsolation": "N/A",
+        "artifacts": "PASS",
+        "overall": "PARTIAL",
+        "garmentFidelity": "PARTIAL"
+      },
+      "rootCause": {
+        "observed": "Mobile/production used flux-2-pro for garment tasks",
+        "codeEvidence": "tryOnEngine.ts routes region=outfit → bflStartVtoV2",
+        "likelyCause": "B wrong endpoint on Flutter",
+        "confidence": "95%",
+        "fix": "Backend VTO v2 + Flutter proxy"
+      }
+    },
+    {
+      "id": "tshirt",
+      "label": "T-shirt / top (wardrobe_browse tops)",
+      "styleId": "women_tops_01",
+      "categoryId": "wardrobe_browse",
+      "region": "outfit",
+      "recommendedEndpoint": "/v1/flux-tools/vto-v2",
+      "backendFiles": [
+        "src/app/api/v1/try-on/generate/route.ts",
+        "src/lib/server/bfl/tryOnEngine.ts",
+        "src/lib/server/bfl/promptBuilder.ts"
+      ],
+      "maskInBackend": "none",
+      "testStatus": "YES",
+      "images": [
+        {
+          "file": "result-before.png",
+          "label": "Before (flux-2-pro)"
+        },
+        {
+          "file": "result.png",
+          "label": "After (VTO v2 backend)"
+        },
+        {
+          "file": "reference.png",
+          "label": "Garment reference"
+        },
+        {
+          "file": "source.png",
+          "label": "Source person"
+        }
+      ],
+      "runs": {
+        "legacyFlux2Pro": {
+          "ok": true,
+          "sample": "https://delivery.us7.bfl.ai/durable/2026100506/c2d26a91-bf86-4cdf-9e53-883e85d376a3/ca/970457564e7970/564e797079a347c6b2ac7558c31579d8/sample.jpeg?se=2026-10-05T06%3A26%3A10Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=SAHLbjiDXOaHIv4n49t6F63Fjc2sjS4dRJd7hh9G/oQ%3D",
+          "jobId": "4643df33-2d50-44ef-a078-97212d71fe1d",
+          "endpoint": "/v1/flux-2-pro",
+          "promptLen": 683
+        },
+        "fixedVtoV2": {
+          "ok": true,
+          "sample": "https://delivery.us7.bfl.ai/durable/2026100506/c2d26a91-bf86-4cdf-9e53-883e85d376a3/54/978675c8729c3e/c8729c3e01c049ecb74e700be996cbdf/sample.jpeg?se=2026-10-05T06%3A26%3A18Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=TPO7Ebsin45fmHCdyGnZ4UU8RckDZsGehyRgQrSBDTs%3D",
+          "jobId": "936203ec-ba2e-499f-b5ad-b8376ec3e1c1",
+          "endpoint": "/v1/flux-tools/vto-v2"
+        }
+      },
+      "scorecard": {
+        "realApiTested": "YES",
+        "realOutputInspected": "YES (automated run; manual visual in HTML images)",
+        "requestedTransformation": "PARTIAL",
+        "identityPreservation": "PARTIAL",
+        "posePreservation": "PASS",
+        "regionIsolation": "N/A",
+        "artifacts": "PASS",
+        "overall": "PARTIAL",
+        "garmentFidelity": "PARTIAL"
+      },
+      "rootCause": {
+        "observed": "Mobile/production used flux-2-pro for garment tasks",
+        "codeEvidence": "tryOnEngine.ts routes region=outfit → bflStartVtoV2",
+        "likelyCause": "B wrong endpoint on Flutter",
+        "confidence": "95%",
+        "fix": "Backend VTO v2 + Flutter proxy"
+      }
+    },
+    {
+      "id": "hair-style",
+      "label": "Hair style",
+      "styleId": "women_hair_styles_01",
+      "categoryId": "hair_styles",
+      "region": "hair_style",
+      "recommendedEndpoint": "/v1/flux-2-pro",
+      "backendFiles": [
+        "src/app/api/v1/try-on/generate/route.ts",
+        "src/lib/server/bfl/tryOnEngine.ts",
+        "src/lib/server/bfl/promptBuilder.ts"
+      ],
+      "maskInBackend": "none",
+      "testStatus": "YES",
+      "images": [
+        {
+          "file": "source.png",
+          "label": "Source"
+        },
+        {
+          "file": "reference.png",
+          "label": "Style reference"
+        },
+        {
+          "file": "result.png",
+          "label": "BFL output"
+        }
+      ],
+      "runs": {
+        "flux2Pro": {
+          "ok": true,
+          "sample": "https://delivery.eu2.bfl.ai/durable/2026100506/c2d26a91-bf86-4cdf-9e53-883e85d376a3/10/990360e8602efd/e8602efd785c4fbcb65f5dafc8f7f6c6/sample.jpeg?se=2026-10-05T06%3A26%3A30Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=xiRuhXIrdXqlBEHgC8oo9SAE3aDpVyoF3nFFa6LlrEE%3D",
+          "jobId": "df5fa989-23fd-42a3-89c3-0e85ae1512b9",
+          "endpoint": "/v1/flux-2-pro",
+          "promptLen": 555
+        }
+      },
+      "scorecard": {
+        "realApiTested": "YES",
+        "realOutputInspected": "YES (automated run; manual visual in HTML images)",
+        "requestedTransformation": "PARTIAL",
+        "identityPreservation": "PARTIAL",
+        "posePreservation": "PARTIAL",
+        "regionIsolation": "PARTIAL",
+        "artifacts": "PASS",
+        "overall": "PARTIAL",
+        "hairFidelity": "PARTIAL"
+      },
+      "rootCause": {
+        "observed": "hair-style uses localized edit prompts",
+        "codeEvidence": "region=hair_style → flux-2-pro in generate/route.ts",
+        "likelyCause": "D prompt-only constraints; no mask API in backend",
+        "confidence": "85%",
+        "fix": "Keep flux-2-pro; optional future BFL erase/inpaint masks — not in repo today"
+      }
+    },
+    {
+      "id": "hair-color",
+      "label": "Hair color",
+      "styleId": "women_hair_color_01",
+      "categoryId": "hair_color",
+      "region": "hair_color",
+      "recommendedEndpoint": "/v1/flux-2-pro",
+      "backendFiles": [
+        "src/app/api/v1/try-on/generate/route.ts",
+        "src/lib/server/bfl/tryOnEngine.ts",
+        "src/lib/server/bfl/promptBuilder.ts"
+      ],
+      "maskInBackend": "none",
+      "testStatus": "YES",
+      "images": [
+        {
+          "file": "source.png",
+          "label": "Source"
+        },
+        {
+          "file": "reference.png",
+          "label": "Style reference"
+        },
+        {
+          "file": "result.png",
+          "label": "BFL output"
+        }
+      ],
+      "runs": {
+        "flux2Pro": {
+          "ok": true,
+          "sample": "https://delivery.eu2.bfl.ai/durable/2026100506/c2d26a91-bf86-4cdf-9e53-883e85d376a3/5d/002500f5427302/f54273022fea4d3a88ee92835004402a/sample.jpeg?se=2026-10-05T06%3A26%3A42Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=sWnxeLcOzn8X5JBYS71WnquSlQMuPlhRmh3F6yUsOlQ%3D",
+          "jobId": "7a3b2b5f-c0e9-4c37-b3fe-8cf8e5dbd31a",
+          "endpoint": "/v1/flux-2-pro",
+          "promptLen": 579
+        }
+      },
+      "scorecard": {
+        "realApiTested": "YES",
+        "realOutputInspected": "YES (automated run; manual visual in HTML images)",
+        "requestedTransformation": "PARTIAL",
+        "identityPreservation": "PARTIAL",
+        "posePreservation": "PARTIAL",
+        "regionIsolation": "PARTIAL",
+        "artifacts": "PASS",
+        "overall": "PARTIAL",
+        "hairFidelity": "PARTIAL"
+      },
+      "rootCause": {
+        "observed": "hair-color uses localized edit prompts",
+        "codeEvidence": "region=hair_color → flux-2-pro in generate/route.ts",
+        "likelyCause": "D prompt-only constraints; no mask API in backend",
+        "confidence": "85%",
+        "fix": "Keep flux-2-pro; optional future BFL erase/inpaint masks — not in repo today"
+      }
+    },
+    {
+      "id": "beard-style",
+      "label": "Beard style",
+      "styleId": "men_beard_01",
+      "categoryId": "beard_styles",
+      "region": "beard",
+      "recommendedEndpoint": "/v1/flux-2-pro",
+      "backendFiles": [
+        "src/app/api/v1/try-on/generate/route.ts",
+        "src/lib/server/bfl/tryOnEngine.ts",
+        "src/lib/server/bfl/promptBuilder.ts"
+      ],
+      "maskInBackend": "none",
+      "testStatus": "YES",
+      "images": [
+        {
+          "file": "source.png",
+          "label": "Source"
+        },
+        {
+          "file": "reference.png",
+          "label": "Style reference"
+        },
+        {
+          "file": "result.png",
+          "label": "BFL output"
+        }
+      ],
+      "runs": {
+        "flux2Pro": {
+          "ok": true,
+          "sample": "https://delivery.us2.bfl.ai/durable/2026100506/c2d26a91-bf86-4cdf-9e53-883e85d376a3/aa/0133574a6296f7/4a6296f70d79479e98aba939b806dc22/sample.jpeg?se=2026-10-05T06%3A26%3A53Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=LCwCDnQjak0nTSA/uDtXt3/xhu7h9/rzY4pekprh6AE%3D",
+          "jobId": "7bbc56f0-d302-4594-8366-8bdfc8ef0a4a",
+          "endpoint": "/v1/flux-2-pro",
+          "promptLen": 670
+        }
+      },
+      "scorecard": {
+        "realApiTested": "YES",
+        "realOutputInspected": "YES (automated run; manual visual in HTML images)",
+        "requestedTransformation": "PARTIAL",
+        "identityPreservation": "PARTIAL",
+        "posePreservation": "PARTIAL",
+        "regionIsolation": "PARTIAL",
+        "artifacts": "PASS",
+        "overall": "PARTIAL",
+        "beardFidelity": "PARTIAL"
+      },
+      "rootCause": {
+        "observed": "beard-style uses localized edit prompts",
+        "codeEvidence": "region=beard → flux-2-pro in generate/route.ts",
+        "likelyCause": "D prompt-only constraints; no mask API in backend",
+        "confidence": "85%",
+        "fix": "Keep flux-2-pro; optional future BFL erase/inpaint masks — not in repo today"
+      }
+    },
+    {
+      "id": "hijab",
+      "label": "Hijab / head covering",
+      "styleId": "women_hijab_01",
+      "categoryId": "hijab_styles",
+      "region": "hijab",
+      "recommendedEndpoint": "/v1/flux-2-pro",
+      "backendFiles": [
+        "src/app/api/v1/try-on/generate/route.ts",
+        "src/lib/server/bfl/tryOnEngine.ts",
+        "src/lib/server/bfl/promptBuilder.ts"
+      ],
+      "maskInBackend": "none",
+      "testStatus": "YES",
+      "images": [
+        {
+          "file": "source.png",
+          "label": "Source"
+        },
+        {
+          "file": "reference.png",
+          "label": "Style reference"
+        },
+        {
+          "file": "result.png",
+          "label": "BFL output"
+        }
+      ],
+      "runs": {
+        "flux2Pro": {
+          "ok": true,
+          "sample": "https://delivery.us2.bfl.ai/durable/2026100506/c2d26a91-bf86-4cdf-9e53-883e85d376a3/5e/023240ee0bc43b/ee0bc43b2c394df19b70dea7b4624219/sample.jpeg?se=2026-10-05T06%3A27%3A03Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=i7CRXF9Pl1hLIfnWqGocpS81VRkeezfMpo/RTze8xyk%3D",
+          "jobId": "e70e84d1-f310-4c06-ab1f-9ab670407e79",
+          "endpoint": "/v1/flux-2-pro",
+          "promptLen": 608
+        }
+      },
+      "scorecard": {
+        "realApiTested": "YES",
+        "realOutputInspected": "YES (automated run; manual visual in HTML images)",
+        "requestedTransformation": "PARTIAL",
+        "identityPreservation": "PARTIAL",
+        "posePreservation": "PARTIAL",
+        "regionIsolation": "PARTIAL",
+        "artifacts": "PASS",
+        "overall": "PARTIAL",
+        "hijabFidelity": "PARTIAL"
+      },
+      "rootCause": {
+        "observed": "hijab uses localized edit prompts",
+        "codeEvidence": "region=hijab → flux-2-pro in generate/route.ts",
+        "likelyCause": "D prompt-only constraints; no mask API in backend",
+        "confidence": "85%",
+        "fix": "Keep flux-2-pro; optional future BFL erase/inpaint masks — not in repo today"
+      }
+    }
+  ],
+  "blockedModules": [
+    {
+      "id": "ai-studio",
+      "reason": "Free-text studio transform exists in Flutter only (TryOnRouteArgs.studio); no separate backend route in this repo.",
+      "recommended": "flux-2-pro with user prompt when proxied via API without outfit category_id"
+    },
+    {
+      "id": "background-removal",
+      "reason": "No BFL erase/segmentation route or API handler in src/ — not implemented in this repository.",
+      "recommended": "BFL flux-tools/erase-v1 or dedicated segmentation if product requires it"
+    },
+    {
+      "id": "beard-color",
+      "reason": "No separate catalog region; beard color changes use beard_styles reference images (same as beard style)."
+    }
+  ],
+  "mobileNote": "Production app uses BflRemoteDataSource → flux-2-pro for ALL modules (PRE_BACKEND_FULL_APP_AUDIT.md). Backend routing below applies only to POST /api/v1/try-on/generate.",
+  "codeChanges": [
+    "tryOnEngine.ts — VTO for region=outfit / outfit categories only; studio/custom prompts → flux-2-pro",
+    "generate/route.ts — VTO v2 vs flux-2-pro split (already present)",
+    "resolveGarmentImage.ts — garment resolution for outfit paths"
+  ],
+  "regression": {
+    "build": "PASS",
+    "lint": "FAIL (missing eslint.config.js)",
+    "testPrompts": "not run"
+  },
+  "architectureDiagram": "POST /api/v1/try-on/generate\n  → resolve catalog COMMAND (region)\n  → region=outfit OR outfit category → BFL /v1/flux-tools/vto-v2 { person, garment }\n  → region=beard|hair_*|hijab → BFL /v1/flux-2-pro { input_image, input_image_2, prompt }\n  → poll → result URL (no server compositing/masks)",
+  "inventoryTable": "<table><thead><tr><th>Module</th><th>Category</th><th>Region</th><th>Backend endpoint</th><th>API tested</th></tr></thead><tbody><tr><td>Full outfit change (outfit_change)</td><td>outfit_change</td><td>outfit</td><td>/v1/flux-tools/vto-v2</td><td>YES</td></tr><tr><td>T-shirt / top (wardrobe_browse tops)</td><td>wardrobe_browse</td><td>outfit</td><td>/v1/flux-tools/vto-v2</td><td>YES</td></tr><tr><td>Hair style</td><td>hair_styles</td><td>hair_style</td><td>/v1/flux-2-pro</td><td>YES</td></tr><tr><td>Hair color</td><td>hair_color</td><td>hair_color</td><td>/v1/flux-2-pro</td><td>YES</td></tr><tr><td>Beard style</td><td>beard_styles</td><td>beard</td><td>/v1/flux-2-pro</td><td>YES</td></tr><tr><td>Hijab / head covering</td><td>hijab_styles</td><td>hijab</td><td>/v1/flux-2-pro</td><td>YES</td></tr></tbody></table>",
+  "finalVerdicts": {
+    "outfit": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "Was flux-2-pro; now VTO v2",
+      "fix": "Backend done; Flutter+assets",
+      "limit": "Garment flat-lay fidelity PARTIAL"
+    },
+    "tshirt": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "flux-2-pro on mobile; VTO applies top ref",
+      "fix": "VTO v2 backend",
+      "limit": "Polka top applied; not perfect isolation"
+    },
+    "hair-style": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "flux-2-pro full-image edit; spurious glasses",
+      "fix": "Keep flux-2-pro; no mask in backend",
+      "limit": "Prompt cannot prevent accessory hallucination"
+    },
+    "hair-color": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "Recolor prompt but shape/texture also changed",
+      "fix": "flux-2-pro appropriate; needs mask for strict isolation",
+      "limit": "Region isolation PARTIAL"
+    },
+    "beard-style": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "flux-2-pro localized edit via prompt",
+      "fix": "Correct endpoint; optional inpaint later",
+      "limit": "Beard changed; identity preserved"
+    },
+    "hijab": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "flux-2-pro hijab region prompt",
+      "fix": "Correct endpoint",
+      "limit": "Hijab applied well; minor edge softness"
+    },
+    "ai-studio": {
+      "working": "BLOCKED",
+      "api": "NO",
+      "inspected": "NO",
+      "root": "Not in backend repo",
+      "fix": "Flutter→backend with category non-outfit",
+      "limit": "Documented in audit only"
+    },
+    "background-removal": {
+      "working": "BLOCKED",
+      "api": "NO",
+      "inspected": "NO",
+      "root": "No implementation in src/",
+      "fix": "Add BFL erase or segmentation route if required",
+      "limit": "N/A"
+    }
+  },
+  "visualInspectionNotes": {
+    "hair-style": "Output added eyeglasses not in source — flux-2-pro collateral edit",
+    "hair-color": "Hair became wavy balayage; face/pose/blazer preserved",
+    "hijab": "Dusty-pink hijab matches reference intent; face unchanged",
+    "beard-style": "Full beard styled; same person identity",
+    "tshirt": "flux before and VTO after both show pink polka top vs gray blazer source"
+  }
+}

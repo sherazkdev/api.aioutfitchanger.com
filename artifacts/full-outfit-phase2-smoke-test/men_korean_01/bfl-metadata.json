@@ -1,0 +1,9 @@
+{
+  "style_id": "men_korean_01",
+  "category_id": "wardrobe_browse",
+  "engine": "BFL Virtual Try-On v2 (Phase 2 prompt)",
+  "garment_url": "https://appworkspro.com/media/catalog/wardrobe_browse/men_korean_01.png",
+  "job_id": "d2ca932d-da79-446d-a017-0fe72d5ad580",
+  "polling_status": "ready",
+  "prompt_length": 845
+}

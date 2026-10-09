@@ -1,0 +1,278 @@
+{
+  "source": "C:/Users/shera/.cursor/projects/d-ai-outfit-changer/assets/c__Users_shera_AppData_Roaming_Cursor_User_workspaceStorage_f0ee8dd207d04ca26f6c49e764fa25c3_images_WhatsApp_Image_2026-10-08_at_10.10.53_AM-44e77a66-add1-4d10-a62e-b1eba7ad2868.jpg",
+  "runs_per_arm": 3,
+  "extra_prompt": false,
+  "prompt_face_rule": null,
+  "results": [
+    {
+      "style_id": "women_hijab_01",
+      "reference": "ORIGINAL",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_01",
+      "reference": "ORIGINAL",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_01",
+      "reference": "ORIGINAL",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_01",
+      "reference": "CLEAN",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_01",
+      "reference": "CLEAN",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_01",
+      "reference": "CLEAN",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_02",
+      "reference": "ORIGINAL",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_02",
+      "reference": "ORIGINAL",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_02",
+      "reference": "ORIGINAL",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_02",
+      "reference": "CLEAN",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_02",
+      "reference": "CLEAN",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_02",
+      "reference": "CLEAN",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_04",
+      "reference": "ORIGINAL",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_04",
+      "reference": "ORIGINAL",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_04",
+      "reference": "ORIGINAL",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_04",
+      "reference": "CLEAN",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_04",
+      "reference": "CLEAN",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_04",
+      "reference": "CLEAN",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_05",
+      "reference": "ORIGINAL",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_05",
+      "reference": "ORIGINAL",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_05",
+      "reference": "ORIGINAL",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_05",
+      "reference": "CLEAN",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_05",
+      "reference": "CLEAN",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_05",
+      "reference": "CLEAN",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_08",
+      "reference": "ORIGINAL",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_08",
+      "reference": "ORIGINAL",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_08",
+      "reference": "ORIGINAL",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_08",
+      "reference": "CLEAN",
+      "run": 1,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_08",
+      "reference": "CLEAN",
+      "run": 2,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    },
+    {
+      "style_id": "women_hijab_08",
+      "reference": "CLEAN",
+      "run": 3,
+      "ok": false,
+      "file": null,
+      "error": "{\"detail\":\"Insufficient credits\"}",
+      "extra_prompt": false
+    }
+  ]
+}

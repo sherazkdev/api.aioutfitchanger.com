@@ -1,0 +1,10 @@
+{
+  "style_id": "men_arabian_01",
+  "label": "B_targeted",
+  "job_id": "ba14ba03-3387-4801-8b03-f8fccb7c0783",
+  "poll": {
+    "ok": true,
+    "sample": "https://delivery.us2.bfl.ai/durable/2026100612/c2d26a91-bf86-4cdf-9e53-883e85d376a3/13/791220636187f1/636187f13c604bb68ef5e8f71450c8b6/sample.jpeg?se=2026-10-06T12%3A23%3A11Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=UiJ035pTsZK7Qxpz8HQWyoZbu6f4sfNFgzSWn7HJmzQ%3D",
+    "status": "ready"
+  }
+}

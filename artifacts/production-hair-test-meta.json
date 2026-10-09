@@ -1,0 +1,14 @@
+{
+  "email": "prod_hair_test_1791371835479@example.com",
+  "style_id": "men_hair_styles_02",
+  "category_id": "hair_styles",
+  "job_id": "6ac62a43f3495b3f21c99418",
+  "result": {
+    "job_id": "6ac62a43f3495b3f21c99418",
+    "status": "completed",
+    "result_image_url": "/uploads/looks/6ac62a3df3495b3f21c99416/6ac62a43f3495b3f21c99418.jpg",
+    "result_image_absolute_url": "https://appworkspro.com/uploads/looks/6ac62a3df3495b3f21c99416/6ac62a43f3495b3f21c99418.jpg",
+    "error": null
+  },
+  "at": "2026-10-07T11:17:39.476Z"
+}

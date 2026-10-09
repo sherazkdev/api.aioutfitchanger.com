@@ -1,0 +1,23 @@
+{
+  "assessed_at": "2026-10-07T05:10:00.000Z",
+  "contract": "replacement P0 partial gate",
+  "items": [
+    {
+      "style_id": "couple_01_male",
+      "asset_qa": "PASS",
+      "vto_visual_qa": "PASS",
+      "bfl_smoke": true,
+      "new_sha256": "9565e02a899630d57292a44d73b1115c7c62460593dbf4d4957ecd511e7556a2",
+      "notes": "BFL studio single male tan suit; no partner bleed; couple_01_female coordinated pair #1; VTO smoke PASS."
+    },
+    {
+      "style_id": "women_indian_01",
+      "asset_qa": "PASS",
+      "vto_visual_qa": "PASS",
+      "bfl_smoke": true,
+      "new_sha256": "5bbfc0dbae77e5062d43080471af730aa8cfa9ef03b96f4de05ce6e4aeadb4af",
+      "sha256_distinct_from_women_indian_02": true,
+      "notes": "Distinct royal blue gold-border saree slot-01; not _02 clone; VTO smoke PASS."
+    }
+  ]
+}

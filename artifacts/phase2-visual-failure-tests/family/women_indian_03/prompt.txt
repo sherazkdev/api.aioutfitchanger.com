@@ -1,0 +1,18 @@
+Edit image 1 directly.
+
+Keep the same person or people from image 1, including identity, face, skin tone, hair, body proportions, pose, hands, camera, lighting and background.
+
+Preserve the exact number of people from image 1. Do not add, remove, or replace any person.
+
+Replace ONLY the visible clothing on the existing person or people with the outfit shown in image 2.
+
+Use image 2 as the visual source of truth for women_indian_03.
+Match the outfit silhouette, garment layers, fit, fabric, color, pattern, length, drape and visible garment details.
+
+Do not invent garment types or clothing that are not shown in image 2.
+Do not recreate the person or the full image.
+Keep all non-clothing features unchanged.
+
+Photorealistic.
+
+Match the exact traditional Indian outfit shown in image 2, including its visible layers, textile, color, pattern and detailing.

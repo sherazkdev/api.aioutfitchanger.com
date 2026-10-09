@@ -1,0 +1,13 @@
+Edit only the clothing of the existing person in image 1.
+
+Image 1 must remain the base image.
+
+Preserve the exact face, hair, skin, body shape, body proportions, pose, hands, framing, camera angle, lighting and background from image 1.
+
+Replace only the clothing with the outfit shown in image 2.
+
+Image 2 is clothing reference only.
+Do not copy the model, body, pose, environment or background from image 2.
+Do not regenerate the full image.
+
+Photorealistic.

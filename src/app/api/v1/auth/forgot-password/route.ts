@@ -1,4 +1,9 @@
 import { createHash, randomBytes } from "crypto";
+import {
+  buildPasswordResetUrl,
+  formatResetTokenExpiresIn,
+  sendPasswordResetEmail,
+} from "@/lib/server/emails/email.service";
 import { connectMongo } from "@/lib/server/db";
 import { User } from "@/lib/server/models/User";
 import { PasswordResetToken } from "@/lib/server/models/PasswordResetToken";
@@ -39,15 +44,19 @@ export async function POST(req: Request) {
     expiresAt,
   });
 
-  const appUrl = process.env.APP_URL ?? "http://localhost:3000";
-  const resetPath = `/reset-password?token=${encodeURIComponent(raw)}`;
+  const resetUrl = buildPasswordResetUrl(raw);
+  const expiresIn = formatResetTokenExpiresIn(ttlHours);
+
+  await sendPasswordResetEmail({
+    to: body.email.toLowerCase(),
+    resetUrl,
+    expiresIn,
+  });
 
   const payload: Record<string, string> = { ...generic };
   if (process.env.NODE_ENV !== "production") {
-    payload.dev_reset_url = `${appUrl}${resetPath}`;
+    payload.dev_reset_url = resetUrl;
   }
-
-  // Production: integrate SMTP / SendGrid here and email `resetPath` to user.
 
   return jsonOk(payload);
 }

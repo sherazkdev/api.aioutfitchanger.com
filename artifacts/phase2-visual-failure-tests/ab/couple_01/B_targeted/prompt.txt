@@ -1,0 +1,14 @@
+Edit image 1 only.
+
+The people in image 1 are the ONLY people allowed in the result.
+
+Preserve exactly the same number of people, identities, faces, bodies, poses, positions, camera view, lighting and background from image 1.
+
+NEVER copy, add, generate or transfer any person from image 2.
+
+Image 2 is clothing reference only.
+
+Transfer only the clothing/style from image 2 onto the existing person or people in image 1.
+
+Do not recreate the scene.
+Photorealistic.

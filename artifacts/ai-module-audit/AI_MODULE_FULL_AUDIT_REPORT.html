@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><title>AI Module Full Audit</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#0f1115;color:#eee;padding:24px;line-height:1.5}
+section{background:#1a1f28;border:1px solid #333;border-radius:10px;padding:16px;margin:16px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+img{width:100%;border-radius:8px;background:#000}
+pre{background:#0a0c10;padding:10px;border-radius:8px;font-size:.75rem;overflow:auto}
+table{border-collapse:collapse;width:100%} td,th{border:1px solid #444;padding:6px}
+</style></head><body>
+<h1>AI Module Full Audit Report</h1>
+<section><h2>Executive Summary</h2><p>Real BFL tests executed for 6/6 in-repo modules. Single API entry: POST /api/v1/try-on/generate. Outfit regions use VTO v2; beauty regions use flux-2-pro. No background-removal or studio backend in this repo. Flutter still bypasses backend for production.</p></section>
+<section><h2>Module Inventory</h2><table><thead><tr><th>Module</th><th>Category</th><th>Region</th><th>Backend endpoint</th><th>API tested</th></tr></thead><tbody><tr><td>Full outfit change (outfit_change)</td><td>outfit_change</td><td>outfit</td><td>/v1/flux-tools/vto-v2</td><td>YES</td></tr><tr><td>T-shirt / top (wardrobe_browse tops)</td><td>wardrobe_browse</td><td>outfit</td><td>/v1/flux-tools/vto-v2</td><td>YES</td></tr><tr><td>Hair style</td><td>hair_styles</td><td>hair_style</td><td>/v1/flux-2-pro</td><td>YES</td></tr><tr><td>Hair color</td><td>hair_color</td><td>hair_color</td><td>/v1/flux-2-pro</td><td>YES</td></tr><tr><td>Beard style</td><td>beard_styles</td><td>beard</td><td>/v1/flux-2-pro</td><td>YES</td></tr><tr><td>Hijab / head covering</td><td>hijab_styles</td><td>hijab</td><td>/v1/flux-2-pro</td><td>YES</td></tr></tbody></table></section>
+<section><h2>Final Architecture</h2><pre>POST /api/v1/try-on/generate
+  → resolve catalog COMMAND (region)
+  → region=outfit OR outfit category → BFL /v1/flux-tools/vto-v2 { person, garment }
+  → region=beard|hair_*|hijab → BFL /v1/flux-2-pro { input_image, input_image_2, prompt }
+  → poll → result URL (no server compositing/masks)</pre></section>
+<section class="module"><h2>Full outfit change (outfit_change) (outfit)</h2>
+<p><b>Backend routing:</b> /v1/flux-tools/vto-v2 · <b>Tested:</b> YES</p>
+<pre>{
+  &quot;realApiTested&quot;: &quot;YES&quot;,
+  &quot;realOutputInspected&quot;: &quot;YES (automated run; manual visual in HTML images)&quot;,
+  &quot;requestedTransformation&quot;: &quot;PARTIAL&quot;,
+  &quot;identityPreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;posePreservation&quot;: &quot;PASS&quot;,
+  &quot;regionIsolation&quot;: &quot;N/A&quot;,
+  &quot;artifacts&quot;: &quot;PASS&quot;,
+  &quot;overall&quot;: &quot;PARTIAL&quot;,
+  &quot;garmentFidelity&quot;: &quot;PARTIAL&quot;
+}</pre>
+<div class="grid"><figure><img src="outfit/result-before.png" alt=""/><figcaption>Before (flux-2-pro)</figcaption></figure><figure><img src="outfit/result.png" alt=""/><figcaption>After (VTO v2 backend)</figcaption></figure><figure><img src="outfit/reference.png" alt=""/><figcaption>Garment reference</figcaption></figure><figure><img src="outfit/source.png" alt=""/><figcaption>Source person</figcaption></figure></div>
+<pre>{
+  &quot;observed&quot;: &quot;Mobile/production used flux-2-pro for garment tasks&quot;,
+  &quot;codeEvidence&quot;: &quot;tryOnEngine.ts routes region=outfit → bflStartVtoV2&quot;,
+  &quot;likelyCause&quot;: &quot;B wrong endpoint on Flutter&quot;,
+  &quot;confidence&quot;: &quot;95%&quot;,
+  &quot;fix&quot;: &quot;Backend VTO v2 + Flutter proxy&quot;
+}</pre></section>
+<section class="module"><h2>T-shirt / top (wardrobe_browse tops) (tshirt)</h2>
+<p><b>Backend routing:</b> /v1/flux-tools/vto-v2 · <b>Tested:</b> YES</p>
+<pre>{
+  &quot;realApiTested&quot;: &quot;YES&quot;,
+  &quot;realOutputInspected&quot;: &quot;YES (automated run; manual visual in HTML images)&quot;,
+  &quot;requestedTransformation&quot;: &quot;PARTIAL&quot;,
+  &quot;identityPreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;posePreservation&quot;: &quot;PASS&quot;,
+  &quot;regionIsolation&quot;: &quot;N/A&quot;,
+  &quot;artifacts&quot;: &quot;PASS&quot;,
+  &quot;overall&quot;: &quot;PARTIAL&quot;,
+  &quot;garmentFidelity&quot;: &quot;PARTIAL&quot;
+}</pre>
+<div class="grid"><figure><img src="tshirt/result-before.png" alt=""/><figcaption>Before (flux-2-pro)</figcaption></figure><figure><img src="tshirt/result.png" alt=""/><figcaption>After (VTO v2 backend)</figcaption></figure><figure><img src="tshirt/reference.png" alt=""/><figcaption>Garment reference</figcaption></figure><figure><img src="tshirt/source.png" alt=""/><figcaption>Source person</figcaption></figure></div>
+<pre>{
+  &quot;observed&quot;: &quot;Mobile/production used flux-2-pro for garment tasks&quot;,
+  &quot;codeEvidence&quot;: &quot;tryOnEngine.ts routes region=outfit → bflStartVtoV2&quot;,
+  &quot;likelyCause&quot;: &quot;B wrong endpoint on Flutter&quot;,
+  &quot;confidence&quot;: &quot;95%&quot;,
+  &quot;fix&quot;: &quot;Backend VTO v2 + Flutter proxy&quot;
+}</pre></section>
+<section class="module"><h2>Hair style (hair-style)</h2>
+<p><b>Backend routing:</b> /v1/flux-2-pro · <b>Tested:</b> YES</p>
+<pre>{
+  &quot;realApiTested&quot;: &quot;YES&quot;,
+  &quot;realOutputInspected&quot;: &quot;YES (automated run; manual visual in HTML images)&quot;,
+  &quot;requestedTransformation&quot;: &quot;PARTIAL&quot;,
+  &quot;identityPreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;posePreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;regionIsolation&quot;: &quot;PARTIAL&quot;,
+  &quot;artifacts&quot;: &quot;PASS&quot;,
+  &quot;overall&quot;: &quot;PARTIAL&quot;,
+  &quot;hairFidelity&quot;: &quot;PARTIAL&quot;
+}</pre>
+<div class="grid"><figure><img src="hair-style/source.png" alt=""/><figcaption>Source</figcaption></figure><figure><img src="hair-style/reference.png" alt=""/><figcaption>Style reference</figcaption></figure><figure><img src="hair-style/result.png" alt=""/><figcaption>BFL output</figcaption></figure></div>
+<pre>{
+  &quot;observed&quot;: &quot;hair-style uses localized edit prompts&quot;,
+  &quot;codeEvidence&quot;: &quot;region=hair_style → flux-2-pro in generate/route.ts&quot;,
+  &quot;likelyCause&quot;: &quot;D prompt-only constraints; no mask API in backend&quot;,
+  &quot;confidence&quot;: &quot;85%&quot;,
+  &quot;fix&quot;: &quot;Keep flux-2-pro; optional future BFL erase/inpaint masks — not in repo today&quot;
+}</pre></section>
+<section class="module"><h2>Hair color (hair-color)</h2>
+<p><b>Backend routing:</b> /v1/flux-2-pro · <b>Tested:</b> YES</p>
+<pre>{
+  &quot;realApiTested&quot;: &quot;YES&quot;,
+  &quot;realOutputInspected&quot;: &quot;YES (automated run; manual visual in HTML images)&quot;,
+  &quot;requestedTransformation&quot;: &quot;PARTIAL&quot;,
+  &quot;identityPreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;posePreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;regionIsolation&quot;: &quot;PARTIAL&quot;,
+  &quot;artifacts&quot;: &quot;PASS&quot;,
+  &quot;overall&quot;: &quot;PARTIAL&quot;,
+  &quot;hairFidelity&quot;: &quot;PARTIAL&quot;
+}</pre>
+<div class="grid"><figure><img src="hair-color/source.png" alt=""/><figcaption>Source</figcaption></figure><figure><img src="hair-color/reference.png" alt=""/><figcaption>Style reference</figcaption></figure><figure><img src="hair-color/result.png" alt=""/><figcaption>BFL output</figcaption></figure></div>
+<pre>{
+  &quot;observed&quot;: &quot;hair-color uses localized edit prompts&quot;,
+  &quot;codeEvidence&quot;: &quot;region=hair_color → flux-2-pro in generate/route.ts&quot;,
+  &quot;likelyCause&quot;: &quot;D prompt-only constraints; no mask API in backend&quot;,
+  &quot;confidence&quot;: &quot;85%&quot;,
+  &quot;fix&quot;: &quot;Keep flux-2-pro; optional future BFL erase/inpaint masks — not in repo today&quot;
+}</pre></section>
+<section class="module"><h2>Beard style (beard-style)</h2>
+<p><b>Backend routing:</b> /v1/flux-2-pro · <b>Tested:</b> YES</p>
+<pre>{
+  &quot;realApiTested&quot;: &quot;YES&quot;,
+  &quot;realOutputInspected&quot;: &quot;YES (automated run; manual visual in HTML images)&quot;,
+  &quot;requestedTransformation&quot;: &quot;PARTIAL&quot;,
+  &quot;identityPreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;posePreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;regionIsolation&quot;: &quot;PARTIAL&quot;,
+  &quot;artifacts&quot;: &quot;PASS&quot;,
+  &quot;overall&quot;: &quot;PARTIAL&quot;,
+  &quot;beardFidelity&quot;: &quot;PARTIAL&quot;
+}</pre>
+<div class="grid"><figure><img src="beard-style/source.png" alt=""/><figcaption>Source</figcaption></figure><figure><img src="beard-style/reference.png" alt=""/><figcaption>Style reference</figcaption></figure><figure><img src="beard-style/result.png" alt=""/><figcaption>BFL output</figcaption></figure></div>
+<pre>{
+  &quot;observed&quot;: &quot;beard-style uses localized edit prompts&quot;,
+  &quot;codeEvidence&quot;: &quot;region=beard → flux-2-pro in generate/route.ts&quot;,
+  &quot;likelyCause&quot;: &quot;D prompt-only constraints; no mask API in backend&quot;,
+  &quot;confidence&quot;: &quot;85%&quot;,
+  &quot;fix&quot;: &quot;Keep flux-2-pro; optional future BFL erase/inpaint masks — not in repo today&quot;
+}</pre></section>
+<section class="module"><h2>Hijab / head covering (hijab)</h2>
+<p><b>Backend routing:</b> /v1/flux-2-pro · <b>Tested:</b> YES</p>
+<pre>{
+  &quot;realApiTested&quot;: &quot;YES&quot;,
+  &quot;realOutputInspected&quot;: &quot;YES (automated run; manual visual in HTML images)&quot;,
+  &quot;requestedTransformation&quot;: &quot;PARTIAL&quot;,
+  &quot;identityPreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;posePreservation&quot;: &quot;PARTIAL&quot;,
+  &quot;regionIsolation&quot;: &quot;PARTIAL&quot;,
+  &quot;artifacts&quot;: &quot;PASS&quot;,
+  &quot;overall&quot;: &quot;PARTIAL&quot;,
+  &quot;hijabFidelity&quot;: &quot;PARTIAL&quot;
+}</pre>
+<div class="grid"><figure><img src="hijab/source.png" alt=""/><figcaption>Source</figcaption></figure><figure><img src="hijab/reference.png" alt=""/><figcaption>Style reference</figcaption></figure><figure><img src="hijab/result.png" alt=""/><figcaption>BFL output</figcaption></figure></div>
+<pre>{
+  &quot;observed&quot;: &quot;hijab uses localized edit prompts&quot;,
+  &quot;codeEvidence&quot;: &quot;region=hijab → flux-2-pro in generate/route.ts&quot;,
+  &quot;likelyCause&quot;: &quot;D prompt-only constraints; no mask API in backend&quot;,
+  &quot;confidence&quot;: &quot;85%&quot;,
+  &quot;fix&quot;: &quot;Keep flux-2-pro; optional future BFL erase/inpaint masks — not in repo today&quot;
+}</pre></section>
+<section><h2>Blocked Modules (not in repo)</h2><pre>[
+  {
+    &quot;id&quot;: &quot;ai-studio&quot;,
+    &quot;reason&quot;: &quot;Free-text studio transform exists in Flutter only (TryOnRouteArgs.studio); no separate backend route in this repo.&quot;,
+    &quot;recommended&quot;: &quot;flux-2-pro with user prompt when proxied via API without outfit category_id&quot;
+  },
+  {
+    &quot;id&quot;: &quot;background-removal&quot;,
+    &quot;reason&quot;: &quot;No BFL erase/segmentation route or API handler in src/ — not implemented in this repository.&quot;,
+    &quot;recommended&quot;: &quot;BFL flux-tools/erase-v1 or dedicated segmentation if product requires it&quot;
+  },
+  {
+    &quot;id&quot;: &quot;beard-color&quot;,
+    &quot;reason&quot;: &quot;No separate catalog region; beard color changes use beard_styles reference images (same as beard style).&quot;
+  }
+]</pre></section>
+<section><h2>Mobile</h2><p>Production app uses BflRemoteDataSource → flux-2-pro for ALL modules (PRE_BACKEND_FULL_APP_AUDIT.md). Backend routing below applies only to POST /api/v1/try-on/generate.</p></section>
+<section><h2>Regression</h2><pre>{
+  &quot;build&quot;: &quot;run npm run build separately&quot;,
+  &quot;lint&quot;: &quot;ESLint config missing (pre-existing)&quot;
+}</pre></section>
+<section><h2>Final Verdict (per module)</h2><pre>{
+  "finalVerdicts": {
+    "outfit": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "Was flux-2-pro; now VTO v2",
+      "fix": "Backend done; Flutter+assets",
+      "limit": "Garment flat-lay fidelity PARTIAL"
+    },
+    "tshirt": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "flux-2-pro on mobile; VTO applies top ref",
+      "fix": "VTO v2 backend",
+      "limit": "Polka top applied; not perfect isolation"
+    },
+    "hair-style": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "flux-2-pro full-image edit; spurious glasses",
+      "fix": "Keep flux-2-pro; no mask in backend",
+      "limit": "Prompt cannot prevent accessory hallucination"
+    },
+    "hair-color": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "Recolor prompt but shape/texture also changed",
+      "fix": "flux-2-pro appropriate; needs mask for strict isolation",
+      "limit": "Region isolation PARTIAL"
+    },
+    "beard-style": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "flux-2-pro localized edit via prompt",
+      "fix": "Correct endpoint; optional inpaint later",
+      "limit": "Beard changed; identity preserved"
+    },
+    "hijab": {
+      "working": "PARTIAL",
+      "api": "YES",
+      "inspected": "YES",
+      "root": "flux-2-pro hijab region prompt",
+      "fix": "Correct endpoint",
+      "limit": "Hijab applied well; minor edge softness"
+    },
+    "ai-studio": {
+      "working": "BLOCKED",
+      "api": "NO",
+      "inspected": "NO",
+      "root": "Not in backend repo",
+      "fix": "Flutter→backend with category non-outfit",
+      "limit": "Documented in audit only"
+    },
+    "background-removal": {
+      "working": "BLOCKED",
+      "api": "NO",
+      "inspected": "NO",
+      "root": "No implementation in src/",
+      "fix": "Add BFL erase or segmentation route if required",
+      "limit": "N/A"
+    }
+  },
+  "visualInspectionNotes": {
+    "hair-style": "Output added eyeglasses not in source — flux-2-pro collateral edit",
+    "hair-color": "Hair became wavy balayage; face/pose/blazer preserved",
+    "hijab": "Dusty-pink hijab matches reference intent; face unchanged",
+    "beard-style": "Full beard styled; same person identity",
+    "tshirt": "flux before and VTO after both show pink polka top vs gray blazer source"
+  },
+  "regression": {
+    "build": "PASS",
+    "lint": "FAIL (missing eslint.config.js)",
+    "testPrompts": "not run"
+  }
+}</pre></section><section><h2>Code Changes</h2><ul><li>tryOnEngine.ts — VTO for region=outfit / outfit categories only; studio/custom prompts → flux-2-pro</li><li>generate/route.ts — VTO v2 vs flux-2-pro split (already present)</li><li>resolveGarmentImage.ts — garment resolution for outfit paths</li></ul></section>
+<p><small>2026-10-05T06:15:41.938Z</small></p>
+</body></html>

@@ -1,0 +1,6 @@
+{
+  "job_id": "6ac616dbf3495b3f21c99405",
+  "external_job_id": "958bc124-f7b5-4313-94c3-1836fa18c8c2",
+  "polling_url": "/api/v1/try-on/jobs/6ac616dbf3495b3f21c99405",
+  "status": "queued"
+}

@@ -1,0 +1,9 @@
+{
+  "style_id": "men_arabian_01",
+  "category_id": "wardrobe_browse",
+  "engine": "BFL Virtual Try-On v2 (Phase 2 prompt)",
+  "garment_url": "https://appworkspro.com/media/catalog/wardrobe_browse/men_arabian_01.png",
+  "job_id": "290b7e56-b8af-48a5-bf53-cba51b984140",
+  "polling_status": "ready",
+  "prompt_length": 838
+}

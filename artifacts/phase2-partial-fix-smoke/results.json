@@ -1,0 +1,16 @@
+[
+  {
+    "style_id": "couple_01",
+    "category_id": "couple_duo",
+    "person": "male",
+    "garment": "media/catalog/couple_duo/couple_01_male.png",
+    "bfl_ok": true
+  },
+  {
+    "style_id": "women_indian_01",
+    "category_id": "wardrobe_browse",
+    "person": "female",
+    "garment": "media/catalog/wardrobe_browse/women_indian_01.png",
+    "bfl_ok": true
+  }
+]

@@ -74,6 +74,18 @@ const EXTRA = {
   DISABLE_CONTENT_SEED: { required: false, secret: false, purpose: "Skip demo content auto-seed" },
   BROADCAST_SCHEDULER_INTERVAL_MS: { required: false, secret: false, purpose: "Scheduled push poll interval" },
   RESET_TOKEN_TTL_HOURS: { required: false, secret: false, purpose: "Password reset token TTL" },
+  RESEND_API_KEY: { required: false, secret: true, purpose: "Resend API key for password reset email" },
+  RESEND_FROM_EMAIL: {
+    required: false,
+    secret: false,
+    purpose: "Verified Resend sender address (e.g. noreply@appworkspro.com)",
+  },
+  RESEND_FROM_NAME: { required: false, secret: false, purpose: "Password reset email sender display name" },
+  RESET_PASSWORD_URL: {
+    required: false,
+    secret: false,
+    purpose: "Public reset page URL base (token appended as query param)",
+  },
   LIBRETRANSLATE_URL: { required: false, secret: false, purpose: "Optional LibreTranslate endpoint" },
   DEFAULT_SOURCE_LOCALE: { required: false, secret: false, purpose: "Default i18n source locale" },
   NEXT_PUBLIC_ADMIN_DESIGN_PREVIEW: {

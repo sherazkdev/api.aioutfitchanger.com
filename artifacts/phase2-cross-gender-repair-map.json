@@ -1,0 +1,1450 @@
+{
+  "groups": [
+    {
+      "sha256": "25ce222b4710efa7",
+      "style_ids": [
+        "couple_03",
+        "couple_08"
+      ],
+      "visible_gender": "both",
+      "keep_for": [
+        "couple_03"
+      ],
+      "replace_for": [
+        "couple_08"
+      ],
+      "note": "same-gender duplicate slots — unique asset per style_id"
+    },
+    {
+      "sha256": "4254884f89e74128",
+      "style_ids": [
+        "men_casual_01",
+        "women_casual_01"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_01"
+      ],
+      "replace_for": [
+        "men_casual_01"
+      ]
+    },
+    {
+      "sha256": "596d18cfd56f079e",
+      "style_ids": [
+        "men_casual_02",
+        "women_casual_02"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_02"
+      ],
+      "replace_for": [
+        "men_casual_02"
+      ]
+    },
+    {
+      "sha256": "0cbd0494a8bcb595",
+      "style_ids": [
+        "men_casual_03",
+        "women_casual_03"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_03"
+      ],
+      "replace_for": [
+        "men_casual_03"
+      ]
+    },
+    {
+      "sha256": "b6e916ec98b0e088",
+      "style_ids": [
+        "men_casual_04",
+        "women_casual_04"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_04"
+      ],
+      "replace_for": [
+        "men_casual_04"
+      ]
+    },
+    {
+      "sha256": "9ae466025007074e",
+      "style_ids": [
+        "men_casual_05",
+        "women_casual_05"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_05"
+      ],
+      "replace_for": [
+        "men_casual_05"
+      ]
+    },
+    {
+      "sha256": "5e776d01d6911a49",
+      "style_ids": [
+        "men_casual_06",
+        "women_casual_06"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_06"
+      ],
+      "replace_for": [
+        "men_casual_06"
+      ]
+    },
+    {
+      "sha256": "c544790cbb71bdeb",
+      "style_ids": [
+        "men_casual_07",
+        "women_casual_07"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_07"
+      ],
+      "replace_for": [
+        "men_casual_07"
+      ]
+    },
+    {
+      "sha256": "9e65b6fb0cd355ad",
+      "style_ids": [
+        "men_casual_08",
+        "women_casual_08"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_08"
+      ],
+      "replace_for": [
+        "men_casual_08"
+      ]
+    },
+    {
+      "sha256": "f4f147ca39b54aa4",
+      "style_ids": [
+        "men_casual_09",
+        "women_casual_09"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_09"
+      ],
+      "replace_for": [
+        "men_casual_09"
+      ]
+    },
+    {
+      "sha256": "7c885360d87b8ceb",
+      "style_ids": [
+        "men_casual_10",
+        "women_casual_10"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_casual_10"
+      ],
+      "replace_for": [
+        "men_casual_10"
+      ]
+    },
+    {
+      "sha256": "b57b77553fa375db",
+      "style_ids": [
+        "men_formal_01",
+        "women_formal_01"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_01"
+      ],
+      "replace_for": [
+        "men_formal_01"
+      ]
+    },
+    {
+      "sha256": "5d63ee42b9752d4b",
+      "style_ids": [
+        "men_formal_02",
+        "women_formal_02"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_02"
+      ],
+      "replace_for": [
+        "men_formal_02"
+      ]
+    },
+    {
+      "sha256": "4a908dd50fe5ebc1",
+      "style_ids": [
+        "men_formal_03",
+        "women_formal_03"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_03"
+      ],
+      "replace_for": [
+        "men_formal_03"
+      ]
+    },
+    {
+      "sha256": "0d7db5761c4f5029",
+      "style_ids": [
+        "men_formal_04",
+        "women_formal_04"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_04"
+      ],
+      "replace_for": [
+        "men_formal_04"
+      ]
+    },
+    {
+      "sha256": "617d704106cda198",
+      "style_ids": [
+        "men_formal_05",
+        "women_formal_05"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_05"
+      ],
+      "replace_for": [
+        "men_formal_05"
+      ]
+    },
+    {
+      "sha256": "39c22bf21c116617",
+      "style_ids": [
+        "men_formal_06",
+        "women_formal_06"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_06"
+      ],
+      "replace_for": [
+        "men_formal_06"
+      ]
+    },
+    {
+      "sha256": "1a7bf8148768a3f5",
+      "style_ids": [
+        "men_formal_07",
+        "women_formal_07"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_07"
+      ],
+      "replace_for": [
+        "men_formal_07"
+      ]
+    },
+    {
+      "sha256": "700370176fb25bc4",
+      "style_ids": [
+        "men_formal_08",
+        "women_formal_08"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_08"
+      ],
+      "replace_for": [
+        "men_formal_08"
+      ]
+    },
+    {
+      "sha256": "5cbe64e2971db0c6",
+      "style_ids": [
+        "men_formal_09",
+        "women_formal_09"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_09"
+      ],
+      "replace_for": [
+        "men_formal_09"
+      ]
+    },
+    {
+      "sha256": "4e3cae1b5cfd2c28",
+      "style_ids": [
+        "men_formal_10",
+        "women_formal_10"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_formal_10"
+      ],
+      "replace_for": [
+        "men_formal_10"
+      ]
+    },
+    {
+      "sha256": "3cef8674f59a0dec",
+      "style_ids": [
+        "men_outfit_change_01",
+        "women_outfit_change_01"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_outfit_change_01"
+      ],
+      "replace_for": [
+        "women_outfit_change_01"
+      ]
+    },
+    {
+      "sha256": "ebb7800ed1cef74a",
+      "style_ids": [
+        "men_outfit_change_02",
+        "women_outfit_change_02"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_outfit_change_02"
+      ],
+      "replace_for": [
+        "women_outfit_change_02"
+      ]
+    },
+    {
+      "sha256": "df5b6348fd5cd4bb",
+      "style_ids": [
+        "men_tryon_01",
+        "women_tryon_02"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_tryon_01"
+      ],
+      "replace_for": [
+        "women_tryon_02"
+      ]
+    },
+    {
+      "sha256": "083f1dad49092ef9",
+      "style_ids": [
+        "men_tryon_02",
+        "women_tryon_03"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_tryon_02"
+      ],
+      "replace_for": [
+        "women_tryon_03"
+      ]
+    },
+    {
+      "sha256": "046add2846c273de",
+      "style_ids": [
+        "men_tryon_03",
+        "women_tryon_05"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_tryon_03"
+      ],
+      "replace_for": [
+        "women_tryon_05"
+      ]
+    },
+    {
+      "sha256": "adb753b839e0f2cb",
+      "style_ids": [
+        "men_tryon_04",
+        "women_tryon_07"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_tryon_04"
+      ],
+      "replace_for": [
+        "women_tryon_07"
+      ]
+    },
+    {
+      "sha256": "75ec88830ac19fcc",
+      "style_ids": [
+        "men_tryon_05",
+        "women_tryon_08"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_tryon_05"
+      ],
+      "replace_for": [
+        "women_tryon_08"
+      ]
+    },
+    {
+      "sha256": "c4344b93c54eef1d",
+      "style_ids": [
+        "men_tryon_06",
+        "women_tryon_10"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_tryon_06"
+      ],
+      "replace_for": [
+        "women_tryon_10"
+      ]
+    },
+    {
+      "sha256": "e0f2d701bd02ca07",
+      "style_ids": [
+        "men_arabian_01",
+        "women_arabian_01"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_01"
+      ],
+      "replace_for": [
+        "men_arabian_01"
+      ]
+    },
+    {
+      "sha256": "d4e32df031da8f67",
+      "style_ids": [
+        "men_arabian_02",
+        "women_arabian_02"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_arabian_02"
+      ],
+      "replace_for": [
+        "women_arabian_02"
+      ]
+    },
+    {
+      "sha256": "1f6073288faf84c1",
+      "style_ids": [
+        "men_arabian_03",
+        "women_arabian_03"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_03"
+      ],
+      "replace_for": [
+        "men_arabian_03"
+      ]
+    },
+    {
+      "sha256": "1e64aca446ae4c6b",
+      "style_ids": [
+        "men_arabian_04",
+        "women_arabian_04"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_04"
+      ],
+      "replace_for": [
+        "men_arabian_04"
+      ]
+    },
+    {
+      "sha256": "6612b5c6cb5a02f4",
+      "style_ids": [
+        "men_arabian_05",
+        "women_arabian_05"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_05"
+      ],
+      "replace_for": [
+        "men_arabian_05"
+      ]
+    },
+    {
+      "sha256": "f4edf45b48b34f57",
+      "style_ids": [
+        "men_arabian_06",
+        "women_arabian_06"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_06"
+      ],
+      "replace_for": [
+        "men_arabian_06"
+      ]
+    },
+    {
+      "sha256": "6aae4d9d0b4552f7",
+      "style_ids": [
+        "men_arabian_07",
+        "women_arabian_07"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_07"
+      ],
+      "replace_for": [
+        "men_arabian_07"
+      ]
+    },
+    {
+      "sha256": "3b4f4ac0f921dcd1",
+      "style_ids": [
+        "men_arabian_08",
+        "women_arabian_08"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_08"
+      ],
+      "replace_for": [
+        "men_arabian_08"
+      ]
+    },
+    {
+      "sha256": "d178db07389bc62a",
+      "style_ids": [
+        "men_arabian_09",
+        "men_arabian_10",
+        "women_arabian_09",
+        "women_arabian_10"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_09"
+      ],
+      "replace_for": [
+        "men_arabian_09",
+        "men_arabian_10",
+        "women_arabian_10"
+      ]
+    },
+    {
+      "sha256": "c0aad44d0bb189f8",
+      "style_ids": [
+        "men_arabian_11",
+        "women_arabian_11"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_arabian_11"
+      ],
+      "replace_for": [
+        "women_arabian_11"
+      ]
+    },
+    {
+      "sha256": "b67376dcb9db0289",
+      "style_ids": [
+        "men_arabian_12",
+        "women_arabian_12"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_12"
+      ],
+      "replace_for": [
+        "men_arabian_12"
+      ]
+    },
+    {
+      "sha256": "cf0e32143412c04a",
+      "style_ids": [
+        "men_arabian_13",
+        "women_arabian_13"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_13"
+      ],
+      "replace_for": [
+        "men_arabian_13"
+      ]
+    },
+    {
+      "sha256": "198333782956195e",
+      "style_ids": [
+        "men_arabian_14",
+        "women_arabian_14"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_14"
+      ],
+      "replace_for": [
+        "men_arabian_14"
+      ]
+    },
+    {
+      "sha256": "8d5579e0feb88c30",
+      "style_ids": [
+        "men_arabian_15",
+        "women_arabian_15"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_15"
+      ],
+      "replace_for": [
+        "men_arabian_15"
+      ]
+    },
+    {
+      "sha256": "c1b37acf0fa39484",
+      "style_ids": [
+        "men_arabian_16",
+        "women_arabian_16"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_16"
+      ],
+      "replace_for": [
+        "men_arabian_16"
+      ]
+    },
+    {
+      "sha256": "6cd9a31e709fa867",
+      "style_ids": [
+        "men_arabian_17",
+        "women_arabian_17"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_arabian_17"
+      ],
+      "replace_for": [
+        "men_arabian_17"
+      ]
+    },
+    {
+      "sha256": "7f1f0f4362e542d3",
+      "style_ids": [
+        "men_chinese_01",
+        "women_chinese_01"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_01"
+      ],
+      "replace_for": [
+        "men_chinese_01"
+      ]
+    },
+    {
+      "sha256": "51224257e96427df",
+      "style_ids": [
+        "men_chinese_02",
+        "women_chinese_02"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_02"
+      ],
+      "replace_for": [
+        "men_chinese_02"
+      ]
+    },
+    {
+      "sha256": "1427f39efe0db95b",
+      "style_ids": [
+        "men_chinese_03",
+        "women_chinese_03"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_03"
+      ],
+      "replace_for": [
+        "men_chinese_03"
+      ]
+    },
+    {
+      "sha256": "af27d1cae2084258",
+      "style_ids": [
+        "men_chinese_04",
+        "women_chinese_04"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_04"
+      ],
+      "replace_for": [
+        "men_chinese_04"
+      ]
+    },
+    {
+      "sha256": "b6b5301e0531ce95",
+      "style_ids": [
+        "men_chinese_05",
+        "women_chinese_05"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_05"
+      ],
+      "replace_for": [
+        "men_chinese_05"
+      ]
+    },
+    {
+      "sha256": "7e9209e346306f07",
+      "style_ids": [
+        "men_chinese_06",
+        "women_chinese_06"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_06"
+      ],
+      "replace_for": [
+        "men_chinese_06"
+      ]
+    },
+    {
+      "sha256": "0248450b9945b52f",
+      "style_ids": [
+        "men_chinese_07",
+        "women_chinese_07"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_07"
+      ],
+      "replace_for": [
+        "men_chinese_07"
+      ]
+    },
+    {
+      "sha256": "25b428cd50d51400",
+      "style_ids": [
+        "men_chinese_08",
+        "women_chinese_08"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_08"
+      ],
+      "replace_for": [
+        "men_chinese_08"
+      ]
+    },
+    {
+      "sha256": "ffcc122411d3425d",
+      "style_ids": [
+        "men_chinese_09",
+        "women_chinese_09"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_09"
+      ],
+      "replace_for": [
+        "men_chinese_09"
+      ]
+    },
+    {
+      "sha256": "356cad15f7266a74",
+      "style_ids": [
+        "men_chinese_10",
+        "women_chinese_10"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_10"
+      ],
+      "replace_for": [
+        "men_chinese_10"
+      ]
+    },
+    {
+      "sha256": "abbb0ab4114ce701",
+      "style_ids": [
+        "men_chinese_11",
+        "women_chinese_11"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_11"
+      ],
+      "replace_for": [
+        "men_chinese_11"
+      ]
+    },
+    {
+      "sha256": "8f86b498d0b9721e",
+      "style_ids": [
+        "men_chinese_12",
+        "women_chinese_12"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_12"
+      ],
+      "replace_for": [
+        "men_chinese_12"
+      ]
+    },
+    {
+      "sha256": "7a216e0d8b1cb006",
+      "style_ids": [
+        "men_chinese_13",
+        "women_chinese_13"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_13"
+      ],
+      "replace_for": [
+        "men_chinese_13"
+      ]
+    },
+    {
+      "sha256": "8c55bc2249b4deba",
+      "style_ids": [
+        "men_chinese_14",
+        "women_chinese_14"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_chinese_14"
+      ],
+      "replace_for": [
+        "men_chinese_14"
+      ]
+    },
+    {
+      "sha256": "51e12d5f21e66302",
+      "style_ids": [
+        "men_indian_01",
+        "women_indian_01"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_indian_01"
+      ],
+      "replace_for": [
+        "women_indian_01"
+      ]
+    },
+    {
+      "sha256": "07873089d2c55624",
+      "style_ids": [
+        "men_indian_02",
+        "women_indian_02"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_indian_02"
+      ],
+      "replace_for": [
+        "men_indian_02"
+      ]
+    },
+    {
+      "sha256": "c84c7e0c0feff9e8",
+      "style_ids": [
+        "men_indian_03",
+        "women_indian_03"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_indian_03"
+      ],
+      "replace_for": [
+        "women_indian_03"
+      ]
+    },
+    {
+      "sha256": "d3a95e0241bc48e1",
+      "style_ids": [
+        "men_indian_04",
+        "women_indian_04"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_indian_04"
+      ],
+      "replace_for": [
+        "men_indian_04"
+      ]
+    },
+    {
+      "sha256": "9d1ec5c686f6bbb8",
+      "style_ids": [
+        "men_indian_05",
+        "women_indian_05"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_indian_05"
+      ],
+      "replace_for": [
+        "women_indian_05"
+      ]
+    },
+    {
+      "sha256": "c361e8a1425c1d9b",
+      "style_ids": [
+        "men_indian_06",
+        "women_indian_06"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_indian_06"
+      ],
+      "replace_for": [
+        "men_indian_06"
+      ]
+    },
+    {
+      "sha256": "8dbb81ed86149257",
+      "style_ids": [
+        "men_indian_07",
+        "women_indian_07"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_indian_07"
+      ],
+      "replace_for": [
+        "women_indian_07"
+      ]
+    },
+    {
+      "sha256": "b7d9b4eb9af9002a",
+      "style_ids": [
+        "men_indian_08",
+        "women_indian_08"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_indian_08"
+      ],
+      "replace_for": [
+        "men_indian_08"
+      ]
+    },
+    {
+      "sha256": "a639b7a9e1f7a61b",
+      "style_ids": [
+        "men_indian_09",
+        "women_indian_09"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_indian_09"
+      ],
+      "replace_for": [
+        "women_indian_09"
+      ]
+    },
+    {
+      "sha256": "c304c96071587a0f",
+      "style_ids": [
+        "men_indian_10",
+        "women_indian_10"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_indian_10"
+      ],
+      "replace_for": [
+        "men_indian_10"
+      ]
+    },
+    {
+      "sha256": "f8a9e995723ab1c6",
+      "style_ids": [
+        "men_indian_11",
+        "women_indian_11"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_indian_11"
+      ],
+      "replace_for": [
+        "women_indian_11"
+      ]
+    },
+    {
+      "sha256": "c5653b1c8749436d",
+      "style_ids": [
+        "men_indian_12",
+        "women_indian_12"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_indian_12"
+      ],
+      "replace_for": [
+        "men_indian_12"
+      ]
+    },
+    {
+      "sha256": "df28c9397abe0c8b",
+      "style_ids": [
+        "men_indian_13",
+        "women_indian_13"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_indian_13"
+      ],
+      "replace_for": [
+        "women_indian_13"
+      ]
+    },
+    {
+      "sha256": "4767f819fb21433f",
+      "style_ids": [
+        "men_indian_14",
+        "women_indian_14"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_indian_14"
+      ],
+      "replace_for": [
+        "men_indian_14"
+      ]
+    },
+    {
+      "sha256": "ac9c6dfbe8ef7d01",
+      "style_ids": [
+        "men_indian_15",
+        "women_indian_15"
+      ],
+      "visible_gender": "men",
+      "keep_for": [
+        "men_indian_15"
+      ],
+      "replace_for": [
+        "women_indian_15"
+      ]
+    },
+    {
+      "sha256": "3ca5aa65a96c8fd1",
+      "style_ids": [
+        "men_korean_01",
+        "women_korean_01"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_01"
+      ],
+      "replace_for": [
+        "men_korean_01"
+      ]
+    },
+    {
+      "sha256": "a69c52d16f74c51a",
+      "style_ids": [
+        "men_korean_02",
+        "women_korean_02"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_02"
+      ],
+      "replace_for": [
+        "men_korean_02"
+      ]
+    },
+    {
+      "sha256": "91e281e0dd06ee04",
+      "style_ids": [
+        "men_korean_03",
+        "women_korean_03"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_03"
+      ],
+      "replace_for": [
+        "men_korean_03"
+      ]
+    },
+    {
+      "sha256": "0e68ca4d50aa4e95",
+      "style_ids": [
+        "men_korean_04",
+        "women_korean_04"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_04"
+      ],
+      "replace_for": [
+        "men_korean_04"
+      ]
+    },
+    {
+      "sha256": "d7e983148e792cfe",
+      "style_ids": [
+        "men_korean_05",
+        "women_korean_05"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_05"
+      ],
+      "replace_for": [
+        "men_korean_05"
+      ]
+    },
+    {
+      "sha256": "dc1e3516a5e25303",
+      "style_ids": [
+        "men_korean_06",
+        "women_korean_06"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_06"
+      ],
+      "replace_for": [
+        "men_korean_06"
+      ]
+    },
+    {
+      "sha256": "dad01c2c7e05f04a",
+      "style_ids": [
+        "men_korean_07",
+        "women_korean_07"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_07"
+      ],
+      "replace_for": [
+        "men_korean_07"
+      ]
+    },
+    {
+      "sha256": "9d7d838ba833f2d6",
+      "style_ids": [
+        "men_korean_08",
+        "women_korean_08"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_08"
+      ],
+      "replace_for": [
+        "men_korean_08"
+      ]
+    },
+    {
+      "sha256": "38b5a1d699be0ce4",
+      "style_ids": [
+        "men_korean_09",
+        "women_korean_09"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_09"
+      ],
+      "replace_for": [
+        "men_korean_09"
+      ]
+    },
+    {
+      "sha256": "4a3e71128fff4eab",
+      "style_ids": [
+        "men_korean_10",
+        "women_korean_10"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_10"
+      ],
+      "replace_for": [
+        "men_korean_10"
+      ]
+    },
+    {
+      "sha256": "c6b37502313cafa1",
+      "style_ids": [
+        "men_korean_11",
+        "women_korean_11"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_11"
+      ],
+      "replace_for": [
+        "men_korean_11"
+      ]
+    },
+    {
+      "sha256": "42d88795ec0f4412",
+      "style_ids": [
+        "men_korean_12",
+        "women_korean_12"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_12"
+      ],
+      "replace_for": [
+        "men_korean_12"
+      ]
+    },
+    {
+      "sha256": "c5191ad1f148a922",
+      "style_ids": [
+        "men_korean_13",
+        "women_korean_13"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_korean_13"
+      ],
+      "replace_for": [
+        "men_korean_13"
+      ]
+    },
+    {
+      "sha256": "f0909c307ecbed94",
+      "style_ids": [
+        "men_pakistani_01",
+        "women_pakistani_01"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_01"
+      ],
+      "replace_for": [
+        "men_pakistani_01"
+      ]
+    },
+    {
+      "sha256": "800b458a92ea59bb",
+      "style_ids": [
+        "men_pakistani_02",
+        "women_pakistani_02"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_02"
+      ],
+      "replace_for": [
+        "men_pakistani_02"
+      ]
+    },
+    {
+      "sha256": "fa0ae25bea0ad2d2",
+      "style_ids": [
+        "men_pakistani_03",
+        "women_pakistani_03"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_03"
+      ],
+      "replace_for": [
+        "men_pakistani_03"
+      ]
+    },
+    {
+      "sha256": "270cd7275acece3d",
+      "style_ids": [
+        "men_pakistani_04",
+        "men_pakistani_05",
+        "women_pakistani_04",
+        "women_pakistani_05"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_04"
+      ],
+      "replace_for": [
+        "men_pakistani_04",
+        "men_pakistani_05",
+        "women_pakistani_05"
+      ]
+    },
+    {
+      "sha256": "6f3e12d73e7b0939",
+      "style_ids": [
+        "men_pakistani_06",
+        "women_pakistani_06"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_06"
+      ],
+      "replace_for": [
+        "men_pakistani_06"
+      ]
+    },
+    {
+      "sha256": "ae85ee913bcc83b8",
+      "style_ids": [
+        "men_pakistani_07",
+        "men_pakistani_08",
+        "women_pakistani_07",
+        "women_pakistani_08"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_07"
+      ],
+      "replace_for": [
+        "men_pakistani_07",
+        "men_pakistani_08",
+        "women_pakistani_08"
+      ]
+    },
+    {
+      "sha256": "deaffb0c154d6244",
+      "style_ids": [
+        "men_pakistani_09",
+        "women_pakistani_09"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_09"
+      ],
+      "replace_for": [
+        "men_pakistani_09"
+      ]
+    },
+    {
+      "sha256": "e4a717c7b2b3218f",
+      "style_ids": [
+        "men_pakistani_10",
+        "women_pakistani_10"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_10"
+      ],
+      "replace_for": [
+        "men_pakistani_10"
+      ]
+    },
+    {
+      "sha256": "0906827a874836f3",
+      "style_ids": [
+        "men_pakistani_11",
+        "women_pakistani_11"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_11"
+      ],
+      "replace_for": [
+        "men_pakistani_11"
+      ]
+    },
+    {
+      "sha256": "cae7b36ec80e281d",
+      "style_ids": [
+        "men_pakistani_12",
+        "women_pakistani_12"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_12"
+      ],
+      "replace_for": [
+        "men_pakistani_12"
+      ]
+    },
+    {
+      "sha256": "86dc9af74f8f22c0",
+      "style_ids": [
+        "men_pakistani_13",
+        "women_pakistani_13"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_13"
+      ],
+      "replace_for": [
+        "men_pakistani_13"
+      ]
+    },
+    {
+      "sha256": "952cf3c747bab0df",
+      "style_ids": [
+        "men_pakistani_14",
+        "women_pakistani_14"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_14"
+      ],
+      "replace_for": [
+        "men_pakistani_14"
+      ]
+    },
+    {
+      "sha256": "484b8bd6d66731d9",
+      "style_ids": [
+        "men_pakistani_15",
+        "women_pakistani_15"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_15"
+      ],
+      "replace_for": [
+        "men_pakistani_15"
+      ]
+    },
+    {
+      "sha256": "8d573effe6211172",
+      "style_ids": [
+        "men_pakistani_16",
+        "men_pakistani_17",
+        "women_pakistani_16",
+        "women_pakistani_17"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_16"
+      ],
+      "replace_for": [
+        "men_pakistani_16",
+        "men_pakistani_17",
+        "women_pakistani_17"
+      ]
+    },
+    {
+      "sha256": "1641bab31bb0b364",
+      "style_ids": [
+        "men_pakistani_18",
+        "women_pakistani_18"
+      ],
+      "visible_gender": "women",
+      "keep_for": [
+        "women_pakistani_18"
+      ],
+      "replace_for": [
+        "men_pakistani_18"
+      ]
+    }
+  ],
+  "cross_gender_group_count": 101
+}

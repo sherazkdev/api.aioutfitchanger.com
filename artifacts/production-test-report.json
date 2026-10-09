@@ -1,0 +1,23 @@
+{
+  "email": "prod_hair_test_1791371907875@example.com",
+  "password": "TestPass123!",
+  "style_id": "men_hair_styles_02",
+  "category_id": "hair_styles",
+  "at": "2026-10-07T11:18:57.639Z",
+  "results": [
+    {
+      "label": "clean_male_src_1",
+      "job_id": "6ac62a86f3495b3f21c9941b",
+      "url": "https://appworkspro.com/uploads/looks/6ac62a84f3495b3f21c99419/6ac62a86f3495b3f21c9941b.jpg",
+      "saved": "artifacts/production-test-clean_male_src_1.jpg",
+      "bytes_in": 89019
+    },
+    {
+      "label": "user_provided_png",
+      "job_id": "6ac62a93f3495b3f21c9941c",
+      "url": "https://appworkspro.com/uploads/looks/6ac62a84f3495b3f21c99419/6ac62a93f3495b3f21c9941c.jpg",
+      "saved": "artifacts/production-test-user_provided_png.jpg",
+      "bytes_in": 911697
+    }
+  ]
+}

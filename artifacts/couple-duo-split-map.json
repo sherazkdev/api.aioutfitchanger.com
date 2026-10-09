@@ -1,0 +1,68 @@
+{
+  "couple_01": {
+    "male": "/media/catalog/couple_duo/couple_01_male.png",
+    "female": "/media/catalog/couple_duo/couple_01_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_01.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_02": {
+    "male": "/media/catalog/couple_duo/couple_02_male.png",
+    "female": "/media/catalog/couple_duo/couple_02_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_02.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_03": {
+    "male": "/media/catalog/couple_duo/couple_03_male.png",
+    "female": "/media/catalog/couple_duo/couple_03_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_03.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_04": {
+    "male": "/media/catalog/couple_duo/couple_04_male.png",
+    "female": "/media/catalog/couple_duo/couple_04_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_04.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_05": {
+    "male": "/media/catalog/couple_duo/couple_05_male.png",
+    "female": "/media/catalog/couple_duo/couple_05_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_05.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_06": {
+    "male": "/media/catalog/couple_duo/couple_06_male.png",
+    "female": "/media/catalog/couple_duo/couple_06_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_06.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_07": {
+    "male": "/media/catalog/couple_duo/couple_07_male.png",
+    "female": "/media/catalog/couple_duo/couple_07_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_07.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_08": {
+    "male": "/media/catalog/couple_duo/couple_08_male.png",
+    "female": "/media/catalog/couple_duo/couple_08_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_08.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_09": {
+    "male": "/media/catalog/couple_duo/couple_09_male.png",
+    "female": "/media/catalog/couple_duo/couple_09_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_09.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_10": {
+    "male": "/media/catalog/couple_duo/couple_10_male.png",
+    "female": "/media/catalog/couple_duo/couple_10_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_10.png",
+    "status": "proposed_not_deployed"
+  },
+  "couple_11": {
+    "male": "/media/catalog/couple_duo/couple_11_male.png",
+    "female": "/media/catalog/couple_duo/couple_11_female.png",
+    "legacy_combined": "/media/catalog/couple_duo/couple_11.png",
+    "status": "proposed_not_deployed"
+  }
+}

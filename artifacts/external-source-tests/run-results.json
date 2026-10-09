@@ -1,0 +1,132 @@
+[
+  {
+    "kind": "hair",
+    "style_id": "men_hair_styles_02",
+    "category_id": "hair_styles",
+    "source": "male_src_1",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hair_men_hair_styles_02_male_src_1"
+  },
+  {
+    "kind": "hair",
+    "style_id": "men_hair_styles_07",
+    "category_id": "hair_styles",
+    "source": "male_src_2",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hair_men_hair_styles_07_male_src_2"
+  },
+  {
+    "kind": "hair",
+    "style_id": "men_hair_styles_03",
+    "category_id": "hair_styles",
+    "source": "male_src_3",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hair_men_hair_styles_03_male_src_3"
+  },
+  {
+    "kind": "hair",
+    "style_id": "women_hair_styles_02",
+    "category_id": "hair_styles",
+    "source": "female_hair_src_1",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hair_women_hair_styles_02_female_hair_src_1"
+  },
+  {
+    "kind": "hair",
+    "style_id": "women_hair_styles_04",
+    "category_id": "hair_styles",
+    "source": "female_hair_src_2",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hair_women_hair_styles_04_female_hair_src_2"
+  },
+  {
+    "kind": "hair",
+    "style_id": "women_hair_styles_07",
+    "category_id": "hair_styles",
+    "source": "female_hair_src_3",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hair_women_hair_styles_07_female_hair_src_3"
+  },
+  {
+    "kind": "hijab",
+    "style_id": "women_hijab_04",
+    "category_id": "hijab_styles",
+    "source": "hijab_src_1",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hijab_women_hijab_04_hijab_src_1"
+  },
+  {
+    "kind": "hijab",
+    "style_id": "women_hijab_05",
+    "category_id": "hijab_styles",
+    "source": "hijab_src_2",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hijab_women_hijab_05_hijab_src_2"
+  },
+  {
+    "kind": "hijab",
+    "style_id": "women_hijab_08",
+    "category_id": "hijab_styles",
+    "source": "hijab_src_3",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hijab_women_hijab_08_hijab_src_3"
+  },
+  {
+    "kind": "hijab",
+    "style_id": "women_hijab_02",
+    "category_id": "hijab_styles",
+    "source": "hijab_src_1",
+    "direct_flux": {
+      "ok": true
+    },
+    "backend_api": {
+      "ok": true
+    },
+    "dir": "hijab_women_hijab_02_hijab_src_1"
+  }
+]

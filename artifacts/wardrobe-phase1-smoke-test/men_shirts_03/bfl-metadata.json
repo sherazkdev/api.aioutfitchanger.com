@@ -1,0 +1,31 @@
+{
+  "style_id": "men_shirts_03",
+  "category_id": "wardrobe_browse",
+  "validation": "male_person_final",
+  "person_source_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=768&h=1024&fit=crop&q=85",
+  "garment_url": "https://appworkspro.com/media/catalog/wardrobe_browse/men_shirts_03.png",
+  "engine": "BFL Virtual Try-On v2",
+  "endpoint": "https://api.bfl.ai/v1/flux-tools/vto-v2",
+  "job_id": "68f9a49c-fabe-4e65-b120-ad9ca953ab85",
+  "prompt_from": "buildVtoPrompt (production tryOnEngine.ts)",
+  "bfl_start": {
+    "id": "68f9a49c-fabe-4e65-b120-ad9ca953ab85",
+    "polling_url": "https://api.eu2.bfl.ai/v1/get_result?id=68f9a49c-fabe-4e65-b120-ad9ca953ab85",
+    "cost": 4.75,
+    "input_mp": 0.78,
+    "output_mp": 0.75
+  },
+  "bfl_poll": {
+    "id": "68f9a49c-fabe-4e65-b120-ad9ca953ab85",
+    "status": "Ready",
+    "result": {
+      "start_time": 1791287771.5649295,
+      "prompt": "Replace the white v-neck shirt with the yellow short-sleeve shirt from Image 2 featuring black text prints. Keep the person's pose and everything else in Image 1 unchanged.",
+      "seed": 161333086,
+      "sample": "https://delivery.eu2.bfl.ai/durable/2026100611/c2d26a91-bf86-4cdf-9e53-883e85d376a3/63/77517460f997b7/60f997b7762c428ea2c2b8a8b4d1d0a1/sample.jpeg?se=2026-10-06T12%3A06%3A15Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=joivpej7PiLnmcozbasGADmTIuIHX%2Bccx%2Bgh9QctbW0%3D"
+    },
+    "progress": null,
+    "details": null,
+    "preview": null
+  }
+}

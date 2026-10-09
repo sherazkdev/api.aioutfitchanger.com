@@ -1,0 +1,13 @@
+{
+  "endpoint": "https://api.bfl.ai/v1/flux-tools/vto-v2",
+  "body_field_keys": [
+    "prompt",
+    "person",
+    "garment",
+    "output_format"
+  ],
+  "prompt_length": 838,
+  "person_bytes": 89019,
+  "garment_bytes": 366749,
+  "note": "person/garment sent as data URLs; same shape as generate route VTO branch"
+}

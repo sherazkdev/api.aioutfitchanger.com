@@ -1,0 +1,1 @@
+COMMAND: style_ref=women_tops_03 | category=wardrobe_browse | pipeline=women | tab=tops | region=outfit | The person of image 1, maintaining exactly their face, identity, and pose, wearing the exact top, tee, or upper garment from image 2 (woman's tops catalog women_tops_03, slot 03). Copy cut, drape, textile, color, print, embroidery, trims, and accessories exactly from image 2.

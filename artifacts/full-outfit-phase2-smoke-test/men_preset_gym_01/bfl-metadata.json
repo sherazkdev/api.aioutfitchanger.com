@@ -1,0 +1,9 @@
+{
+  "style_id": "men_preset_gym_01",
+  "category_id": "presets",
+  "engine": "BFL Virtual Try-On v2 (Phase 2 prompt)",
+  "garment_url": "https://appworkspro.com/media/catalog/presets/men_preset_gym_01.png",
+  "job_id": "00241ad2-afe1-4866-a4bb-c6026b8366c9",
+  "polling_status": "ready",
+  "prompt_length": 819
+}

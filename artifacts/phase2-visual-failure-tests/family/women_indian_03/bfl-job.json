@@ -1,0 +1,10 @@
+{
+  "style_id": "women_indian_03",
+  "label": "family_current_phase2",
+  "job_id": "99a3a933-fde9-4c9d-b072-054f2d81f998",
+  "poll": {
+    "ok": true,
+    "sample": "https://delivery.us7.bfl.ai/durable/2026100612/c2d26a91-bf86-4cdf-9e53-883e85d376a3/ac/91045179da32aa/79da32aa88c7427c9b4b283ba4a1eaa4/sample.jpeg?se=2026-10-06T12%3A25%3A10Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=he1DC7aHtG6F3VXf981foPHt1SnoqQwem67HQ1PzgkA%3D",
+    "status": "ready"
+  }
+}

@@ -19,6 +19,10 @@ const envSchema = z.object({
   FIREBASE_CLIENT_EMAIL: z.string().optional(),
   FIREBASE_PRIVATE_KEY: z.string().optional(),
   API_RATE_LIMIT_AUTH_PER_MIN: z.coerce.number().default(20),
+  RESEND_API_KEY: z.string().optional(),
+  RESEND_FROM_EMAIL: z.string().email().optional(),
+  RESEND_FROM_NAME: z.string().default("AI Wardrobe"),
+  RESET_PASSWORD_URL: z.string().url().optional(),
 });
 
 export type ServerEnv = z.infer<typeof envSchema>;

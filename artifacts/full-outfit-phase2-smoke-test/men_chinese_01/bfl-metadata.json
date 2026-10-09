@@ -1,0 +1,9 @@
+{
+  "style_id": "men_chinese_01",
+  "category_id": "wardrobe_browse",
+  "engine": "BFL Virtual Try-On v2 (Phase 2 prompt)",
+  "garment_url": "https://appworkspro.com/media/catalog/wardrobe_browse/men_chinese_01.png",
+  "job_id": "b5b32409-2024-4720-ac46-cdc9c24929cf",
+  "polling_status": "ready",
+  "prompt_length": 847
+}

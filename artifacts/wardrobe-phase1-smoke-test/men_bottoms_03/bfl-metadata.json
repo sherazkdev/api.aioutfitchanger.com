@@ -1,0 +1,29 @@
+{
+  "style_id": "men_bottoms_03",
+  "category_id": "wardrobe_browse",
+  "engine": "BFL Virtual Try-On v2",
+  "endpoint": "https://api.bfl.ai/v1/flux-tools/vto-v2",
+  "job_id": "1b99a55a-255d-4661-a41d-e399fffbe46d",
+  "polling_status": "ready",
+  "prompt_length": 614,
+  "bfl_start": {
+    "id": "1b99a55a-255d-4661-a41d-e399fffbe46d",
+    "polling_url": "https://api.us2.bfl.ai/v1/get_result?id=1b99a55a-255d-4661-a41d-e399fffbe46d",
+    "cost": 4.75,
+    "input_mp": 0.98,
+    "output_mp": 0.75
+  },
+  "bfl_poll": {
+    "id": "1b99a55a-255d-4661-a41d-e399fffbe46d",
+    "status": "Ready",
+    "result": {
+      "start_time": 1791287568.6264307,
+      "prompt": "Replace the pants on the person in Image 1 with the multi-colored patterned trousers from Image 2. Keep the person's pose and everything else in Image 1 unchanged.",
+      "seed": 3742231965,
+      "sample": "https://delivery.us2.bfl.ai/durable/2026100611/c2d26a91-bf86-4cdf-9e53-883e85d376a3/e9/571067c2a8dbc7/c2a8dbc7917c49008358694949a9571d/sample.jpeg?se=2026-10-06T12%3A02%3A51Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=z5HMRSemdhFt3I%2BZahawimgpMuoQScN82rXldCaCJrU%3D"
+    },
+    "progress": null,
+    "details": null,
+    "preview": null
+  }
+}

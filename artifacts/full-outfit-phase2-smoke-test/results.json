@@ -1,0 +1,162 @@
+[
+  {
+    "style_id": "women_indian_01",
+    "category_id": "wardrobe_browse",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\women_indian_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "men_arabian_01",
+    "category_id": "wardrobe_browse",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\men_arabian_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "men_korean_01",
+    "category_id": "wardrobe_browse",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\men_korean_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "women_pakistani_01",
+    "category_id": "wardrobe_browse",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\women_pakistani_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "men_chinese_01",
+    "category_id": "wardrobe_browse",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\men_chinese_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "women_formal_01",
+    "category_id": "occasions",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\women_formal_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "men_preset_gym_01",
+    "category_id": "presets",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\men_preset_gym_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "couple_01",
+    "category_id": "couple_duo",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\couple_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "women_outfit_change_01",
+    "category_id": "outfit_change",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\women_outfit_change_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  },
+  {
+    "style_id": "men_tryon_01",
+    "category_id": "virtual_try_on",
+    "bfl_ok": true,
+    "result_path": "artifacts\\full-outfit-phase2-smoke-test\\men_tryon_01\\result.jpg",
+    "manual_checks": {
+      "identity": "review",
+      "face": "review",
+      "hair": "review",
+      "body_pose": "review",
+      "background": "review",
+      "no_new_person": "review",
+      "outfit_transferred": "review",
+      "not_recreated_person": "review"
+    }
+  }
+]

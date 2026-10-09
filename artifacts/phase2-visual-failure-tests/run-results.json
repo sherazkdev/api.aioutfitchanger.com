@@ -1,0 +1,108 @@
+{
+  "ab": [
+    {
+      "styleId": "couple_01",
+      "promptA_len": 924,
+      "promptB_len": 464,
+      "B": {
+        "styleId": "couple_01",
+        "label": "B_targeted",
+        "bfl_ok": true
+      }
+    },
+    {
+      "styleId": "men_arabian_01",
+      "promptA_len": 838,
+      "promptB_len": 460,
+      "B": {
+        "styleId": "men_arabian_01",
+        "label": "B_targeted",
+        "bfl_ok": true
+      }
+    },
+    {
+      "styleId": "women_indian_01",
+      "promptA_len": 859,
+      "promptB_len": 470,
+      "B": {
+        "styleId": "women_indian_01",
+        "label": "B_targeted",
+        "bfl_ok": true
+      }
+    }
+  ],
+  "family": [
+    {
+      "styleId": "couple_02",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "male",
+      "catalog_gender": "",
+      "category": "couple_duo"
+    },
+    {
+      "styleId": "couple_03",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "male",
+      "catalog_gender": "",
+      "category": "couple_duo"
+    },
+    {
+      "styleId": "couple_04",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "male",
+      "catalog_gender": "",
+      "category": "couple_duo"
+    },
+    {
+      "styleId": "men_arabian_02",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "male",
+      "catalog_gender": "men",
+      "category": "wardrobe_browse"
+    },
+    {
+      "styleId": "men_arabian_03",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "male",
+      "catalog_gender": "men",
+      "category": "wardrobe_browse"
+    },
+    {
+      "styleId": "men_arabian_04",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "male",
+      "catalog_gender": "men",
+      "category": "wardrobe_browse"
+    },
+    {
+      "styleId": "women_indian_02",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "female",
+      "catalog_gender": "women",
+      "category": "wardrobe_browse"
+    },
+    {
+      "styleId": "women_indian_03",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "female",
+      "catalog_gender": "women",
+      "category": "wardrobe_browse"
+    },
+    {
+      "styleId": "men_indian_01",
+      "label": "family_current_phase2",
+      "bfl_ok": true,
+      "person": "male",
+      "catalog_gender": "men",
+      "category": "wardrobe_browse"
+    }
+  ]
+}

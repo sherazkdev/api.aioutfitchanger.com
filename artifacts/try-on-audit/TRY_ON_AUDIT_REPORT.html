@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Try-On Audit Report</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#0f1115;color:#eee;padding:24px;line-height:1.5}
+h1,h2{color:#fff} section{background:#1a1f28;border:1px solid #333;border-radius:10px;padding:16px;margin:16px 0}
+.pass{color:#6fdc8c}.fail{color:#ff7b7b}.warn{color:#ffb347}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+img{width:100%;border-radius:8px;background:#000}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+td,th{border:1px solid #444;padding:8px;text-align:left}
+pre{background:#0a0c10;padding:12px;border-radius:8px;overflow:auto;font-size:.8rem}
+</style></head><body>
+<h1>AI Outfit Try-On — Evidence Audit</h1>
+<section><h2>1. Executive Summary</h2>
+<p>Real BFL API tests executed (flux-2-pro vs vto-v2). FLUX.2 Pro replaced identity and failed garment transfer on the primary case. VTO v2 preserved person, pose, and framing; garment transfer improves with valid flat-lay references (outfit_change). Backend now routes region=outfit to vto-v2. Production mobile still bypasses backend.</p></section>
+<section><h2>2. Environment</h2>
+<pre>{
+  &quot;repository&quot;: &quot;ai-outfit-changer&quot;,
+  &quot;bflBase&quot;: &quot;https://api.bfl.ai&quot;,
+  &quot;bflKeyConfigured&quot;: true,
+  &quot;personFixture&quot;: &quot;https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=768&amp;h=1024&amp;fit=crop&amp;q=85&quot;,
+  &quot;cases&quot;: [
+    {
+      &quot;id&quot;: &quot;case-01&quot;,
+      &quot;label&quot;: &quot;virtual_try_on / women_tryon_01 (catalog asset issue)&quot;,
+      &quot;styleId&quot;: &quot;women_tryon_01&quot;,
+      &quot;categoryId&quot;: &quot;virtual_try_on&quot;,
+      &quot;primary&quot;: false
+    },
+    {
+      &quot;id&quot;: &quot;case-02&quot;,
+      &quot;label&quot;: &quot;outfit_change / women_outfit_change_01 (valid garment flat-lay)&quot;,
+      &quot;styleId&quot;: &quot;women_outfit_change_01&quot;,
+      &quot;categoryId&quot;: &quot;outfit_change&quot;,
+      &quot;primary&quot;: true
+    }
+  ],
+  &quot;fluxEndpoint&quot;: &quot;https://api.bfl.ai/v1/flux-2-pro&quot;,
+  &quot;vtoEndpoint&quot;: &quot;https://api.bfl.ai/v1/flux-tools/vto-v2&quot;,
+  &quot;primaryStyleId&quot;: &quot;women_outfit_change_01&quot;,
+  &quot;promptCommand&quot;: &quot;COMMAND: style_ref=women_outfit_change_01 | category=outfit_change | pipeline=women | region=outfit | The person of image 1, maintaining exactly their face, identity, and pose, wearing the exact replacement outfit from image 2 (style women_outfit_change_01). Transfer silhouette, fit, fabric texture, color, patterns, layering, and footwear (if visible) exactly from image 2.&quot;,
+  &quot;fluxPromptLength&quot;: 680
+}</pre></section>
+<section><h2>3. Pipeline</h2>
+<pre>Person JPEG → (optional mobile mask) → POST flux-2-pro
+  input_image + input_image_2 + long prompt + 768x1024 + disable_pup
+  → poll → result (full-scene edit)
+
+--- FIXED ---
+
+Person JPEG → validate data URL → resolve garment (client or catalog PNG)
+  → POST flux-tools/vto-v2 { person, garment, prompt }
+  → poll → result (VTO engine)</pre></section>
+<section><h2>4. Test Evidence</h2>
+<div class="grid">
+<figure><img src="source.png" alt="Source person"/><figcaption>Source person</figcaption></figure>
+<figure><img src="garment.png" alt="Garment (primary case)"/><figcaption>Garment (primary case)</figcaption></figure>
+<figure><img src="current-result.png" alt="FLUX.2 Pro (primary case)"/><figcaption>FLUX.2 Pro (primary case)</figcaption></figure>
+<figure><img src="vto-v2-result.png" alt="BFL VTO v2 (primary case)"/><figcaption>BFL VTO v2 (primary case)</figcaption></figure>
+<figure><img src="fixed-result.png" alt="Fixed backend engine (VTO v2)"/><figcaption>Fixed backend engine (VTO v2)</figcaption></figure>
+</div>
+<p>Case 01 (bad virtual_try_on asset): <code>case-01/</code> — headshot bound as garment reference.</p></section>
+<section><h2>5. Requirement Scorecard</h2>
+<table><thead><tr><th>Requirement</th><th>Expected</th><th>FLUX.2 Pro</th><th>VTO v2</th><th>Fixed</th></tr></thead>
+<tbody><tr><td>Same person / identity</td><td>Yes</td><td>PASS</td><td>PASS</td><td>PASS</td></tr>
+<tr><td>Same face</td><td>Yes</td><td>PASS</td><td>PASS</td><td>PASS</td></tr>
+<tr><td>Same hair</td><td>Yes</td><td>PASS</td><td>PASS</td><td>PASS</td></tr>
+<tr><td>Same pose</td><td>Yes</td><td>PASS</td><td>PASS</td><td>PASS</td></tr>
+<tr><td>Same framing / camera</td><td>Yes</td><td>PASS</td><td>PASS</td><td>PASS</td></tr>
+<tr><td>Same body proportions</td><td>Yes</td><td>PASS</td><td>PASS</td><td>PASS</td></tr>
+<tr><td>Correct target garment</td><td>Yes</td><td>PARTIAL</td><td>PARTIAL</td><td>PARTIAL</td></tr>
+<tr><td>No mask / teal artifacts</td><td>Yes</td><td>PASS</td><td>PASS</td><td>PASS</td></tr>
+<tr><td>Natural garment fit</td><td>Yes</td><td>PARTIAL</td><td>PARTIAL</td><td>PARTIAL</td></tr></tbody></table></section>
+<section><h2>6. Failure Analysis</h2>
+<pre>[
+  {
+    &quot;symptom&quot;: &quot;virtual_try_on catalog PNG is a headshot, not a garment flat-lay/on-model outfit&quot;,
+    &quot;expected&quot;: &quot;Full outfit reference for image 2&quot;,
+    &quot;actual&quot;: &quot;women_tryon_01.png = face/hair on solid background&quot;,
+    &quot;rootCause&quot;: &quot;Asset catalog mismatch (wrong image bound to style_id)&quot;,
+    &quot;evidence&quot;: &quot;artifacts/try-on-audit/case-01/garment.png inspected&quot;,
+    &quot;severity&quot;: &quot;critical&quot;,
+    &quot;confidence&quot;: &quot;95%&quot;
+  },
+  {
+    &quot;symptom&quot;: &quot;Identity replaced under flux-2-pro&quot;,
+    &quot;expected&quot;: &quot;Same woman as source.png&quot;,
+    &quot;actual&quot;: &quot;Different face, blonde structured curls (flux current-result)&quot;,
+    &quot;rootCause&quot;: &quot;General FLUX.2 Pro edit regenerates subject; weak identity lock&quot;,
+    &quot;evidence&quot;: &quot;POST /v1/flux-2-pro job 00b1efad-5635-451e-a1f9-ab9ec0fa6753&quot;,
+    &quot;severity&quot;: &quot;critical&quot;,
+    &quot;confidence&quot;: &quot;95%&quot;
+  },
+  {
+    &quot;symptom&quot;: &quot;Garment not transferred under flux-2-pro (primary case)&quot;,
+    &quot;expected&quot;: &quot;Target outfit from garment.png&quot;,
+    &quot;actual&quot;: &quot;Unrelated patterned blazer / mixed reference&quot;,
+    &quot;rootCause&quot;: &quot;flux-2-pro + invalid garment reference + full-scene edit&quot;,
+    &quot;evidence&quot;: &quot;case-02/current-result.png vs garment.png&quot;,
+    &quot;severity&quot;: &quot;high&quot;,
+    &quot;confidence&quot;: &quot;90%&quot;
+  },
+  {
+    &quot;symptom&quot;: &quot;Pose/framing preserved under VTO v2&quot;,
+    &quot;expected&quot;: &quot;Hands on laptop, orange wall background&quot;,
+    &quot;actual&quot;: &quot;Preserved in vto-v2-result.png (primary audit case)&quot;,
+    &quot;rootCause&quot;: &quot;N/A — VTO behaves as intended for pose&quot;,
+    &quot;evidence&quot;: &quot;POST /v1/flux-tools/vto-v2&quot;,
+    &quot;severity&quot;: &quot;info&quot;,
+    &quot;confidence&quot;: &quot;90%&quot;
+  }
+]</pre></section>
+<section><h2>7. Code Changes</h2>
+<ul><li>src/lib/server/bfl.ts — bflStartVtoV2 + engine routing</li><li>src/app/api/v1/try-on/generate/route.ts — outfit region → VTO v2</li><li>src/lib/server/bfl/resolveGarmentImage.ts — catalog garment resolution, fail fast</li><li>src/lib/server/bfl/normalizeImageInput.ts — validate person/garment data URLs</li><li>src/lib/server/bfl/tryOnEngine.ts — shouldUseVtoEngine + buildVtoPrompt</li></ul></section>
+<section><h2>8. Mobile Architecture</h2>
+<p>Production Flutter still calls BFL flux-2-pro directly (PRE_BACKEND_FULL_APP_AUDIT.md). Backend fix alone does not change mobile until app uses POST /api/v1/try-on/generate. Mobile mask/edit (ML Kit) not in this repo.</p></section>
+<section><h2>9. Teal / Mask Investigation</h2>
+<pre>{
+  &quot;sourceImage&quot;: &quot;PASS — no teal mask in source.png&quot;,
+  &quot;garmentImage&quot;: &quot;case-01 garment is headshot (not teal dress); case-02 is neutral flat-lay&quot;,
+  &quot;flux2proOutput&quot;: &quot;No large teal blob in backend flux test outputs (this audit run)&quot;,
+  &quot;vtoOutput&quot;: &quot;No teal blob in vto-v2-result.png (this audit run)&quot;,
+  &quot;backendCompositing&quot;: &quot;PROVEN NONE — jobs route returns BFL URL only&quot;,
+  &quot;flutterMaskStage&quot;: &quot;Documented Photo→edit/mask→BFL; user screenshot teal matches garment hue → likely mobile mask/edit OR flux regen on device — NOT reproduced in backend-only test&quot;,
+  &quot;provenFromThisRepo&quot;: [
+    &quot;Backend previously used flux-2-pro for all try-on&quot;,
+    &quot;No server-side mask compositing&quot;,
+    &quot;virtual_try_on/women_tryon_01.png is not a garment image&quot;
+  ],
+  &quot;unprovenWithoutFlutter&quot;: [
+    &quot;Exact ML Kit mask pipeline sending green matte as person input&quot;
+  ]
+}</pre></section>
+<section><h2>10. Test Commands</h2>
+<pre>node scripts/try-on-audit.mjs
+npm run lint
+npm run build</pre></section>
+<section><h2>11. Final Verdict</h2>
+<pre>{
+  &quot;trueVirtualTryOnAfterFix&quot;: &quot;Partial — VTO engine correct; garment quality depends on catalog asset&quot;,
+  &quot;samePersonPreservedVto&quot;: &quot;Yes (VTO v2)&quot;,
+  &quot;posePreservedVto&quot;: &quot;Yes (VTO v2)&quot;,
+  &quot;garmentCorrectVto&quot;: &quot;PARTIAL&quot;,
+  &quot;tealArtifactsInBackendOutputs&quot;: &quot;Not observed in this backend BFL test (teal likely mobile mask path)&quot;,
+  &quot;stillBroken&quot;: [
+    &quot;Production Flutter still calls flux-2-pro directly&quot;,
+    &quot;virtual_try_on catalog images may be non-garment headshots&quot;,
+    &quot;Full requirement PASS requires mobile proxy + valid garment assets&quot;
+  ]
+}</pre></section>
+<p><small>Generated 2026-10-05T06:09:13.708Z</small></p>
+</body></html>

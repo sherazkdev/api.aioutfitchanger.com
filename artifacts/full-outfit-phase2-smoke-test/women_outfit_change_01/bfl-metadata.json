@@ -1,0 +1,9 @@
+{
+  "style_id": "women_outfit_change_01",
+  "category_id": "outfit_change",
+  "engine": "BFL Virtual Try-On v2 (Phase 2 prompt)",
+  "garment_url": "https://appworkspro.com/media/catalog/outfit_change/women_outfit_change_01.png",
+  "job_id": "2c2f3662-6586-4254-96bb-234d5b51700a",
+  "polling_status": "ready",
+  "prompt_length": 851
+}

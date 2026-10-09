@@ -1,0 +1,3568 @@
+{
+  "count": 258,
+  "missing": [],
+  "duplicateGroups": [
+    {
+      "sha256": "25ce222b4710efa7",
+      "style_ids": [
+        "couple_03",
+        "couple_08"
+      ]
+    },
+    {
+      "sha256": "4254884f89e74128",
+      "style_ids": [
+        "men_casual_01",
+        "women_casual_01"
+      ]
+    },
+    {
+      "sha256": "596d18cfd56f079e",
+      "style_ids": [
+        "men_casual_02",
+        "women_casual_02"
+      ]
+    },
+    {
+      "sha256": "0cbd0494a8bcb595",
+      "style_ids": [
+        "men_casual_03",
+        "women_casual_03"
+      ]
+    },
+    {
+      "sha256": "b6e916ec98b0e088",
+      "style_ids": [
+        "men_casual_04",
+        "women_casual_04"
+      ]
+    },
+    {
+      "sha256": "9ae466025007074e",
+      "style_ids": [
+        "men_casual_05",
+        "women_casual_05"
+      ]
+    },
+    {
+      "sha256": "5e776d01d6911a49",
+      "style_ids": [
+        "men_casual_06",
+        "women_casual_06"
+      ]
+    },
+    {
+      "sha256": "c544790cbb71bdeb",
+      "style_ids": [
+        "men_casual_07",
+        "women_casual_07"
+      ]
+    },
+    {
+      "sha256": "9e65b6fb0cd355ad",
+      "style_ids": [
+        "men_casual_08",
+        "women_casual_08"
+      ]
+    },
+    {
+      "sha256": "f4f147ca39b54aa4",
+      "style_ids": [
+        "men_casual_09",
+        "women_casual_09"
+      ]
+    },
+    {
+      "sha256": "7c885360d87b8ceb",
+      "style_ids": [
+        "men_casual_10",
+        "women_casual_10"
+      ]
+    },
+    {
+      "sha256": "b57b77553fa375db",
+      "style_ids": [
+        "men_formal_01",
+        "women_formal_01"
+      ]
+    },
+    {
+      "sha256": "5d63ee42b9752d4b",
+      "style_ids": [
+        "men_formal_02",
+        "women_formal_02"
+      ]
+    },
+    {
+      "sha256": "4a908dd50fe5ebc1",
+      "style_ids": [
+        "men_formal_03",
+        "women_formal_03"
+      ]
+    },
+    {
+      "sha256": "0d7db5761c4f5029",
+      "style_ids": [
+        "men_formal_04",
+        "women_formal_04"
+      ]
+    },
+    {
+      "sha256": "617d704106cda198",
+      "style_ids": [
+        "men_formal_05",
+        "women_formal_05"
+      ]
+    },
+    {
+      "sha256": "39c22bf21c116617",
+      "style_ids": [
+        "men_formal_06",
+        "women_formal_06"
+      ]
+    },
+    {
+      "sha256": "1a7bf8148768a3f5",
+      "style_ids": [
+        "men_formal_07",
+        "women_formal_07"
+      ]
+    },
+    {
+      "sha256": "700370176fb25bc4",
+      "style_ids": [
+        "men_formal_08",
+        "women_formal_08"
+      ]
+    },
+    {
+      "sha256": "5cbe64e2971db0c6",
+      "style_ids": [
+        "men_formal_09",
+        "women_formal_09"
+      ]
+    },
+    {
+      "sha256": "4e3cae1b5cfd2c28",
+      "style_ids": [
+        "men_formal_10",
+        "women_formal_10"
+      ]
+    },
+    {
+      "sha256": "3cef8674f59a0dec",
+      "style_ids": [
+        "men_outfit_change_01",
+        "women_outfit_change_01"
+      ]
+    },
+    {
+      "sha256": "ebb7800ed1cef74a",
+      "style_ids": [
+        "men_outfit_change_02",
+        "women_outfit_change_02"
+      ]
+    },
+    {
+      "sha256": "df5b6348fd5cd4bb",
+      "style_ids": [
+        "men_tryon_01",
+        "women_tryon_02"
+      ]
+    },
+    {
+      "sha256": "083f1dad49092ef9",
+      "style_ids": [
+        "men_tryon_02",
+        "women_tryon_03"
+      ]
+    },
+    {
+      "sha256": "046add2846c273de",
+      "style_ids": [
+        "men_tryon_03",
+        "women_tryon_05"
+      ]
+    },
+    {
+      "sha256": "adb753b839e0f2cb",
+      "style_ids": [
+        "men_tryon_04",
+        "women_tryon_07"
+      ]
+    },
+    {
+      "sha256": "75ec88830ac19fcc",
+      "style_ids": [
+        "men_tryon_05",
+        "women_tryon_08"
+      ]
+    },
+    {
+      "sha256": "c4344b93c54eef1d",
+      "style_ids": [
+        "men_tryon_06",
+        "women_tryon_10"
+      ]
+    },
+    {
+      "sha256": "e0f2d701bd02ca07",
+      "style_ids": [
+        "men_arabian_01",
+        "women_arabian_01"
+      ]
+    },
+    {
+      "sha256": "d4e32df031da8f67",
+      "style_ids": [
+        "men_arabian_02",
+        "women_arabian_02"
+      ]
+    },
+    {
+      "sha256": "1f6073288faf84c1",
+      "style_ids": [
+        "men_arabian_03",
+        "women_arabian_03"
+      ]
+    },
+    {
+      "sha256": "1e64aca446ae4c6b",
+      "style_ids": [
+        "men_arabian_04",
+        "women_arabian_04"
+      ]
+    },
+    {
+      "sha256": "6612b5c6cb5a02f4",
+      "style_ids": [
+        "men_arabian_05",
+        "women_arabian_05"
+      ]
+    },
+    {
+      "sha256": "f4edf45b48b34f57",
+      "style_ids": [
+        "men_arabian_06",
+        "women_arabian_06"
+      ]
+    },
+    {
+      "sha256": "6aae4d9d0b4552f7",
+      "style_ids": [
+        "men_arabian_07",
+        "women_arabian_07"
+      ]
+    },
+    {
+      "sha256": "3b4f4ac0f921dcd1",
+      "style_ids": [
+        "men_arabian_08",
+        "women_arabian_08"
+      ]
+    },
+    {
+      "sha256": "d178db07389bc62a",
+      "style_ids": [
+        "men_arabian_09",
+        "men_arabian_10",
+        "women_arabian_09",
+        "women_arabian_10"
+      ]
+    },
+    {
+      "sha256": "c0aad44d0bb189f8",
+      "style_ids": [
+        "men_arabian_11",
+        "women_arabian_11"
+      ]
+    },
+    {
+      "sha256": "b67376dcb9db0289",
+      "style_ids": [
+        "men_arabian_12",
+        "women_arabian_12"
+      ]
+    },
+    {
+      "sha256": "cf0e32143412c04a",
+      "style_ids": [
+        "men_arabian_13",
+        "women_arabian_13"
+      ]
+    },
+    {
+      "sha256": "198333782956195e",
+      "style_ids": [
+        "men_arabian_14",
+        "women_arabian_14"
+      ]
+    },
+    {
+      "sha256": "8d5579e0feb88c30",
+      "style_ids": [
+        "men_arabian_15",
+        "women_arabian_15"
+      ]
+    },
+    {
+      "sha256": "c1b37acf0fa39484",
+      "style_ids": [
+        "men_arabian_16",
+        "women_arabian_16"
+      ]
+    },
+    {
+      "sha256": "6cd9a31e709fa867",
+      "style_ids": [
+        "men_arabian_17",
+        "women_arabian_17"
+      ]
+    },
+    {
+      "sha256": "7f1f0f4362e542d3",
+      "style_ids": [
+        "men_chinese_01",
+        "women_chinese_01"
+      ]
+    },
+    {
+      "sha256": "51224257e96427df",
+      "style_ids": [
+        "men_chinese_02",
+        "women_chinese_02"
+      ]
+    },
+    {
+      "sha256": "1427f39efe0db95b",
+      "style_ids": [
+        "men_chinese_03",
+        "women_chinese_03"
+      ]
+    },
+    {
+      "sha256": "af27d1cae2084258",
+      "style_ids": [
+        "men_chinese_04",
+        "women_chinese_04"
+      ]
+    },
+    {
+      "sha256": "b6b5301e0531ce95",
+      "style_ids": [
+        "men_chinese_05",
+        "women_chinese_05"
+      ]
+    },
+    {
+      "sha256": "7e9209e346306f07",
+      "style_ids": [
+        "men_chinese_06",
+        "women_chinese_06"
+      ]
+    },
+    {
+      "sha256": "0248450b9945b52f",
+      "style_ids": [
+        "men_chinese_07",
+        "women_chinese_07"
+      ]
+    },
+    {
+      "sha256": "25b428cd50d51400",
+      "style_ids": [
+        "men_chinese_08",
+        "women_chinese_08"
+      ]
+    },
+    {
+      "sha256": "ffcc122411d3425d",
+      "style_ids": [
+        "men_chinese_09",
+        "women_chinese_09"
+      ]
+    },
+    {
+      "sha256": "356cad15f7266a74",
+      "style_ids": [
+        "men_chinese_10",
+        "women_chinese_10"
+      ]
+    },
+    {
+      "sha256": "abbb0ab4114ce701",
+      "style_ids": [
+        "men_chinese_11",
+        "women_chinese_11"
+      ]
+    },
+    {
+      "sha256": "8f86b498d0b9721e",
+      "style_ids": [
+        "men_chinese_12",
+        "women_chinese_12"
+      ]
+    },
+    {
+      "sha256": "7a216e0d8b1cb006",
+      "style_ids": [
+        "men_chinese_13",
+        "women_chinese_13"
+      ]
+    },
+    {
+      "sha256": "8c55bc2249b4deba",
+      "style_ids": [
+        "men_chinese_14",
+        "women_chinese_14"
+      ]
+    },
+    {
+      "sha256": "51e12d5f21e66302",
+      "style_ids": [
+        "men_indian_01",
+        "women_indian_01"
+      ]
+    },
+    {
+      "sha256": "07873089d2c55624",
+      "style_ids": [
+        "men_indian_02",
+        "women_indian_02"
+      ]
+    },
+    {
+      "sha256": "c84c7e0c0feff9e8",
+      "style_ids": [
+        "men_indian_03",
+        "women_indian_03"
+      ]
+    },
+    {
+      "sha256": "d3a95e0241bc48e1",
+      "style_ids": [
+        "men_indian_04",
+        "women_indian_04"
+      ]
+    },
+    {
+      "sha256": "9d1ec5c686f6bbb8",
+      "style_ids": [
+        "men_indian_05",
+        "women_indian_05"
+      ]
+    },
+    {
+      "sha256": "c361e8a1425c1d9b",
+      "style_ids": [
+        "men_indian_06",
+        "women_indian_06"
+      ]
+    },
+    {
+      "sha256": "8dbb81ed86149257",
+      "style_ids": [
+        "men_indian_07",
+        "women_indian_07"
+      ]
+    },
+    {
+      "sha256": "b7d9b4eb9af9002a",
+      "style_ids": [
+        "men_indian_08",
+        "women_indian_08"
+      ]
+    },
+    {
+      "sha256": "a639b7a9e1f7a61b",
+      "style_ids": [
+        "men_indian_09",
+        "women_indian_09"
+      ]
+    },
+    {
+      "sha256": "c304c96071587a0f",
+      "style_ids": [
+        "men_indian_10",
+        "women_indian_10"
+      ]
+    },
+    {
+      "sha256": "f8a9e995723ab1c6",
+      "style_ids": [
+        "men_indian_11",
+        "women_indian_11"
+      ]
+    },
+    {
+      "sha256": "c5653b1c8749436d",
+      "style_ids": [
+        "men_indian_12",
+        "women_indian_12"
+      ]
+    },
+    {
+      "sha256": "df28c9397abe0c8b",
+      "style_ids": [
+        "men_indian_13",
+        "women_indian_13"
+      ]
+    },
+    {
+      "sha256": "4767f819fb21433f",
+      "style_ids": [
+        "men_indian_14",
+        "women_indian_14"
+      ]
+    },
+    {
+      "sha256": "ac9c6dfbe8ef7d01",
+      "style_ids": [
+        "men_indian_15",
+        "women_indian_15"
+      ]
+    },
+    {
+      "sha256": "3ca5aa65a96c8fd1",
+      "style_ids": [
+        "men_korean_01",
+        "women_korean_01"
+      ]
+    },
+    {
+      "sha256": "a69c52d16f74c51a",
+      "style_ids": [
+        "men_korean_02",
+        "women_korean_02"
+      ]
+    },
+    {
+      "sha256": "91e281e0dd06ee04",
+      "style_ids": [
+        "men_korean_03",
+        "women_korean_03"
+      ]
+    },
+    {
+      "sha256": "0e68ca4d50aa4e95",
+      "style_ids": [
+        "men_korean_04",
+        "women_korean_04"
+      ]
+    },
+    {
+      "sha256": "d7e983148e792cfe",
+      "style_ids": [
+        "men_korean_05",
+        "women_korean_05"
+      ]
+    },
+    {
+      "sha256": "dc1e3516a5e25303",
+      "style_ids": [
+        "men_korean_06",
+        "women_korean_06"
+      ]
+    },
+    {
+      "sha256": "dad01c2c7e05f04a",
+      "style_ids": [
+        "men_korean_07",
+        "women_korean_07"
+      ]
+    },
+    {
+      "sha256": "9d7d838ba833f2d6",
+      "style_ids": [
+        "men_korean_08",
+        "women_korean_08"
+      ]
+    },
+    {
+      "sha256": "38b5a1d699be0ce4",
+      "style_ids": [
+        "men_korean_09",
+        "women_korean_09"
+      ]
+    },
+    {
+      "sha256": "4a3e71128fff4eab",
+      "style_ids": [
+        "men_korean_10",
+        "women_korean_10"
+      ]
+    },
+    {
+      "sha256": "c6b37502313cafa1",
+      "style_ids": [
+        "men_korean_11",
+        "women_korean_11"
+      ]
+    },
+    {
+      "sha256": "42d88795ec0f4412",
+      "style_ids": [
+        "men_korean_12",
+        "women_korean_12"
+      ]
+    },
+    {
+      "sha256": "c5191ad1f148a922",
+      "style_ids": [
+        "men_korean_13",
+        "women_korean_13"
+      ]
+    },
+    {
+      "sha256": "f0909c307ecbed94",
+      "style_ids": [
+        "men_pakistani_01",
+        "women_pakistani_01"
+      ]
+    },
+    {
+      "sha256": "800b458a92ea59bb",
+      "style_ids": [
+        "men_pakistani_02",
+        "women_pakistani_02"
+      ]
+    },
+    {
+      "sha256": "fa0ae25bea0ad2d2",
+      "style_ids": [
+        "men_pakistani_03",
+        "women_pakistani_03"
+      ]
+    },
+    {
+      "sha256": "270cd7275acece3d",
+      "style_ids": [
+        "men_pakistani_04",
+        "men_pakistani_05",
+        "women_pakistani_04",
+        "women_pakistani_05"
+      ]
+    },
+    {
+      "sha256": "6f3e12d73e7b0939",
+      "style_ids": [
+        "men_pakistani_06",
+        "women_pakistani_06"
+      ]
+    },
+    {
+      "sha256": "ae85ee913bcc83b8",
+      "style_ids": [
+        "men_pakistani_07",
+        "men_pakistani_08",
+        "women_pakistani_07",
+        "women_pakistani_08"
+      ]
+    },
+    {
+      "sha256": "deaffb0c154d6244",
+      "style_ids": [
+        "men_pakistani_09",
+        "women_pakistani_09"
+      ]
+    },
+    {
+      "sha256": "e4a717c7b2b3218f",
+      "style_ids": [
+        "men_pakistani_10",
+        "women_pakistani_10"
+      ]
+    },
+    {
+      "sha256": "0906827a874836f3",
+      "style_ids": [
+        "men_pakistani_11",
+        "women_pakistani_11"
+      ]
+    },
+    {
+      "sha256": "cae7b36ec80e281d",
+      "style_ids": [
+        "men_pakistani_12",
+        "women_pakistani_12"
+      ]
+    },
+    {
+      "sha256": "86dc9af74f8f22c0",
+      "style_ids": [
+        "men_pakistani_13",
+        "women_pakistani_13"
+      ]
+    },
+    {
+      "sha256": "952cf3c747bab0df",
+      "style_ids": [
+        "men_pakistani_14",
+        "women_pakistani_14"
+      ]
+    },
+    {
+      "sha256": "484b8bd6d66731d9",
+      "style_ids": [
+        "men_pakistani_15",
+        "women_pakistani_15"
+      ]
+    },
+    {
+      "sha256": "8d573effe6211172",
+      "style_ids": [
+        "men_pakistani_16",
+        "men_pakistani_17",
+        "women_pakistani_16",
+        "women_pakistani_17"
+      ]
+    },
+    {
+      "sha256": "1641bab31bb0b364",
+      "style_ids": [
+        "men_pakistani_18",
+        "women_pakistani_18"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "style_id": "couple_01",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_01.png",
+      "exists": true,
+      "sha256": "13cfd3d2a3a664efa9a6636d364d91515026fe6e623d736b3885fb6ecca7d91c",
+      "bytes": 254315
+    },
+    {
+      "style_id": "couple_02",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_02.png",
+      "exists": true,
+      "sha256": "681d31bd8f9ee9c89b1074d214d36af57ad269eed3fd79daf96e62c3efdad357",
+      "bytes": 275011
+    },
+    {
+      "style_id": "couple_03",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_03.png",
+      "exists": true,
+      "sha256": "25ce222b4710efa74dc7f3b8f27fcb1b9dde7441c691afa1bc767a231db89d35",
+      "bytes": 228904
+    },
+    {
+      "style_id": "couple_04",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_04.png",
+      "exists": true,
+      "sha256": "1dd7b55a540c24f4dd63f0e4633bf7fa3b23c891a3dd88b5fd3ab4e1b3b56800",
+      "bytes": 223167
+    },
+    {
+      "style_id": "couple_05",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_05.png",
+      "exists": true,
+      "sha256": "1e2e050c1f5b7ec899997de2266ca6af46237cbf339839d2c0b8c9c2891c1a8d",
+      "bytes": 230039
+    },
+    {
+      "style_id": "couple_06",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_06.png",
+      "exists": true,
+      "sha256": "d7901fa1b5c72df210a49cbc69785db4d7da804eeacf532337e3a93731e026ef",
+      "bytes": 231110
+    },
+    {
+      "style_id": "couple_07",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_07.png",
+      "exists": true,
+      "sha256": "d9d5eff8bc41cf63d7d92308e08f85eff5667ce3eb32c711f37fed08cb8bf397",
+      "bytes": 243699
+    },
+    {
+      "style_id": "couple_08",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_08.png",
+      "exists": true,
+      "sha256": "25ce222b4710efa74dc7f3b8f27fcb1b9dde7441c691afa1bc767a231db89d35",
+      "bytes": 228904
+    },
+    {
+      "style_id": "couple_09",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_09.png",
+      "exists": true,
+      "sha256": "aced55da013adc1e62a9979bd1e11ca236eac4c0e147273d5e5f3e0e09494608",
+      "bytes": 279697
+    },
+    {
+      "style_id": "couple_10",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_10.png",
+      "exists": true,
+      "sha256": "2071f7d257f03cc525ad0da4ea5a5dec7bad4159c1f3e965a3c132f07232b8e6",
+      "bytes": 283953
+    },
+    {
+      "style_id": "couple_11",
+      "category_id": "couple_duo",
+      "tab_id": "",
+      "gender": "",
+      "image_url": "/media/catalog/couple_duo/couple_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\couple_duo\\couple_11.png",
+      "exists": true,
+      "sha256": "c082aae01bf26f3f16fee27182964fb26a56ec18dca8ea74cc6146a1c94a6ea5",
+      "bytes": 322942
+    },
+    {
+      "style_id": "men_casual_01",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_01.png",
+      "exists": true,
+      "sha256": "4254884f89e7412836c55cff3b46ac460855134f7f5d7178bc2c6d2411d6e591",
+      "bytes": 262202
+    },
+    {
+      "style_id": "men_casual_02",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_02.png",
+      "exists": true,
+      "sha256": "596d18cfd56f079e22cf8b376b5530811a48bc9e8d5f3a90cc7798e751677e5a",
+      "bytes": 320291
+    },
+    {
+      "style_id": "men_casual_03",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_03.png",
+      "exists": true,
+      "sha256": "0cbd0494a8bcb5950457a66515a99b90c4980e15491edf9353fc6489787367af",
+      "bytes": 316198
+    },
+    {
+      "style_id": "men_casual_04",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_04.png",
+      "exists": true,
+      "sha256": "b6e916ec98b0e08861aac1b8fcb32e17848a8dc2a40807ba4068d8207b558670",
+      "bytes": 303156
+    },
+    {
+      "style_id": "men_casual_05",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_05.png",
+      "exists": true,
+      "sha256": "9ae466025007074ed90b6af040ce66f96da27332ffb8a9fbd5587e092ed62aed",
+      "bytes": 305849
+    },
+    {
+      "style_id": "men_casual_06",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_06.png",
+      "exists": true,
+      "sha256": "5e776d01d6911a4980984161d145be3c0a42aee8aa6d3f76778e7659dc1cff52",
+      "bytes": 315594
+    },
+    {
+      "style_id": "men_casual_07",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_07.png",
+      "exists": true,
+      "sha256": "c544790cbb71bdebc6beececa59aaef3f76f70ee611252be96cb39fb2d4f24db",
+      "bytes": 287196
+    },
+    {
+      "style_id": "men_casual_08",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_08.png",
+      "exists": true,
+      "sha256": "9e65b6fb0cd355adf907389bb333802292ce77c74f8958ed309585e67a2a5fb4",
+      "bytes": 322524
+    },
+    {
+      "style_id": "men_casual_09",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_09.png",
+      "exists": true,
+      "sha256": "f4f147ca39b54aa493ca10fbf6f7e900a068b49fbb51db3a5a2e908ae2c89ab8",
+      "bytes": 362691
+    },
+    {
+      "style_id": "men_casual_10",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_casual_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_casual_10.png",
+      "exists": true,
+      "sha256": "7c885360d87b8cebe92d540b0b15b7f7e6f6c139c75bdd9fb52fcad0d77bb191",
+      "bytes": 282005
+    },
+    {
+      "style_id": "men_formal_01",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_01.png",
+      "exists": true,
+      "sha256": "b57b77553fa375db194a3728ef9889916fe127b494ee1494573488c70e450306",
+      "bytes": 274292
+    },
+    {
+      "style_id": "men_formal_02",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_02.png",
+      "exists": true,
+      "sha256": "5d63ee42b9752d4bb3a53fbc1119386166b7a60ef11f412594ad2a46f797a6c7",
+      "bytes": 275165
+    },
+    {
+      "style_id": "men_formal_03",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_03.png",
+      "exists": true,
+      "sha256": "4a908dd50fe5ebc176e2b7e8f5a7f37025ced1f97ee4a28b345ff0cdb97e29ad",
+      "bytes": 266784
+    },
+    {
+      "style_id": "men_formal_04",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_04.png",
+      "exists": true,
+      "sha256": "0d7db5761c4f50292cfa51aa9e445b4b60108564879fa653d68e9c2dc4bc97af",
+      "bytes": 244347
+    },
+    {
+      "style_id": "men_formal_05",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_05.png",
+      "exists": true,
+      "sha256": "617d704106cda19848e46da6ca029163d0a0b18f4118085750af162197911312",
+      "bytes": 257985
+    },
+    {
+      "style_id": "men_formal_06",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_06.png",
+      "exists": true,
+      "sha256": "39c22bf21c11661720fb3e67caabe764ff368230a13b298e97cc2f810008b514",
+      "bytes": 261431
+    },
+    {
+      "style_id": "men_formal_07",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_07.png",
+      "exists": true,
+      "sha256": "1a7bf8148768a3f522f3f3ccd4d2f133f1c262ef5861e5e6b5b2b20e1c79146d",
+      "bytes": 260711
+    },
+    {
+      "style_id": "men_formal_08",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_08.png",
+      "exists": true,
+      "sha256": "700370176fb25bc4f72eafb4cae1b04c5f05da0d7ebc9f3e66f06a7594a00cd7",
+      "bytes": 255529
+    },
+    {
+      "style_id": "men_formal_09",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_09.png",
+      "exists": true,
+      "sha256": "5cbe64e2971db0c65962b5f55632e2de185f2dac6729d879dbf04a1ca47bd665",
+      "bytes": 263862
+    },
+    {
+      "style_id": "men_formal_10",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "men",
+      "image_url": "/media/catalog/occasions/men_formal_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\men_formal_10.png",
+      "exists": true,
+      "sha256": "4e3cae1b5cfd2c2891152185dab0aadc494d9473239cc4cfc6d614422154dca1",
+      "bytes": 278667
+    },
+    {
+      "style_id": "women_casual_01",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_01.png",
+      "exists": true,
+      "sha256": "4254884f89e7412836c55cff3b46ac460855134f7f5d7178bc2c6d2411d6e591",
+      "bytes": 262202
+    },
+    {
+      "style_id": "women_casual_02",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_02.png",
+      "exists": true,
+      "sha256": "596d18cfd56f079e22cf8b376b5530811a48bc9e8d5f3a90cc7798e751677e5a",
+      "bytes": 320291
+    },
+    {
+      "style_id": "women_casual_03",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_03.png",
+      "exists": true,
+      "sha256": "0cbd0494a8bcb5950457a66515a99b90c4980e15491edf9353fc6489787367af",
+      "bytes": 316198
+    },
+    {
+      "style_id": "women_casual_04",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_04.png",
+      "exists": true,
+      "sha256": "b6e916ec98b0e08861aac1b8fcb32e17848a8dc2a40807ba4068d8207b558670",
+      "bytes": 303156
+    },
+    {
+      "style_id": "women_casual_05",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_05.png",
+      "exists": true,
+      "sha256": "9ae466025007074ed90b6af040ce66f96da27332ffb8a9fbd5587e092ed62aed",
+      "bytes": 305849
+    },
+    {
+      "style_id": "women_casual_06",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_06.png",
+      "exists": true,
+      "sha256": "5e776d01d6911a4980984161d145be3c0a42aee8aa6d3f76778e7659dc1cff52",
+      "bytes": 315594
+    },
+    {
+      "style_id": "women_casual_07",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_07.png",
+      "exists": true,
+      "sha256": "c544790cbb71bdebc6beececa59aaef3f76f70ee611252be96cb39fb2d4f24db",
+      "bytes": 287196
+    },
+    {
+      "style_id": "women_casual_08",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_08.png",
+      "exists": true,
+      "sha256": "9e65b6fb0cd355adf907389bb333802292ce77c74f8958ed309585e67a2a5fb4",
+      "bytes": 322524
+    },
+    {
+      "style_id": "women_casual_09",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_09.png",
+      "exists": true,
+      "sha256": "f4f147ca39b54aa493ca10fbf6f7e900a068b49fbb51db3a5a2e908ae2c89ab8",
+      "bytes": 362691
+    },
+    {
+      "style_id": "women_casual_10",
+      "category_id": "occasions",
+      "tab_id": "casual",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_casual_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_casual_10.png",
+      "exists": true,
+      "sha256": "7c885360d87b8cebe92d540b0b15b7f7e6f6c139c75bdd9fb52fcad0d77bb191",
+      "bytes": 282005
+    },
+    {
+      "style_id": "women_formal_01",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_01.png",
+      "exists": true,
+      "sha256": "b57b77553fa375db194a3728ef9889916fe127b494ee1494573488c70e450306",
+      "bytes": 274292
+    },
+    {
+      "style_id": "women_formal_02",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_02.png",
+      "exists": true,
+      "sha256": "5d63ee42b9752d4bb3a53fbc1119386166b7a60ef11f412594ad2a46f797a6c7",
+      "bytes": 275165
+    },
+    {
+      "style_id": "women_formal_03",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_03.png",
+      "exists": true,
+      "sha256": "4a908dd50fe5ebc176e2b7e8f5a7f37025ced1f97ee4a28b345ff0cdb97e29ad",
+      "bytes": 266784
+    },
+    {
+      "style_id": "women_formal_04",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_04.png",
+      "exists": true,
+      "sha256": "0d7db5761c4f50292cfa51aa9e445b4b60108564879fa653d68e9c2dc4bc97af",
+      "bytes": 244347
+    },
+    {
+      "style_id": "women_formal_05",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_05.png",
+      "exists": true,
+      "sha256": "617d704106cda19848e46da6ca029163d0a0b18f4118085750af162197911312",
+      "bytes": 257985
+    },
+    {
+      "style_id": "women_formal_06",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_06.png",
+      "exists": true,
+      "sha256": "39c22bf21c11661720fb3e67caabe764ff368230a13b298e97cc2f810008b514",
+      "bytes": 261431
+    },
+    {
+      "style_id": "women_formal_07",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_07.png",
+      "exists": true,
+      "sha256": "1a7bf8148768a3f522f3f3ccd4d2f133f1c262ef5861e5e6b5b2b20e1c79146d",
+      "bytes": 260711
+    },
+    {
+      "style_id": "women_formal_08",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_08.png",
+      "exists": true,
+      "sha256": "700370176fb25bc4f72eafb4cae1b04c5f05da0d7ebc9f3e66f06a7594a00cd7",
+      "bytes": 255529
+    },
+    {
+      "style_id": "women_formal_09",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_09.png",
+      "exists": true,
+      "sha256": "5cbe64e2971db0c65962b5f55632e2de185f2dac6729d879dbf04a1ca47bd665",
+      "bytes": 263862
+    },
+    {
+      "style_id": "women_formal_10",
+      "category_id": "occasions",
+      "tab_id": "formal",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_formal_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_formal_10.png",
+      "exists": true,
+      "sha256": "4e3cae1b5cfd2c2891152185dab0aadc494d9473239cc4cfc6d614422154dca1",
+      "bytes": 278667
+    },
+    {
+      "style_id": "women_wedding_01",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_01.png",
+      "exists": true,
+      "sha256": "6bf44ad55a2dd7101869f77a8430d34723f9d6728b8a9efed73e014b621a581d",
+      "bytes": 379216
+    },
+    {
+      "style_id": "women_wedding_02",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_02.png",
+      "exists": true,
+      "sha256": "9f349a2a61c101a97a0c272a65baace5c9f00971ed788837a683d23cf0a90090",
+      "bytes": 295694
+    },
+    {
+      "style_id": "women_wedding_03",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_03.png",
+      "exists": true,
+      "sha256": "0f8e0ff7c94950bdb98d8e253341c204347290507a81d406038a28519aebf51c",
+      "bytes": 387903
+    },
+    {
+      "style_id": "women_wedding_04",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_04.png",
+      "exists": true,
+      "sha256": "829ed5dd3b03982c1d2f55d25cea373c8c1280b0a32ffa3ff87d8e0ae15049a4",
+      "bytes": 288111
+    },
+    {
+      "style_id": "women_wedding_05",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_05.png",
+      "exists": true,
+      "sha256": "62f95c954ae9738fb9642b6799a021ad8b161a86cab14a612c4415ef6dc6e681",
+      "bytes": 353768
+    },
+    {
+      "style_id": "women_wedding_06",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_06.png",
+      "exists": true,
+      "sha256": "78daa8dc20d38c79c611f62db967a12d9d2c1a3fd6b6bf5ac133fa33203db79f",
+      "bytes": 433046
+    },
+    {
+      "style_id": "women_wedding_07",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_07.png",
+      "exists": true,
+      "sha256": "7a8e541902db9dbba8018d99d4aab4c8acfa19afb8afcbfe761f3ccf83241e33",
+      "bytes": 403238
+    },
+    {
+      "style_id": "women_wedding_08",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_08.png",
+      "exists": true,
+      "sha256": "ca3f6f7bd1e625153653c6089ab47c2e8c9c2319d550a60dab3cc1c038de17ee",
+      "bytes": 468482
+    },
+    {
+      "style_id": "women_wedding_09",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_09.png",
+      "exists": true,
+      "sha256": "0669e6c1487f921f8cbd3e2a9dc86fed642ae15a08e83875d1fe6615f2a3b226",
+      "bytes": 453452
+    },
+    {
+      "style_id": "women_wedding_10",
+      "category_id": "occasions",
+      "tab_id": "wedding",
+      "gender": "women",
+      "image_url": "/media/catalog/occasions/women_wedding_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\occasions\\women_wedding_10.png",
+      "exists": true,
+      "sha256": "7f0f094aa00db18217f1fc48e74b95055ff2ff8066cf08b340d08b2bf789d157",
+      "bytes": 404172
+    },
+    {
+      "style_id": "men_outfit_change_01",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/outfit_change/men_outfit_change_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\men_outfit_change_01.png",
+      "exists": true,
+      "sha256": "3cef8674f59a0dec2bf78917be58dec01610206309721eff92d027db27b448f5",
+      "bytes": 237695
+    },
+    {
+      "style_id": "men_outfit_change_02",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/outfit_change/men_outfit_change_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\men_outfit_change_02.png",
+      "exists": true,
+      "sha256": "ebb7800ed1cef74a0cdfb705c1ae0af35d8ddb37cecfd7604307f337acb3a14a",
+      "bytes": 191902
+    },
+    {
+      "style_id": "women_outfit_change_01",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_01.png",
+      "exists": true,
+      "sha256": "3cef8674f59a0dec2bf78917be58dec01610206309721eff92d027db27b448f5",
+      "bytes": 237695
+    },
+    {
+      "style_id": "women_outfit_change_02",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_02.png",
+      "exists": true,
+      "sha256": "ebb7800ed1cef74a0cdfb705c1ae0af35d8ddb37cecfd7604307f337acb3a14a",
+      "bytes": 191902
+    },
+    {
+      "style_id": "women_outfit_change_03",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_03.png",
+      "exists": true,
+      "sha256": "3c0066013d7bb58f91bf509b91eabfa43ef38ee10315fa80499d83a3637c5b2d",
+      "bytes": 350081
+    },
+    {
+      "style_id": "women_outfit_change_04",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_04.png",
+      "exists": true,
+      "sha256": "46e9fdf90bba1319e734c3c6203392679fc188dca7c5f20cb0a765bb010c5e3f",
+      "bytes": 204268
+    },
+    {
+      "style_id": "women_outfit_change_05",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_05.png",
+      "exists": true,
+      "sha256": "0059f6e30b8d70698ba81e57970adcc149bb52cedf304549e49f76d918a33bf5",
+      "bytes": 188262
+    },
+    {
+      "style_id": "women_outfit_change_06",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_06.png",
+      "exists": true,
+      "sha256": "786a41c6e7fee373f4ee5ed6eb03a46a65bfbb740cb31137fd6e405cb4dd2c35",
+      "bytes": 259093
+    },
+    {
+      "style_id": "women_outfit_change_07",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_07.png",
+      "exists": true,
+      "sha256": "2b35f511fe74fba679ed7a407653d2574fceb50287bccc03d19c9a8ad7ed0c7d",
+      "bytes": 272324
+    },
+    {
+      "style_id": "women_outfit_change_08",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_08.png",
+      "exists": true,
+      "sha256": "75dd8e5ba1eb19d336b2f52b0e71e0b216d4384633976d9e5b1e1fcaa269f850",
+      "bytes": 229183
+    },
+    {
+      "style_id": "women_outfit_change_09",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_09.png",
+      "exists": true,
+      "sha256": "e98c220cada23dabf4e67f3fc0c779c0ce77aba6503cbedb04647cc485b58d97",
+      "bytes": 244974
+    },
+    {
+      "style_id": "women_outfit_change_10",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_10.png",
+      "exists": true,
+      "sha256": "dd61c260f08b9f0fe5131917386aeb4b6fd651f026355d5efe6e632b4851dacc",
+      "bytes": 177508
+    },
+    {
+      "style_id": "women_outfit_change_11",
+      "category_id": "outfit_change",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/outfit_change/women_outfit_change_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\outfit_change\\women_outfit_change_11.png",
+      "exists": true,
+      "sha256": "86ba9fd700c3b3b1e3b551105c91c047f60a1f3712fbea4986ed4bfbebffe43b",
+      "bytes": 192653
+    },
+    {
+      "style_id": "men_preset_gym_01",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_01.png",
+      "exists": true,
+      "sha256": "57f19ecf8b841a3ff5d6c57ffc68d40e837dadccbcb6016619dd8086a641206a",
+      "bytes": 217160
+    },
+    {
+      "style_id": "men_preset_gym_02",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_02.png",
+      "exists": true,
+      "sha256": "1baad95b717e379395617b92d8c9bb49397aeb2d73ffe767d0988eec3252cf28",
+      "bytes": 216481
+    },
+    {
+      "style_id": "men_preset_gym_03",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_03.png",
+      "exists": true,
+      "sha256": "e8a5978862c097d92ff64a03a47b1c52ba2127c485fa13b218182d7c3c34fe42",
+      "bytes": 216989
+    },
+    {
+      "style_id": "men_preset_gym_04",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_04.png",
+      "exists": true,
+      "sha256": "1a5f240b6b1c3fef44293a2ba7d47842ac91ac42cbed05b076c1c3ee25b76b5b",
+      "bytes": 223658
+    },
+    {
+      "style_id": "men_preset_gym_05",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_05.png",
+      "exists": true,
+      "sha256": "2fd7583be1d35d97c41be20f036cc665a067bf96b0eb0e36840689deb9bcfc8c",
+      "bytes": 213036
+    },
+    {
+      "style_id": "men_preset_gym_06",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_06.png",
+      "exists": true,
+      "sha256": "16777a49ae41fb17e0f437e24101887c21b9d5e9d27d61326102a2a19131f48a",
+      "bytes": 225131
+    },
+    {
+      "style_id": "men_preset_gym_07",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_07.png",
+      "exists": true,
+      "sha256": "a893c4fe030bcf7861f2840e36b267a79d423a893f31c75a221b1e32077c4540",
+      "bytes": 27092
+    },
+    {
+      "style_id": "men_preset_gym_08",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_08.png",
+      "exists": true,
+      "sha256": "4cd946d1b622c0cae55f2a0ad57d6cc05b37050b606529a67b36849eedf3474d",
+      "bytes": 223465
+    },
+    {
+      "style_id": "men_preset_gym_09",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_09.png",
+      "exists": true,
+      "sha256": "2767aba44bbf969635a6a5c234998326f7f1eb48cb5a2e83cb7bd996dba9cf28",
+      "bytes": 226594
+    },
+    {
+      "style_id": "men_preset_gym_10",
+      "category_id": "presets",
+      "tab_id": "preset_gym",
+      "gender": "men",
+      "image_url": "/media/catalog/presets/men_preset_gym_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\presets\\men_preset_gym_10.png",
+      "exists": true,
+      "sha256": "c33d082dde5b3c1a649eb00acd93f1fcdf50799b3a91ad257cc526faa2b39371",
+      "bytes": 220915
+    },
+    {
+      "style_id": "men_tryon_01",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_01.png",
+      "exists": true,
+      "sha256": "df5b6348fd5cd4bbd7f17b40b44201c0f945000dad4c6e3c7ef40d492876618e",
+      "bytes": 311114
+    },
+    {
+      "style_id": "men_tryon_02",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_02.png",
+      "exists": true,
+      "sha256": "083f1dad49092ef98f4d2fe64f3e6134cc0d059750e290a69bd19789ce9711c3",
+      "bytes": 123825
+    },
+    {
+      "style_id": "men_tryon_03",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_03.png",
+      "exists": true,
+      "sha256": "046add2846c273de98346f35214d572d928676ba68c48e1b35cd1672dfc21764",
+      "bytes": 344053
+    },
+    {
+      "style_id": "men_tryon_04",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_04.png",
+      "exists": true,
+      "sha256": "adb753b839e0f2cb3e430a19269078bc032a929af0bb83340a8597f04e587a10",
+      "bytes": 320912
+    },
+    {
+      "style_id": "men_tryon_05",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_05.png",
+      "exists": true,
+      "sha256": "75ec88830ac19fcc2fe86b963056a6d4c1cb923c9d111bacd243019072b85cd9",
+      "bytes": 285257
+    },
+    {
+      "style_id": "men_tryon_06",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_06.png",
+      "exists": true,
+      "sha256": "c4344b93c54eef1da4566fca9b202eddfc6269e40ced8ada21665186e3220ee0",
+      "bytes": 355331
+    },
+    {
+      "style_id": "men_tryon_07",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_07.png",
+      "exists": true,
+      "sha256": "52203cd80a951c4f8c1347d180ccf21b279e07c27d9f2f165c2757cae0b6102a",
+      "bytes": 47027
+    },
+    {
+      "style_id": "men_tryon_08",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_08.png",
+      "exists": true,
+      "sha256": "fd15f2d2f88e2933a375a2590368211076ba315ef11b7d6a69a45f5daa203063",
+      "bytes": 251464
+    },
+    {
+      "style_id": "men_tryon_09",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_09.png",
+      "exists": true,
+      "sha256": "8bbc287326872437afe23c5244c6dbdc62b01989165e3295ca343d04d8f7c658",
+      "bytes": 327477
+    },
+    {
+      "style_id": "men_tryon_10",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "men",
+      "image_url": "/media/catalog/virtual_try_on/men_tryon_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\men_tryon_10.png",
+      "exists": true,
+      "sha256": "c634f534b9d911d511736d0809f21d3fb0b82099ad27972705cbe0492184a324",
+      "bytes": 278192
+    },
+    {
+      "style_id": "women_tryon_01",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_01.png",
+      "exists": true,
+      "sha256": "aa8da8cc4218b0d4f50b3407acf42c30b1eb6ac3da08e16deb5d0960d3cedf97",
+      "bytes": 215013
+    },
+    {
+      "style_id": "women_tryon_02",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_02.png",
+      "exists": true,
+      "sha256": "df5b6348fd5cd4bbd7f17b40b44201c0f945000dad4c6e3c7ef40d492876618e",
+      "bytes": 311114
+    },
+    {
+      "style_id": "women_tryon_03",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_03.png",
+      "exists": true,
+      "sha256": "083f1dad49092ef98f4d2fe64f3e6134cc0d059750e290a69bd19789ce9711c3",
+      "bytes": 123825
+    },
+    {
+      "style_id": "women_tryon_04",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_04.png",
+      "exists": true,
+      "sha256": "fd8b777c45a8cdd478f295606d788fe5e5487faf11fa1bed029da7924f7f615e",
+      "bytes": 282689
+    },
+    {
+      "style_id": "women_tryon_05",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_05.png",
+      "exists": true,
+      "sha256": "046add2846c273de98346f35214d572d928676ba68c48e1b35cd1672dfc21764",
+      "bytes": 344053
+    },
+    {
+      "style_id": "women_tryon_06",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_06.png",
+      "exists": true,
+      "sha256": "ca52a4c50ecb5a3585338de425e613973355d351764c85a3a19f0ad2db9a855a",
+      "bytes": 263536
+    },
+    {
+      "style_id": "women_tryon_07",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_07.png",
+      "exists": true,
+      "sha256": "adb753b839e0f2cb3e430a19269078bc032a929af0bb83340a8597f04e587a10",
+      "bytes": 320912
+    },
+    {
+      "style_id": "women_tryon_08",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_08.png",
+      "exists": true,
+      "sha256": "75ec88830ac19fcc2fe86b963056a6d4c1cb923c9d111bacd243019072b85cd9",
+      "bytes": 285257
+    },
+    {
+      "style_id": "women_tryon_09",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_09.png",
+      "exists": true,
+      "sha256": "fcdc4ef9fbc2b9981e68b43e252de416ad1a44501cc3fcdf1740f7850fbbe5e1",
+      "bytes": 152047
+    },
+    {
+      "style_id": "women_tryon_10",
+      "category_id": "virtual_try_on",
+      "tab_id": "",
+      "gender": "women",
+      "image_url": "/media/catalog/virtual_try_on/women_tryon_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\virtual_try_on\\women_tryon_10.png",
+      "exists": true,
+      "sha256": "c4344b93c54eef1da4566fca9b202eddfc6269e40ced8ada21665186e3220ee0",
+      "bytes": 355331
+    },
+    {
+      "style_id": "men_arabian_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_01.png",
+      "exists": true,
+      "sha256": "e0f2d701bd02ca077f9e7c60377dd71eb4b6cb419c1c44e1d24825ce8606418c",
+      "bytes": 555265
+    },
+    {
+      "style_id": "men_arabian_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_02.png",
+      "exists": true,
+      "sha256": "d4e32df031da8f6708f8d033df397eb3575c7cf4e2479b3cc724161381a0a08d",
+      "bytes": 366749
+    },
+    {
+      "style_id": "men_arabian_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_03.png",
+      "exists": true,
+      "sha256": "1f6073288faf84c1ae4067d1b6d73af12e8f6b292a0b7905979a4ca0199dfc0c",
+      "bytes": 493185
+    },
+    {
+      "style_id": "men_arabian_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_04.png",
+      "exists": true,
+      "sha256": "1e64aca446ae4c6bfeec32c0445677930e7cfafb7786820218434f51cd56da29",
+      "bytes": 330618
+    },
+    {
+      "style_id": "men_arabian_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_05.png",
+      "exists": true,
+      "sha256": "6612b5c6cb5a02f44c6e9c624b38fc43b8d1ccda222456ed7e6acfb5689d43f1",
+      "bytes": 434853
+    },
+    {
+      "style_id": "men_arabian_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_06.png",
+      "exists": true,
+      "sha256": "f4edf45b48b34f575f5529aaffc64c2ffe48002bdaacfe1375af8c9763602c10",
+      "bytes": 518431
+    },
+    {
+      "style_id": "men_arabian_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_07.png",
+      "exists": true,
+      "sha256": "6aae4d9d0b4552f7e2354acd0b8b2b82a42009bb48f9b259e4ea8b8506521a9e",
+      "bytes": 382897
+    },
+    {
+      "style_id": "men_arabian_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_08.png",
+      "exists": true,
+      "sha256": "3b4f4ac0f921dcd1adf99f95a09e40353bf5147fc180613f9d22b3ac04047864",
+      "bytes": 447903
+    },
+    {
+      "style_id": "men_arabian_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_09.png",
+      "exists": true,
+      "sha256": "d178db07389bc62aad3bcb09c5ae3c859924b3b65d268b8db00ce1709ebe0bdb",
+      "bytes": 389096
+    },
+    {
+      "style_id": "men_arabian_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_10.png",
+      "exists": true,
+      "sha256": "d178db07389bc62aad3bcb09c5ae3c859924b3b65d268b8db00ce1709ebe0bdb",
+      "bytes": 389096
+    },
+    {
+      "style_id": "men_arabian_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_11.png",
+      "exists": true,
+      "sha256": "c0aad44d0bb189f893170c31d425016858ae70a6542952f1140b051e0a69b8d6",
+      "bytes": 430807
+    },
+    {
+      "style_id": "men_arabian_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_12.png",
+      "exists": true,
+      "sha256": "b67376dcb9db028954be71d55f08161f4b436284e284483b8fc9a03e59b5e368",
+      "bytes": 534613
+    },
+    {
+      "style_id": "men_arabian_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_13.png",
+      "exists": true,
+      "sha256": "cf0e32143412c04a5d6dc5857a7d777aec17e4baf124195f6eedf77f439902a4",
+      "bytes": 507384
+    },
+    {
+      "style_id": "men_arabian_14",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_14.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_14.png",
+      "exists": true,
+      "sha256": "198333782956195e935e887efb8d6ecd14e120da9c7d982eb99b6492f7c5d3d2",
+      "bytes": 522205
+    },
+    {
+      "style_id": "men_arabian_15",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_15.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_15.png",
+      "exists": true,
+      "sha256": "8d5579e0feb88c301c670fb93dc7d05175fe2d2b16fdf1b3fd777e955d4cfa76",
+      "bytes": 383476
+    },
+    {
+      "style_id": "men_arabian_16",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_16.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_16.png",
+      "exists": true,
+      "sha256": "c1b37acf0fa394848bd5310e02347e512ac28a0206772b5972f2a379587e6938",
+      "bytes": 497862
+    },
+    {
+      "style_id": "men_arabian_17",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_arabian_17.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_arabian_17.png",
+      "exists": true,
+      "sha256": "6cd9a31e709fa8677679bb44d8d8cf769b59f9092aeea2e9e1e79fb6aae4f9fb",
+      "bytes": 456124
+    },
+    {
+      "style_id": "men_chinese_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_01.png",
+      "exists": true,
+      "sha256": "7f1f0f4362e542d3b802e76ae44b5638068883feb115fccb2be2df64edcbfa7c",
+      "bytes": 202738
+    },
+    {
+      "style_id": "men_chinese_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_02.png",
+      "exists": true,
+      "sha256": "51224257e96427df8d3dca93b8d01e81686f0322352a0c6c4f3cf77c1960646d",
+      "bytes": 307947
+    },
+    {
+      "style_id": "men_chinese_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_03.png",
+      "exists": true,
+      "sha256": "1427f39efe0db95ba94b4c59ce9ce79f106eeb931d4c0f765408c537edf478b2",
+      "bytes": 273886
+    },
+    {
+      "style_id": "men_chinese_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_04.png",
+      "exists": true,
+      "sha256": "af27d1cae2084258d9e7577c4dcba5849cec9198214d7084604ed9e548e0a40e",
+      "bytes": 302456
+    },
+    {
+      "style_id": "men_chinese_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_05.png",
+      "exists": true,
+      "sha256": "b6b5301e0531ce9566ab3f2c13d176532f00c0f9f0e08df5bd2dfe593335f930",
+      "bytes": 452655
+    },
+    {
+      "style_id": "men_chinese_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_06.png",
+      "exists": true,
+      "sha256": "7e9209e346306f071d470ec2b033d42392388a6b0522ae1ff0714fe0188ae416",
+      "bytes": 394107
+    },
+    {
+      "style_id": "men_chinese_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_07.png",
+      "exists": true,
+      "sha256": "0248450b9945b52f92d8049019deeb6e496933f082cbf92b08f111e7927c836d",
+      "bytes": 605375
+    },
+    {
+      "style_id": "men_chinese_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_08.png",
+      "exists": true,
+      "sha256": "25b428cd50d51400ee200a6d358b07d118d5e329ff457c7b9b04d28f5eb80d44",
+      "bytes": 412469
+    },
+    {
+      "style_id": "men_chinese_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_09.png",
+      "exists": true,
+      "sha256": "ffcc122411d3425d7a778f0870cd2370b00e853c0651a8ae2404d07a1088bed7",
+      "bytes": 457819
+    },
+    {
+      "style_id": "men_chinese_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_10.png",
+      "exists": true,
+      "sha256": "356cad15f7266a741cfafbded07edbd8fb9fa1da32a0bb217a974626c40c57f4",
+      "bytes": 507356
+    },
+    {
+      "style_id": "men_chinese_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_11.png",
+      "exists": true,
+      "sha256": "abbb0ab4114ce7013361ac1c01d84e533a0b19aa4e0e23f01860c09f84097981",
+      "bytes": 260611
+    },
+    {
+      "style_id": "men_chinese_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_12.png",
+      "exists": true,
+      "sha256": "8f86b498d0b9721e4b5e8f2142c7828b0194fd4ae0045babbf6b3aa67922217c",
+      "bytes": 408595
+    },
+    {
+      "style_id": "men_chinese_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_13.png",
+      "exists": true,
+      "sha256": "7a216e0d8b1cb006743d261910ee7fb14c7cb7dcefb4ee07d16fc5d373871f29",
+      "bytes": 418012
+    },
+    {
+      "style_id": "men_chinese_14",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_chinese_14.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_chinese_14.png",
+      "exists": true,
+      "sha256": "8c55bc2249b4deba6350870bd67688887db1f14e9548d7cd46d339d53c7f8b51",
+      "bytes": 400093
+    },
+    {
+      "style_id": "men_indian_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_01.png",
+      "exists": true,
+      "sha256": "51e12d5f21e66302b8b238e2ddd7e14fe2b7564c8cfb9b30dcd5b033ca8ace75",
+      "bytes": 422577
+    },
+    {
+      "style_id": "men_indian_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_02.png",
+      "exists": true,
+      "sha256": "07873089d2c55624f3586c51a3230ec56fac7549f4b24f85ba2907c187f8ce33",
+      "bytes": 579889
+    },
+    {
+      "style_id": "men_indian_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_03.png",
+      "exists": true,
+      "sha256": "c84c7e0c0feff9e87d7f9c8cba84765b5b4cd59e73e62f0f58536f95a70a90d5",
+      "bytes": 447660
+    },
+    {
+      "style_id": "men_indian_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_04.png",
+      "exists": true,
+      "sha256": "d3a95e0241bc48e1de4bdf5b2442229a024bff4052fb227b37969558ca76823b",
+      "bytes": 493256
+    },
+    {
+      "style_id": "men_indian_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_05.png",
+      "exists": true,
+      "sha256": "9d1ec5c686f6bbb876080d284255eaae4feed46bc7f6f9acd8c811c91c030487",
+      "bytes": 556722
+    },
+    {
+      "style_id": "men_indian_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_06.png",
+      "exists": true,
+      "sha256": "c361e8a1425c1d9bcd74ad31fde3d8bc4438bca96905120aa800e6b1c64962fd",
+      "bytes": 367751
+    },
+    {
+      "style_id": "men_indian_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_07.png",
+      "exists": true,
+      "sha256": "8dbb81ed86149257a57b0fc5e730355bdf8ce8998ffdab59febea6ab21736bff",
+      "bytes": 606062
+    },
+    {
+      "style_id": "men_indian_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_08.png",
+      "exists": true,
+      "sha256": "b7d9b4eb9af9002afdd2aa1d05ab51c6283f8b516d7b5228daf3efa32f08931a",
+      "bytes": 487436
+    },
+    {
+      "style_id": "men_indian_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_09.png",
+      "exists": true,
+      "sha256": "a639b7a9e1f7a61bb4a6e683734255807a47ab1a8c78540471c1497c2123d823",
+      "bytes": 494079
+    },
+    {
+      "style_id": "men_indian_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_10.png",
+      "exists": true,
+      "sha256": "c304c96071587a0f5a231e2bbca3dd038b51de7d87ad04eb55de4c4ab8edce22",
+      "bytes": 423492
+    },
+    {
+      "style_id": "men_indian_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_11.png",
+      "exists": true,
+      "sha256": "f8a9e995723ab1c6248ced727724da96a4fe385e248019ed7748ff725dd9a831",
+      "bytes": 384688
+    },
+    {
+      "style_id": "men_indian_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_12.png",
+      "exists": true,
+      "sha256": "c5653b1c8749436de9ebdef17aa21f99490c8b39350ba826fd6b5dc96f4b1dbc",
+      "bytes": 477090
+    },
+    {
+      "style_id": "men_indian_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_13.png",
+      "exists": true,
+      "sha256": "df28c9397abe0c8b5f6aa9fd3e7144e555a47317aa5873c9b8d5dfd04ec71a5e",
+      "bytes": 600799
+    },
+    {
+      "style_id": "men_indian_14",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_14.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_14.png",
+      "exists": true,
+      "sha256": "4767f819fb21433f3da53243e9a1533353f1b9b0e2716fbb3d3b168310af2177",
+      "bytes": 427142
+    },
+    {
+      "style_id": "men_indian_15",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_indian_15.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_indian_15.png",
+      "exists": true,
+      "sha256": "ac9c6dfbe8ef7d0155954041320cc4e122ac89004d8c6292094959336b20c012",
+      "bytes": 483936
+    },
+    {
+      "style_id": "men_korean_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_01.png",
+      "exists": true,
+      "sha256": "3ca5aa65a96c8fd1d93b8c05cd9dc91dd8cf2141b6006050602fbb15c32f1e96",
+      "bytes": 456809
+    },
+    {
+      "style_id": "men_korean_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_02.png",
+      "exists": true,
+      "sha256": "a69c52d16f74c51a7b90520ff47adfb01ad828ab44012d2caa993df9de9dbd5d",
+      "bytes": 436590
+    },
+    {
+      "style_id": "men_korean_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_03.png",
+      "exists": true,
+      "sha256": "91e281e0dd06ee04ecd8be7e7d390a1cb50cfa5f4448dc8ee4c1085f5aa7ae33",
+      "bytes": 449695
+    },
+    {
+      "style_id": "men_korean_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_04.png",
+      "exists": true,
+      "sha256": "0e68ca4d50aa4e9558089301e0f41b10854b0ae48fe8673cac268b09316ce8ce",
+      "bytes": 495174
+    },
+    {
+      "style_id": "men_korean_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_05.png",
+      "exists": true,
+      "sha256": "d7e983148e792cfe2b60d8ff84f516ddcb0f8697440affcf2de41307d3017c52",
+      "bytes": 496473
+    },
+    {
+      "style_id": "men_korean_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_06.png",
+      "exists": true,
+      "sha256": "dc1e3516a5e2530341c372d79dfd8484d587ca9c32ac35baad75aef84b0e959f",
+      "bytes": 423272
+    },
+    {
+      "style_id": "men_korean_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_07.png",
+      "exists": true,
+      "sha256": "dad01c2c7e05f04a2697ff11394e5729b2cf65701dd55f8d8c4739b2eabbbf7f",
+      "bytes": 448173
+    },
+    {
+      "style_id": "men_korean_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_08.png",
+      "exists": true,
+      "sha256": "9d7d838ba833f2d6db0474b7c6ba24f2c63b8e5c713e8ac4cedf91adf0618704",
+      "bytes": 561242
+    },
+    {
+      "style_id": "men_korean_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_09.png",
+      "exists": true,
+      "sha256": "38b5a1d699be0ce41be87c099d7c25b23b837eb32aed282ab3c59dd231f70835",
+      "bytes": 485263
+    },
+    {
+      "style_id": "men_korean_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_10.png",
+      "exists": true,
+      "sha256": "4a3e71128fff4eabb6cd4d54c9411cfd3a0b7a11e8046ff1631bfb3a319271ca",
+      "bytes": 514289
+    },
+    {
+      "style_id": "men_korean_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_11.png",
+      "exists": true,
+      "sha256": "c6b37502313cafa1304700b85148d5640deb7bdac5cd96eb7c482c81871e6821",
+      "bytes": 637298
+    },
+    {
+      "style_id": "men_korean_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_12.png",
+      "exists": true,
+      "sha256": "42d88795ec0f44123c7069fbf67783521309f05696b1cce8791499b7099a90d1",
+      "bytes": 550563
+    },
+    {
+      "style_id": "men_korean_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_korean_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_korean_13.png",
+      "exists": true,
+      "sha256": "c5191ad1f148a92218f39677eb76b5fa8987ed0b444f61d7a0c0d8b0ecf82991",
+      "bytes": 567971
+    },
+    {
+      "style_id": "men_pakistani_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_01.png",
+      "exists": true,
+      "sha256": "f0909c307ecbed9453dafd525388a764800d15b71be1b6a0f5f243b4c79238dc",
+      "bytes": 479838
+    },
+    {
+      "style_id": "men_pakistani_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_02.png",
+      "exists": true,
+      "sha256": "800b458a92ea59bbe174fa0b0462c1cbaeab9678e5aca90705735a42ba3ec7b0",
+      "bytes": 438150
+    },
+    {
+      "style_id": "men_pakistani_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_03.png",
+      "exists": true,
+      "sha256": "fa0ae25bea0ad2d2a24d648b90a8b2d1ef1be5efc3b65442c9dbcc0bb8687fdc",
+      "bytes": 446857
+    },
+    {
+      "style_id": "men_pakistani_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_04.png",
+      "exists": true,
+      "sha256": "270cd7275acece3d7c16cc61d67c2350308be7b320df6d8b41e0adaca5f55df0",
+      "bytes": 420578
+    },
+    {
+      "style_id": "men_pakistani_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_05.png",
+      "exists": true,
+      "sha256": "270cd7275acece3d7c16cc61d67c2350308be7b320df6d8b41e0adaca5f55df0",
+      "bytes": 420578
+    },
+    {
+      "style_id": "men_pakistani_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_06.png",
+      "exists": true,
+      "sha256": "6f3e12d73e7b0939a04e01dd755c173e980c2f6f6433685a662d91a0e8cf4b24",
+      "bytes": 635425
+    },
+    {
+      "style_id": "men_pakistani_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_07.png",
+      "exists": true,
+      "sha256": "ae85ee913bcc83b883be589823fdf5d0c454501510fcfacb46be2d29ea3e70e9",
+      "bytes": 456268
+    },
+    {
+      "style_id": "men_pakistani_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_08.png",
+      "exists": true,
+      "sha256": "ae85ee913bcc83b883be589823fdf5d0c454501510fcfacb46be2d29ea3e70e9",
+      "bytes": 456268
+    },
+    {
+      "style_id": "men_pakistani_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_09.png",
+      "exists": true,
+      "sha256": "deaffb0c154d62442206d3e6d7b8d3c49795dc61e083ff4c286f64d47dc25808",
+      "bytes": 59802
+    },
+    {
+      "style_id": "men_pakistani_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_10.png",
+      "exists": true,
+      "sha256": "e4a717c7b2b3218fc0b30b670916e90bf255ead6bb31dae082375bd0cf1da613",
+      "bytes": 512941
+    },
+    {
+      "style_id": "men_pakistani_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_11.png",
+      "exists": true,
+      "sha256": "0906827a874836f364f552d3ddfef17e6c5f7816cfba9e3fb842b90354ccd500",
+      "bytes": 397244
+    },
+    {
+      "style_id": "men_pakistani_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_12.png",
+      "exists": true,
+      "sha256": "cae7b36ec80e281dd12a144a4d83802b25d8c36e5d9f9bf2230478012919597d",
+      "bytes": 401843
+    },
+    {
+      "style_id": "men_pakistani_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_13.png",
+      "exists": true,
+      "sha256": "86dc9af74f8f22c0c492d4adf38bcac7e29416f709e9e7476e02cc51d22ed47c",
+      "bytes": 459599
+    },
+    {
+      "style_id": "men_pakistani_14",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_14.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_14.png",
+      "exists": true,
+      "sha256": "952cf3c747bab0df8b2e145ed9983b0c154442f1c8d8bbe5adf0c48a84eae642",
+      "bytes": 488866
+    },
+    {
+      "style_id": "men_pakistani_15",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_15.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_15.png",
+      "exists": true,
+      "sha256": "484b8bd6d66731d9e52786d62643b9ec44bbb001c7b9d76e4a0afd2ce87bc5d4",
+      "bytes": 575544
+    },
+    {
+      "style_id": "men_pakistani_16",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_16.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_16.png",
+      "exists": true,
+      "sha256": "8d573effe62111724a0c19348dfdbeeef415f172c6357f1f57f8f87efff740ae",
+      "bytes": 462727
+    },
+    {
+      "style_id": "men_pakistani_17",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_17.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_17.png",
+      "exists": true,
+      "sha256": "8d573effe62111724a0c19348dfdbeeef415f172c6357f1f57f8f87efff740ae",
+      "bytes": 462727
+    },
+    {
+      "style_id": "men_pakistani_18",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "men",
+      "image_url": "/media/catalog/wardrobe_browse/men_pakistani_18.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\men_pakistani_18.png",
+      "exists": true,
+      "sha256": "1641bab31bb0b364c32573c9afc639edaa984c6835c8b5d1056bcf1dac46b2c7",
+      "bytes": 546848
+    },
+    {
+      "style_id": "women_arabian_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_01.png",
+      "exists": true,
+      "sha256": "e0f2d701bd02ca077f9e7c60377dd71eb4b6cb419c1c44e1d24825ce8606418c",
+      "bytes": 555265
+    },
+    {
+      "style_id": "women_arabian_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_02.png",
+      "exists": true,
+      "sha256": "d4e32df031da8f6708f8d033df397eb3575c7cf4e2479b3cc724161381a0a08d",
+      "bytes": 366749
+    },
+    {
+      "style_id": "women_arabian_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_03.png",
+      "exists": true,
+      "sha256": "1f6073288faf84c1ae4067d1b6d73af12e8f6b292a0b7905979a4ca0199dfc0c",
+      "bytes": 493185
+    },
+    {
+      "style_id": "women_arabian_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_04.png",
+      "exists": true,
+      "sha256": "1e64aca446ae4c6bfeec32c0445677930e7cfafb7786820218434f51cd56da29",
+      "bytes": 330618
+    },
+    {
+      "style_id": "women_arabian_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_05.png",
+      "exists": true,
+      "sha256": "6612b5c6cb5a02f44c6e9c624b38fc43b8d1ccda222456ed7e6acfb5689d43f1",
+      "bytes": 434853
+    },
+    {
+      "style_id": "women_arabian_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_06.png",
+      "exists": true,
+      "sha256": "f4edf45b48b34f575f5529aaffc64c2ffe48002bdaacfe1375af8c9763602c10",
+      "bytes": 518431
+    },
+    {
+      "style_id": "women_arabian_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_07.png",
+      "exists": true,
+      "sha256": "6aae4d9d0b4552f7e2354acd0b8b2b82a42009bb48f9b259e4ea8b8506521a9e",
+      "bytes": 382897
+    },
+    {
+      "style_id": "women_arabian_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_08.png",
+      "exists": true,
+      "sha256": "3b4f4ac0f921dcd1adf99f95a09e40353bf5147fc180613f9d22b3ac04047864",
+      "bytes": 447903
+    },
+    {
+      "style_id": "women_arabian_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_09.png",
+      "exists": true,
+      "sha256": "d178db07389bc62aad3bcb09c5ae3c859924b3b65d268b8db00ce1709ebe0bdb",
+      "bytes": 389096
+    },
+    {
+      "style_id": "women_arabian_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_10.png",
+      "exists": true,
+      "sha256": "d178db07389bc62aad3bcb09c5ae3c859924b3b65d268b8db00ce1709ebe0bdb",
+      "bytes": 389096
+    },
+    {
+      "style_id": "women_arabian_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_11.png",
+      "exists": true,
+      "sha256": "c0aad44d0bb189f893170c31d425016858ae70a6542952f1140b051e0a69b8d6",
+      "bytes": 430807
+    },
+    {
+      "style_id": "women_arabian_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_12.png",
+      "exists": true,
+      "sha256": "b67376dcb9db028954be71d55f08161f4b436284e284483b8fc9a03e59b5e368",
+      "bytes": 534613
+    },
+    {
+      "style_id": "women_arabian_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_13.png",
+      "exists": true,
+      "sha256": "cf0e32143412c04a5d6dc5857a7d777aec17e4baf124195f6eedf77f439902a4",
+      "bytes": 507384
+    },
+    {
+      "style_id": "women_arabian_14",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_14.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_14.png",
+      "exists": true,
+      "sha256": "198333782956195e935e887efb8d6ecd14e120da9c7d982eb99b6492f7c5d3d2",
+      "bytes": 522205
+    },
+    {
+      "style_id": "women_arabian_15",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_15.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_15.png",
+      "exists": true,
+      "sha256": "8d5579e0feb88c301c670fb93dc7d05175fe2d2b16fdf1b3fd777e955d4cfa76",
+      "bytes": 383476
+    },
+    {
+      "style_id": "women_arabian_16",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_16.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_16.png",
+      "exists": true,
+      "sha256": "c1b37acf0fa394848bd5310e02347e512ac28a0206772b5972f2a379587e6938",
+      "bytes": 497862
+    },
+    {
+      "style_id": "women_arabian_17",
+      "category_id": "wardrobe_browse",
+      "tab_id": "arabian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_arabian_17.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_arabian_17.png",
+      "exists": true,
+      "sha256": "6cd9a31e709fa8677679bb44d8d8cf769b59f9092aeea2e9e1e79fb6aae4f9fb",
+      "bytes": 456124
+    },
+    {
+      "style_id": "women_chinese_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_01.png",
+      "exists": true,
+      "sha256": "7f1f0f4362e542d3b802e76ae44b5638068883feb115fccb2be2df64edcbfa7c",
+      "bytes": 202738
+    },
+    {
+      "style_id": "women_chinese_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_02.png",
+      "exists": true,
+      "sha256": "51224257e96427df8d3dca93b8d01e81686f0322352a0c6c4f3cf77c1960646d",
+      "bytes": 307947
+    },
+    {
+      "style_id": "women_chinese_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_03.png",
+      "exists": true,
+      "sha256": "1427f39efe0db95ba94b4c59ce9ce79f106eeb931d4c0f765408c537edf478b2",
+      "bytes": 273886
+    },
+    {
+      "style_id": "women_chinese_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_04.png",
+      "exists": true,
+      "sha256": "af27d1cae2084258d9e7577c4dcba5849cec9198214d7084604ed9e548e0a40e",
+      "bytes": 302456
+    },
+    {
+      "style_id": "women_chinese_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_05.png",
+      "exists": true,
+      "sha256": "b6b5301e0531ce9566ab3f2c13d176532f00c0f9f0e08df5bd2dfe593335f930",
+      "bytes": 452655
+    },
+    {
+      "style_id": "women_chinese_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_06.png",
+      "exists": true,
+      "sha256": "7e9209e346306f071d470ec2b033d42392388a6b0522ae1ff0714fe0188ae416",
+      "bytes": 394107
+    },
+    {
+      "style_id": "women_chinese_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_07.png",
+      "exists": true,
+      "sha256": "0248450b9945b52f92d8049019deeb6e496933f082cbf92b08f111e7927c836d",
+      "bytes": 605375
+    },
+    {
+      "style_id": "women_chinese_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_08.png",
+      "exists": true,
+      "sha256": "25b428cd50d51400ee200a6d358b07d118d5e329ff457c7b9b04d28f5eb80d44",
+      "bytes": 412469
+    },
+    {
+      "style_id": "women_chinese_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_09.png",
+      "exists": true,
+      "sha256": "ffcc122411d3425d7a778f0870cd2370b00e853c0651a8ae2404d07a1088bed7",
+      "bytes": 457819
+    },
+    {
+      "style_id": "women_chinese_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_10.png",
+      "exists": true,
+      "sha256": "356cad15f7266a741cfafbded07edbd8fb9fa1da32a0bb217a974626c40c57f4",
+      "bytes": 507356
+    },
+    {
+      "style_id": "women_chinese_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_11.png",
+      "exists": true,
+      "sha256": "abbb0ab4114ce7013361ac1c01d84e533a0b19aa4e0e23f01860c09f84097981",
+      "bytes": 260611
+    },
+    {
+      "style_id": "women_chinese_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_12.png",
+      "exists": true,
+      "sha256": "8f86b498d0b9721e4b5e8f2142c7828b0194fd4ae0045babbf6b3aa67922217c",
+      "bytes": 408595
+    },
+    {
+      "style_id": "women_chinese_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_13.png",
+      "exists": true,
+      "sha256": "7a216e0d8b1cb006743d261910ee7fb14c7cb7dcefb4ee07d16fc5d373871f29",
+      "bytes": 418012
+    },
+    {
+      "style_id": "women_chinese_14",
+      "category_id": "wardrobe_browse",
+      "tab_id": "chinese",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_chinese_14.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_chinese_14.png",
+      "exists": true,
+      "sha256": "8c55bc2249b4deba6350870bd67688887db1f14e9548d7cd46d339d53c7f8b51",
+      "bytes": 400093
+    },
+    {
+      "style_id": "women_indian_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_01.png",
+      "exists": true,
+      "sha256": "51e12d5f21e66302b8b238e2ddd7e14fe2b7564c8cfb9b30dcd5b033ca8ace75",
+      "bytes": 422577
+    },
+    {
+      "style_id": "women_indian_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_02.png",
+      "exists": true,
+      "sha256": "07873089d2c55624f3586c51a3230ec56fac7549f4b24f85ba2907c187f8ce33",
+      "bytes": 579889
+    },
+    {
+      "style_id": "women_indian_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_03.png",
+      "exists": true,
+      "sha256": "c84c7e0c0feff9e87d7f9c8cba84765b5b4cd59e73e62f0f58536f95a70a90d5",
+      "bytes": 447660
+    },
+    {
+      "style_id": "women_indian_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_04.png",
+      "exists": true,
+      "sha256": "d3a95e0241bc48e1de4bdf5b2442229a024bff4052fb227b37969558ca76823b",
+      "bytes": 493256
+    },
+    {
+      "style_id": "women_indian_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_05.png",
+      "exists": true,
+      "sha256": "9d1ec5c686f6bbb876080d284255eaae4feed46bc7f6f9acd8c811c91c030487",
+      "bytes": 556722
+    },
+    {
+      "style_id": "women_indian_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_06.png",
+      "exists": true,
+      "sha256": "c361e8a1425c1d9bcd74ad31fde3d8bc4438bca96905120aa800e6b1c64962fd",
+      "bytes": 367751
+    },
+    {
+      "style_id": "women_indian_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_07.png",
+      "exists": true,
+      "sha256": "8dbb81ed86149257a57b0fc5e730355bdf8ce8998ffdab59febea6ab21736bff",
+      "bytes": 606062
+    },
+    {
+      "style_id": "women_indian_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_08.png",
+      "exists": true,
+      "sha256": "b7d9b4eb9af9002afdd2aa1d05ab51c6283f8b516d7b5228daf3efa32f08931a",
+      "bytes": 487436
+    },
+    {
+      "style_id": "women_indian_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_09.png",
+      "exists": true,
+      "sha256": "a639b7a9e1f7a61bb4a6e683734255807a47ab1a8c78540471c1497c2123d823",
+      "bytes": 494079
+    },
+    {
+      "style_id": "women_indian_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_10.png",
+      "exists": true,
+      "sha256": "c304c96071587a0f5a231e2bbca3dd038b51de7d87ad04eb55de4c4ab8edce22",
+      "bytes": 423492
+    },
+    {
+      "style_id": "women_indian_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_11.png",
+      "exists": true,
+      "sha256": "f8a9e995723ab1c6248ced727724da96a4fe385e248019ed7748ff725dd9a831",
+      "bytes": 384688
+    },
+    {
+      "style_id": "women_indian_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_12.png",
+      "exists": true,
+      "sha256": "c5653b1c8749436de9ebdef17aa21f99490c8b39350ba826fd6b5dc96f4b1dbc",
+      "bytes": 477090
+    },
+    {
+      "style_id": "women_indian_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_13.png",
+      "exists": true,
+      "sha256": "df28c9397abe0c8b5f6aa9fd3e7144e555a47317aa5873c9b8d5dfd04ec71a5e",
+      "bytes": 600799
+    },
+    {
+      "style_id": "women_indian_14",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_14.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_14.png",
+      "exists": true,
+      "sha256": "4767f819fb21433f3da53243e9a1533353f1b9b0e2716fbb3d3b168310af2177",
+      "bytes": 427142
+    },
+    {
+      "style_id": "women_indian_15",
+      "category_id": "wardrobe_browse",
+      "tab_id": "indian",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_indian_15.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_indian_15.png",
+      "exists": true,
+      "sha256": "ac9c6dfbe8ef7d0155954041320cc4e122ac89004d8c6292094959336b20c012",
+      "bytes": 483936
+    },
+    {
+      "style_id": "women_korean_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_01.png",
+      "exists": true,
+      "sha256": "3ca5aa65a96c8fd1d93b8c05cd9dc91dd8cf2141b6006050602fbb15c32f1e96",
+      "bytes": 456809
+    },
+    {
+      "style_id": "women_korean_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_02.png",
+      "exists": true,
+      "sha256": "a69c52d16f74c51a7b90520ff47adfb01ad828ab44012d2caa993df9de9dbd5d",
+      "bytes": 436590
+    },
+    {
+      "style_id": "women_korean_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_03.png",
+      "exists": true,
+      "sha256": "91e281e0dd06ee04ecd8be7e7d390a1cb50cfa5f4448dc8ee4c1085f5aa7ae33",
+      "bytes": 449695
+    },
+    {
+      "style_id": "women_korean_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_04.png",
+      "exists": true,
+      "sha256": "0e68ca4d50aa4e9558089301e0f41b10854b0ae48fe8673cac268b09316ce8ce",
+      "bytes": 495174
+    },
+    {
+      "style_id": "women_korean_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_05.png",
+      "exists": true,
+      "sha256": "d7e983148e792cfe2b60d8ff84f516ddcb0f8697440affcf2de41307d3017c52",
+      "bytes": 496473
+    },
+    {
+      "style_id": "women_korean_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_06.png",
+      "exists": true,
+      "sha256": "dc1e3516a5e2530341c372d79dfd8484d587ca9c32ac35baad75aef84b0e959f",
+      "bytes": 423272
+    },
+    {
+      "style_id": "women_korean_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_07.png",
+      "exists": true,
+      "sha256": "dad01c2c7e05f04a2697ff11394e5729b2cf65701dd55f8d8c4739b2eabbbf7f",
+      "bytes": 448173
+    },
+    {
+      "style_id": "women_korean_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_08.png",
+      "exists": true,
+      "sha256": "9d7d838ba833f2d6db0474b7c6ba24f2c63b8e5c713e8ac4cedf91adf0618704",
+      "bytes": 561242
+    },
+    {
+      "style_id": "women_korean_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_09.png",
+      "exists": true,
+      "sha256": "38b5a1d699be0ce41be87c099d7c25b23b837eb32aed282ab3c59dd231f70835",
+      "bytes": 485263
+    },
+    {
+      "style_id": "women_korean_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_10.png",
+      "exists": true,
+      "sha256": "4a3e71128fff4eabb6cd4d54c9411cfd3a0b7a11e8046ff1631bfb3a319271ca",
+      "bytes": 514289
+    },
+    {
+      "style_id": "women_korean_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_11.png",
+      "exists": true,
+      "sha256": "c6b37502313cafa1304700b85148d5640deb7bdac5cd96eb7c482c81871e6821",
+      "bytes": 637298
+    },
+    {
+      "style_id": "women_korean_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_12.png",
+      "exists": true,
+      "sha256": "42d88795ec0f44123c7069fbf67783521309f05696b1cce8791499b7099a90d1",
+      "bytes": 550563
+    },
+    {
+      "style_id": "women_korean_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "korean",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_korean_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_korean_13.png",
+      "exists": true,
+      "sha256": "c5191ad1f148a92218f39677eb76b5fa8987ed0b444f61d7a0c0d8b0ecf82991",
+      "bytes": 567971
+    },
+    {
+      "style_id": "women_pakistani_01",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_01.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_01.png",
+      "exists": true,
+      "sha256": "f0909c307ecbed9453dafd525388a764800d15b71be1b6a0f5f243b4c79238dc",
+      "bytes": 479838
+    },
+    {
+      "style_id": "women_pakistani_02",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_02.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_02.png",
+      "exists": true,
+      "sha256": "800b458a92ea59bbe174fa0b0462c1cbaeab9678e5aca90705735a42ba3ec7b0",
+      "bytes": 438150
+    },
+    {
+      "style_id": "women_pakistani_03",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_03.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_03.png",
+      "exists": true,
+      "sha256": "fa0ae25bea0ad2d2a24d648b90a8b2d1ef1be5efc3b65442c9dbcc0bb8687fdc",
+      "bytes": 446857
+    },
+    {
+      "style_id": "women_pakistani_04",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_04.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_04.png",
+      "exists": true,
+      "sha256": "270cd7275acece3d7c16cc61d67c2350308be7b320df6d8b41e0adaca5f55df0",
+      "bytes": 420578
+    },
+    {
+      "style_id": "women_pakistani_05",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_05.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_05.png",
+      "exists": true,
+      "sha256": "270cd7275acece3d7c16cc61d67c2350308be7b320df6d8b41e0adaca5f55df0",
+      "bytes": 420578
+    },
+    {
+      "style_id": "women_pakistani_06",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_06.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_06.png",
+      "exists": true,
+      "sha256": "6f3e12d73e7b0939a04e01dd755c173e980c2f6f6433685a662d91a0e8cf4b24",
+      "bytes": 635425
+    },
+    {
+      "style_id": "women_pakistani_07",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_07.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_07.png",
+      "exists": true,
+      "sha256": "ae85ee913bcc83b883be589823fdf5d0c454501510fcfacb46be2d29ea3e70e9",
+      "bytes": 456268
+    },
+    {
+      "style_id": "women_pakistani_08",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_08.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_08.png",
+      "exists": true,
+      "sha256": "ae85ee913bcc83b883be589823fdf5d0c454501510fcfacb46be2d29ea3e70e9",
+      "bytes": 456268
+    },
+    {
+      "style_id": "women_pakistani_09",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_09.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_09.png",
+      "exists": true,
+      "sha256": "deaffb0c154d62442206d3e6d7b8d3c49795dc61e083ff4c286f64d47dc25808",
+      "bytes": 59802
+    },
+    {
+      "style_id": "women_pakistani_10",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_10.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_10.png",
+      "exists": true,
+      "sha256": "e4a717c7b2b3218fc0b30b670916e90bf255ead6bb31dae082375bd0cf1da613",
+      "bytes": 512941
+    },
+    {
+      "style_id": "women_pakistani_11",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_11.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_11.png",
+      "exists": true,
+      "sha256": "0906827a874836f364f552d3ddfef17e6c5f7816cfba9e3fb842b90354ccd500",
+      "bytes": 397244
+    },
+    {
+      "style_id": "women_pakistani_12",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_12.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_12.png",
+      "exists": true,
+      "sha256": "cae7b36ec80e281dd12a144a4d83802b25d8c36e5d9f9bf2230478012919597d",
+      "bytes": 401843
+    },
+    {
+      "style_id": "women_pakistani_13",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_13.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_13.png",
+      "exists": true,
+      "sha256": "86dc9af74f8f22c0c492d4adf38bcac7e29416f709e9e7476e02cc51d22ed47c",
+      "bytes": 459599
+    },
+    {
+      "style_id": "women_pakistani_14",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_14.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_14.png",
+      "exists": true,
+      "sha256": "952cf3c747bab0df8b2e145ed9983b0c154442f1c8d8bbe5adf0c48a84eae642",
+      "bytes": 488866
+    },
+    {
+      "style_id": "women_pakistani_15",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_15.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_15.png",
+      "exists": true,
+      "sha256": "484b8bd6d66731d9e52786d62643b9ec44bbb001c7b9d76e4a0afd2ce87bc5d4",
+      "bytes": 575544
+    },
+    {
+      "style_id": "women_pakistani_16",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_16.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_16.png",
+      "exists": true,
+      "sha256": "8d573effe62111724a0c19348dfdbeeef415f172c6357f1f57f8f87efff740ae",
+      "bytes": 462727
+    },
+    {
+      "style_id": "women_pakistani_17",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_17.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_17.png",
+      "exists": true,
+      "sha256": "8d573effe62111724a0c19348dfdbeeef415f172c6357f1f57f8f87efff740ae",
+      "bytes": 462727
+    },
+    {
+      "style_id": "women_pakistani_18",
+      "category_id": "wardrobe_browse",
+      "tab_id": "pakistani",
+      "gender": "women",
+      "image_url": "/media/catalog/wardrobe_browse/women_pakistani_18.png",
+      "local_file": "D:\\ai-outfit-changer\\public\\media\\catalog\\wardrobe_browse\\women_pakistani_18.png",
+      "exists": true,
+      "sha256": "1641bab31bb0b364c32573c9afc639edaa984c6835c8b5d1056bcf1dac46b2c7",
+      "bytes": 546848
+    }
+  ]
+}

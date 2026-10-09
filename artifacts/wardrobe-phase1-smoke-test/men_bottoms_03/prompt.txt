@@ -1,0 +1,12 @@
+Edit image 1 directly. Keep the same person, face, identity, body, pose, camera, lighting and background.
+
+Change ONLY: Replace ONLY the pants/trousers/bottom garment using image 2. Keep the original top, jacket, and all other non-target clothing unchanged.
+
+Use image 2 only as the garment reference for men_bottoms_03.
+Match its design, color, cut, fabric, length and visible details.
+
+Keep every non-target garment unchanged.
+Do not recreate the person or full image.
+Photorealistic.
+
+Match the exact pants/trousers/bottom garment from image 2, including cut, drape, textile, color, print, embroidery and trims.

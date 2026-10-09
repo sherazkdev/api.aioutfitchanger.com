@@ -1,0 +1,29 @@
+{
+  "style_id": "women_tops_03",
+  "category_id": "wardrobe_browse",
+  "engine": "BFL Virtual Try-On v2",
+  "endpoint": "https://api.bfl.ai/v1/flux-tools/vto-v2",
+  "job_id": "4505fc08-3817-493f-81bc-63c4ccf18cce",
+  "polling_status": "ready",
+  "prompt_length": 558,
+  "bfl_start": {
+    "id": "4505fc08-3817-493f-81bc-63c4ccf18cce",
+    "polling_url": "https://api.eu2.bfl.ai/v1/get_result?id=4505fc08-3817-493f-81bc-63c4ccf18cce",
+    "cost": 4.75,
+    "input_mp": 0.99,
+    "output_mp": 0.75
+  },
+  "bfl_poll": {
+    "id": "4505fc08-3817-493f-81bc-63c4ccf18cce",
+    "status": "Ready",
+    "result": {
+      "start_time": 1791287529.1556756,
+      "prompt": "Replace the black sheer top with the floral print camisole from Image 2. Keep the person's pose and everything else in Image 1 unchanged.",
+      "seed": 224330928,
+      "sample": "https://delivery.eu2.bfl.ai/durable/2026100611/c2d26a91-bf86-4cdf-9e53-883e85d376a3/92/532570666d48cf/666d48cf58c44b14b22edf882e50a2b5/sample.jpeg?se=2026-10-06T12%3A02%3A13Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=nA6qB20O4EM67tg9ys3ns%2BDoR3kjcZa3sJtmVtTnkrQ%3D"
+    },
+    "progress": null,
+    "details": null,
+    "preview": null
+  }
+}

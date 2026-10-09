@@ -1,0 +1,10 @@
+{
+  "style_id": "couple_04",
+  "label": "family_current_phase2",
+  "job_id": "fe34b001-e0fd-4321-9c67-ebbe0c0c92a7",
+  "poll": {
+    "ok": true,
+    "sample": "https://delivery.eu2.bfl.ai/durable/2026100612/c2d26a91-bf86-4cdf-9e53-883e85d376a3/68/84073085001361/85001361e50042078203e80e866b403d/sample.jpeg?se=2026-10-06T12%3A24%3A01Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=adKcTUVsgO563UQBovHetF%2B2bSYPG4qW%2BCmp0rUm2bs%3D",
+    "status": "ready"
+  }
+}

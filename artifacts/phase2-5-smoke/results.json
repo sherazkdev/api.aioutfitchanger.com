@@ -1,0 +1,57 @@
+[
+  {
+    "label": "couple_02_male",
+    "style_id": "couple_02",
+    "garment_path": "/media/catalog/couple_duo/couple_02_male.png",
+    "split_asset_ok": true,
+    "identity": "PASS",
+    "background": "PASS",
+    "outfit": "PASS",
+    "extra_people": "PASS",
+    "bfl_ok": true
+  },
+  {
+    "label": "couple_02_female",
+    "style_id": "couple_02",
+    "garment_path": "/media/catalog/couple_duo/couple_02_female.png",
+    "split_asset_ok": true,
+    "identity": "PASS",
+    "background": "PASS",
+    "outfit": "PASS",
+    "extra_people": "PASS",
+    "bfl_ok": true
+  },
+  {
+    "label": "men_arabian_03",
+    "style_id": "men_arabian_03",
+    "garment_path": "/media/catalog/wardrobe_browse/men_arabian_03.png",
+    "split_asset_ok": true,
+    "identity": "PASS",
+    "background": "PASS",
+    "outfit": "PASS",
+    "extra_people": "PASS",
+    "bfl_ok": true
+  },
+  {
+    "label": "women_indian_02",
+    "style_id": "women_indian_02",
+    "garment_path": "/media/catalog/wardrobe_browse/women_indian_02.png",
+    "split_asset_ok": true,
+    "identity": "PASS",
+    "background": "PASS",
+    "outfit": "PASS",
+    "extra_people": "PASS",
+    "bfl_ok": true
+  },
+  {
+    "label": "men_tryon_03",
+    "style_id": "men_tryon_03",
+    "garment_path": "/media/catalog/virtual_try_on/men_tryon_03.png",
+    "split_asset_ok": true,
+    "identity": "PASS",
+    "background": "PASS",
+    "outfit": "PASS",
+    "extra_people": "PASS",
+    "bfl_ok": true
+  }
+]

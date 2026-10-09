@@ -1,0 +1,9 @@
+{
+  "style_id": "men_tryon_01",
+  "category_id": "virtual_try_on",
+  "engine": "BFL Virtual Try-On v2 (Phase 2 prompt)",
+  "garment_url": "https://appworkspro.com/media/catalog/virtual_try_on/men_tryon_01.png",
+  "job_id": "2764c492-db57-41d9-9a46-4d02346c579f",
+  "polling_status": "ready",
+  "prompt_length": 841
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "style_id": "men_hair_styles_02",
+    "region": "hair_style",
+    "category_id": "hair_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "women_hair_styles_04",
+    "region": "hair_style",
+    "category_id": "hair_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "men_hair_styles_07",
+    "region": "hair_style",
+    "category_id": "hair_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "men_hair_color_03",
+    "region": "hair_color",
+    "category_id": "hair_color",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "women_hair_color_05",
+    "region": "hair_color",
+    "category_id": "hair_color",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "men_hair_color_08",
+    "region": "hair_color",
+    "category_id": "hair_color",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "men_beard_03",
+    "region": "beard",
+    "category_id": "beard_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "men_beard_06",
+    "region": "beard",
+    "category_id": "beard_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "men_beard_09",
+    "region": "beard",
+    "category_id": "beard_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "women_hijab_02",
+    "region": "hijab",
+    "category_id": "hijab_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "women_hijab_05",
+    "region": "hijab",
+    "category_id": "hijab_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  },
+  {
+    "style_id": "women_hijab_08",
+    "region": "hijab",
+    "category_id": "hijab_styles",
+    "engine": "flux-2-pro",
+    "bfl_ok": true,
+    "grades_pending": true
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "total": 419,
+  "phase1_count": 105,
+  "phase2_count": 258,
+  "legacy_flux_count": 56,
+  "legacy_vto_fallback_count": 0,
+  "unexpected": [],
+  "phase1_by_tab": {
+    "tops": 11,
+    "shirts": 20,
+    "bottoms": 16,
+    "skirts": 16,
+    "jackets": 42
+  }
+}

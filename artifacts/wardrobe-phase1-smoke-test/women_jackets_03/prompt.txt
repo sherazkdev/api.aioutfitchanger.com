@@ -1,0 +1,12 @@
+Edit image 1 directly. Keep the same person, face, identity, body, pose, camera, lighting and background.
+
+Change ONLY: Replace or add ONLY the jacket/outerwear layer using image 2. Preserve inner clothing where naturally visible.
+
+Use image 2 only as the garment reference for women_jackets_03.
+Match its design, color, cut, fabric, length and visible details.
+
+Keep every non-target garment unchanged.
+Do not recreate the person or full image.
+Photorealistic.
+
+Match the exact jacket/outerwear layer from image 2, including cut, drape, textile, color, print, embroidery and trims.

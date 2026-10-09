@@ -1,0 +1,10 @@
+{
+  "style_id": "couple_01",
+  "label": "B_targeted",
+  "job_id": "b7b10dd1-201c-469d-bc02-a6bd736c9ad5",
+  "poll": {
+    "ok": true,
+    "sample": "https://delivery.us2.bfl.ai/durable/2026100612/c2d26a91-bf86-4cdf-9e53-883e85d376a3/01/778177fe214a4d/fe214a4ddce44939916cc3f25bbe3093/sample.jpeg?se=2026-10-06T12%3A22%3A58Z&sp=r&sv=2026-02-06&sr=b&rsct=image/jpeg&sig=CjTS2pDeM7zTJdGbxjqjUBSdQVi0m6cS1/6c6YS/xzw%3D",
+    "status": "ready"
+  }
+}

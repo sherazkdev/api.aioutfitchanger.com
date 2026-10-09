@@ -1,0 +1,9 @@
+{
+  "style_id": "couple_01",
+  "category_id": "couple_duo",
+  "engine": "BFL Virtual Try-On v2 (Phase 2 prompt)",
+  "garment_url": "https://appworkspro.com/media/catalog/couple_duo/couple_01.png",
+  "job_id": "e251537b-4001-4efa-b778-e0eba829ab6c",
+  "polling_status": "ready",
+  "prompt_length": 924
+}

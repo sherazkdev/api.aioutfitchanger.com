@@ -1,0 +1,75 @@
+[
+  {
+    "style_id": "couple_01",
+    "category_id": "couple_duo",
+    "person": "male",
+    "garmentRel": "media/catalog/couple_duo/couple_01_male.png",
+    "note": "split asset (routing unchanged)",
+    "bfl_ok": true,
+    "error": null
+  },
+  {
+    "style_id": "men_arabian_01",
+    "category_id": "wardrobe_browse",
+    "person": "male",
+    "garmentRel": "media/catalog/wardrobe_browse/men_arabian_01.png",
+    "bfl_ok": true,
+    "error": null
+  },
+  {
+    "style_id": "women_indian_01",
+    "category_id": "wardrobe_browse",
+    "person": "female",
+    "garmentRel": "media/catalog/wardrobe_browse/women_indian_01.png",
+    "bfl_ok": true,
+    "error": null
+  },
+  {
+    "style_id": "men_pakistani_01",
+    "category_id": "wardrobe_browse",
+    "person": "male",
+    "garmentRel": "media/catalog/wardrobe_browse/men_pakistani_01.png",
+    "bfl_ok": true,
+    "error": null
+  },
+  {
+    "style_id": "men_chinese_01",
+    "category_id": "wardrobe_browse",
+    "person": "male",
+    "garmentRel": "media/catalog/wardrobe_browse/men_chinese_01.png",
+    "bfl_ok": true,
+    "error": null
+  },
+  {
+    "style_id": "men_korean_01",
+    "category_id": "wardrobe_browse",
+    "person": "male",
+    "garmentRel": "media/catalog/wardrobe_browse/men_korean_01.png",
+    "bfl_ok": true,
+    "error": null
+  },
+  {
+    "style_id": "men_casual_01",
+    "category_id": "occasions",
+    "person": "male",
+    "garmentRel": "media/catalog/occasions/men_casual_01.png",
+    "bfl_ok": true,
+    "error": null
+  },
+  {
+    "style_id": "men_formal_01",
+    "category_id": "occasions",
+    "person": "male",
+    "garmentRel": "media/catalog/occasions/men_formal_01.png",
+    "bfl_ok": true,
+    "error": null
+  },
+  {
+    "style_id": "men_tryon_01",
+    "category_id": "virtual_try_on",
+    "person": "male",
+    "garmentRel": "media/catalog/virtual_try_on/men_tryon_01.png",
+    "bfl_ok": true,
+    "error": null
+  }
+]

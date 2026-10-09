@@ -1,0 +1,19 @@
+{
+  "assessed_at": "2026-10-07T05:50:28.104Z",
+  "counts": {
+    "hair_style": 16,
+    "hair_color": 20,
+    "beard": 10,
+    "hijab": 10
+  },
+  "total": 56,
+  "routing": {
+    "all_flux": true,
+    "issues": []
+  },
+  "prompt_audit": {
+    "styles_audited": 56,
+    "flags": [],
+    "clean": true
+  }
+}

@@ -1,0 +1,12 @@
+Keep the existing person and scene from image 1 unchanged.
+
+Completely replace the visible original outfit with the clothing shown in image 2.
+
+Do not leave visible parts of the original outfit where the reference outfit should replace them.
+
+Use image 2 only for clothing appearance.
+Do not copy the reference person's face, body, pose or background.
+
+Preserve identity, body proportions, pose, hair, skin, camera, lighting and background from image 1.
+
+Photorealistic.
