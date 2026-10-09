@@ -36,7 +36,7 @@ export type SendPasswordResetEmailInput = {
 
 export type SendEmailResult =
   | { ok: true; messageId: string }
-  | { ok: false; error: "not_configured" | "send_failed" };
+  | { ok: false; error: "not_configured" | "send_failed"; detail?: string };
 
 export async function sendPasswordResetEmail(
   input: SendPasswordResetEmailInput
@@ -72,8 +72,9 @@ export async function sendPasswordResetEmail(
     if (error || !data?.id) {
       console.error("[email] password reset send failed", {
         domain: recipientDomain(input.to),
+        resendError: error?.message ?? error ?? "unknown",
       });
-      return { ok: false, error: "send_failed" };
+      return { ok: false, error: "send_failed", detail: error?.message };
     }
 
     console.info("[email] password reset sent", {

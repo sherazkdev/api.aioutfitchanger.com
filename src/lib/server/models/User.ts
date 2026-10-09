@@ -2,7 +2,7 @@ import mongoose, { Schema, type InferSchemaType, type Model } from "mongoose";
 
 const UserSchema = new Schema(
   {
-    email: { type: String, trim: true, lowercase: true, sparse: true },
+    email: { type: String, trim: true, lowercase: true, unique: true, sparse: true },
     googleId: { type: String, unique: true, sparse: true },
     displayName: { type: String, trim: true },
     photoUrl: { type: String },
@@ -23,7 +23,6 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-UserSchema.index({ email: 1 });
 UserSchema.index({ role: 1, createdAt: -1 });
 
 export type UserDoc = InferSchemaType<typeof UserSchema> & { _id: mongoose.Types.ObjectId };

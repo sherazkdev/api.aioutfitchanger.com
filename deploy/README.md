@@ -28,6 +28,29 @@ JWT_ACCESS_SECRET=...
 JWT_REFRESH_SECRET=...
 ```
 
+### Forgot password email (Resend)
+
+Without these, `/api/v1/auth/forgot-password` still returns success but **no email is sent** (check PM2 logs for `[email]` or `[auth] forgot-password`).
+
+```env
+RESEND_API_KEY=re_...
+RESEND_FROM_EMAIL=noreply@your-verified-domain.com
+RESEND_FROM_NAME=AI Wardrobe
+RESET_PASSWORD_URL=https://appworkspro.com/reset-password
+```
+
+Verify on VPS:
+
+```bash
+node scripts/verify-resend-password-reset.mjs
+node scripts/verify-resend-password-reset.mjs --send you@example.com
+pm2 logs ai-outfit-changer --lines 50 | grep -E '\[email\]|\[auth\] forgot'
+```
+
+**Note:** Only users who signed up with **email + password** get a reset mail. Google-only accounts have no `passwordHash` — API responds OK but skips send.
+
+**PM2 `Failed to find Server Action`** lines are usually stale browser JS after deploy; hard refresh or `pm2 reload` after `npm run build`. They are unrelated to the forgot-password API.
+
 ## Manual steps (same as script)
 
 ```bash

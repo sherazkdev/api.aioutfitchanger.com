@@ -47,11 +47,19 @@ export async function POST(req: Request) {
   const resetUrl = buildPasswordResetUrl(raw);
   const expiresIn = formatResetTokenExpiresIn(ttlHours);
 
-  await sendPasswordResetEmail({
+  const sent = await sendPasswordResetEmail({
     to: body.email.toLowerCase(),
     resetUrl,
     expiresIn,
   });
+
+  if (!sent.ok) {
+    console.error("[auth] forgot-password email not delivered", {
+      reason: sent.error,
+      detail: sent.detail ?? null,
+      userId: String(user._id),
+    });
+  }
 
   const payload: Record<string, string> = { ...generic };
   if (process.env.NODE_ENV !== "production") {
