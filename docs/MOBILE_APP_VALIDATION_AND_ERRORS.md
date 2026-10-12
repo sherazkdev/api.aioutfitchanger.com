@@ -48,10 +48,12 @@ Try-on: if body too large → **413** `PAYLOAD_TOO_LARGE`.
 | `access_token`, `refresh_token`, `expires_at` | string | Same as before |
 | `verification_message` | string | Show in UI after sign-up |
 | `verification_email_sent` | boolean | `false` → show “check spam / try resend” |
+| `otp_length` | number | Always **4** |
+| `expires_in_seconds` | number | OTP validity (~600) |
 | `user.email_verified` | boolean | Starts **false** |
-| `dev_verify_url` | string | **Non-production only** — email link for testing |
+| `dev_otp`, `dev_verify_url` | string | **Non-production only** |
 
-Sign-up verification is **email link only** (no OTP on register). Forgot-password still uses OTP + link.
+Sign-up: **OTP in app** (`POST /auth/verify-email/otp`) **or** email link. Forgot-password: same pattern (OTP + link).
 
 ### Errors
 | HTTP | `error.code` | App action |

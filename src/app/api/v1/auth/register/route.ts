@@ -81,6 +81,8 @@ export async function POST(req: Request) {
     expires_at: session.expiresAt.toISOString(),
     verification_message: REGISTER_VERIFICATION_MESSAGE,
     verification_email_sent: verification.emailSent,
+    otp_length: verification.otpLength,
+    expires_in_seconds: verification.expiresInSeconds,
     fcm_registered: fcmRegistered,
     user: {
       id: userId,
@@ -90,6 +92,7 @@ export async function POST(req: Request) {
       email_verified: user.emailVerified,
     },
   };
+  if (verification.devOtp) data.dev_otp = verification.devOtp;
   if (verification.devActionUrl) data.dev_verify_url = verification.devActionUrl;
 
   return jsonOk(data);

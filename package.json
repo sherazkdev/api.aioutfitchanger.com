@@ -26,6 +26,7 @@
     "test:beauty-flux": "npx tsx --test scripts/beauty-flux-prompt.test.ts",
     "test:byteplus-provider": "npx tsx --test scripts/byteplus-provider.test.ts",
     "test:password-reset-otp": "npx tsx --test scripts/password-reset-otp.test.ts",
+    "test:register-verification": "npx tsx --test scripts/register-verification-email.test.ts",
     "test:moderation": "npx tsx --test scripts/moderation.test.ts",
     "test:watermark": "npx tsx --test scripts/watermark.test.ts",
     "verify:audit-backend": "node scripts/audit-backend-fixes.verify.mjs",

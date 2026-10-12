@@ -145,8 +145,10 @@ POST /api/v1/auth/register
   "access_token": "eyJ…",
   "refresh_token": "eyJ…",
   "expires_at": "2026-10-12T12:00:00.000Z",
-  "verification_message": "Account created. Check your email and open the verification link to continue.",
+  "verification_message": "Account created. Check your email for a 4-digit code and a link to verify your account.",
   "verification_email_sent": true,
+  "otp_length": 4,
+  "expires_in_seconds": 600,
   "user": {
     "id": "…",
     "email": "user@example.com",
@@ -157,16 +159,12 @@ POST /api/v1/auth/register
 }
 ```
 
-Server sends **one email** with **4-digit OTP** + **web link** (`RESET_PASSWORD_URL` or `APP_URL/reset-password?token=…`) to verify and set password.
+Server sends **one email** with **4-digit OTP** + **verify link** (`APP_URL/verify-email?token=…`).
 
-**Optional — verify email only (no password change):**
+**Verify (either path):**
 
-```http
-POST /api/v1/auth/verify-email/otp
-{ "email": "user@example.com", "otp": "1234" }
-```
-
-**200:** `{ "email_verified": true, "otp_length": 4 }`
+- **App:** `POST /api/v1/auth/verify-email/otp` with `{ "email", "otp" }` → navigate home on success.
+- **Link:** user opens link (web) → `POST /auth/verify-email` with `{ "token" }`; app learns via **FCM** `email_verified` or poll `GET /users/me`.
 
 ### 4.3 Email login (app users only)
 
@@ -499,6 +497,8 @@ Poll every **2–3 seconds** until `status` is terminal.
 | `failed` | Read `error` |
 | `cancelled` | User/admin cancelled |
 
+**Watermark (Oct 2026):** For `subscription_plan: free`, the server embeds a bottom-right “AI Generated • Outfit Changer” pill when the result is **first** saved to `/uploads/looks/…`. Premium/admin: clean image. No extra request fields — display the returned URL as-is. Details: **`docs/MOBILE_WATERMARK_AND_SUBSCRIPTION.md`**.
+
 ### Step C — Save to history (optional)
 
 ```http
@@ -583,6 +583,8 @@ Authorization: Bearer <access_token>
   "photo_url": null,
   "role": "user",
   "status": "active",
+  "email_verified": true,
+  "subscription_plan": "free",
   "preferences": {
     "theme_mode": "system",
     "notifications_enabled": true,
@@ -591,6 +593,10 @@ Authorization: Bearer <access_token>
   }
 }
 ```
+
+| Field | Values | Notes |
+|-------|--------|--------|
+| `subscription_plan` | `free` \| `premium` | Default `free`. Premium users get **clean** AI results (no server watermark on newly saved images). See **`docs/MOBILE_WATERMARK_AND_SUBSCRIPTION.md`**. |
 
 ```http
 PATCH /api/v1/users/me/preferences

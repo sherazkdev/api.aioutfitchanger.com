@@ -36,8 +36,7 @@ export async function issuePasswordResetChallenge(params: {
   kind: AccountSecurityEmailKind;
 }): Promise<IssueChallengeResult> {
   const to = normalizeEmail(params.email);
-  const linkOnlyVerify = params.kind === "welcome_verify";
-  const otp = linkOnlyVerify ? undefined : generatePasswordResetOtp();
+  const otp = generatePasswordResetOtp();
   const otpExpires = otpExpiresAt();
   const ttlMin = otpTtlMinutes();
 
@@ -45,18 +44,14 @@ export async function issuePasswordResetChallenge(params: {
   const ttlHours = Number(process.env.RESET_TOKEN_TTL_HOURS ?? 1);
   const linkExpires = new Date(Date.now() + ttlHours * 60 * 60 * 1000);
 
-  if (!linkOnlyVerify) {
-    await PasswordResetOtp.updateMany({ userId: params.userId, usedAt: null }, { usedAt: new Date() });
-  }
+  await PasswordResetOtp.updateMany({ userId: params.userId, usedAt: null }, { usedAt: new Date() });
   await PasswordResetToken.updateMany({ userId: params.userId, usedAt: null }, { usedAt: new Date() });
 
-  if (otp) {
-    await PasswordResetOtp.create({
-      userId: params.userId,
-      otpHash: buildOtpHash(String(params.userId), otp),
-      expiresAt: otpExpires,
-    });
-  }
+  await PasswordResetOtp.create({
+    userId: params.userId,
+    otpHash: buildOtpHash(String(params.userId), otp),
+    expiresAt: otpExpires,
+  });
 
   const linkPurpose = params.kind === "welcome_verify" ? "email_verify" : "password_reset";
   const actionUrl =
@@ -74,19 +69,19 @@ export async function issuePasswordResetChallenge(params: {
     kind: params.kind,
     otp,
     actionUrl,
-    expiresInMinutes: linkOnlyVerify ? ttlHours * 60 : ttlMin,
+    expiresInMinutes: ttlMin,
     linkExpiresIn: formatResetTokenExpiresIn(ttlHours),
   });
 
   const result: IssueChallengeResult = {
     emailSent: sent.ok,
     sendError: sent.ok ? undefined : sent,
-    otpLength: linkOnlyVerify ? 0 : PASSWORD_RESET_OTP_LENGTH,
-    expiresInSeconds: linkOnlyVerify ? ttlHours * 3600 : ttlMin * 60,
+    otpLength: PASSWORD_RESET_OTP_LENGTH,
+    expiresInSeconds: ttlMin * 60,
   };
 
   if (process.env.NODE_ENV !== "production") {
-    if (otp) result.devOtp = otp;
+    result.devOtp = otp;
     result.devActionUrl = actionUrl;
   }
 
