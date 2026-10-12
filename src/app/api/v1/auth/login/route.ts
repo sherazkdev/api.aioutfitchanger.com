@@ -3,16 +3,26 @@ import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
 import { verifyPassword } from "@/lib/server/auth/password";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
+import { requireCaptchaIfEnabled } from "@/lib/server/security/authGuards";
+import { authFailureDelay } from "@/lib/server/security/requestGuards";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
 /** App email sign-in (role=user). Admins should use POST /auth/admin/login for dashboard. */
 export async function POST(req: Request) {
   const ip = getClientIp(req) ?? "unknown";
-  if (!rateLimit(`auth:login:${ip}`, 20)) {
+  if (!(await rateLimit(`auth:login:${ip}`, 20))) {
     return jsonError("RATE_LIMIT", "Too many requests", 429);
   }
 
-  const body = (await req.json()) as { email?: string; password?: string };
+  const body = (await req.json()) as {
+    email?: string;
+    password?: string;
+    captcha_token?: string;
+    turnstile_token?: string;
+  };
+  const captchaErr = await requireCaptchaIfEnabled(req, body);
+  if (captchaErr) return captchaErr;
+
   if (!body.email || !body.password) {
     return jsonError("VALIDATION", "email and password required", 422);
   }
@@ -20,12 +30,16 @@ export async function POST(req: Request) {
   await connectMongo();
   const user = await User.findOne({ email: normalizeEmail(body.email) }).select("+passwordHash");
   if (!user || user.role === "admin") {
+    await authFailureDelay();
     return jsonError("UNAUTHORIZED", "Invalid email or password", 401);
   }
   if (user.status === "disabled") return jsonError("FORBIDDEN", "Account disabled", 403);
 
   const valid = await verifyPassword(body.password, user.passwordHash);
-  if (!valid) return jsonError("UNAUTHORIZED", "Invalid email or password", 401);
+  if (!valid) {
+    await authFailureDelay();
+    return jsonError("UNAUTHORIZED", "Invalid email or password", 401);
+  }
 
   user.lastLoginAt = new Date();
   await user.save();

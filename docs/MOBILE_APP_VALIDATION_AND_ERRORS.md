@@ -18,6 +18,20 @@
 | `style_id` | Required string | try-on/generate |
 | `try_on_job_id` | Valid Mongo ObjectId (24 hex) when syncing history | POST history |
 | `display_name` | Optional; trim | register |
+| `captcha_token` or `turnstile_token` | Required when server has `ENFORCE_TURNSTILE=true` | register, login, forgot-password, forgot-password/otp |
+
+---
+
+## Security (Turnstile — optional server flag)
+
+When production enables Turnstile, send Cloudflare token as **`captcha_token`** or **`turnstile_token`** on auth abuse endpoints (same JSON body as email/password).
+
+| HTTP | `error.code` | App action |
+|------|----------------|------------|
+| 422 | `CAPTCHA_REQUIRED` | Show Turnstile widget, resubmit with token |
+| 400 | `CAPTCHA_FAILED` | Refresh widget, try again |
+
+Try-on: if body too large → **413** `PAYLOAD_TOO_LARGE`.
 
 ---
 

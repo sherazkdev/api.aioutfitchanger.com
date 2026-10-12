@@ -72,6 +72,19 @@ node scripts/prepare-look-history-unique-index.mjs
 
 Keeps the newest look per `(userId, tryOnJobId)` and creates the index.
 
+### Security hardening (90%+)
+
+See **`docs/API_SECURITY_HARDENING.md`**. Recommended on VPS:
+
+```env
+REDIS_URL=redis://127.0.0.1:6379
+ADMIN_IP_ALLOWLIST=your.public.ip
+ENFORCE_TURNSTILE=true
+TURNSTILE_SECRET_KEY=...
+```
+
+Install Redis if needed: `sudo apt install redis-server` (bind localhost only).
+
 ## Manual steps (same as script)
 
 ```bash

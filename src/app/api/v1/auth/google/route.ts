@@ -23,7 +23,7 @@ export async function POST(req: Request) {
   }
 
   const ip = getClientIp(req) ?? "unknown";
-  if (!rateLimit(`auth:google:${ip}`, 20)) {
+  if (!(await rateLimit(`auth:google:${ip}`, 20))) {
     return jsonError("RATE_LIMIT", "Too many requests", 429);
   }
 

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { consumeRateLimit } from "./security/rateLimitStore";
 
 export function jsonOk<T>(data: T, init?: ResponseInit) {
   return NextResponse.json({ data, error: null }, init);
@@ -35,26 +36,7 @@ export function getClientIp(req: Request): string | undefined {
   return req.headers.get("x-real-ip") ?? undefined;
 }
 
-const buckets = new Map<string, { count: number; reset: number }>();
-let rateLimitOps = 0;
-
-function pruneRateBuckets(now: number) {
-  for (const [key, row] of buckets) {
-    if (now > row.reset) buckets.delete(key);
-  }
-}
-
-export function rateLimit(key: string, limit: number, windowMs = 60_000): boolean {
-  const now = Date.now();
-  rateLimitOps += 1;
-  if (rateLimitOps % 200 === 0) pruneRateBuckets(now);
-
-  const row = buckets.get(key);
-  if (!row || now > row.reset) {
-    buckets.set(key, { count: 1, reset: now + windowMs });
-    return true;
-  }
-  if (row.count >= limit) return false;
-  row.count += 1;
-  return true;
+/** Distributed rate limit (Redis if REDIS_URL, else memory). */
+export async function rateLimit(key: string, limit: number, windowMs = 60_000): Promise<boolean> {
+  return consumeRateLimit(key, limit, windowMs);
 }

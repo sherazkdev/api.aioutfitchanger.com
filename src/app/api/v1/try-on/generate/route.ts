@@ -14,9 +14,13 @@ import { jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 import { moderateTryOnRequest } from "@/lib/server/moderation/moderateTryOn";
 import { assertTryOnDailyQuota } from "@/lib/server/tryOn/dailyQuota";
 import { publicTryOnFailureMessage } from "@/lib/server/tryOn/publicErrors";
+import { rejectOversizedBody } from "@/lib/server/security/requestGuards";
 import { resolveTryOnImageProvider } from "@/lib/server/tryOn/providerSelection";
 
 export async function POST(req: Request) {
+  const tooLarge = rejectOversizedBody(req);
+  if (tooLarge) return tooLarge;
+
   let env;
   try {
     env = getServerEnv();
@@ -26,7 +30,7 @@ export async function POST(req: Request) {
   const auth = await requireAuth(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
-  if (!rateLimit(`tryon:${auth.payload!.userId}`, 10, 60_000)) {
+  if (!(await rateLimit(`tryon:${auth.payload!.userId}`, 10, 60_000))) {
     return jsonError("RATE_LIMIT", "Too many try-on requests", 429);
   }
 

@@ -46,7 +46,7 @@ export async function POST(req: Request) {
   const auth = await requireAuth(req, ["admin"]);
   if (auth.error) return auth.error;
 
-  if (!rateLimit(`admin:broadcast:${auth.payload!.userId}`, 5, 60_000)) {
+  if (!(await rateLimit(`admin:broadcast:${auth.payload!.userId}`, 5, 60_000))) {
     return jsonError("RATE_LIMIT", "Broadcast rate limit exceeded", 429);
   }
 

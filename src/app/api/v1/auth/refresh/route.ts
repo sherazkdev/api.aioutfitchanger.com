@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   }
 
   const ip = getClientIp(req) ?? "unknown";
-  if (!rateLimit(`auth:refresh:${ip}`, 40)) {
+  if (!(await rateLimit(`auth:refresh:${ip}`, 40))) {
     return jsonError("RATE_LIMIT", "Too many requests", 429);
   }
 

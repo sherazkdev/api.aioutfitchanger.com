@@ -4,6 +4,8 @@ import { verifyPassword } from "@/lib/server/auth/password";
 import { User } from "@/lib/server/models/User";
 import { ensureAdminFromEnv } from "@/lib/server/admin/ensureAdmin";
 import { getServerEnv } from "@/lib/server/env";
+import { isAdminIpAllowed } from "@/lib/server/security/adminIpAllowlist";
+import { authFailureDelay } from "@/lib/server/security/requestGuards";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
 /** Dashboard admin sign-in only (role=admin, password verified from Mongo bcrypt). */
@@ -15,8 +17,12 @@ export async function POST(req: Request) {
   }
 
   const ip = getClientIp(req) ?? "unknown";
-  if (!rateLimit(`auth:admin:${ip}`, 10)) {
+  if (!(await rateLimit(`auth:admin:${ip}`, 10))) {
     return jsonError("RATE_LIMIT", "Too many requests", 429);
+  }
+
+  if (!isAdminIpAllowed(req)) {
+    return jsonError("FORBIDDEN", "Admin access not allowed from this network", 403);
   }
 
   const body = (await req.json()) as { email?: string; password?: string };
@@ -27,11 +33,15 @@ export async function POST(req: Request) {
 
   const user = await User.findOne({ email: body.email.toLowerCase() }).select("+passwordHash");
   if (!user || user.role !== "admin") {
+    await authFailureDelay();
     return jsonError("UNAUTHORIZED", "Invalid admin credentials", 401);
   }
 
   const valid = await verifyPassword(body.password, user.passwordHash);
-  if (!valid) return jsonError("UNAUTHORIZED", "Invalid admin credentials", 401);
+  if (!valid) {
+    await authFailureDelay();
+    return jsonError("UNAUTHORIZED", "Invalid admin credentials", 401);
+  }
 
   if (user.status === "disabled") return jsonError("FORBIDDEN", "Account disabled", 403);
 

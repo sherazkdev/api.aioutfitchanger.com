@@ -6,19 +6,27 @@ import {
   notifyGoogleOnlyAccount,
 } from "@/lib/server/auth/passwordResetChallenge";
 import { User } from "@/lib/server/models/User";
+import { requireCaptchaIfEnabled } from "@/lib/server/security/authGuards";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
 export async function POST(req: Request) {
   const ip = getClientIp(req) ?? "unknown";
-  if (!rateLimit(`auth:forgot-otp:${ip}`, 8)) {
+  if (!(await rateLimit(`auth:forgot-otp:${ip}`, 8))) {
     return jsonError("RATE_LIMIT", "Too many requests", 429);
   }
 
-  const body = (await req.json()) as { email?: string };
+  const body = (await req.json()) as {
+    email?: string;
+    captcha_token?: string;
+    turnstile_token?: string;
+  };
+  const captchaErr = await requireCaptchaIfEnabled(req, body);
+  if (captchaErr) return captchaErr;
+
   const email = body.email ? normalizeEmail(body.email) : "";
   if (!email) return jsonError("VALIDATION", "email required", 422);
 
-  if (!rateLimit(`auth:forgot-otp:email:${email}`, 4)) {
+  if (!(await rateLimit(`auth:forgot-otp:email:${email}`, 4))) {
     return jsonError("RATE_LIMIT", "Too many requests for this email", 429);
   }
 

@@ -7,7 +7,7 @@ import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
 export async function POST(req: Request) {
   const ip = getClientIp(req) ?? "unknown";
-  if (!rateLimit(`auth:reset:${ip}`, 10)) {
+  if (!(await rateLimit(`auth:reset:${ip}`, 10))) {
     return jsonError("RATE_LIMIT", "Too many requests", 429);
   }
 

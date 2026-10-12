@@ -5,12 +5,13 @@ import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
 import { issuePasswordResetChallenge } from "@/lib/server/auth/passwordResetChallenge";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
+import { requireCaptchaIfEnabled } from "@/lib/server/security/authGuards";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
 /** Mobile / app email sign-up (role=user). Not for admin dashboard. */
 export async function POST(req: Request) {
   const ip = getClientIp(req) ?? "unknown";
-  if (!rateLimit(`auth:register:${ip}`, 15)) {
+  if (!(await rateLimit(`auth:register:${ip}`, 15))) {
     return jsonError("RATE_LIMIT", "Too many requests", 429);
   }
 
@@ -18,7 +19,12 @@ export async function POST(req: Request) {
     email?: string;
     password?: string;
     display_name?: string;
+    captcha_token?: string;
+    turnstile_token?: string;
   };
+
+  const captchaErr = await requireCaptchaIfEnabled(req, body);
+  if (captchaErr) return captchaErr;
 
   if (!body.email || !body.password) {
     return jsonError("VALIDATION", "email and password required", 422);

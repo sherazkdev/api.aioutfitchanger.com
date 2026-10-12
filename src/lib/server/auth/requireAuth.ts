@@ -1,5 +1,6 @@
 import { verifyAccessToken } from "./tokens";
 import { getCachedUserGate, setCachedUserGate } from "./userAuthCache";
+import { isAdminIpAllowed } from "../security/adminIpAllowlist";
 import { jsonError } from "../http";
 import { connectMongo } from "../db";
 import { User } from "../models/User";
@@ -21,6 +22,10 @@ export async function requireAuth(req: Request, roles?: ("admin" | "user")[]) {
 
     if (!allowed.includes(role)) {
       return { error: jsonError("FORBIDDEN", "Insufficient role", 403) };
+    }
+
+    if (allowed.length === 1 && allowed[0] === "admin" && !isAdminIpAllowed(req)) {
+      return { error: jsonError("FORBIDDEN", "Admin access not allowed from this network", 403) };
     }
 
     await connectMongo();
