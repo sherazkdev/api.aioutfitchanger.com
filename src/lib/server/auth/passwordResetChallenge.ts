@@ -88,6 +88,13 @@ export async function issuePasswordResetChallenge(params: {
   return result;
 }
 
+/** After password reset (link or OTP), invalidate all outstanding OTPs and email links for this user. */
+export async function invalidatePasswordResetChallenges(userId: Types.ObjectId): Promise<void> {
+  const now = new Date();
+  await PasswordResetOtp.updateMany({ userId, usedAt: null }, { usedAt: now });
+  await PasswordResetToken.updateMany({ userId, usedAt: null }, { usedAt: now });
+}
+
 export async function notifyGoogleOnlyAccount(email: string): Promise<boolean> {
   const sent = await sendGoogleSignInReminderEmail(normalizeEmail(email));
   return sent.ok;

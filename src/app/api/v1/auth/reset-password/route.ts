@@ -1,8 +1,7 @@
 import { connectMongo } from "@/lib/server/db";
 import { applyNewPassword } from "@/lib/server/auth/applyPasswordReset";
-import { hashResetLinkToken } from "@/lib/server/auth/passwordResetSecrets";
+import { resolvePasswordResetLink } from "@/lib/server/auth/resolvePasswordResetLink";
 import { User } from "@/lib/server/models/User";
-import { PasswordResetToken } from "@/lib/server/models/PasswordResetToken";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
 export async function POST(req: Request) {
@@ -20,25 +19,17 @@ export async function POST(req: Request) {
   }
 
   await connectMongo();
-  const doc = await PasswordResetToken.findOne({ tokenHash: hashResetLinkToken(body.token) });
-  if (!doc || doc.usedAt || doc.expiresAt.getTime() < Date.now()) {
-    return jsonError("INVALID_TOKEN", "Reset link is invalid or expired", 400);
-  }
-  if (doc.purpose === "email_verify") {
-    return jsonError(
-      "INVALID_TOKEN",
-      "This link verifies your email only. Open the verify link from your welcome email or use forgot-password for a reset link.",
-      400
-    );
+  const resolved = await resolvePasswordResetLink(body.token);
+  if (!resolved.ok) {
+    return jsonError(resolved.code, resolved.message, 400);
   }
 
-  const user = await User.findById(doc.userId).select("+passwordHash");
-  if (!user) return jsonError("INVALID_TOKEN", "Reset link is invalid or expired", 400);
+  const user = await User.findById(resolved.doc.userId).select("+passwordHash");
+  if (!user) {
+    return jsonError("INVALID_TOKEN", "Reset link is invalid. Request a new password reset.", 400);
+  }
 
   await applyNewPassword(user._id, body.password);
-
-  doc.usedAt = new Date();
-  await doc.save();
 
   return jsonOk({ password_updated: true });
 }

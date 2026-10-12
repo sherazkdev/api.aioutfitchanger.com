@@ -1,4 +1,5 @@
 import type { Types } from "mongoose";
+import { invalidatePasswordResetChallenges } from "@/lib/server/auth/passwordResetChallenge";
 import { hashPassword } from "@/lib/server/auth/password";
 import { revokeAllUserSessions } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
@@ -11,5 +12,6 @@ export async function applyNewPassword(userId: Types.ObjectId, newPassword: stri
   user.passwordHash = await hashPassword(newPassword);
   user.emailVerified = true;
   await user.save();
+  await invalidatePasswordResetChallenges(userId);
   await revokeAllUserSessions(userId);
 }

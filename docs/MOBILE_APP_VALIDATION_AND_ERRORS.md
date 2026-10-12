@@ -236,6 +236,8 @@ Do not create duplicate local row; use returned `id`.
 | `INVALID_OTP` | 400 |
 | `OTP_LOCKED` | 400 |
 | `INVALID_TOKEN` | 400 |
+| `TOKEN_EXPIRED` | 400 | Reset link past `RESET_TOKEN_TTL_HOURS` |
+| `TOKEN_ALREADY_USED` | 400 | Same email link used twice |
 | `INVALID_JSON` | 400 |
 | `TRY_ON_FAILED` | 502 |
 | `SERVER_CONFIG` | 503 |

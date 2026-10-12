@@ -81,6 +81,32 @@ export default function UserDetailPage() {
     load().then(setData);
   }, [load]);
 
+  const activityTimeline = useMemo(() => {
+    if (!data) return [];
+    const jobs = data.recent_jobs.map((j) => ({
+      id: `job-${j.id}`,
+      kind: "job" as const,
+      title: j.style,
+      status: j.status,
+      at: j.created_at,
+    }));
+    const looks = data.recent_looks.map((l) => ({
+      id: `look-${l.id}`,
+      kind: "look" as const,
+      title: l.style,
+      preview_url: l.preview_url,
+      favorite: l.is_favorite,
+      at: l.created_at,
+    }));
+    return [...jobs, ...looks]
+      .sort((a, b) => {
+        const ta = a.at ? Date.parse(a.at) : 0;
+        const tb = b.at ? Date.parse(b.at) : 0;
+        return tb - ta;
+      })
+      .slice(0, 40);
+  }, [data]);
+
   async function toggleStatus() {
     if (!data) return;
     const next = data.profile.status === "active" ? "disabled" : "active";
@@ -106,31 +132,6 @@ export default function UserDetailPage() {
   const name = data.profile.display_name ?? data.profile.email ?? "User";
   const isActive = data.profile.status === "active";
   const showActivity = tab === "activity";
-
-  const activityTimeline = useMemo(() => {
-    const jobs = data.recent_jobs.map((j) => ({
-      id: `job-${j.id}`,
-      kind: "job" as const,
-      title: j.style,
-      status: j.status,
-      at: j.created_at,
-    }));
-    const looks = data.recent_looks.map((l) => ({
-      id: `look-${l.id}`,
-      kind: "look" as const,
-      title: l.style,
-      preview_url: l.preview_url,
-      favorite: l.is_favorite,
-      at: l.created_at,
-    }));
-    return [...jobs, ...looks]
-      .sort((a, b) => {
-        const ta = a.at ? Date.parse(a.at) : 0;
-        const tb = b.at ? Date.parse(b.at) : 0;
-        return tb - ta;
-      })
-      .slice(0, 40);
-  }, [data]);
 
   return (
     <div className="space-y-5">

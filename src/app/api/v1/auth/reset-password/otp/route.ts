@@ -76,11 +76,6 @@ export async function POST(req: Request) {
   doc.usedAt = new Date();
   await doc.save();
 
-  await PasswordResetOtp.updateMany(
-    { userId: user._id, usedAt: null, _id: { $ne: doc._id } },
-    { usedAt: new Date() }
-  );
-
   return jsonOk({
     password_updated: true,
     otp_length: PASSWORD_RESET_OTP_LENGTH,
