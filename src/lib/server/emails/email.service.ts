@@ -4,6 +4,11 @@ import {
   buildPasswordResetPlainText,
   passwordResetSubject,
 } from "./templates/password-reset";
+import {
+  buildPasswordResetOtpHtml,
+  buildPasswordResetOtpPlainText,
+  passwordResetOtpSubject,
+} from "./templates/password-reset-otp";
 
 let resendClient: Resend | null = null;
 
@@ -101,6 +106,64 @@ export function formatResetTokenExpiresIn(ttlHours: number): string {
   if (ttlHours === 1) return "1 hour";
   if (Number.isInteger(ttlHours)) return `${ttlHours} hours`;
   return `${ttlHours} hours`;
+}
+
+export type SendPasswordResetOtpEmailInput = {
+  to: string;
+  otp: string;
+  expiresInMinutes: number;
+};
+
+export async function sendPasswordResetOtpEmail(
+  input: SendPasswordResetOtpEmailInput
+): Promise<SendEmailResult> {
+  const client = getResendClient();
+  const from = senderAddress();
+
+  if (!client || !from) {
+    console.error("[email] password reset OTP not sent: Resend not configured", {
+      domain: recipientDomain(input.to),
+    });
+    return { ok: false, error: "not_configured" };
+  }
+
+  const html = buildPasswordResetOtpHtml({
+    otp: input.otp,
+    expiresInMinutes: input.expiresInMinutes,
+  });
+  const text = buildPasswordResetOtpPlainText({
+    otp: input.otp,
+    expiresInMinutes: input.expiresInMinutes,
+  });
+
+  try {
+    const { data, error } = await client.emails.send({
+      from,
+      to: [input.to],
+      subject: passwordResetOtpSubject(),
+      html,
+      text,
+    });
+
+    if (error || !data?.id) {
+      console.error("[email] password reset OTP send failed", {
+        domain: recipientDomain(input.to),
+        resendError: error?.message ?? error ?? "unknown",
+      });
+      return { ok: false, error: "send_failed", detail: error?.message };
+    }
+
+    console.info("[email] password reset OTP sent", {
+      domain: recipientDomain(input.to),
+      messageId: data.id,
+    });
+    return { ok: true, messageId: data.id };
+  } catch {
+    console.error("[email] password reset OTP send failed", {
+      domain: recipientDomain(input.to),
+    });
+    return { ok: false, error: "send_failed" };
+  }
 }
 
 export function buildPasswordResetUrl(rawToken: string): string {

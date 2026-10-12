@@ -186,6 +186,56 @@ Authorization: Bearer <access_token>
 { "refresh_token": "<current refresh>" }
 ```
 
+### 4.6 Forgot password (mobile — OTP)
+
+Email/password accounts only (not Google-only). OTP is **4 digits**, stored **hashed** on the server, expires in `RESET_OTP_TTL_MINUTES` (default 10).
+
+**Step 1 — request code**
+
+```http
+POST /api/v1/auth/forgot-password/otp
+Content-Type: application/json
+```
+
+```json
+{ "email": "user@example.com" }
+```
+
+**200 `data`:**
+
+```json
+{
+  "message": "If an account exists for this email, a verification code has been sent.",
+  "otp_length": 4,
+  "expires_in_seconds": 600
+}
+```
+
+**Step 2 — verify OTP and set password**
+
+```http
+POST /api/v1/auth/reset-password/otp
+Content-Type: application/json
+```
+
+```json
+{
+  "email": "user@example.com",
+  "otp": "1234",
+  "password": "newpass1234"
+}
+```
+
+**200 `data`:** `{ "password_updated": true, "otp_length": 4 }`
+
+| `error.code` | Meaning |
+|--------------|---------|
+| `INVALID_OTP` | Wrong or expired code (may include attempts remaining) |
+| `OTP_LOCKED` | Too many failures — call step 1 again |
+| `VALIDATION` | Missing fields or password &lt; 8 chars |
+
+Web clients use **`POST /auth/forgot-password`** (link) and **`POST /auth/reset-password`** (`token` + `password`) instead.
+
 ---
 
 ## 5. Images & absolute URLs

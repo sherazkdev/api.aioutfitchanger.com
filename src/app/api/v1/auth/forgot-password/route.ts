@@ -1,4 +1,5 @@
-import { createHash, randomBytes } from "crypto";
+import { randomBytes } from "crypto";
+import { hashResetLinkToken } from "@/lib/server/auth/passwordResetSecrets";
 import {
   buildPasswordResetUrl,
   formatResetTokenExpiresIn,
@@ -8,10 +9,6 @@ import { connectMongo } from "@/lib/server/db";
 import { User } from "@/lib/server/models/User";
 import { PasswordResetToken } from "@/lib/server/models/PasswordResetToken";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
-
-function hashResetToken(raw: string) {
-  return createHash("sha256").update(raw).digest("base64url");
-}
 
 export async function POST(req: Request) {
   const ip = getClientIp(req) ?? "unknown";
@@ -40,7 +37,7 @@ export async function POST(req: Request) {
 
   await PasswordResetToken.create({
     userId: user._id,
-    tokenHash: hashResetToken(raw),
+    tokenHash: hashResetLinkToken(raw),
     expiresAt,
   });
 
