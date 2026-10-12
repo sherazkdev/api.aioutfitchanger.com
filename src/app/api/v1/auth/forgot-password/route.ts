@@ -51,7 +51,7 @@ export async function POST(req: Request) {
       detail: challenge.sendError.detail,
     });
   }
-  if (challenge.devResetUrl) payload.dev_reset_url = challenge.devResetUrl;
+  if (challenge.devActionUrl) payload.dev_reset_url = challenge.devActionUrl;
   if (challenge.devOtp) payload.dev_otp = challenge.devOtp;
 
   return jsonOk(payload);

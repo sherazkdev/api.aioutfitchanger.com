@@ -24,6 +24,13 @@ export async function POST(req: Request) {
   if (!doc || doc.usedAt || doc.expiresAt.getTime() < Date.now()) {
     return jsonError("INVALID_TOKEN", "Reset link is invalid or expired", 400);
   }
+  if (doc.purpose === "email_verify") {
+    return jsonError(
+      "INVALID_TOKEN",
+      "This link verifies your email only. Open the verify link from your welcome email or use forgot-password for a reset link.",
+      400
+    );
+  }
 
   const user = await User.findById(doc.userId).select("+passwordHash");
   if (!user) return jsonError("INVALID_TOKEN", "Reset link is invalid or expired", 400);

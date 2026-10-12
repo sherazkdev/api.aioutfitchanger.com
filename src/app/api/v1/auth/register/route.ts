@@ -77,7 +77,7 @@ export async function POST(req: Request) {
     },
   };
   if (verification.devOtp) data.dev_otp = verification.devOtp;
-  if (verification.devResetUrl) data.dev_reset_url = verification.devResetUrl;
+  if (verification.devActionUrl) data.dev_verify_url = verification.devActionUrl;
 
   return jsonOk(data);
 }

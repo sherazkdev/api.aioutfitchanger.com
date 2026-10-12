@@ -6,7 +6,7 @@ export type AccountSecurityEmailKind = "password_reset" | "welcome_verify";
 export type AccountSecurityEmailContent = {
   kind: AccountSecurityEmailKind;
   otp: string;
-  resetUrl: string;
+  actionUrl: string;
   expiresInMinutes: number;
   linkExpiresIn?: string;
 };
@@ -20,13 +20,16 @@ export function accountSecuritySubject(kind: AccountSecurityEmailKind): string {
 
 export function buildAccountSecurityPlainText(c: AccountSecurityEmailContent): string {
   const headline =
-    c.kind === "welcome_verify"
-      ? "Welcome! Verify your email and set your password"
-      : "Reset your password";
+    c.kind === "welcome_verify" ? "Welcome! Verify your email" : "Reset your password";
 
   const linkLine = c.linkExpiresIn
     ? `Web link expires in ${c.linkExpiresIn}.`
     : "The web link expires after the configured period.";
+
+  const linkLabel =
+    c.kind === "welcome_verify"
+      ? "Verify your account (open in browser):"
+      : "Reset your password (open in browser):";
 
   return [
     headline,
@@ -34,8 +37,8 @@ export function buildAccountSecurityPlainText(c: AccountSecurityEmailContent): s
     `Your 4-digit code (enter in the app): ${c.otp}`,
     `Code expires in ${c.expiresInMinutes} minutes.`,
     "",
-    "Or open this link in your browser to verify and set a new password:",
-    c.resetUrl,
+    linkLabel,
+    c.actionUrl,
     "",
     linkLine,
     "",
@@ -47,16 +50,19 @@ export function buildAccountSecurityPlainText(c: AccountSecurityEmailContent): s
 
 export function buildAccountSecurityHtml(c: AccountSecurityEmailContent): string {
   const safeOtp = escapeHtml(c.otp);
-  const safeUrl = escapeHtml(c.resetUrl);
+  const safeUrl = escapeHtml(c.actionUrl);
   const otpMins =
     c.expiresInMinutes === 1 ? "1 minute" : `${c.expiresInMinutes} minutes`;
 
   const title =
-    c.kind === "welcome_verify" ? "Welcome — verify your email" : "Reset your password";
+    c.kind === "welcome_verify" ? "Verify your email" : "Reset your password";
   const intro =
     c.kind === "welcome_verify"
-      ? "Thanks for signing up. Use the code in the app <strong>or</strong> the button below to verify your email and set your password."
-      : "We received a request to reset your password. Use the code in the app <strong>or</strong> the secure link below.";
+      ? "Thanks for signing up. Enter the code in the app <strong>or</strong> tap the button below to verify your account."
+      : "Use the code in the app <strong>or</strong> the secure link below to set a new password.";
+
+  const buttonText =
+    c.kind === "welcome_verify" ? "Verify account" : "Reset password";
 
   const bodyHtml = `
     <h1 style="margin:0 0 12px;font-size:22px;font-weight:700;color:#0f172a;text-align:center;">${escapeHtml(title)}</h1>
@@ -67,7 +73,7 @@ export function buildAccountSecurityHtml(c: AccountSecurityEmailContent): string
     <table role="presentation" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto 24px;">
       <tr>
         <td style="border-radius:10px;background:#7c3aed;">
-          <a href="${safeUrl}" target="_blank" style="display:inline-block;padding:14px 32px;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;">Verify &amp; set password</a>
+          <a href="${safeUrl}" target="_blank" style="display:inline-block;padding:14px 32px;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;">${buttonText}</a>
         </td>
       </tr>
     </table>

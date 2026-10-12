@@ -197,7 +197,8 @@ export type SendAccountSecurityEmailInput = {
   to: string;
   kind: AccountSecurityEmailKind;
   otp: string;
-  resetUrl: string;
+  /** Web link (verify-email or reset-password depending on kind). */
+  actionUrl: string;
   expiresInMinutes: number;
   linkExpiresIn?: string;
 };
@@ -220,7 +221,7 @@ export async function sendAccountSecurityEmail(
   const content = {
     kind: input.kind,
     otp: input.otp,
-    resetUrl: input.resetUrl,
+    actionUrl: input.actionUrl,
     expiresInMinutes: input.expiresInMinutes,
     linkExpiresIn: input.linkExpiresIn,
   };
@@ -291,5 +292,13 @@ export function buildPasswordResetUrl(rawToken: string): string {
   const base =
     configured ??
     `${(process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "")}/reset-password`;
+  return `${base}?token=${encodeURIComponent(rawToken)}`;
+}
+
+export function buildVerifyEmailUrl(rawToken: string): string {
+  const configured = process.env.VERIFY_EMAIL_URL?.trim().replace(/\/$/, "");
+  const base =
+    configured ??
+    `${(process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "")}/verify-email`;
   return `${base}?token=${encodeURIComponent(rawToken)}`;
 }

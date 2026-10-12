@@ -16,6 +16,7 @@ import {
   sendAccountSecurityEmail,
   sendGoogleSignInReminderEmail,
   buildPasswordResetUrl,
+  buildVerifyEmailUrl,
   type SendEmailResult,
 } from "../emails/email.service";
 import type { AccountSecurityEmailKind } from "../emails/templates/account-security";
@@ -26,7 +27,7 @@ export type IssueChallengeResult = {
   otpLength: number;
   expiresInSeconds: number;
   devOtp?: string;
-  devResetUrl?: string;
+  devActionUrl?: string;
 };
 
 export async function issuePasswordResetChallenge(params: {
@@ -52,18 +53,22 @@ export async function issuePasswordResetChallenge(params: {
     expiresAt: otpExpires,
   });
 
+  const linkPurpose = params.kind === "welcome_verify" ? "email_verify" : "password_reset";
+  const actionUrl =
+    linkPurpose === "email_verify" ? buildVerifyEmailUrl(rawLink) : buildPasswordResetUrl(rawLink);
+
   await PasswordResetToken.create({
     userId: params.userId,
     tokenHash: hashResetLinkToken(rawLink),
+    purpose: linkPurpose,
     expiresAt: linkExpires,
   });
 
-  const resetUrl = buildPasswordResetUrl(rawLink);
   const sent = await sendAccountSecurityEmail({
     to,
     kind: params.kind,
     otp,
-    resetUrl,
+    actionUrl,
     expiresInMinutes: ttlMin,
     linkExpiresIn: formatResetTokenExpiresIn(ttlHours),
   });
@@ -77,7 +82,7 @@ export async function issuePasswordResetChallenge(params: {
 
   if (process.env.NODE_ENV !== "production") {
     result.devOtp = otp;
-    result.devResetUrl = resetUrl;
+    result.devActionUrl = actionUrl;
   }
 
   return result;

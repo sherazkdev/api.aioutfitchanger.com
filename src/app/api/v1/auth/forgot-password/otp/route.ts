@@ -61,7 +61,7 @@ export async function POST(req: Request) {
   }
 
   if (challenge.devOtp) payload.dev_otp = challenge.devOtp;
-  if (challenge.devResetUrl) payload.dev_reset_url = challenge.devResetUrl;
+  if (challenge.devActionUrl) payload.dev_reset_url = challenge.devActionUrl;
 
   return jsonOk(payload);
 }
