@@ -1,5 +1,8 @@
 import { connectMongo } from "@/lib/server/db";
 import { hashPassword } from "@/lib/server/auth/password";
+import { REGISTER_VERIFICATION_MESSAGE } from "@/lib/server/auth/forgotPasswordMessages";
+import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
+import { issuePasswordResetChallenge } from "@/lib/server/auth/passwordResetChallenge";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
@@ -25,7 +28,7 @@ export async function POST(req: Request) {
   }
 
   await connectMongo();
-  const email = body.email.toLowerCase();
+  const email = normalizeEmail(body.email);
   const existing = await User.findOne({ email });
   if (existing) return jsonError("CONFLICT", "Email already registered", 409);
 
@@ -33,8 +36,22 @@ export async function POST(req: Request) {
     email,
     displayName: body.display_name?.trim() || email.split("@")[0],
     role: "user",
+    emailVerified: false,
     passwordHash: await hashPassword(body.password),
   });
+
+  const verification = await issuePasswordResetChallenge({
+    userId: user._id,
+    email,
+    kind: "welcome_verify",
+  });
+  if (!verification.emailSent && verification.sendError && !verification.sendError.ok) {
+    console.error("[auth] register verification email not delivered", {
+      emailDomain: email.split("@")[1],
+      reason: verification.sendError.error,
+      detail: verification.sendError.detail,
+    });
+  }
 
   const session = await issueSession({
     userId: user._id,
@@ -43,15 +60,24 @@ export async function POST(req: Request) {
     label: "email-register",
   });
 
-  return jsonOk({
+  const data: Record<string, unknown> = {
     access_token: session.accessToken,
     refresh_token: session.refreshToken,
     expires_at: session.expiresAt.toISOString(),
+    verification_message: REGISTER_VERIFICATION_MESSAGE,
+    verification_email_sent: verification.emailSent,
+    otp_length: verification.otpLength,
+    expires_in_seconds: verification.expiresInSeconds,
     user: {
       id: String(user._id),
       email: user.email,
       display_name: user.displayName,
       role: user.role,
+      email_verified: user.emailVerified,
     },
-  });
+  };
+  if (verification.devOtp) data.dev_otp = verification.devOtp;
+  if (verification.devResetUrl) data.dev_reset_url = verification.devResetUrl;
+
+  return jsonOk(data);
 }

@@ -10,6 +10,7 @@ const UserSchema = new Schema(
     isGuest: { type: Boolean, default: false },
     passwordHash: { type: String, select: false },
     status: { type: String, enum: ["active", "disabled"], default: "active" },
+    emailVerified: { type: Boolean, default: false },
     lastLoginAt: { type: Date },
     preferences: {
       themeMode: { type: String, enum: ["system", "light", "dark"], default: "system" },

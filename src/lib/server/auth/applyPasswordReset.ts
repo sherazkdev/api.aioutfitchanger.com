@@ -9,6 +9,7 @@ export async function applyNewPassword(userId: Types.ObjectId, newPassword: stri
     throw new Error("User not found for password reset");
   }
   user.passwordHash = await hashPassword(newPassword);
+  user.emailVerified = true;
   await user.save();
   await revokeAllUserSessions(userId);
 }

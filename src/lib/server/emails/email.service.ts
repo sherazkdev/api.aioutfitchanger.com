@@ -9,6 +9,18 @@ import {
   buildPasswordResetOtpPlainText,
   passwordResetOtpSubject,
 } from "./templates/password-reset-otp";
+import {
+  accountSecuritySubject,
+  buildAccountSecurityHtml,
+  buildAccountSecurityPlainText,
+  type AccountSecurityEmailKind,
+} from "./templates/account-security";
+import {
+  buildGoogleSignInReminderHtml,
+  buildGoogleSignInReminderPlainText,
+  googleSignInReminderSubject,
+} from "./templates/google-signin-reminder";
+import { normalizeEmail } from "../auth/normalizeEmail";
 
 let resendClient: Resend | null = null;
 
@@ -31,6 +43,13 @@ function senderAddress(): string | null {
 function recipientDomain(to: string): string {
   const at = to.lastIndexOf("@");
   return at >= 0 ? to.slice(at + 1).toLowerCase() : "unknown";
+}
+
+function maskEmail(to: string): string {
+  const e = normalizeEmail(to);
+  const at = e.indexOf("@");
+  if (at <= 1) return "***";
+  return `${e.slice(0, 2)}***${e.slice(at)}`;
 }
 
 export type SendPasswordResetEmailInput = {
@@ -65,10 +84,12 @@ export async function sendPasswordResetEmail(
     expiresIn: input.expiresIn,
   });
 
+  const to = normalizeEmail(input.to);
+
   try {
     const { data, error } = await client.emails.send({
       from,
-      to: [input.to],
+      to: [to],
       subject: passwordResetSubject(),
       html,
       text,
@@ -76,14 +97,16 @@ export async function sendPasswordResetEmail(
 
     if (error || !data?.id) {
       console.error("[email] password reset send failed", {
-        domain: recipientDomain(input.to),
+        to: maskEmail(to),
+        domain: recipientDomain(to),
         resendError: error?.message ?? error ?? "unknown",
       });
       return { ok: false, error: "send_failed", detail: error?.message };
     }
 
     console.info("[email] password reset sent", {
-      domain: recipientDomain(input.to),
+      to: maskEmail(to),
+      domain: recipientDomain(to),
       messageId: data.id,
     });
     return { ok: true, messageId: data.id };
@@ -136,10 +159,12 @@ export async function sendPasswordResetOtpEmail(
     expiresInMinutes: input.expiresInMinutes,
   });
 
+  const to = normalizeEmail(input.to);
+
   try {
     const { data, error } = await client.emails.send({
       from,
-      to: [input.to],
+      to: [to],
       subject: passwordResetOtpSubject(),
       html,
       text,
@@ -147,14 +172,16 @@ export async function sendPasswordResetOtpEmail(
 
     if (error || !data?.id) {
       console.error("[email] password reset OTP send failed", {
-        domain: recipientDomain(input.to),
+        to: maskEmail(to),
+        domain: recipientDomain(to),
         resendError: error?.message ?? error ?? "unknown",
       });
       return { ok: false, error: "send_failed", detail: error?.message };
     }
 
     console.info("[email] password reset OTP sent", {
-      domain: recipientDomain(input.to),
+      to: maskEmail(to),
+      domain: recipientDomain(to),
       messageId: data.id,
     });
     return { ok: true, messageId: data.id };
@@ -162,6 +189,98 @@ export async function sendPasswordResetOtpEmail(
     console.error("[email] password reset OTP send failed", {
       domain: recipientDomain(input.to),
     });
+    return { ok: false, error: "send_failed" };
+  }
+}
+
+export type SendAccountSecurityEmailInput = {
+  to: string;
+  kind: AccountSecurityEmailKind;
+  otp: string;
+  resetUrl: string;
+  expiresInMinutes: number;
+  linkExpiresIn?: string;
+};
+
+/** OTP + web link in one email (register welcome or forgot password). */
+export async function sendAccountSecurityEmail(
+  input: SendAccountSecurityEmailInput
+): Promise<SendEmailResult> {
+  const client = getResendClient();
+  const from = senderAddress();
+  const to = normalizeEmail(input.to);
+
+  if (!client || !from) {
+    console.error("[email] account security not sent: Resend not configured", {
+      to: maskEmail(to),
+    });
+    return { ok: false, error: "not_configured" };
+  }
+
+  const content = {
+    kind: input.kind,
+    otp: input.otp,
+    resetUrl: input.resetUrl,
+    expiresInMinutes: input.expiresInMinutes,
+    linkExpiresIn: input.linkExpiresIn,
+  };
+
+  try {
+    const { data, error } = await client.emails.send({
+      from,
+      to: [to],
+      subject: accountSecuritySubject(input.kind),
+      html: buildAccountSecurityHtml(content),
+      text: buildAccountSecurityPlainText(content),
+    });
+
+    if (error || !data?.id) {
+      console.error("[email] account security send failed", {
+        to: maskEmail(to),
+        kind: input.kind,
+        resendError: error?.message ?? error ?? "unknown",
+      });
+      return { ok: false, error: "send_failed", detail: error?.message };
+    }
+
+    console.info("[email] account security sent", {
+      to: maskEmail(to),
+      kind: input.kind,
+      messageId: data.id,
+    });
+    return { ok: true, messageId: data.id };
+  } catch (e) {
+    console.error("[email] account security send failed", {
+      to: maskEmail(to),
+      detail: e instanceof Error ? e.message : "unknown",
+    });
+    return { ok: false, error: "send_failed" };
+  }
+}
+
+export async function sendGoogleSignInReminderEmail(to: string): Promise<SendEmailResult> {
+  const client = getResendClient();
+  const from = senderAddress();
+  const recipient = normalizeEmail(to);
+
+  if (!client || !from) {
+    return { ok: false, error: "not_configured" };
+  }
+
+  try {
+    const { data, error } = await client.emails.send({
+      from,
+      to: [recipient],
+      subject: googleSignInReminderSubject(),
+      html: buildGoogleSignInReminderHtml(),
+      text: buildGoogleSignInReminderPlainText(),
+    });
+    if (error || !data?.id) {
+      return { ok: false, error: "send_failed", detail: error?.message };
+    }
+    console.info("[email] google sign-in reminder sent", { to: maskEmail(recipient), messageId: data.id });
+    return { ok: true, messageId: data.id };
+  } catch {
     return { ok: false, error: "send_failed" };
   }
 }

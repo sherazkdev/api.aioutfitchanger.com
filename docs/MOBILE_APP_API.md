@@ -138,7 +138,37 @@ POST /api/v1/auth/register
 }
 ```
 
-Same session shape as Google (without `photo_url` if not set).
+**200 `data`:** session tokens plus verification fields:
+
+```json
+{
+  "access_token": "eyJ…",
+  "refresh_token": "eyJ…",
+  "expires_at": "2026-10-12T12:00:00.000Z",
+  "verification_message": "Account created. Check your email…",
+  "verification_email_sent": true,
+  "otp_length": 4,
+  "expires_in_seconds": 600,
+  "user": {
+    "id": "…",
+    "email": "user@example.com",
+    "display_name": "Ali",
+    "role": "user",
+    "email_verified": false
+  }
+}
+```
+
+Server sends **one email** with **4-digit OTP** + **web link** (`RESET_PASSWORD_URL` or `APP_URL/reset-password?token=…`) to verify and set password.
+
+**Optional — verify email only (no password change):**
+
+```http
+POST /api/v1/auth/verify-email/otp
+{ "email": "user@example.com", "otp": "1234" }
+```
+
+**200:** `{ "email_verified": true, "otp_length": 4 }`
 
 ### 4.3 Email login (app users only)
 
@@ -188,7 +218,7 @@ Authorization: Bearer <access_token>
 
 ### 4.6 Forgot password (mobile — OTP)
 
-Email/password accounts only (not Google-only). OTP is **4 digits**, stored **hashed** on the server, expires in `RESET_OTP_TTL_MINUTES` (default 10).
+Email/password accounts only (not Google-only). **Always returns 200** with a generic message (never “account not found”). Email includes **OTP + web link**. OTP is **4 digits**, hashed on server, expires in `RESET_OTP_TTL_MINUTES` (default 10). Google-only accounts receive a “use Google sign-in” email instead.
 
 **Step 1 — request code**
 
@@ -205,9 +235,10 @@ Content-Type: application/json
 
 ```json
 {
-  "message": "If an account exists for this email, a verification code has been sent.",
+  "message": "If an account exists for this email, a verification code and reset link have been sent.",
   "otp_length": 4,
-  "expires_in_seconds": 600
+  "expires_in_seconds": 600,
+  "email_dispatched": true
 }
 ```
 

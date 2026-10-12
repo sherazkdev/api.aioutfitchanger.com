@@ -1,15 +1,14 @@
-import { randomBytes } from "crypto";
-import { hashResetLinkToken } from "@/lib/server/auth/passwordResetSecrets";
-import {
-  buildPasswordResetUrl,
-  formatResetTokenExpiresIn,
-  sendPasswordResetEmail,
-} from "@/lib/server/emails/email.service";
 import { connectMongo } from "@/lib/server/db";
+import { FORGOT_PASSWORD_GENERIC_MESSAGE } from "@/lib/server/auth/forgotPasswordMessages";
+import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
+import {
+  issuePasswordResetChallenge,
+  notifyGoogleOnlyAccount,
+} from "@/lib/server/auth/passwordResetChallenge";
 import { User } from "@/lib/server/models/User";
-import { PasswordResetToken } from "@/lib/server/models/PasswordResetToken";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
+/** Web + mobile: always generic success (no "account not found"). Email includes OTP + link. */
 export async function POST(req: Request) {
   const ip = getClientIp(req) ?? "unknown";
   if (!rateLimit(`auth:forgot:${ip}`, 8)) {
@@ -17,51 +16,43 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json()) as { email?: string };
-  if (!body.email) return jsonError("VALIDATION", "email required", 422);
-
-  const generic = {
-    message: "If an account exists for this email, a reset link has been sent.",
-  };
+  const email = body.email ? normalizeEmail(body.email) : "";
+  if (!email) return jsonError("VALIDATION", "email required", 422);
 
   await connectMongo();
-  const user = await User.findOne({ email: body.email.toLowerCase() }).select("+passwordHash");
-  if (!user || !user.passwordHash) {
-    return jsonOk(generic);
+  const user = await User.findOne({ email }).select("+passwordHash googleId");
+
+  const payload: Record<string, string | number | boolean> = {
+    message: FORGOT_PASSWORD_GENERIC_MESSAGE,
+  };
+
+  if (!user) {
+    return jsonOk(payload);
   }
 
-  const raw = randomBytes(32).toString("base64url");
-  const ttlHours = Number(process.env.RESET_TOKEN_TTL_HOURS ?? 1);
-  const expiresAt = new Date(Date.now() + ttlHours * 60 * 60 * 1000);
+  if (!user.passwordHash) {
+    if (user.googleId) {
+      await notifyGoogleOnlyAccount(email);
+    }
+    return jsonOk(payload);
+  }
 
-  await PasswordResetToken.updateMany({ userId: user._id, usedAt: null }, { usedAt: new Date() });
-
-  await PasswordResetToken.create({
+  const challenge = await issuePasswordResetChallenge({
     userId: user._id,
-    tokenHash: hashResetLinkToken(raw),
-    expiresAt,
+    email,
+    kind: "password_reset",
   });
 
-  const resetUrl = buildPasswordResetUrl(raw);
-  const expiresIn = formatResetTokenExpiresIn(ttlHours);
-
-  const sent = await sendPasswordResetEmail({
-    to: body.email.toLowerCase(),
-    resetUrl,
-    expiresIn,
-  });
-
-  if (!sent.ok) {
-    console.error("[auth] forgot-password email not delivered", {
-      reason: sent.error,
-      detail: sent.detail ?? null,
-      userId: String(user._id),
+  payload.email_dispatched = challenge.emailSent;
+  if (!challenge.emailSent && challenge.sendError && !challenge.sendError.ok) {
+    console.error("[auth] forgot-password bundle not delivered", {
+      emailDomain: email.split("@")[1],
+      reason: challenge.sendError.error,
+      detail: challenge.sendError.detail,
     });
   }
-
-  const payload: Record<string, string> = { ...generic };
-  if (process.env.NODE_ENV !== "production") {
-    payload.dev_reset_url = resetUrl;
-  }
+  if (challenge.devResetUrl) payload.dev_reset_url = challenge.devResetUrl;
+  if (challenge.devOtp) payload.dev_otp = challenge.devOtp;
 
   return jsonOk(payload);
 }

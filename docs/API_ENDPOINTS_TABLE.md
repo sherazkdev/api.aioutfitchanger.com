@@ -21,7 +21,8 @@
 | POST | `/api/v1/auth/refresh` | Public | New access token |
 | POST | `/api/v1/auth/logout` | User | Revoke session |
 | POST | `/api/v1/auth/forgot-password` | Public | Web: send reset **link** email |
-| POST | `/api/v1/auth/forgot-password/otp` | Public | Mobile: send 4-digit **OTP** email |
+| POST | `/api/v1/auth/forgot-password/otp` | Public | Mobile: OTP + web link (generic 200) |
+| POST | `/api/v1/auth/verify-email/otp` | Public | `email` + `otp` → verify email only |
 | POST | `/api/v1/auth/reset-password` | Public | Web: `token` + `password` |
 | POST | `/api/v1/auth/reset-password/otp` | Public | Mobile: `email` + `otp` + `password` |
 | GET | `/api/v1/users/me` | User | Profile |

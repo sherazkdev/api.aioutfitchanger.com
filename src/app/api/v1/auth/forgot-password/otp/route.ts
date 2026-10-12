@@ -1,18 +1,12 @@
-import { sendPasswordResetOtpEmail } from "@/lib/server/emails/email.service";
 import { connectMongo } from "@/lib/server/db";
+import { FORGOT_PASSWORD_GENERIC_MESSAGE } from "@/lib/server/auth/forgotPasswordMessages";
+import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
 import {
-  buildOtpHash,
-  generatePasswordResetOtp,
-  otpExpiresAt,
-  otpTtlMinutes,
-  PASSWORD_RESET_OTP_LENGTH,
-} from "@/lib/server/auth/passwordResetOtp";
+  issuePasswordResetChallenge,
+  notifyGoogleOnlyAccount,
+} from "@/lib/server/auth/passwordResetChallenge";
 import { User } from "@/lib/server/models/User";
-import { PasswordResetOtp } from "@/lib/server/models/PasswordResetOtp";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
-
-const GENERIC_MESSAGE =
-  "If an account exists for this email, a verification code has been sent.";
 
 export async function POST(req: Request) {
   const ip = getClientIp(req) ?? "unknown";
@@ -21,7 +15,7 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json()) as { email?: string };
-  const email = body.email?.trim().toLowerCase();
+  const email = body.email ? normalizeEmail(body.email) : "";
   if (!email) return jsonError("VALIDATION", "email required", 422);
 
   if (!rateLimit(`auth:forgot-otp:email:${email}`, 4)) {
@@ -29,49 +23,45 @@ export async function POST(req: Request) {
   }
 
   await connectMongo();
-  const user = await User.findOne({ email }).select("+passwordHash");
-  if (!user || !user.passwordHash) {
-    return jsonOk({
-      message: GENERIC_MESSAGE,
-      otp_length: PASSWORD_RESET_OTP_LENGTH,
-      expires_in_seconds: otpTtlMinutes() * 60,
-    });
-  }
+  const user = await User.findOne({ email }).select("+passwordHash googleId");
 
-  const otp = generatePasswordResetOtp();
-  const expiresAt = otpExpiresAt();
-
-  await PasswordResetOtp.updateMany({ userId: user._id, usedAt: null }, { usedAt: new Date() });
-
-  await PasswordResetOtp.create({
-    userId: user._id,
-    otpHash: buildOtpHash(String(user._id), otp),
-    expiresAt,
-  });
-
-  const ttlMin = otpTtlMinutes();
-  const sent = await sendPasswordResetOtpEmail({
-    to: email,
-    otp,
-    expiresInMinutes: ttlMin,
-  });
-
-  if (!sent.ok) {
-    console.error("[auth] forgot-password OTP email not delivered", {
-      reason: sent.error,
-      detail: sent.detail ?? null,
-      userId: String(user._id),
-    });
-  }
-
-  const payload: Record<string, string | number> = {
-    message: GENERIC_MESSAGE,
-    otp_length: PASSWORD_RESET_OTP_LENGTH,
-    expires_in_seconds: ttlMin * 60,
+  const payload: Record<string, string | number | boolean> = {
+    message: FORGOT_PASSWORD_GENERIC_MESSAGE,
+    otp_length: 4,
+    expires_in_seconds: 600,
   };
-  if (process.env.NODE_ENV !== "production") {
-    payload.dev_otp = otp;
+
+  if (!user) {
+    return jsonOk(payload);
   }
+
+  if (!user.passwordHash) {
+    if (user.googleId) {
+      await notifyGoogleOnlyAccount(email);
+    }
+    return jsonOk(payload);
+  }
+
+  const challenge = await issuePasswordResetChallenge({
+    userId: user._id,
+    email,
+    kind: "password_reset",
+  });
+
+  payload.otp_length = challenge.otpLength;
+  payload.expires_in_seconds = challenge.expiresInSeconds;
+  payload.email_dispatched = challenge.emailSent;
+
+  if (!challenge.emailSent && challenge.sendError && !challenge.sendError.ok) {
+    console.error("[auth] forgot-password OTP bundle not delivered", {
+      emailDomain: email.split("@")[1],
+      reason: challenge.sendError.error,
+      detail: challenge.sendError.detail,
+    });
+  }
+
+  if (challenge.devOtp) payload.dev_otp = challenge.devOtp;
+  if (challenge.devResetUrl) payload.dev_reset_url = challenge.devResetUrl;
 
   return jsonOk(payload);
 }

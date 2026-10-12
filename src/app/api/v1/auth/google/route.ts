@@ -57,10 +57,11 @@ export async function POST(req: Request) {
   if (!user) {
     user = await User.create({
       googleId: profile.googleId,
-      email: profile.email,
+      email: profile.email?.trim().toLowerCase(),
       displayName: profile.displayName,
       photoUrl: profile.photoUrl,
       role: "user",
+      emailVerified: true,
     });
   } else {
     user.displayName = profile.displayName ?? user.displayName;

@@ -1,4 +1,5 @@
 import { connectMongo } from "@/lib/server/db";
+import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
 import { verifyPassword } from "@/lib/server/auth/password";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
@@ -17,7 +18,7 @@ export async function POST(req: Request) {
   }
 
   await connectMongo();
-  const user = await User.findOne({ email: body.email.toLowerCase() }).select("+passwordHash");
+  const user = await User.findOne({ email: normalizeEmail(body.email) }).select("+passwordHash");
   if (!user || user.role === "admin") {
     return jsonError("UNAUTHORIZED", "Invalid email or password", 401);
   }

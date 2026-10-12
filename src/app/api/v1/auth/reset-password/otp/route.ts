@@ -1,5 +1,6 @@
 import { connectMongo } from "@/lib/server/db";
 import { applyNewPassword } from "@/lib/server/auth/applyPasswordReset";
+import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
 import {
   normalizeOtpInput,
   otpMaxAttempts,
@@ -17,7 +18,7 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json()) as { email?: string; otp?: string; password?: string };
-  const email = body.email?.trim().toLowerCase();
+  const email = body.email ? normalizeEmail(body.email) : "";
   const otp = body.otp != null ? normalizeOtpInput(String(body.otp)) : null;
 
   if (!email || !otp || !body.password) {

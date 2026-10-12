@@ -44,8 +44,17 @@ Verify on VPS:
 ```bash
 node scripts/verify-resend-password-reset.mjs
 node scripts/verify-resend-password-reset.mjs --send you@example.com
-pm2 logs ai-outfit-changer --lines 50 | grep -E '\[email\]|\[auth\] forgot'
+node scripts/verify-resend-password-reset.mjs --send other-person@example.com
+pm2 logs ai-outfit-changer --lines 50 | grep -E '\[email\]|\[auth\] forgot|\[auth\] register'
 ```
+
+**Emails only to some addresses?** Resend **testing/sandbox** can deliver only to your Resend account email. For **any** registered user (Gmail, etc.) you must:
+
+1. Verify your sending **domain** in Resend (not only `onboarding@resend.dev`).
+2. Set `RESEND_FROM_EMAIL=noreply@your-verified-domain.com`.
+3. Use a **production** Resend API key.
+
+Check logs: `[email] account security send failed` + `resendError`. Google-only users get a “use Google sign-in” email on forgot-password (no OTP).
 
 **Note:** Only users who signed up with **email + password** get a reset mail. Google-only accounts have no `passwordHash` — API responds OK but skips send.
 

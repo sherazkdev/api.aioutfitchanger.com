@@ -12,7 +12,7 @@ export async function GET(req: Request) {
 
   await connectMongo();
   const user = await User.findById(auth.payload!.userId)
-    .select("email displayName photoUrl role status preferences")
+    .select("email displayName photoUrl role status emailVerified preferences")
     .lean();
   if (!user) return jsonError("NOT_FOUND", "User not found", 404);
 
@@ -23,6 +23,7 @@ export async function GET(req: Request) {
     photo_url: user.photoUrl,
     role: user.role,
     status: user.status,
+    email_verified: user.emailVerified ?? false,
     preferences: {
       theme_mode: user.preferences?.themeMode ?? "system",
       notifications_enabled: user.preferences?.notificationsEnabled ?? true,
