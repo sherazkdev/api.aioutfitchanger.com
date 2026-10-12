@@ -247,6 +247,7 @@ export async function sendAccountSecurityEmail(
       to: maskEmail(to),
       kind: input.kind,
       messageId: data.id,
+      resendStatusUrl: `https://resend.com/emails/${data.id}`,
     });
     return { ok: true, messageId: data.id };
   } catch (e) {
