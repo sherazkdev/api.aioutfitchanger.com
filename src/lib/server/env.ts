@@ -1,5 +1,17 @@
 import { z } from "zod";
 
+/** PM2/.env often has empty or commented values → z.coerce.number() becomes NaN and crashes boot. */
+function optionalIntEnv(defaultValue: number, min: number, max: number) {
+  return z.preprocess((val) => {
+    if (val === undefined || val === null) return defaultValue;
+    const s = String(val).trim();
+    if (!s) return defaultValue;
+    const n = Number(s.split(/\s+#/)[0]!.trim());
+    if (!Number.isFinite(n)) return defaultValue;
+    return Math.min(max, Math.max(min, n));
+  }, z.number().min(min).max(max));
+}
+
 const envSchema = z.object({
   MONGODB_URI: z.string().min(1),
   MONGODB_MAX_POOL_SIZE: z.coerce.number().min(5).max(100).default(25),
@@ -25,12 +37,12 @@ const envSchema = z.object({
   FIREBASE_PRIVATE_KEY: z.string().optional(),
   API_RATE_LIMIT_AUTH_PER_MIN: z.coerce.number().default(20),
   /** Max try-on jobs per user per UTC day (0 = unlimited). */
-  TRY_ON_DAILY_LIMIT_PER_USER: z.coerce.number().min(0).max(500).default(5),
+  TRY_ON_DAILY_LIMIT_PER_USER: optionalIntEnv(5, 0, 10_000),
   /** When false, only provider-side moderation applies. */
-  TRY_ON_MODERATION_ENABLED: z
-    .enum(["true", "false", "1", "0"])
-    .default("true")
-    .transform((v) => v === "true" || v === "1"),
+  TRY_ON_MODERATION_ENABLED: z.preprocess((val) => {
+    if (val === undefined || val === null || String(val).trim() === "") return "true";
+    return String(val).trim().toLowerCase();
+  }, z.enum(["true", "false", "1", "0"]).transform((v) => v === "true" || v === "1")),
   RESEND_API_KEY: z.string().optional(),
   RESEND_FROM_EMAIL: z.string().email().optional(),
   RESEND_FROM_NAME: z.string().default("AI Wardrobe"),
