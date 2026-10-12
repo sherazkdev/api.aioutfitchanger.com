@@ -15,6 +15,7 @@ import { moderateTryOnRequest } from "@/lib/server/moderation/moderateTryOn";
 import { assertTryOnDailyQuota } from "@/lib/server/tryOn/dailyQuota";
 import { publicTryOnFailureMessage } from "@/lib/server/tryOn/publicErrors";
 import { rejectOversizedBody } from "@/lib/server/security/requestGuards";
+import { persistLookImageUrl } from "@/lib/server/storage/persistLookImages";
 import { resolveTryOnImageProvider } from "@/lib/server/tryOn/providerSelection";
 
 export async function POST(req: Request) {
@@ -192,9 +193,17 @@ export async function POST(req: Request) {
 
         job.modelId = byteplus.model;
         job.generationDurationMs = byteplus.durationMs;
-        job.resultUrl = byteplus.resultUrl;
         job.status = "completed";
         job.externalJobId = `byteplus:${job._id}`;
+        try {
+          job.resultUrl = await persistLookImageUrl(
+            auth.payload!.userId,
+            byteplus.resultUrl,
+            String(job._id)
+          );
+        } catch {
+          job.resultUrl = byteplus.resultUrl;
+        }
         await job.save();
 
         return jsonOk({

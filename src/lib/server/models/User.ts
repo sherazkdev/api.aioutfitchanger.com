@@ -10,6 +10,8 @@ const UserSchema = new Schema(
     isGuest: { type: Boolean, default: false },
     passwordHash: { type: String, select: false },
     status: { type: String, enum: ["active", "disabled"], default: "active" },
+    /** free = AI results watermarked; premium = clean outputs */
+    subscriptionPlan: { type: String, enum: ["free", "premium"], default: "free", index: true },
     emailVerified: { type: Boolean, default: false },
     lastLoginAt: { type: Date },
     preferences: {

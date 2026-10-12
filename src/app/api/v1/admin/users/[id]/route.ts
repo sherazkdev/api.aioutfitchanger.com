@@ -22,6 +22,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
     photo_url: user.photoUrl,
     role: user.role,
     status: user.status,
+    subscription_plan: user.subscriptionPlan ?? "free",
     is_guest: user.isGuest,
     last_login_at: user.lastLoginAt?.toISOString() ?? null,
     created_at: user.createdAt ? new Date(user.createdAt).toISOString() : null,
@@ -37,6 +38,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
     display_name?: string;
     role?: "user" | "admin";
     status?: "active" | "disabled";
+    subscription_plan?: "free" | "premium";
   };
 
   await connectMongo();
@@ -52,6 +54,12 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
       return jsonError("VALIDATION", "Cannot remove your own admin role", 422);
     }
     user.role = body.role;
+  }
+  if (body.subscription_plan !== undefined) {
+    if (body.subscription_plan !== "free" && body.subscription_plan !== "premium") {
+      return jsonError("VALIDATION", "subscription_plan must be free or premium", 422);
+    }
+    user.subscriptionPlan = body.subscription_plan;
   }
   if (body.status !== undefined) {
     if (String(user._id) === auth.payload!.userId && body.status === "disabled") {
@@ -70,6 +78,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
     meta: {
       role: body.role,
       status: body.status,
+      subscription_plan: body.subscription_plan,
       display_name: body.display_name !== undefined,
     },
   });
@@ -80,6 +89,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
     display_name: user.displayName,
     role: user.role,
     status: user.status,
+    subscription_plan: user.subscriptionPlan ?? "free",
   });
 }
 

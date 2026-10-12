@@ -56,6 +56,8 @@ export async function persistRemoteImageToUploads(opts: {
   subdir: "looks" | "sources";
   basename: string;
   remoteUrl: string;
+  /** Apply branded overlay when saving AI try-on results (looks only). */
+  applyWatermark?: boolean;
 }): Promise<string> {
   const remote = opts.remoteUrl.trim();
   if (!remote) throw new Error("EMPTY_URL");
@@ -71,8 +73,14 @@ export async function persistRemoteImageToUploads(opts: {
   if (contentType.includes("png")) ext = "png";
   else if (contentType.includes("webp")) ext = "webp";
 
-  const buffer = Buffer.from(await res.arrayBuffer());
+  let buffer = Buffer.from(await res.arrayBuffer());
   if (buffer.length === 0) throw new Error("EMPTY_IMAGE");
+
+  if (opts.applyWatermark && opts.subdir === "looks") {
+    const { applyAiResultWatermark } = await import("../watermark/applyWatermark");
+    buffer = Buffer.from(await applyAiResultWatermark(buffer));
+    ext = "jpg";
+  }
 
   const dir = path.join(process.cwd(), "public", "uploads", opts.subdir, opts.userId);
   await mkdir(dir, { recursive: true });
