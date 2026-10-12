@@ -3,6 +3,7 @@ import { verifyGoogleIdToken } from "@/lib/server/auth/google";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
 import { getServerEnv } from "@/lib/server/env";
+import { registerFcmIfProvided } from "@/lib/server/devices/registerFcmIfProvided";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
 /** Browser GET is not Google Sign-In — Chrome shows an error page on empty 405. */
@@ -27,9 +28,16 @@ export async function POST(req: Request) {
     return jsonError("RATE_LIMIT", "Too many requests", 429);
   }
 
-  let body: { id_token?: string; device_id?: string };
+  let body: {
+    id_token?: string;
+    device_id?: string;
+    fcm_token?: string;
+    token?: string;
+    platform?: "android" | "ios" | "web";
+    app_version?: string;
+  };
   try {
-    body = (await req.json()) as { id_token?: string; device_id?: string };
+    body = (await req.json()) as typeof body;
   } catch {
     return jsonError("VALIDATION", "JSON body required: { id_token }", 422);
   }
@@ -78,17 +86,22 @@ export async function POST(req: Request) {
     label: "google",
   });
 
+  const userId = String(user._id);
+  const fcmRegistered = await registerFcmIfProvided(userId, body);
+
   const res = jsonOk({
     access_token: session.accessToken,
     refresh_token: session.refreshToken,
     expires_at: session.expiresAt.toISOString(),
     token_type: "Bearer",
+    fcm_registered: fcmRegistered,
     user: {
-      id: String(user._id),
+      id: userId,
       email: user.email,
       display_name: user.displayName,
       photo_url: user.photoUrl,
       role: user.role,
+      email_verified: user.emailVerified ?? true,
     },
   });
 

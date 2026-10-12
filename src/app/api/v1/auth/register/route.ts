@@ -5,6 +5,7 @@ import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
 import { issuePasswordResetChallenge } from "@/lib/server/auth/passwordResetChallenge";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
+import { registerFcmIfProvided } from "@/lib/server/devices/registerFcmIfProvided";
 import { requireCaptchaIfEnabled } from "@/lib/server/security/authGuards";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
@@ -21,6 +22,11 @@ export async function POST(req: Request) {
     display_name?: string;
     captcha_token?: string;
     turnstile_token?: string;
+    fcm_token?: string;
+    token?: string;
+    platform?: "android" | "ios" | "web";
+    device_id?: string;
+    app_version?: string;
   };
 
   const captchaErr = await requireCaptchaIfEnabled(req, body);
@@ -66,6 +72,9 @@ export async function POST(req: Request) {
     label: "email-register",
   });
 
+  const userId = String(user._id);
+  const fcmRegistered = await registerFcmIfProvided(userId, body);
+
   const data: Record<string, unknown> = {
     access_token: session.accessToken,
     refresh_token: session.refreshToken,
@@ -74,8 +83,9 @@ export async function POST(req: Request) {
     verification_email_sent: verification.emailSent,
     otp_length: verification.otpLength,
     expires_in_seconds: verification.expiresInSeconds,
+    fcm_registered: fcmRegistered,
     user: {
-      id: String(user._id),
+      id: userId,
       email: user.email,
       display_name: user.displayName,
       role: user.role,

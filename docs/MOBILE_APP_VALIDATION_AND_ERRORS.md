@@ -246,6 +246,8 @@ Do not create duplicate local row; use returned `id`.
 
 ## 12b. Auto email verified (FCM — no “Verify” button)
 
+**Full step-by-step for app devs:** `docs/MOBILE_EMAIL_VERIFICATION_IMPLEMENTATION.md`
+
 After **register/login**, register the device token:
 
 `POST /api/v1/users/me/fcm-token` with `fcm_token` + `platform`.
