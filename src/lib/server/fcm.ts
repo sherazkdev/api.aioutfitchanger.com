@@ -44,6 +44,31 @@ export async function sendPushToTokens(
     tokens,
     notification: { title: notification.title, body: notification.body },
     data: notification.data,
+    android: { priority: "high" },
+  });
+  return { success: res.successCount, failure: res.failureCount };
+}
+
+/** Account / auth events — `data` values must be strings (FCM contract). */
+export async function sendEventPushToTokens(
+  tokens: string[],
+  data: Record<string, string>,
+  notification?: { title: string; body: string }
+): Promise<{ success: number; failure: number }> {
+  if (!initFirebaseAdmin() || tokens.length === 0) {
+    return { success: 0, failure: tokens.length };
+  }
+  const res = await getMessaging().sendEachForMulticast({
+    tokens,
+    data,
+    ...(notification
+      ? { notification: { title: notification.title, body: notification.body } }
+      : {}),
+    android: { priority: "high" },
+    apns: {
+      headers: { "apns-priority": "10" },
+      payload: { aps: { "content-available": 1 } },
+    },
   });
   return { success: res.successCount, failure: res.failureCount };
 }

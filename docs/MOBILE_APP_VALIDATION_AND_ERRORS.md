@@ -244,9 +244,33 @@ Do not create duplicate local row; use returned `id`.
 
 ---
 
+## 12b. Auto email verified (FCM — no “Verify” button)
+
+After **register/login**, register the device token:
+
+`POST /api/v1/users/me/fcm-token` with `fcm_token` + `platform`.
+
+Show a **waiting** screen (“Check your email”). User verifies via **email link** (browser) or **OTP in app** (`verify-email/otp`).
+
+When verification succeeds on the server, the app receives an FCM message:
+
+| `data` key | Value |
+|------------|--------|
+| `type` | `email_verified` |
+| `user_id` | Mongo user id |
+| `email_verified` | `"true"` |
+
+Optional notification: title **Email verified**, body **You can continue in the app.**
+
+**App handler:** `onMessage` / background / tap → if `data.type == email_verified` → `GET /users/me` → when `email_verified` true → navigate to home (no manual verify button).
+
+**Fallback:** poll `GET /users/me` every 3s on the waiting screen if FCM is disabled or token missing.
+
+---
+
 ## 13. Recommended app flows
 
-1. **Sign up** → show `verification_message` → screen for 4-digit OTP → `verify-email/otp` OR `reset-password/otp` with new password.  
+1. **Sign up** → `POST fcm-token` → waiting screen → user opens email link **or** enters OTP → **FCM** or poll → home.  
 2. **Forgot** → always success message → OTP screen → `reset-password/otp`.  
 3. **Try-on** → handle `DAILY_LIMIT` + `MODERATION_BLOCKED`.  
 4. **Report** → `content-reports` with `reason` ≥ 3 chars.  
@@ -254,4 +278,4 @@ Do not create duplicate local row; use returned `id`.
 
 ---
 
-*Backend `main` — includes audit fixes + email OTP bundle (`b1c7527`+).*
+*Backend sends FCM `email_verified` on link verify + `verify-email/otp` success.*

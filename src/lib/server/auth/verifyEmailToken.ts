@@ -1,3 +1,4 @@
+import { scheduleEmailVerifiedPush } from "../notifications/emailVerified";
 import { hashResetLinkToken } from "./passwordResetSecrets";
 import { PasswordResetToken } from "../models/PasswordResetToken";
 import { User } from "../models/User";
@@ -21,6 +22,7 @@ export async function verifyEmailWithLinkToken(rawToken: string): Promise<
   if (!alreadyVerified) {
     user.emailVerified = true;
     await user.save();
+    scheduleEmailVerifiedPush(String(user._id));
   }
 
   doc.usedAt = new Date();

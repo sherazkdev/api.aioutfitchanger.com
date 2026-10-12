@@ -8,6 +8,7 @@ import { verifyPasswordResetOtpHash } from "@/lib/server/auth/passwordResetSecre
 import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
 import { User } from "@/lib/server/models/User";
 import { PasswordResetOtp } from "@/lib/server/models/PasswordResetOtp";
+import { scheduleEmailVerifiedPush } from "@/lib/server/notifications/emailVerified";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
 export async function POST(req: Request) {
@@ -73,6 +74,8 @@ export async function POST(req: Request) {
   await user.save();
   doc.usedAt = new Date();
   await doc.save();
+
+  scheduleEmailVerifiedPush(userId);
 
   return jsonOk({
     email_verified: true,
