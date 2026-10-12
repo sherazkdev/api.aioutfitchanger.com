@@ -73,8 +73,6 @@ Optional (if server enforces Turnstile): `captcha_token` or `turnstile_token`.
 | `expires_at` | string | ISO datetime |
 | `verification_message` | string | Show on waiting UI |
 | `verification_email_sent` | boolean | `false` → warn user (spam / resend later) |
-| `otp_length` | number | `4` |
-| `expires_in_seconds` | number | OTP validity (~600) |
 | `fcm_registered` | boolean | `true` if token saved on server |
 | `user.email_verified` | boolean | `false` for new email sign-up |
 | `user.id` | string | Mongo user id |
@@ -98,18 +96,7 @@ User opens link like `https://appworkspro.com/verify-email?token=...`
 Web calls `POST /api/v1/auth/verify-email` with `{ "token": "..." }`.  
 App is **not** in this request; app learns via **FCM** or **polling**.
 
-**Path 2 — OTP inside app**
-
-`POST /api/v1/auth/verify-email/otp`
-
-```json
-{ "email": "user@example.com", "otp": "1234" }
-```
-
-No `Authorization` header required.
-
-**Success `data`:** `{ "email_verified": true, "otp_length": 4 }`  
-→ Navigate to home **immediately** from API response (FCM is optional extra).
+**Sign-up:** link only — do **not** show an OTP field after register. (`POST /auth/verify-email/otp` remains for legacy flows only.)
 
 ---
 

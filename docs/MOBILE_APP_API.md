@@ -145,10 +145,8 @@ POST /api/v1/auth/register
   "access_token": "eyJ…",
   "refresh_token": "eyJ…",
   "expires_at": "2026-10-12T12:00:00.000Z",
-  "verification_message": "Account created. Check your email…",
+  "verification_message": "Account created. Check your email and open the verification link to continue.",
   "verification_email_sent": true,
-  "otp_length": 4,
-  "expires_in_seconds": 600,
   "user": {
     "id": "…",
     "email": "user@example.com",

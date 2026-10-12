@@ -196,7 +196,8 @@ export async function sendPasswordResetOtpEmail(
 export type SendAccountSecurityEmailInput = {
   to: string;
   kind: AccountSecurityEmailKind;
-  otp: string;
+  /** Omitted for sign-up welcome (link-only verify). */
+  otp?: string;
   /** Web link (verify-email or reset-password depending on kind). */
   actionUrl: string;
   expiresInMinutes: number;
