@@ -3,6 +3,10 @@ import { requireAuth } from "@/lib/server/auth/requireAuth";
 import { TryOnJob } from "@/lib/server/models/TryOnJob";
 import { bflPollResult, extractBflResultUrl, mapBflStatus } from "@/lib/server/bfl";
 import { jsonError, jsonOk } from "@/lib/server/http";
+import {
+  isProviderModerationFailure,
+  MODERATION_USER_MESSAGE,
+} from "@/lib/server/moderation/moderateTryOn";
 import { serializeTryOnJob } from "@/lib/server/tryOn/jobResponse";
 import { persistLookImageUrl } from "@/lib/server/storage/persistLookImages";
 import { isHostedUploadUrl } from "@/lib/server/storage/uploads";
@@ -21,12 +25,18 @@ async function ensureJobResultPersisted(job: InstanceType<typeof TryOnJob>) {
   }
 }
 
+function publicJobError(job: InstanceType<typeof TryOnJob>): string | null {
+  if (job.status !== "failed") return null;
+  if (isProviderModerationFailure(job.errorMessage)) return MODERATION_USER_MESSAGE;
+  return job.errorMessage ?? null;
+}
+
 function jobPayload(job: InstanceType<typeof TryOnJob>) {
   return serializeTryOnJob({
     job_id: String(job._id),
     status: job.status,
     result_image_url: job.resultUrl ?? null,
-    error: job.errorMessage ?? null,
+    error: publicJobError(job),
   });
 }
 
@@ -70,7 +80,8 @@ export async function GET(req: Request, ctx: { params: Promise<{ jobId: string }
       job.resultUrl = sampleUrl;
     }
     if (status === "failed") {
-      job.errorMessage = poll.details?.message ?? "Generation failed";
+      const providerMsg = poll.details?.message ?? poll.status ?? "Generation failed";
+      job.errorMessage = isProviderModerationFailure(providerMsg) ? "MODERATION_BLOCKED" : providerMsg;
     }
     await job.save();
     if (job.status === "completed") await ensureJobResultPersisted(job);

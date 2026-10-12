@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { connectMongo } from "@/lib/server/db";
 import { requireAuth } from "@/lib/server/auth/requireAuth";
 import { LookHistory } from "@/lib/server/models/LookHistory";
@@ -59,6 +60,23 @@ export async function POST(req: Request) {
 
   await connectMongo();
   const userId = auth.payload!.userId;
+
+  if (body.try_on_job_id && mongoose.isValidObjectId(body.try_on_job_id)) {
+    const existing = await LookHistory.findOne({
+      userId,
+      tryOnJobId: body.try_on_job_id,
+    }).lean();
+    if (existing) {
+      return jsonOk({
+        id: String(existing._id),
+        image_url: existing.imageUrl,
+        image_absolute_url: serializeLookRow(existing).image_absolute_url,
+        created_at: existing.createdAt.toISOString(),
+        already_exists: true,
+      });
+    }
+  }
+
   let imageUrl: string;
   let sourceImageUrl: string | undefined;
   try {
@@ -71,23 +89,45 @@ export async function POST(req: Request) {
     return jsonError("STORAGE", `Could not persist look image: ${msg}`, 502);
   }
 
-  const doc = await LookHistory.create({
-    userId,
-    imageUrl,
-    sourceImageUrl,
-    styleId: body.style_id,
-    categoryId: body.category_id,
-    isFavorite: body.is_favorite ?? false,
-    savedToWardrobe: body.saved_to_wardrobe ?? false,
-    tryOnJobId: body.try_on_job_id,
-  });
+  const tryOnJobId =
+    body.try_on_job_id && mongoose.isValidObjectId(body.try_on_job_id)
+      ? body.try_on_job_id
+      : undefined;
 
-  return jsonOk({
-    id: String(doc._id),
-    image_url: doc.imageUrl,
-    image_absolute_url: serializeLookRow(doc).image_absolute_url,
-    created_at: doc.createdAt.toISOString(),
-  });
+  try {
+    const doc = await LookHistory.create({
+      userId,
+      imageUrl,
+      sourceImageUrl,
+      styleId: body.style_id,
+      categoryId: body.category_id,
+      isFavorite: body.is_favorite ?? false,
+      savedToWardrobe: body.saved_to_wardrobe ?? false,
+      tryOnJobId,
+    });
+
+    return jsonOk({
+      id: String(doc._id),
+      image_url: doc.imageUrl,
+      image_absolute_url: serializeLookRow(doc).image_absolute_url,
+      created_at: doc.createdAt.toISOString(),
+    });
+  } catch (e) {
+    const code = (e as { code?: number })?.code;
+    if (code === 11000 && tryOnJobId) {
+      const existing = await LookHistory.findOne({ userId, tryOnJobId }).lean();
+      if (existing) {
+        return jsonOk({
+          id: String(existing._id),
+          image_url: existing.imageUrl,
+          image_absolute_url: serializeLookRow(existing).image_absolute_url,
+          created_at: existing.createdAt.toISOString(),
+          already_exists: true,
+        });
+      }
+    }
+    throw e;
+  }
 }
 
 export async function DELETE(req: Request) {

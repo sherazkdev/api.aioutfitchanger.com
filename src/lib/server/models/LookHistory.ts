@@ -18,6 +18,7 @@ LookHistorySchema.index({ createdAt: -1 });
 LookHistorySchema.index({ userId: 1, createdAt: -1 });
 LookHistorySchema.index({ userId: 1, isFavorite: 1, createdAt: -1 });
 LookHistorySchema.index({ userId: 1, savedToWardrobe: 1, createdAt: -1 });
+LookHistorySchema.index({ userId: 1, tryOnJobId: 1 }, { unique: true, sparse: true });
 
 export type LookHistoryDoc = InferSchemaType<typeof LookHistorySchema> & {
   _id: mongoose.Types.ObjectId;

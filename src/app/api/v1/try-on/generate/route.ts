@@ -11,6 +11,9 @@ import { buildFluxEditPrompt, buildVtoPrompt, shouldUseVtoEngine } from "@/lib/s
 import { runBytePlusBeautyGeneration } from "@/lib/server/byteplus/provider";
 import { getServerEnv } from "@/lib/server/env";
 import { jsonError, jsonOk, rateLimit } from "@/lib/server/http";
+import { moderateTryOnRequest } from "@/lib/server/moderation/moderateTryOn";
+import { assertTryOnDailyQuota } from "@/lib/server/tryOn/dailyQuota";
+import { publicTryOnFailureMessage } from "@/lib/server/tryOn/publicErrors";
 import { resolveTryOnImageProvider } from "@/lib/server/tryOn/providerSelection";
 
 export async function POST(req: Request) {
@@ -25,6 +28,23 @@ export async function POST(req: Request) {
 
   if (!rateLimit(`tryon:${auth.payload!.userId}`, 10, 60_000)) {
     return jsonError("RATE_LIMIT", "Too many try-on requests", 429);
+  }
+
+  await connectMongo();
+
+  if (auth.payload!.role !== "admin") {
+    try {
+      await assertTryOnDailyQuota(auth.payload!.userId, env.TRY_ON_DAILY_LIMIT_PER_USER);
+    } catch (e) {
+      if (e instanceof Error && e.message === "DAILY_LIMIT_EXCEEDED") {
+        return jsonError(
+          "DAILY_LIMIT",
+          "Daily try-on limit reached. Try again tomorrow or upgrade your plan.",
+          429
+        );
+      }
+      throw e;
+    }
   }
 
   let body: {
@@ -49,8 +69,6 @@ export async function POST(req: Request) {
     return jsonError("VALIDATION", "source_image_base64 and style_id required", 422);
   }
 
-  await connectMongo();
-
   let personGender = normalizePersonGender(body.person_gender ?? body.gender);
   if (!personGender) {
     const user = await User.findById(auth.payload!.userId).select("preferences.styleGenderPreference").lean();
@@ -71,6 +89,24 @@ export async function POST(req: Request) {
       (await resolveCatalogPromptCommand(body.style_id, body.category_id)) ||
       `COMMAND: style_ref=${body.style_id} | category=${body.category_id ?? "virtual_try_on"} | pipeline=neutral | region=outfit | Apply outfit from reference image 2.`;
 
+    if (env.TRY_ON_MODERATION_ENABLED) {
+      let garmentForModeration = null;
+      if (body.style_reference_image_base64?.trim()) {
+        garmentForModeration = normalizeImageInput(body.style_reference_image_base64, "GARMENT");
+      }
+      const moderation = moderateTryOnRequest({
+        promptTexts: [body.prompt, catalogCommand],
+        person,
+        garment: garmentForModeration,
+      });
+      if (moderation) {
+        job.status = "failed";
+        job.errorMessage = moderation.code;
+        await job.save();
+        return jsonError(moderation.code, moderation.message, moderation.httpStatus);
+      }
+    }
+
     const useVto = shouldUseVtoEngine(catalogCommand, body.category_id);
     const imageProvider = resolveTryOnImageProvider(catalogCommand, body.category_id, useVto);
 
@@ -79,7 +115,7 @@ export async function POST(req: Request) {
         job.status = "failed";
         job.errorMessage = "BFL_NOT_CONFIGURED";
         await job.save();
-        return jsonError("SERVER_CONFIG", "BFL_API_KEY not configured in .env.local", 503);
+        return jsonError("SERVER_CONFIG", "Try-on service is temporarily unavailable", 503);
       }
     }
     if (imageProvider === "byteplus") {
@@ -87,7 +123,7 @@ export async function POST(req: Request) {
         job.status = "failed";
         job.errorMessage = "BYTEPLUS_NOT_CONFIGURED";
         await job.save();
-        return jsonError("SERVER_CONFIG", "ARK_API_KEY not configured for TRY_ON_PROVIDER=byteplus", 503);
+        return jsonError("SERVER_CONFIG", "Try-on service is temporarily unavailable", 503);
       }
     }
 
@@ -186,7 +222,7 @@ export async function POST(req: Request) {
       job.status = "failed";
       job.errorMessage = msg;
       await job.save();
-      return jsonError("TRY_ON_FAILED", job.errorMessage, 502);
+      return jsonError("TRY_ON_FAILED", publicTryOnFailureMessage(msg), 502);
     }
     if (msg.includes("COUPLE_PERSON_GENDER_REQUIRED")) {
       job.status = "failed";
@@ -213,6 +249,6 @@ export async function POST(req: Request) {
     job.status = "failed";
     job.errorMessage = msg;
     await job.save();
-    return jsonError("TRY_ON_FAILED", job.errorMessage, 502);
+    return jsonError("TRY_ON_FAILED", publicTryOnFailureMessage(msg), 502);
   }
 }

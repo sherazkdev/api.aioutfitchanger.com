@@ -20,8 +20,10 @@
 | POST | `/api/v1/auth/google` | Public | Google `id_token` sign-in |
 | POST | `/api/v1/auth/refresh` | Public | New access token |
 | POST | `/api/v1/auth/logout` | User | Revoke session |
-| POST | `/api/v1/auth/forgot-password` | Public | Send reset email |
-| POST | `/api/v1/auth/reset-password` | Public | Set new password with token |
+| POST | `/api/v1/auth/forgot-password` | Public | Web: send reset **link** email |
+| POST | `/api/v1/auth/forgot-password/otp` | Public | Mobile: send 4-digit **OTP** email |
+| POST | `/api/v1/auth/reset-password` | Public | Web: `token` + `password` |
+| POST | `/api/v1/auth/reset-password/otp` | Public | Mobile: `email` + `otp` + `password` |
 | GET | `/api/v1/users/me` | User | Profile |
 | PATCH | `/api/v1/users/me` | User | Update display name |
 | DELETE | `/api/v1/users/me` | User | Delete account |
@@ -29,6 +31,8 @@
 | PATCH | `/api/v1/users/me/preferences` | User | Update preferences |
 | POST | `/api/v1/users/me/avatar` | User | Upload avatar |
 | POST | `/api/v1/users/me/fcm-token` | User | Register FCM (legacy path) |
+| DELETE | `/api/v1/users/me/fcm-token` | User | Revoke FCM (`fcm_token` / `device_id`; omit both to revoke all) |
+| POST | `/api/v1/content-reports` | User | Report look / job (`reason`, `look_id` or `try_on_job_id`) |
 | POST | `/api/v1/devices/register` | User | Register FCM + device |
 | POST | `/api/v1/try-on/generate` | User | Start AI try-on job |
 | GET | `/api/v1/try-on/jobs/{jobId}` | User | Poll job status / result |

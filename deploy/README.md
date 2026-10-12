@@ -51,6 +51,18 @@ pm2 logs ai-outfit-changer --lines 50 | grep -E '\[email\]|\[auth\] forgot'
 
 **PM2 `Failed to find Server Action`** lines are usually stale browser JS after deploy; hard refresh or `pm2 reload` after `npm run build`. They are unrelated to the forgot-password API.
 
+### Look history index (after audit #11 deploy)
+
+New sparse unique index: `{ userId, tryOnJobId }`. If production already has duplicate job rows, index creation can fail.
+
+**Once before or right after deploy:**
+
+```bash
+node scripts/prepare-look-history-unique-index.mjs
+```
+
+Keeps the newest look per `(userId, tryOnJobId)` and creates the index.
+
 ## Manual steps (same as script)
 
 ```bash

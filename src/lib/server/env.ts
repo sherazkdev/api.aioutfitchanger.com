@@ -24,6 +24,13 @@ const envSchema = z.object({
   FIREBASE_CLIENT_EMAIL: z.string().optional(),
   FIREBASE_PRIVATE_KEY: z.string().optional(),
   API_RATE_LIMIT_AUTH_PER_MIN: z.coerce.number().default(20),
+  /** Max try-on jobs per user per UTC day (0 = unlimited). */
+  TRY_ON_DAILY_LIMIT_PER_USER: z.coerce.number().min(0).max(500).default(5),
+  /** When false, only provider-side moderation applies. */
+  TRY_ON_MODERATION_ENABLED: z
+    .enum(["true", "false", "1", "0"])
+    .default("true")
+    .transform((v) => v === "true" || v === "1"),
   RESEND_API_KEY: z.string().optional(),
   RESEND_FROM_EMAIL: z.string().email().optional(),
   RESEND_FROM_NAME: z.string().default("AI Wardrobe"),

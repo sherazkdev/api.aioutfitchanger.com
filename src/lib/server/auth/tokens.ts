@@ -68,7 +68,12 @@ export async function issueSession(params: {
   return { accessToken, refreshToken, expiresAt, familyId };
 }
 
-export async function rotateRefreshToken(params: {
+const refreshInflight = new Map<
+  string,
+  Promise<{ accessToken: string; refreshToken: string; expiresAt: Date }>
+>();
+
+async function rotateRefreshTokenInner(params: {
   rawRefresh: string;
   userAgent?: string;
   ip?: string;
@@ -103,6 +108,23 @@ export async function rotateRefreshToken(params: {
     deviceId: doc.deviceId ?? undefined,
     label: doc.label ?? undefined,
   });
+}
+
+/** Coalesce parallel refresh calls for the same refresh token (avoids REFRESH_REUSE storms). */
+export async function rotateRefreshToken(params: {
+  rawRefresh: string;
+  userAgent?: string;
+  ip?: string;
+}): Promise<{ accessToken: string; refreshToken: string; expiresAt: Date }> {
+  const key = hashToken(params.rawRefresh);
+  const existing = refreshInflight.get(key);
+  if (existing) return existing;
+
+  const promise = rotateRefreshTokenInner(params).finally(() => {
+    refreshInflight.delete(key);
+  });
+  refreshInflight.set(key, promise);
+  return promise;
 }
 
 export async function revokeRefreshFamily(familyId: string): Promise<void> {
