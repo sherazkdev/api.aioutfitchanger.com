@@ -123,7 +123,7 @@ export function mapWardrobeCategories(docs: WardrobeCategoryDoc[], locale: strin
         browse_tab_id: c.browseTabId,
         background_token: c.backgroundToken,
         preview_items: (c.previewItems ?? [])
-          .filter((p) => !gender || !p.gender || p.gender === gender || p.gender === "both")
+          .filter((p) => !gender || !p.gender || p.gender === gender)
           .map((p) => ({
             style_id: p.styleId,
             thumbnail_url: p.thumbnailUrl,
