@@ -1,0 +1,148 @@
+﻿{
+    "results":  [
+                    {
+                        "path":  "/home/feed?gender=men",
+                        "items":  15,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/home/feed?gender=women",
+                        "items":  23,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/beard_styles?gender=men",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/hair_styles?gender=men",
+                        "items":  8,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/hair_styles?gender=women",
+                        "items":  8,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/hair_color?gender=men",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/hair_color?gender=women",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/hijab_styles?gender=women",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/outfit_change?gender=men",
+                        "items":  2,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/outfit_change?gender=women",
+                        "items":  11,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/occasions?gender=men",
+                        "items":  20,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/occasions?gender=men\u0026tab=casual",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/occasions?gender=men\u0026tab=formal",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/occasions?gender=men\u0026tab=wedding",
+                        "items":  0,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/couple_duo?gender=men",
+                        "items":  11,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/couple_duo?gender=women",
+                        "items":  11,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/presets?gender=men",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/presets?gender=men\u0026tab=preset_gym",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/presets?gender=men\u0026tab=preset_interview",
+                        "items":  0,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/presets?gender=men\u0026tab=preset_wedding_guest",
+                        "items":  0,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/presets?gender=women",
+                        "items":  0,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/presets?gender=women\u0026tab=preset_interview",
+                        "items":  0,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/presets?gender=women\u0026tab=preset_wedding_guest",
+                        "items":  0,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/wardrobe_browse?gender=men\u0026tab=shirts",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/wardrobe_browse?gender=women\u0026tab=skirts",
+                        "items":  16,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/virtual_try_on?gender=men\u0026tab=shirts",
+                        "items":  10,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/virtual_try_on?tab=shirts",
+                        "items":  0,
+                        "bearer":  "same"
+                    },
+                    {
+                        "path":  "/catalog/couple_duo?gender=men\u0026tab=shirts",
+                        "items":  0,
+                        "bearer":  "same"
+                    }
+                ],
+    "account_email":  "catalog.proof.1791908270@mailinator.com",
+    "token_length":  175,
+    "captured_at_utc":  "2026-10-13 11:19:29 UTC",
+    "base":  "https://appworkspro.com/api/v1"
+}

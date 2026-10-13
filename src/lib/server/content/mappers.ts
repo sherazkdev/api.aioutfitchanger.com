@@ -44,8 +44,12 @@ export function mapCatalog(
 ) {
   const resolvedTab = normalizeCatalogTab(doc.categoryId, tab);
   let items = [...(doc.items ?? [])].filter((i) => (i as { enabled?: boolean }).enabled !== false);
-  if (resolvedTab) items = items.filter((i) => i.tabId === resolvedTab || resolvedTab === "all");
+  if (resolvedTab && resolvedTab !== "all") {
+    // Items without tabId (e.g. couple_duo, beard_styles) apply to every tab; apps often reuse tab state from VTO.
+    items = items.filter((i) => !i.tabId || i.tabId === resolvedTab);
+  }
   const genderScope = doc.genderScope ?? "both";
+  // No `gender` query → return all items for the tab (men + women mixed when genderScope is "both").
   if (gender && genderScope === "both") {
     items = items.filter(
       (i) => i.gender === gender || i.genderTabId === gender || i.gender === "both"
@@ -71,6 +75,7 @@ export function mapCatalog(
       id: i.id,
       tab_id: i.tabId,
       gender_tab_id: i.genderTabId,
+      gender: i.gender ?? i.genderTabId ?? null,
       image_url: i.imageUrl,
       name: readLocalized(i.nameLocalized, locale, undefined, i.id),
       prompt_command: i.promptCommand,
@@ -88,6 +93,7 @@ export function mapHomeFeed(sections: HomeFeedSectionDoc[], locale: string, gend
       type: s.type,
       category_id: s.categoryId,
       items: (s.items ?? [])
+        // No `gender` on feed → include men + women rails (mixed).
         .filter((item) => !gender || item.genderScope === "both" || item.genderScope === gender)
         .map((item) => ({
           style_id: item.styleId,
@@ -116,11 +122,13 @@ export function mapWardrobeCategories(docs: WardrobeCategoryDoc[], locale: strin
         title: readLocalized(c.titleLocalized, locale, c.titleKey),
         browse_tab_id: c.browseTabId,
         background_token: c.backgroundToken,
-        preview_items: (c.previewItems ?? []).map((p) => ({
-          style_id: p.styleId,
-          thumbnail_url: p.thumbnailUrl,
-          gender: p.gender,
-        })),
+        preview_items: (c.previewItems ?? [])
+          .filter((p) => !gender || !p.gender || p.gender === gender || p.gender === "both")
+          .map((p) => ({
+            style_id: p.styleId,
+            thumbnail_url: p.thumbnailUrl,
+            gender: p.gender,
+          })),
       })),
   };
 }

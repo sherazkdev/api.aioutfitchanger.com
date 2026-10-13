@@ -23,6 +23,7 @@
     "test:wardrobe-phase1": "npx tsx --test scripts/wardrobe-phase1-prompt.test.ts",
     "test:full-outfit-phase2": "npx tsx --test scripts/full-outfit-phase2-prompt.test.ts",
     "test:couple-duo-routing": "npx tsx --test scripts/couple-duo-garment-routing.test.ts",
+    "test:catalog-gender": "npx tsx --test scripts/catalog-gender-mix.test.ts",
     "test:beauty-flux": "npx tsx --test scripts/beauty-flux-prompt.test.ts",
     "test:byteplus-provider": "npx tsx --test scripts/byteplus-provider.test.ts",
     "test:password-reset-otp": "npx tsx --test scripts/password-reset-otp.test.ts",
