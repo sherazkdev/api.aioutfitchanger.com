@@ -16,6 +16,9 @@ const OUTFIT_CATEGORY_IDS = new Set([
   "occasions",
   "couple_duo",
   "presets",
+  "eastern_traditional",
+  "trending_fashion",
+  "western_traditional",
 ]);
 
 /** Outfit/full-garment try-on uses BFL Virtual Try-On v2; localized edits stay on flux-2-pro. */

@@ -1,0 +1,18 @@
+{
+  "verified_at": "2026-10-15T06:56:00.000Z",
+  "api_base": "https://appworkspro.com/api/v1",
+  "unique_style_ids_via_public_catalog": 419,
+  "categories": [
+    "beard_styles",
+    "couple_duo",
+    "hair_color",
+    "hair_styles",
+    "hijab_styles",
+    "occasions",
+    "outfit_change",
+    "presets",
+    "virtual_try_on",
+    "wardrobe_browse"
+  ],
+  "notes": "Counted unique style_id across GET /catalog/{category}?gender=men|women. Matches seed baseline styleCount 419."
+}

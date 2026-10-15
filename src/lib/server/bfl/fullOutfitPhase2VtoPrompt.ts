@@ -8,6 +8,9 @@ const PHASE2_OUTFIT_CATEGORY_IDS = new Set([
   "occasions",
   "couple_duo",
   "presets",
+  "eastern_traditional",
+  "trending_fashion",
+  "western_traditional",
 ]);
 
 /**
