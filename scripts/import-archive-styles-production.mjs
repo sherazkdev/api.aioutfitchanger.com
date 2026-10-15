@@ -17,10 +17,9 @@ const WORK = path.join(ROOT, ".import-archive-work");
 const ARTIFACTS = path.join(ROOT, "artifacts", "archive-style-import");
 const dryRun = process.argv.includes("--dry-run");
 
-function loadEnvLocal() {
-  const p = path.join(ROOT, ".env.local");
-  if (!existsSync(p)) return;
-  for (const line of readFileSync(p, "utf8").split(/\r?\n/)) {
+function loadEnvFile(filePath) {
+  if (!existsSync(filePath)) return;
+  for (const line of readFileSync(filePath, "utf8").split(/\r?\n/)) {
     const t = line.trim();
     if (!t || t.startsWith("#")) continue;
     const i = t.indexOf("=");
@@ -35,6 +34,11 @@ function loadEnvLocal() {
     }
     if (process.env[k] === undefined) process.env[k] = v;
   }
+}
+
+function loadEnvLocal() {
+  loadEnvFile(path.join(ROOT, ".env"));
+  loadEnvFile(path.join(ROOT, ".env.local"));
 }
 
 async function api(token, method, urlPath, body, formData) {
