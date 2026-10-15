@@ -347,7 +347,11 @@ function promptFor(plan) {
 function extractZip() {
   mkdirSync(WORK, { recursive: true });
   if (!existsSync(ZIP)) throw new Error(`ZIP not found: ${ZIP}`);
-  execSync(`tar -xf "${ZIP}" -C "${WORK}"`, { stdio: "pipe" });
+  if (process.platform === "win32") {
+    execSync(`tar -xf "${ZIP}" -C "${WORK}"`, { stdio: "pipe" });
+  } else {
+    execSync(`unzip -o -q "${ZIP}" -d "${WORK}"`, { stdio: "pipe" });
+  }
 }
 
 async function main() {
