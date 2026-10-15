@@ -106,7 +106,7 @@ const STYLE_PLAN = [
       "The person of image 1, maintaining exactly their face, identity, skin tone, hair, beard, body proportions, pose, camera angle, lighting, and background, wearing the exact Chinese-inspired men's robe from image 2 (style men_chinese_29): black cross-collar scholar robe with subtle woven texture, wide sleeves, and a long white inner collar panel. Reproduce garment length, collar geometry, sleeve drape, and matte fabric exactly as in image 2.",
   },
   {
-    folder: "Couple _ Duo Styles",
+    folder: "Couple : Duo Styles",
     file: "Frame 20.png",
     style_id: "couple_12",
     category_id: "couple_duo",
@@ -117,7 +117,7 @@ const STYLE_PLAN = [
       "Preserve exactly the people already present in image 1; do not add or remove people. Apply the coordinated couple look from image 2 (style couple_12): woman in black spaghetti-strap top and cream pleated midi skirt; man in white tank top and black shorts with crossbody strap. Match colors, garment types, fits, and styling cues from image 2 onto the existing couple while keeping both faces, hair, skin tones, poses, and the scene unchanged.",
   },
   {
-    folder: "Couple _ Duo Styles",
+    folder: "Couple : Duo Styles",
     file: "Frame 21.png",
     style_id: "couple_13",
     category_id: "couple_duo",
@@ -128,7 +128,7 @@ const STYLE_PLAN = [
       "Preserve exactly the people already present in image 1; do not add or remove people. Apply the coordinated South Indian traditional couple ensemble from image 2 (style couple_13): man in navy shirt with white dhoti and gold border; woman in teal half-saree with magenta dupatta and gold border. Transfer textile colors, drape, borders, and accessories exactly from image 2 while preserving both identities and poses.",
   },
   {
-    folder: "Couple _ Duo Styles",
+    folder: "Couple : Duo Styles",
     file: "Frame 22.png",
     style_id: "couple_14",
     category_id: "couple_duo",
