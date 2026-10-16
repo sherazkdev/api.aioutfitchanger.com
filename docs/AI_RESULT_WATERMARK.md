@@ -30,4 +30,4 @@ Admin: `PATCH /admin/users/:id` `{ "subscription_plan": "premium" }`
 
 ## Visual
 
-Bottom-right pill: sparkle icon + `AI Generated • Outfit Changer`, dark translucent background, white text, scales with image width.
+Bottom-right pill: sparkle icon + `AI Generated · Outfit Changer` (letter-spaced HUD), dark gradient background, thin light stroke, white text; rasterized at 3× then downscaled. Scales with image width.

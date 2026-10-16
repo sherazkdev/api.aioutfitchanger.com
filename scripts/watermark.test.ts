@@ -2,15 +2,20 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import sharp from "sharp";
 import { applyAiResultWatermark } from "../src/lib/server/watermark/applyWatermark";
-import { buildWatermarkBadgeSvg } from "../src/lib/server/watermark/badgeSvg";
+import {
+  WATERMARK_LABEL,
+  buildWatermarkBadgeSvg,
+} from "../src/lib/server/watermark/badgeSvg";
 import { watermarkGloballyEnabled } from "../src/lib/server/watermark/policy";
 
 test("badge SVG contains approved label", () => {
   const svg = buildWatermarkBadgeSvg(1);
-  assert.match(svg, /AI Generated • /);
-  assert.match(svg, /Outfit Changer/);
-  assert.match(svg, /rgba\(30,41,59,0\.74\)/);
-  assert.match(svg, /height="38"/);
+  assert.equal(WATERMARK_LABEL, "AI Generated · Outfit Changer");
+  assert.match(svg, new RegExp(`<!-- ${WATERMARK_LABEL} -->`));
+  assert.match(svg, /<tspan[^>]*>A<\/tspan>/);
+  assert.match(svg, /<tspan[^>]*>C<\/tspan>/);
+  assert.match(svg, /font-family="Arial/);
+  assert.match(svg, /id="wmPill"/);
 });
 
 test("applyAiResultWatermark composites without resizing canvas", async () => {
