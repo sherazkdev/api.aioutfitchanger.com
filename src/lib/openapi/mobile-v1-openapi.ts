@@ -234,13 +234,21 @@ export const mobileV1OpenApi = {
             "application/json": {
               schema: {
                 type: "object",
-                required: ["id_token", "gender"],
+                required: ["id_token"],
                 properties: {
                   id_token: { type: "string" },
+                  access_token: {
+                    type: "string",
+                    description: "Optional Google OAuth access token. Backend reads gender from People API when present.",
+                  },
+                  profile: {
+                    type: "object",
+                    description: "Optional Google/People profile. Gender is taken from profile.gender or profile.genders[].value.",
+                  },
                   gender: {
                     type: "string",
                     enum: ["male", "female"],
-                    description: "Required for first-time Google sign-up. Optional on later logins.",
+                    description: "Optional fallback if the Google profile has no gender.",
                   },
                   device_id: { type: "string" },
                 },

@@ -20,7 +20,7 @@
 | `style_id` | Required string | try-on/generate |
 | `try_on_job_id` | Valid Mongo ObjectId (24 hex) when syncing history | POST history |
 | `display_name` | Optional; trim | register |
-| `gender` | Required: `male` \| `female` | register; Google first-time sign-up |
+| `gender` | Required: `male` \| `female` | register only. Google: taken from Google profile / People API |
 | `captcha_token` or `turnstile_token` | Required when server has `ENFORCE_TURNSTILE=true` | register, login, forgot-password, forgot-password/otp |
 
 ---

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   applyUserGender,
+  extractGenderFromGoogleProfile,
   parseUserGender,
   styleGenderFromUserGender,
 } from "../src/lib/server/auth/userGender";
@@ -18,6 +19,14 @@ test("parseUserGender accepts male/female case-insensitively", () => {
 test("styleGenderFromUserGender maps identity to catalog preference", () => {
   assert.equal(styleGenderFromUserGender("male"), "men");
   assert.equal(styleGenderFromUserGender("female"), "women");
+});
+
+test("extractGenderFromGoogleProfile reads token, People API, and nested profile", () => {
+  assert.equal(extractGenderFromGoogleProfile({ gender: "male" }), "male");
+  assert.equal(extractGenderFromGoogleProfile({ genders: [{ value: "female" }] }), "female");
+  assert.equal(extractGenderFromGoogleProfile({ profile: { gender: "Female" } }), "female");
+  assert.equal(extractGenderFromGoogleProfile({ genders: [{ formattedValue: "Male" }] }), "male");
+  assert.equal(extractGenderFromGoogleProfile({ gender: "other" }), null);
 });
 
 test("applyUserGender sets catalog preference only the first time", () => {

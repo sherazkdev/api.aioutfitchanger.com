@@ -102,10 +102,20 @@ Content-Type: application/json
 ```json
 {
   "id_token": "<from Google Sign-In SDK>",
-  "gender": "male",
+  "access_token": "<optional Google access token>",
+  "profile": { "gender": "male" },
   "device_id": "optional-stable-device-id"
 }
 ```
+
+Gender is **not required** from the app. Backend fills `user.gender` from, in order:
+
+1. Verified Google / Firebase `id_token` (`gender` claim, if present)
+2. `profile` object the app got from Google / People API (`gender` or `genders[0].value`)
+3. `access_token` → Google People API `people/me?personFields=genders`
+4. Optional `gender` field as last fallback
+
+Standard Google Sign-In profile is name / email / photo. Gender is often missing unless the app requests People API scope `https://www.googleapis.com/auth/user.gender.read` and sends `access_token` or `profile`. If Google has no gender, account is still created and `GET /users/me` returns `"gender": null`.
 
 **200 `data`:**
 
@@ -126,8 +136,7 @@ Content-Type: application/json
 }
 ```
 
-**401** — invalid/expired `id_token` (`INVALID_GOOGLE_TOKEN`).  
-**422** — `gender` missing/invalid on **first-time** Google sign-up. Values: `male` | `female`. Existing accounts may omit it; send it to backfill.
+**401** — invalid/expired `id_token` (`INVALID_GOOGLE_TOKEN`).
 
 ### 4.2 Email register
 

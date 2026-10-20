@@ -2,12 +2,14 @@ import { OAuth2Client } from "google-auth-library";
 import { getAuth, type DecodedIdToken } from "firebase-admin/auth";
 import { googleClientIds } from "../env";
 import { initFirebaseAdmin } from "../fcm";
+import { extractGenderFromGoogleProfile, type UserGender } from "./userGender";
 
 export type GoogleProfile = {
   googleId: string;
   email?: string;
   displayName?: string;
   photoUrl?: string;
+  gender?: UserGender | null;
 };
 
 function profileFromGoogleOAuth(payload: {
@@ -15,6 +17,7 @@ function profileFromGoogleOAuth(payload: {
   email?: string;
   name?: string;
   picture?: string;
+  gender?: string;
 }): GoogleProfile {
   if (!payload.sub) throw new Error("INVALID_GOOGLE_TOKEN");
   return {
@@ -22,6 +25,7 @@ function profileFromGoogleOAuth(payload: {
     email: payload.email,
     displayName: payload.name,
     photoUrl: payload.picture,
+    gender: extractGenderFromGoogleProfile(payload),
   };
 }
 
@@ -41,7 +45,29 @@ function profileFromFirebaseIdToken(decoded: DecodedIdToken): GoogleProfile {
     email: decoded.email,
     displayName: decoded.name,
     photoUrl: decoded.picture,
+    gender: extractGenderFromGoogleProfile(decoded),
   };
+}
+
+/** Uses Google People API when the app sends an OAuth access_token with gender scope. */
+export async function fetchGenderFromGooglePeopleApi(accessToken: string): Promise<UserGender | null> {
+  const token = accessToken.trim();
+  if (!token) return null;
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 4000);
+  try {
+    const res = await fetch("https://people.googleapis.com/v1/people/me?personFields=genders", {
+      headers: { Authorization: `Bearer ${token}` },
+      signal: controller.signal,
+    });
+    if (!res.ok) return null;
+    return extractGenderFromGoogleProfile(await res.json());
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 async function verifyWithGoogleOAuth(idToken: string): Promise<GoogleProfile> {

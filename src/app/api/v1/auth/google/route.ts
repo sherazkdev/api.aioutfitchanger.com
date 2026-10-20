@@ -1,9 +1,9 @@
 import { connectMongo } from "@/lib/server/db";
-import { verifyGoogleIdToken } from "@/lib/server/auth/google";
+import { fetchGenderFromGooglePeopleApi, verifyGoogleIdToken } from "@/lib/server/auth/google";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
 import { getServerEnv } from "@/lib/server/env";
-import { applyUserGender, defaultPreferencesForGender, parseUserGender } from "@/lib/server/auth/userGender";
+import { applyUserGender, defaultPreferencesForGender, extractGenderFromGoogleProfile } from "@/lib/server/auth/userGender";
 import { registerFcmIfProvided } from "@/lib/server/devices/registerFcmIfProvided";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
@@ -12,7 +12,12 @@ export async function GET() {
   return jsonOk({
     endpoint: "/api/v1/auth/google",
     method: "POST",
-    body: { id_token: "<Google Sign-In idToken from Android>", gender: "male | female", device_id: "optional" },
+    body: {
+      id_token: "<Google Sign-In idToken>",
+      access_token: "optional Google access token for People API gender",
+      profile: "optional Google/People profile object",
+      device_id: "optional",
+    },
     admin_ui: "/login",
   });
 }
@@ -31,6 +36,8 @@ export async function POST(req: Request) {
 
   let body: {
     id_token?: string;
+    access_token?: string;
+    profile?: unknown;
     gender?: string;
     device_id?: string;
     fcm_token?: string;
@@ -64,20 +71,23 @@ export async function POST(req: Request) {
       user.googleId = profile.googleId;
     }
   }
-  const gender = parseUserGender(body.gender);
+  const gender =
+    extractGenderFromGoogleProfile(profile.gender) ??
+    extractGenderFromGoogleProfile(body.profile) ??
+    extractGenderFromGoogleProfile(body.gender) ??
+    (typeof body.access_token === "string" ? await fetchGenderFromGooglePeopleApi(body.access_token) : null);
+
   if (!user) {
-    if (!gender) {
-      return jsonError("VALIDATION", "gender is required and must be male or female", 422);
-    }
     user = await User.create({
       googleId: profile.googleId,
       email: profile.email?.trim().toLowerCase(),
       displayName: profile.displayName,
       photoUrl: profile.photoUrl,
-      gender,
+      ...(gender
+        ? { gender, preferences: defaultPreferencesForGender(gender) }
+        : {}),
       role: "user",
       emailVerified: true,
-      preferences: defaultPreferencesForGender(gender),
     });
   } else {
     user.displayName = profile.displayName ?? user.displayName;
