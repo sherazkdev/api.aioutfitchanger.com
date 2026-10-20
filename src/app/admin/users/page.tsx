@@ -14,6 +14,7 @@ type UserRow = {
   email?: string;
   display_name?: string;
   photo_url?: string;
+  gender?: string | null;
   role: string;
   status: string;
   uid?: string;
@@ -24,7 +25,7 @@ function TableSkeleton() {
     <>
       {Array.from({ length: 5 }).map((_, i) => (
         <tr key={i} className="border-b border-gray-50 dark:border-gray-800">
-          <td colSpan={5} className="px-5 py-4">
+          <td colSpan={6} className="px-5 py-4">
             <div className="h-8 animate-pulse rounded-md bg-gray-100 dark:bg-gray-800" />
           </td>
         </tr>
@@ -113,6 +114,7 @@ export default function UsersPage() {
               <tr className="border-b border-gray-100 bg-gray-50/30 text-left dark:border-gray-800">
                 <th className="table-head px-5 py-3">User</th>
                 <th className="table-head px-5 py-3">Email</th>
+                <th className="table-head px-5 py-3">Gender</th>
                 <th className="table-head px-5 py-3">Role</th>
                 <th className="table-head px-5 py-3">Status</th>
                 <th className="table-head px-5 py-3">Actions</th>
@@ -123,7 +125,7 @@ export default function UsersPage() {
                 <TableSkeleton />
               ) : items.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-5 py-12 text-center">
+                  <td colSpan={6} className="px-5 py-12 text-center">
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">No users found</p>
                     <p className="mt-1 text-xs text-gray-500">
                       {debouncedQ ? "Try a different search term." : "No accounts in the database yet."}
@@ -140,6 +142,7 @@ export default function UsersPage() {
                       </div>
                     </td>
                     <td className="px-5 py-4 text-sm text-gray-600 dark:text-gray-300">{u.email ?? "—"}</td>
+                    <td className="px-5 py-4 text-sm capitalize">{u.gender ?? "—"}</td>
                     <td className="px-5 py-4 text-sm capitalize">{u.role}</td>
                     <td className="px-5 py-4 text-sm capitalize">{u.status}</td>
                     <td className="px-5 py-4">

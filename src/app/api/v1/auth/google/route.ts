@@ -3,6 +3,7 @@ import { verifyGoogleIdToken } from "@/lib/server/auth/google";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
 import { getServerEnv } from "@/lib/server/env";
+import { applyUserGender, defaultPreferencesForGender, parseUserGender } from "@/lib/server/auth/userGender";
 import { registerFcmIfProvided } from "@/lib/server/devices/registerFcmIfProvided";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 
@@ -11,7 +12,7 @@ export async function GET() {
   return jsonOk({
     endpoint: "/api/v1/auth/google",
     method: "POST",
-    body: { id_token: "<Google Sign-In idToken from Android>", device_id: "optional" },
+    body: { id_token: "<Google Sign-In idToken from Android>", gender: "male | female", device_id: "optional" },
     admin_ui: "/login",
   });
 }
@@ -30,6 +31,7 @@ export async function POST(req: Request) {
 
   let body: {
     id_token?: string;
+    gender?: string;
     device_id?: string;
     fcm_token?: string;
     token?: string;
@@ -62,19 +64,26 @@ export async function POST(req: Request) {
       user.googleId = profile.googleId;
     }
   }
+  const gender = parseUserGender(body.gender);
   if (!user) {
+    if (!gender) {
+      return jsonError("VALIDATION", "gender is required and must be male or female", 422);
+    }
     user = await User.create({
       googleId: profile.googleId,
       email: profile.email?.trim().toLowerCase(),
       displayName: profile.displayName,
       photoUrl: profile.photoUrl,
+      gender,
       role: "user",
       emailVerified: true,
+      preferences: defaultPreferencesForGender(gender),
     });
   } else {
     user.displayName = profile.displayName ?? user.displayName;
     user.photoUrl = profile.photoUrl ?? user.photoUrl;
     user.lastLoginAt = new Date();
+    if (gender) applyUserGender(user, gender);
     await user.save();
   }
 
@@ -100,6 +109,7 @@ export async function POST(req: Request) {
       email: user.email,
       display_name: user.displayName,
       photo_url: user.photoUrl,
+      gender: user.gender ?? null,
       role: user.role,
       email_verified: user.emailVerified ?? true,
     },

@@ -19,6 +19,7 @@ type UserDetail = {
     display_name?: string;
     email?: string;
     photo_url?: string;
+    gender?: string | null;
     status: string;
     uid: string;
     role: string;
@@ -182,6 +183,10 @@ export default function UserDetailPage() {
           <InfoRow label="Display name" value={data.profile.display_name ?? "—"} />
           <InfoRow label="Email" value={data.profile.email ?? "—"} />
           <InfoRow
+            label="Gender"
+            value={data.profile.gender === "male" ? "Male" : data.profile.gender === "female" ? "Female" : "—"}
+          />
+          <InfoRow
             label="UID"
             value={
               <span className="inline-flex items-center gap-2 font-mono text-xs">
@@ -211,7 +216,7 @@ export default function UserDetailPage() {
         <InfoCard title="Preferences">
           <InfoRow label="Language" value={data.preferences.language ?? "—"} />
           <InfoRow label="Theme" value={data.preferences.theme ?? "—"} />
-          <InfoRow label="Gender" value={data.preferences.gender ?? "—"} />
+          <InfoRow label="Style preference" value={data.preferences.gender ?? "—"} />
           <InfoRow label="Notifications" value={data.preferences.notifications ?? "—"} />
         </InfoCard>
       </div>

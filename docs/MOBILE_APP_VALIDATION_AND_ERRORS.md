@@ -1,5 +1,7 @@
 # Mobile app — validation rules & error codes (new/updated backend)
 
+**Full end-to-end wire-up (flows + master error table):** **`docs/MOBILE_APP_E2E_INTEGRATION.md`**
+
 **Envelope:** `{ "data": … | null, "error": { "code": string, "message": string } | null }`  
 **Auth:** `Authorization: Bearer <access_token>` jahan likha ho.
 
@@ -18,6 +20,7 @@
 | `style_id` | Required string | try-on/generate |
 | `try_on_job_id` | Valid Mongo ObjectId (24 hex) when syncing history | POST history |
 | `display_name` | Optional; trim | register |
+| `gender` | Required: `male` \| `female` | register; Google first-time sign-up |
 | `captcha_token` or `turnstile_token` | Required when server has `ENFORCE_TURNSTILE=true` | register, login, forgot-password, forgot-password/otp |
 
 ---
@@ -39,7 +42,7 @@ Try-on: if body too large → **413** `PAYLOAD_TOO_LARGE`.
 
 ### Request
 ```json
-{ "email": "user@example.com", "password": "min8chars", "display_name": "Ali" }
+{ "email": "user@example.com", "password": "min8chars", "display_name": "Ali", "gender": "male" }
 ```
 
 ### Success `data` (new fields)
@@ -58,7 +61,7 @@ Sign-up: **OTP in app** (`POST /auth/verify-email/otp`) **or** email link. Forgo
 ### Errors
 | HTTP | `error.code` | App action |
 |------|----------------|------------|
-| 422 | `VALIDATION` | Missing email/password or password &lt; 8 |
+| 422 | `VALIDATION` | Missing email/password, password &lt; 8, or gender not `male`/`female` |
 | 409 | `CONFLICT` | Email already registered → go to login |
 | 429 | `RATE_LIMIT` | Too many sign-ups from this device |
 

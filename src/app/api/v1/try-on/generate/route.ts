@@ -76,8 +76,8 @@ export async function POST(req: Request) {
 
   let personGender = normalizePersonGender(body.person_gender ?? body.gender);
   if (!personGender) {
-    const user = await User.findById(auth.payload!.userId).select("preferences.styleGenderPreference").lean();
-    personGender = normalizePersonGender(user?.preferences?.styleGenderPreference ?? null);
+    const user = await User.findById(auth.payload!.userId).select("gender preferences.styleGenderPreference").lean();
+    personGender = normalizePersonGender(user?.gender ?? user?.preferences?.styleGenderPreference ?? null);
   }
 
   const job = await TryOnJob.create({

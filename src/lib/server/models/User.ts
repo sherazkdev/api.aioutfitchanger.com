@@ -6,6 +6,7 @@ const UserSchema = new Schema(
     googleId: { type: String, unique: true, sparse: true },
     displayName: { type: String, trim: true },
     photoUrl: { type: String },
+    gender: { type: String, enum: ["male", "female"] },
     role: { type: String, enum: ["user", "admin"], default: "user" },
     isGuest: { type: Boolean, default: false },
     passwordHash: { type: String, select: false },

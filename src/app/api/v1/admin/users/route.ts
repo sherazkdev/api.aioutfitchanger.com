@@ -34,6 +34,7 @@ export async function GET(req: Request) {
       email: u.email,
       display_name: u.displayName,
       photo_url: u.photoUrl,
+      gender: u.gender ?? null,
       role: u.role,
       status: u.status,
       is_guest: u.isGuest,

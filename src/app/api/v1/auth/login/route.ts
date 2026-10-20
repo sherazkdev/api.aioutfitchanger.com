@@ -69,6 +69,7 @@ export async function POST(req: Request) {
       id: userId,
       email: user.email,
       display_name: user.displayName,
+      gender: user.gender ?? null,
       role: user.role,
       email_verified: user.emailVerified ?? false,
     },

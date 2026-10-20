@@ -53,6 +53,7 @@ export const mobileV1OpenApi = {
           id: { type: "string" },
           email: { type: "string" },
           display_name: { type: "string" },
+          gender: { type: "string", enum: ["male", "female"], nullable: true },
           role: { type: "string", enum: ["user", "admin"] },
         },
       },
@@ -172,11 +173,12 @@ export const mobileV1OpenApi = {
             "application/json": {
               schema: {
                 type: "object",
-                required: ["email", "password"],
+                required: ["email", "password", "gender"],
                 properties: {
                   email: { type: "string", format: "email" },
                   password: { type: "string", minLength: 8 },
                   display_name: { type: "string" },
+                  gender: { type: "string", enum: ["male", "female"] },
                 },
               },
             },
@@ -222,6 +224,33 @@ export const mobileV1OpenApi = {
         responses: { "200": { description: "Same shape as register" } },
       },
     },
+    "/auth/google": {
+      post: {
+        tags: ["Auth"],
+        summary: "Continue with Google",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                required: ["id_token", "gender"],
+                properties: {
+                  id_token: { type: "string" },
+                  gender: {
+                    type: "string",
+                    enum: ["male", "female"],
+                    description: "Required for first-time Google sign-up. Optional on later logins.",
+                  },
+                  device_id: { type: "string" },
+                },
+              },
+            },
+          },
+        },
+        responses: { "200": { description: "Tokens + user" } },
+      },
+    },
     "/auth/refresh": {
       post: {
         tags: ["Auth"],
@@ -245,6 +274,25 @@ export const mobileV1OpenApi = {
         security: [{ bearerAuth: [] }],
         summary: "Current user profile",
         responses: { "200": { description: "OK" }, "401": { description: "Unauthorized" } },
+      },
+      patch: {
+        tags: ["User"],
+        security: [{ bearerAuth: [] }],
+        summary: "Update current user profile",
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  display_name: { type: "string" },
+                  gender: { type: "string", enum: ["male", "female"] },
+                },
+              },
+            },
+          },
+        },
+        responses: { "200": { description: "OK" } },
       },
     },
     "/users/me/preferences": {

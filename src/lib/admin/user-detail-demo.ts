@@ -5,6 +5,7 @@ type Profile = {
   display_name?: string | null;
   email?: string | null;
   photo_url?: string | null;
+  gender?: string | null;
   uid: string;
   role: string;
   status: string;
@@ -29,6 +30,7 @@ export function buildUserDetailDemo(profile: Profile) {
       display_name: "Ayesha Khan",
       email: "ayesha@example.com",
       photo_url: profile.photo_url || "/media/avatars/ayesha.jpg",
+      gender: profile.gender ?? "female",
       uid: profile.uid,
       role: "user",
       status: profile.status === "disabled" ? "disabled" : "active",

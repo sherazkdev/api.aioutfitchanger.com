@@ -5,6 +5,7 @@ import { User } from "@/lib/server/models/User";
 import { Device } from "@/lib/server/models/Device";
 import { LookHistory } from "@/lib/server/models/LookHistory";
 import { TryOnJob } from "@/lib/server/models/TryOnJob";
+import { applyUserGender, parseUserGender } from "@/lib/server/auth/userGender";
 import { jsonError, jsonOk } from "@/lib/server/http";
 export async function GET(req: Request) {
   const auth = await requireAuth(req, ["user", "admin"]);
@@ -12,7 +13,7 @@ export async function GET(req: Request) {
 
   await connectMongo();
   const user = await User.findById(auth.payload!.userId)
-    .select("email displayName photoUrl role status emailVerified subscriptionPlan preferences")
+    .select("email displayName photoUrl gender role status emailVerified subscriptionPlan preferences")
     .lean();
   if (!user) return jsonError("NOT_FOUND", "User not found", 404);
 
@@ -21,6 +22,7 @@ export async function GET(req: Request) {
     email: user.email,
     display_name: user.displayName,
     photo_url: user.photoUrl,
+    gender: user.gender ?? null,
     role: user.role,
     status: user.status,
     email_verified: user.emailVerified ?? false,
@@ -37,17 +39,23 @@ export async function PATCH(req: Request) {
   const auth = await requireAuth(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
-  const body = (await req.json()) as { display_name?: string };
+  const body = (await req.json()) as { display_name?: string; gender?: string };
   await connectMongo();
   const user = await User.findById(auth.payload!.userId);
   if (!user) return jsonError("NOT_FOUND", "User not found", 404);
 
   if (body.display_name !== undefined) user.displayName = body.display_name;
+  if (body.gender !== undefined) {
+    const gender = parseUserGender(body.gender);
+    if (!gender) return jsonError("VALIDATION", "gender must be male or female", 422);
+    applyUserGender(user, gender);
+  }
   await user.save();
 
   return jsonOk({
     id: String(user._id),
     display_name: user.displayName,
+    gender: user.gender ?? null,
   });
 }
 

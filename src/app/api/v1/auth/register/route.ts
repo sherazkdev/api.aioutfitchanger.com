@@ -5,6 +5,7 @@ import { normalizeEmail } from "@/lib/server/auth/normalizeEmail";
 import { issuePasswordResetChallenge } from "@/lib/server/auth/passwordResetChallenge";
 import { issueSession } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
+import { defaultPreferencesForGender, parseUserGender } from "@/lib/server/auth/userGender";
 import { registerFcmIfProvided } from "@/lib/server/devices/registerFcmIfProvided";
 import { requireCaptchaIfEnabled } from "@/lib/server/security/authGuards";
 import { getClientIp, jsonError, jsonOk, rateLimit } from "@/lib/server/http";
@@ -20,6 +21,7 @@ export async function POST(req: Request) {
     email?: string;
     password?: string;
     display_name?: string;
+    gender?: string;
     captcha_token?: string;
     turnstile_token?: string;
     fcm_token?: string;
@@ -38,6 +40,10 @@ export async function POST(req: Request) {
   if (body.password.length < 8) {
     return jsonError("VALIDATION", "password must be at least 8 characters", 422);
   }
+  const gender = parseUserGender(body.gender);
+  if (!gender) {
+    return jsonError("VALIDATION", "gender is required and must be male or female", 422);
+  }
 
   await connectMongo();
   const email = normalizeEmail(body.email);
@@ -47,9 +53,11 @@ export async function POST(req: Request) {
   const user = await User.create({
     email,
     displayName: body.display_name?.trim() || email.split("@")[0],
+    gender,
     role: "user",
     emailVerified: false,
     passwordHash: await hashPassword(body.password),
+    preferences: defaultPreferencesForGender(gender),
   });
 
   const verification = await issuePasswordResetChallenge({
@@ -88,6 +96,7 @@ export async function POST(req: Request) {
       id: userId,
       email: user.email,
       display_name: user.displayName,
+      gender: user.gender,
       role: user.role,
       email_verified: user.emailVerified,
     },

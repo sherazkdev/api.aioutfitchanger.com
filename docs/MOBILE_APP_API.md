@@ -2,6 +2,8 @@
 
 Connect your Android/iOS app to the backend. This document describes **how the API works**, **authentication**, and **request/response shapes** with examples.
 
+**End-to-end wiring (flows, all error codes, checklists):** **`docs/MOBILE_APP_E2E_INTEGRATION.md`**
+
 ---
 
 ## 1. Base URL
@@ -100,6 +102,7 @@ Content-Type: application/json
 ```json
 {
   "id_token": "<from Google Sign-In SDK>",
+  "gender": "male",
   "device_id": "optional-stable-device-id"
 }
 ```
@@ -117,12 +120,14 @@ Content-Type: application/json
     "email": "user@gmail.com",
     "display_name": "Ali",
     "photo_url": "https://lh3.googleusercontent.com/…",
+    "gender": "male",
     "role": "user"
   }
 }
 ```
 
-**401** — invalid/expired `id_token` (`INVALID_GOOGLE_TOKEN`).
+**401** — invalid/expired `id_token` (`INVALID_GOOGLE_TOKEN`).  
+**422** — `gender` missing/invalid on **first-time** Google sign-up. Values: `male` | `female`. Existing accounts may omit it; send it to backfill.
 
 ### 4.2 Email register
 
@@ -134,7 +139,8 @@ POST /api/v1/auth/register
 {
   "email": "user@example.com",
   "password": "min8chars",
-  "display_name": "Ali"
+  "display_name": "Ali",
+  "gender": "male"
 }
 ```
 
@@ -153,6 +159,7 @@ POST /api/v1/auth/register
     "id": "…",
     "email": "user@example.com",
     "display_name": "Ali",
+    "gender": "male",
     "role": "user",
     "email_verified": false
   }
@@ -581,6 +588,7 @@ Authorization: Bearer <access_token>
   "email": "user@example.com",
   "display_name": "Ali",
   "photo_url": null,
+  "gender": "male",
   "role": "user",
   "status": "active",
   "email_verified": true,
@@ -596,7 +604,16 @@ Authorization: Bearer <access_token>
 
 | Field | Values | Notes |
 |-------|--------|--------|
+| `gender` | `male` \| `female` \| `null` | Saved at register / first Google sign-up. `null` on older accounts until the app sends it. |
 | `subscription_plan` | `free` \| `premium` | Default `free`. Premium users get **clean** AI results (no server watermark on newly saved images). See **`docs/MOBILE_WATERMARK_AND_SUBSCRIPTION.md`**. |
+
+```http
+PATCH /api/v1/users/me
+```
+
+```json
+{ "display_name": "Ali", "gender": "female" }
+```
 
 ```http
 PATCH /api/v1/users/me/preferences
