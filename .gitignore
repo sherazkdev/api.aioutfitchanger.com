@@ -2,6 +2,7 @@
 /.next/
 /out/
 .env*
+.firebaserc
 /public/uploads/
 /public/media/catalog/
 .asset-requirements/assets.zip
