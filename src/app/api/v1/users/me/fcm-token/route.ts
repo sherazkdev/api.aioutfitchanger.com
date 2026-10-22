@@ -1,5 +1,5 @@
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { registerUserDevice } from "@/lib/server/devices/registerDevice";
 import { revokeUserFcmTokens } from "@/lib/server/devices/revokeDevice";
 import { jsonError, jsonOk } from "@/lib/server/http";
@@ -9,7 +9,7 @@ import { jsonError, jsonOk } from "@/lib/server/http";
  * Accepts fcm_token (preferred) or token alias; requires platform.
  */
 export async function POST(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const body = (await req.json()) as {
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
 
 /** Unregister push token(s) for this user (logout / account cleanup). */
 export async function DELETE(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const body = (await req.json().catch(() => ({}))) as {

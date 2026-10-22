@@ -30,9 +30,6 @@
     "test:register-verification": "npx tsx --test scripts/register-verification-email.test.ts",
     "test:moderation": "npx tsx --test scripts/moderation.test.ts",
     "test:watermark": "npx tsx --test scripts/watermark.test.ts",
-    "test:cloud-function-auth": "npx tsx --test scripts/cloud-function-auth.test.ts",
-    "test:cloud-function-signer-parity": "npx tsx --test scripts/cloud-function-signer-parity.test.ts",
-    "test:cloud-function-ping-route": "npx tsx --test scripts/cloud-function-ping-route.test.ts",
     "verify:audit-backend": "node scripts/audit-backend-fixes.verify.mjs",
     "test:byteplus-beauty-smoke": "npx tsx scripts/byteplus-beauty-smoke.mjs",
     "test:try-on-invalid-json": "npx tsx --test scripts/try-on-invalid-json.test.mjs",
@@ -48,9 +45,15 @@
     "test:tryon": "node scripts/try-on-quick-poll.mjs",
     "test:try-on-audit": "node scripts/try-on-audit.mjs",
     "test:ai-module-audit": "node scripts/ai-module-audit.mjs",
-    "pm2:prod": "pm2 startOrReload deploy/ecosystem.config.cjs --env production"
+    "pm2:prod": "pm2 startOrReload deploy/ecosystem.config.cjs --env production",
+    "test:gateway-auth": "npx tsx --test scripts/gateway-auth.test.ts",
+    "test:gateway-api-key": "npx tsx --test scripts/gateway-api-key.test.ts",
+    "test:gateway-quota": "npx tsx --test scripts/gateway-quota.test.ts",
+    "test:ssrf": "npx tsx --test scripts/ssrf-fetch.test.ts",
+    "test:image-safety": "npx tsx --test scripts/image-safety.test.ts"
   },
   "dependencies": {
+    "@google-cloud/vision": "^6.2.0",
     "bcryptjs": "^3.0.3",
     "firebase-admin": "^14.4.0",
     "google-auth-library": "^11.1.0",

@@ -1,5 +1,5 @@
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { TryOnJob } from "@/lib/server/models/TryOnJob";
 import { bflPollResult, extractBflResultUrl, mapBflStatus } from "@/lib/server/bfl";
 import { jsonError, jsonOk } from "@/lib/server/http";
@@ -20,13 +20,27 @@ async function ensureJobResultPersisted(job: InstanceType<typeof TryOnJob>) {
       job.resultUrl = persisted;
       await job.save();
     }
-  } catch {
+  } catch (e) {
+    if (
+      e instanceof Error &&
+      (e.message === "OUTPUT_MODERATION_BLOCKED" || e.message === "OUTPUT_MODERATION_UNAVAILABLE")
+    ) {
+      job.status = "failed";
+      job.errorMessage =
+        e.message === "OUTPUT_MODERATION_UNAVAILABLE" ? "MODERATION_UNAVAILABLE" : "MODERATION_BLOCKED";
+      job.resultUrl = undefined;
+      await job.save();
+      return;
+    }
     // Keep BFL URL; retry persist on next poll.
   }
 }
 
 function publicJobError(job: InstanceType<typeof TryOnJob>): string | null {
   if (job.status !== "failed") return null;
+  if (job.errorMessage === "MODERATION_UNAVAILABLE") {
+    return "Content safety check is temporarily unavailable. Please try again.";
+  }
   if (isProviderModerationFailure(job.errorMessage)) return MODERATION_USER_MESSAGE;
   return job.errorMessage ?? null;
 }
@@ -41,7 +55,7 @@ function jobPayload(job: InstanceType<typeof TryOnJob>) {
 }
 
 export async function GET(req: Request, ctx: { params: Promise<{ jobId: string }> }) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const { jobId } = await ctx.params;
@@ -100,7 +114,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ jobId: string }
 }
 
 export async function DELETE(req: Request, ctx: { params: Promise<{ jobId: string }> }) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const { jobId } = await ctx.params;

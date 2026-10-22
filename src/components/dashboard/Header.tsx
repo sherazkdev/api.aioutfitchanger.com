@@ -22,6 +22,7 @@ function getCrumbs(pathname: string) {
   if (pathname === "/admin/app-content") return breadcrumbs["/admin/app-content"];
   if (pathname === "/admin/account") return breadcrumbs["/admin/account"];
   if (pathname === "/admin/token-management") return breadcrumbs["/admin/token-management"];
+  if (pathname === "/admin/gateway-api-key") return breadcrumbs["/admin/gateway-api-key"];
   if (pathname === "/admin/devices") return breadcrumbs["/admin/devices"];
   if (pathname === "/admin/system") return breadcrumbs["/admin/system"];
   if (pathname === "/admin/activity") return breadcrumbs["/admin/activity"];

@@ -19,6 +19,7 @@ export const adminBreadcrumbs: Record<string, string[]> = {
   "/admin/app-content": ["Dashboard", "App Content"],
   "/admin/account": ["Dashboard", "Admin Account"],
   "/admin/token-management": ["Dashboard", "Token management"],
+  "/admin/gateway-api-key": ["Dashboard", "Gateway API Key"],
   "/admin/looks-history": ["Dashboard", "Looks / History"],
   "/admin/looks-history/details": ["Dashboard", "Looks / History", "Look details"],
   "/admin/notifications": ["Dashboard", "Notifications"],

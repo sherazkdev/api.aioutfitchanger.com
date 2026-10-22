@@ -36,10 +36,22 @@ const envSchema = z.object({
   FIREBASE_CLIENT_EMAIL: z.string().optional(),
   FIREBASE_PRIVATE_KEY: z.string().optional(),
   API_RATE_LIMIT_AUTH_PER_MIN: z.coerce.number().default(20),
-  /** Max try-on jobs per user per UTC day (0 = unlimited). */
+  /** Legacy flat daily cap (used when TRY_ON_DAILY_LIMIT_FREE/PREMIUM unset). */
   TRY_ON_DAILY_LIMIT_PER_USER: optionalIntEnv(5, 0, 10_000),
+  TRY_ON_DAILY_LIMIT_FREE: optionalIntEnv(5, 0, 10_000),
+  TRY_ON_DAILY_LIMIT_PREMIUM: optionalIntEnv(50, 0, 10_000),
   /** When false, only provider-side moderation applies. */
   TRY_ON_MODERATION_ENABLED: z.preprocess((val) => {
+    if (val === undefined || val === null || String(val).trim() === "") return "true";
+    return String(val).trim().toLowerCase();
+  }, z.enum(["true", "false", "1", "0"]).transform((v) => v === "true" || v === "1")),
+  /** Google Vision SafeSearch for person/garment/output images (default on). */
+  IMAGE_SAFETY_MODERATION_ENABLED: z.preprocess((val) => {
+    if (val === undefined || val === null || String(val).trim() === "") return "true";
+    return String(val).trim().toLowerCase();
+  }, z.enum(["true", "false", "1", "0"]).transform((v) => v === "true" || v === "1")),
+  /** If Vision call fails, block expose/persist (default on / fail closed). */
+  IMAGE_SAFETY_FAIL_CLOSED: z.preprocess((val) => {
     if (val === undefined || val === null || String(val).trim() === "") return "true";
     return String(val).trim().toLowerCase();
   }, z.enum(["true", "false", "1", "0"]).transform((v) => v === "true" || v === "1")),
@@ -47,22 +59,12 @@ const envSchema = z.object({
   RESEND_FROM_EMAIL: z.string().email().optional(),
   RESEND_FROM_NAME: z.string().default("AI Wardrobe"),
   RESET_PASSWORD_URL: z.string().url().optional(),
-  /**
-   * Cloud Function → Next.js server-to-server auth (Phase 1 foundation).
-   * Optional: unset values do not block legacy routes or app boot.
-   * Empty / whitespace-only env values are treated as unset.
-   */
-  CLOUD_FUNCTION_INTERNAL_API_KEY: z.preprocess((val) => {
+  /** Master key for encrypting stored gateway API keys (min 32 chars when set). */
+  GATEWAY_API_KEY_MASTER_KEY: z.preprocess((val) => {
     if (val === undefined || val === null) return undefined;
     const s = String(val).trim();
     return s.length ? s : undefined;
-  }, z.string().min(16).optional()),
-  CLOUD_FUNCTION_HMAC_SECRET: z.preprocess((val) => {
-    if (val === undefined || val === null) return undefined;
-    const s = String(val).trim();
-    return s.length ? s : undefined;
-  }, z.string().min(16).optional()),
-  CLOUD_FUNCTION_REQUEST_MAX_SKEW_SECONDS: optionalIntEnv(300, 1, 3600),
+  }, z.string().min(32).optional()),
 });
 
 export type ServerEnv = z.infer<typeof envSchema>;

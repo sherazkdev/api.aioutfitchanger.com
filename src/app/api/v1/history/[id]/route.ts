@@ -1,5 +1,5 @@
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { LookHistory } from "@/lib/server/models/LookHistory";
 import { jsonError, jsonOk } from "@/lib/server/http";
 
@@ -11,7 +11,7 @@ async function loadLook(id: string, userId: string, role: string) {
 }
 
 export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const { id } = await ctx.params;
@@ -32,7 +32,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
 }
 
 export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }> }) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const { id } = await ctx.params;
@@ -50,7 +50,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
 }
 
 export async function DELETE(req: Request, ctx: { params: Promise<{ id: string }> }) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const { id } = await ctx.params;

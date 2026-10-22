@@ -2,6 +2,9 @@
 export function publicTryOnFailureMessage(internal: string): string {
   const m = internal.trim();
   if (!m) return "Generation failed. Please try again.";
+  if (m === "MODERATION_UNAVAILABLE") {
+    return "Content safety check is temporarily unavailable. Please try again.";
+  }
   if (m === "MODERATION_BLOCKED" || m.toLowerCase().includes("moderation")) {
     return "This result could not be generated because it was blocked by content moderation.";
   }

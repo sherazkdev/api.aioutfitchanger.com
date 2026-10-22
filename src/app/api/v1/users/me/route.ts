@@ -1,5 +1,7 @@
+import { rm } from "fs/promises";
+import path from "path";
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { revokeAllUserSessions } from "@/lib/server/auth/tokens";
 import { User } from "@/lib/server/models/User";
 import { Device } from "@/lib/server/models/Device";
@@ -8,7 +10,7 @@ import { TryOnJob } from "@/lib/server/models/TryOnJob";
 import { applyUserGender, parseUserGender } from "@/lib/server/auth/userGender";
 import { jsonError, jsonOk } from "@/lib/server/http";
 export async function GET(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   await connectMongo();
@@ -36,7 +38,7 @@ export async function GET(req: Request) {
   });
 }
 export async function PATCH(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const body = (await req.json()) as { display_name?: string; gender?: string };
@@ -60,7 +62,7 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  const auth = await requireAuth(req, ["user"]);
+  const auth = await requireMobileUser(req, ["user"]);
   if (auth.error) return auth.error;
 
   await connectMongo();
@@ -71,11 +73,21 @@ export async function DELETE(req: Request) {
   }
 
   const userId = user._id;
+  const uid = String(userId);
+  const uploadsRoot = path.join(process.cwd(), "public", "uploads");
+  const avatarPath =
+    user.photoUrl?.startsWith("/uploads/avatars/") ?
+      path.join(process.cwd(), "public", user.photoUrl.slice(1))
+    : null;
+
   await revokeAllUserSessions(userId);
   await Promise.all([
     Device.updateMany({ userId }, { revokedAt: new Date() }),
     LookHistory.deleteMany({ userId }),
     TryOnJob.deleteMany({ userId }),
+    rm(path.join(uploadsRoot, "looks", uid), { recursive: true, force: true }),
+    rm(path.join(uploadsRoot, "sources", uid), { recursive: true, force: true }),
+    avatarPath ? rm(avatarPath, { force: true }) : Promise.resolve(),
     user.deleteOne(),
   ]);
 

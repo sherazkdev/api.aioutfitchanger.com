@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { LookHistory } from "@/lib/server/models/LookHistory";
 import { jsonError, jsonOk } from "@/lib/server/http";
 import { LOOK_LIST_SELECT, serializeLookRow } from "@/lib/server/history/serializeLook";
 import { persistLookImageUrl, persistSourceImageUrl } from "@/lib/server/storage/persistLookImages";
 
 export async function GET(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   await connectMongo();
@@ -43,7 +43,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const body = (await req.json()) as {
@@ -131,7 +131,7 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const body = (await req.json()) as { ids?: string[] };

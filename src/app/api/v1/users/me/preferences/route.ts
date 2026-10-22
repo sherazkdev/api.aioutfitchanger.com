@@ -1,11 +1,11 @@
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { User } from "@/lib/server/models/User";
 import { jsonError, jsonOk } from "@/lib/server/http";
 import { resolveLanguageCodeFromId } from "@/lib/server/i18n/languages";
 
 export async function GET(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   await connectMongo();
@@ -25,7 +25,7 @@ export async function GET(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const body = (await req.json()) as {

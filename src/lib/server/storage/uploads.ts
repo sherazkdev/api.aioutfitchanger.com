@@ -6,6 +6,7 @@ import {
   ADMIN_CONTENT_UPLOAD_FOLDERS,
   type AdminContentUploadFolder,
 } from "@/lib/admin/contentUploadFolders";
+import { safeFetchRemoteBytes } from "@/lib/server/security/safeRemoteFetch";
 
 const MAX_ADMIN_UPLOAD_BYTES = 5 * 1024 * 1024;
 
@@ -42,8 +43,10 @@ export async function saveAdminContentImage(opts: {
 export function isHostedUploadUrl(url: string): boolean {
   const trimmed = url.trim();
   if (trimmed.startsWith("/uploads/")) return true;
+  if (trimmed.startsWith("/api/v1/files/")) return true;
   const base = (process.env.APP_URL ?? "").replace(/\/$/, "");
   if (base && trimmed.startsWith(`${base}/uploads/`)) return true;
+  if (base && trimmed.startsWith(`${base}/api/v1/files/`)) return true;
   return false;
 }
 
@@ -65,16 +68,26 @@ export async function persistRemoteImageToUploads(opts: {
     return remote.startsWith("/") ? remote : new URL(remote).pathname;
   }
 
-  const res = await fetch(remote, { signal: AbortSignal.timeout(60_000) });
-  if (!res.ok) throw new Error(`FETCH_FAILED_${res.status}`);
-
-  const contentType = res.headers.get("content-type") ?? "";
+  const { buffer: fetched, contentType } = await safeFetchRemoteBytes(remote, {
+    timeoutMs: 60_000,
+  });
   let ext = "jpg";
   if (contentType.includes("png")) ext = "png";
   else if (contentType.includes("webp")) ext = "webp";
 
-  let buffer = Buffer.from(await res.arrayBuffer());
+  let buffer = fetched;
   if (buffer.length === 0) throw new Error("EMPTY_IMAGE");
+
+  if (opts.subdir === "looks") {
+    const { moderateGeneratedResultBuffer } = await import("../moderation/moderateTryOn");
+    const blocked = await moderateGeneratedResultBuffer(buffer);
+    if (blocked) {
+      if (blocked.code === "MODERATION_UNAVAILABLE") {
+        throw new Error("OUTPUT_MODERATION_UNAVAILABLE");
+      }
+      throw new Error("OUTPUT_MODERATION_BLOCKED");
+    }
+  }
 
   if (opts.applyWatermark && opts.subdir === "looks") {
     const { applyAiResultWatermark } = await import("../watermark/applyWatermark");
@@ -87,5 +100,6 @@ export async function persistRemoteImageToUploads(opts: {
   const filename = `${opts.basename}.${ext}`;
   await writeFile(path.join(dir, filename), buffer);
 
-  return `/uploads/${opts.subdir}/${opts.userId}/${filename}`;
+  // Authenticated file API path (middleware also rewrites legacy /uploads/{private}/…).
+  return `/api/v1/files/${opts.subdir}/${opts.userId}/${filename}`;
 }

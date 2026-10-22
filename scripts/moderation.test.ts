@@ -23,8 +23,8 @@ describe("moderateTryOnRequest", () => {
     rawBase64Length: 400,
   };
 
-  it("blocks moderated prompts before provider call", () => {
-    const fail = moderateTryOnRequest({
+  it("blocks moderated prompts before provider call", async () => {
+    const fail = await moderateTryOnRequest({
       promptTexts: ["bikini beach"],
       person,
     });

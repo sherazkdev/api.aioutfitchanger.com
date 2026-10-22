@@ -31,7 +31,7 @@ function corsHeaders(req: NextRequest, res: NextResponse): NextResponse {
     res.headers.set("Access-Control-Allow-Credentials", "true");
     res.headers.set(
       "Access-Control-Allow-Headers",
-      "Authorization, Content-Type, Accept, X-Requested-With"
+      "Authorization, Content-Type, Accept, X-Requested-With, X-API-Key, X-Firebase-Uid"
     );
     res.headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
   }
@@ -43,7 +43,17 @@ export function middleware(req: NextRequest) {
     return new NextResponse(null, { status: 405 });
   }
 
-  const isApi = req.nextUrl.pathname.startsWith(API_PREFIX);
+  // Private user uploads must not be served as anonymous static files.
+  const pathName = req.nextUrl.pathname;
+  const privateUpload = pathName.match(/^\/uploads\/(looks|sources|avatars)\/(.+)$/);
+  if (privateUpload) {
+    const url = req.nextUrl.clone();
+    url.pathname = `/api/v1/files/${privateUpload[1]}/${privateUpload[2]}`;
+    let res = securityHeaders(NextResponse.rewrite(url));
+    return corsHeaders(req, res);
+  }
+
+  const isApi = pathName.startsWith(API_PREFIX);
 
   if (isApi && req.method === "OPTIONS") {
     let res = new NextResponse(null, { status: 204 });

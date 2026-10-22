@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutGrid, Shirt, LayoutTemplate, FolderOpen, Sparkles, Clock, Users,
-  FileText, Settings, ChevronDown, Bell, Smartphone, Shield, UserCircle,
+  FileText, Settings, ChevronDown, Bell, Smartphone, Shield, UserCircle, KeyRound,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BrandLogo } from "@/components/icons/BrandLogo";
@@ -24,6 +24,7 @@ const settingsNav = [
   { label: "App Content", href: "/admin/app-content", icon: FileText },
   { label: "Admin Account", href: "/admin/account", icon: UserCircle },
   { label: "Token management", href: "/admin/token-management", icon: Shield },
+  { label: "Gateway API Key", href: "/admin/gateway-api-key", icon: KeyRound },
   {
     label: "Notifications",
     href: "/admin/notifications",

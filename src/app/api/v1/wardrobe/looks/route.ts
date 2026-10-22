@@ -1,12 +1,12 @@
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { LookHistory } from "@/lib/server/models/LookHistory";
 import { jsonOk } from "@/lib/server/http";
 import { LOOK_LIST_SELECT, serializeLookRow } from "@/lib/server/history/serializeLook";
 
 /** Saved wardrobe looks (subset of history where saved_to_wardrobe=true). */
 export async function GET(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   await connectMongo();

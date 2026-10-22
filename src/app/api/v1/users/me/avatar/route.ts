@@ -1,14 +1,14 @@
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { User } from "@/lib/server/models/User";
 import { jsonError, jsonOk } from "@/lib/server/http";
 
 const MAX_BYTES = 5 * 1024 * 1024;
 
 export async function POST(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const contentType = req.headers.get("content-type") ?? "";

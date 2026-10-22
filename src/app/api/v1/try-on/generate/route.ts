@@ -1,5 +1,5 @@
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { TryOnJob } from "@/lib/server/models/TryOnJob";
 import { User } from "@/lib/server/models/User";
 import { normalizePersonGender } from "@/lib/server/bfl/coupleDuoGarmentRouting";
@@ -12,23 +12,31 @@ import { runBytePlusBeautyGeneration } from "@/lib/server/byteplus/provider";
 import { getServerEnv } from "@/lib/server/env";
 import { jsonError, jsonOk, rateLimit } from "@/lib/server/http";
 import { moderateTryOnRequest } from "@/lib/server/moderation/moderateTryOn";
-import { assertTryOnDailyQuota } from "@/lib/server/tryOn/dailyQuota";
+import {
+  releaseDailyGenerationReservation,
+  reserveDailyGeneration,
+  type QuotaReservation,
+} from "@/lib/server/tryOn/atomicQuota";
+import type { QuotaPlan } from "@/lib/server/tryOn/planQuota";
 import { publicTryOnFailureMessage } from "@/lib/server/tryOn/publicErrors";
-import { rejectOversizedBody } from "@/lib/server/security/requestGuards";
+import { readBodyTextLimited } from "@/lib/server/security/requestGuards";
 import { persistLookImageUrl } from "@/lib/server/storage/persistLookImages";
 import { resolveTryOnImageProvider } from "@/lib/server/tryOn/providerSelection";
 
-export async function POST(req: Request) {
-  const tooLarge = rejectOversizedBody(req);
-  if (tooLarge) return tooLarge;
+function resolveQuotaPlan(role: string, subscriptionPlan?: string | null): QuotaPlan {
+  if (role === "admin") return "admin";
+  if (subscriptionPlan === "premium") return "premium";
+  return "free";
+}
 
+export async function POST(req: Request) {
   let env;
   try {
     env = getServerEnv();
   } catch {
     return jsonError("SERVER_CONFIG", "Server not configured", 503);
   }
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   if (!(await rateLimit(`tryon:${auth.payload!.userId}`, 10, 60_000))) {
@@ -37,20 +45,8 @@ export async function POST(req: Request) {
 
   await connectMongo();
 
-  if (auth.payload!.role !== "admin") {
-    try {
-      await assertTryOnDailyQuota(auth.payload!.userId, env.TRY_ON_DAILY_LIMIT_PER_USER);
-    } catch (e) {
-      if (e instanceof Error && e.message === "DAILY_LIMIT_EXCEEDED") {
-        return jsonError(
-          "DAILY_LIMIT",
-          "Daily try-on limit reached. Try again tomorrow or upgrade your plan.",
-          429
-        );
-      }
-      throw e;
-    }
-  }
+  const limited = await readBodyTextLimited(req);
+  if (!limited.ok) return limited.response;
 
   let body: {
     source_image_base64?: string;
@@ -65,7 +61,7 @@ export async function POST(req: Request) {
     gender?: string;
   };
   try {
-    body = await req.json();
+    body = JSON.parse(limited.text) as typeof body;
   } catch {
     return jsonError("INVALID_JSON", "Request body must be valid JSON", 400);
   }
@@ -74,9 +70,34 @@ export async function POST(req: Request) {
     return jsonError("VALIDATION", "source_image_base64 and style_id required", 422);
   }
 
+  const user = await User.findById(auth.payload!.userId)
+    .select("gender preferences.styleGenderPreference subscriptionPlan role")
+    .lean();
+  const plan = resolveQuotaPlan(auth.payload!.role, user?.subscriptionPlan);
+
+  let quotaReservation: QuotaReservation | null = null;
+  try {
+    quotaReservation = await reserveDailyGeneration(auth.payload!.userId, plan);
+  } catch (e) {
+    if (e instanceof Error && e.message === "DAILY_LIMIT_EXCEEDED") {
+      return jsonError(
+        "DAILY_LIMIT",
+        "Daily try-on limit reached. Try again tomorrow or upgrade your plan.",
+        429
+      );
+    }
+    throw e;
+  }
+
+  const releaseQuota = async () => {
+    if (quotaReservation) {
+      await releaseDailyGenerationReservation(quotaReservation);
+      quotaReservation = null;
+    }
+  };
+
   let personGender = normalizePersonGender(body.person_gender ?? body.gender);
   if (!personGender) {
-    const user = await User.findById(auth.payload!.userId).select("gender preferences.styleGenderPreference").lean();
     personGender = normalizePersonGender(user?.gender ?? user?.preferences?.styleGenderPreference ?? null);
   }
 
@@ -87,6 +108,8 @@ export async function POST(req: Request) {
     status: "queued",
   });
 
+  let providerStarted = false;
+
   try {
     const person = normalizeImageInput(body.source_image_base64, "PERSON");
     const catalogCommand =
@@ -94,20 +117,24 @@ export async function POST(req: Request) {
       (await resolveCatalogPromptCommand(body.style_id, body.category_id)) ||
       `COMMAND: style_ref=${body.style_id} | category=${body.category_id ?? "virtual_try_on"} | pipeline=neutral | region=outfit | Apply outfit from reference image 2.`;
 
-    if (env.TRY_ON_MODERATION_ENABLED) {
+    // Prompt/structural moderation and/or Google Vision SafeSearch before paid provider.
+    if (env.TRY_ON_MODERATION_ENABLED || env.IMAGE_SAFETY_MODERATION_ENABLED) {
       let garmentForModeration = null;
       if (body.style_reference_image_base64?.trim()) {
         garmentForModeration = normalizeImageInput(body.style_reference_image_base64, "GARMENT");
       }
-      const moderation = moderateTryOnRequest({
-        promptTexts: [body.prompt, catalogCommand],
+      const safetyCache = new Map();
+      const moderation = await moderateTryOnRequest({
+        promptTexts: env.TRY_ON_MODERATION_ENABLED ? [body.prompt, catalogCommand] : [],
         person,
         garment: garmentForModeration,
+        safetyCache,
       });
       if (moderation) {
         job.status = "failed";
         job.errorMessage = moderation.code;
         await job.save();
+        await releaseQuota();
         return jsonError(moderation.code, moderation.message, moderation.httpStatus);
       }
     }
@@ -120,6 +147,7 @@ export async function POST(req: Request) {
         job.status = "failed";
         job.errorMessage = "BFL_NOT_CONFIGURED";
         await job.save();
+        await releaseQuota();
         return jsonError("SERVER_CONFIG", "Try-on service is temporarily unavailable", 503);
       }
     }
@@ -128,6 +156,7 @@ export async function POST(req: Request) {
         job.status = "failed";
         job.errorMessage = "BYTEPLUS_NOT_CONFIGURED";
         await job.save();
+        await releaseQuota();
         return jsonError("SERVER_CONFIG", "Try-on service is temporarily unavailable", 503);
       }
     }
@@ -148,6 +177,7 @@ export async function POST(req: Request) {
         garment: garment.dataUrl,
         output_format: "jpeg",
       };
+      providerStarted = true;
       started = await bflStartVtoV2(vtoBody);
     } else {
       const hasReferenceStyle = Boolean(body.style_reference_image_base64?.trim());
@@ -183,6 +213,7 @@ export async function POST(req: Request) {
         job.status = "processing";
         await job.save();
 
+        providerStarted = true;
         const byteplus = await runBytePlusBeautyGeneration({
           prompt: bflBody.prompt as string,
           personDataUrl: person.dataUrl,
@@ -201,7 +232,27 @@ export async function POST(req: Request) {
             byteplus.resultUrl,
             String(job._id)
           );
-        } catch {
+        } catch (e) {
+          if (
+            e instanceof Error &&
+            (e.message === "OUTPUT_MODERATION_BLOCKED" || e.message === "OUTPUT_MODERATION_UNAVAILABLE")
+          ) {
+            job.status = "failed";
+            job.errorMessage =
+              e.message === "OUTPUT_MODERATION_UNAVAILABLE"
+                ? "MODERATION_UNAVAILABLE"
+                : "MODERATION_BLOCKED";
+            job.resultUrl = undefined;
+            await job.save();
+            return jsonError(
+              job.errorMessage,
+              e.message === "OUTPUT_MODERATION_UNAVAILABLE"
+                ? "Content safety check is temporarily unavailable. Please try again."
+                : "This result could not be generated because it was blocked by content moderation.",
+              e.message === "OUTPUT_MODERATION_UNAVAILABLE" ? 503 : 422
+            );
+          }
+          // Transient persist failure: keep remote URL for retry via job poll (still gated on persist).
           job.resultUrl = byteplus.resultUrl;
         }
         await job.save();
@@ -215,6 +266,7 @@ export async function POST(req: Request) {
       }
 
       job.provider = "bfl";
+      providerStarted = true;
       started = await bflStartGeneration(bflBody);
     }
 
@@ -231,6 +283,7 @@ export async function POST(req: Request) {
     });
   } catch (e) {
     const msg = e instanceof Error ? e.message : "TRY_ON_ERROR";
+    if (!providerStarted) await releaseQuota();
     if (msg.startsWith("BYTEPLUS_")) {
       job.status = "failed";
       job.errorMessage = msg;

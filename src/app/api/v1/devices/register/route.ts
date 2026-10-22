@@ -1,10 +1,10 @@
 import { connectMongo } from "@/lib/server/db";
-import { requireAuth } from "@/lib/server/auth/requireAuth";
+import { requireMobileUser } from "@/lib/server/auth/requireMobileUser";
 import { registerUserDevice } from "@/lib/server/devices/registerDevice";
 import { jsonError, jsonOk } from "@/lib/server/http";
 
 export async function POST(req: Request) {
-  const auth = await requireAuth(req, ["user", "admin"]);
+  const auth = await requireMobileUser(req, ["user", "admin"]);
   if (auth.error) return auth.error;
 
   const body = (await req.json()) as {
