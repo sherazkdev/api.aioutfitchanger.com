@@ -30,6 +30,7 @@
     "test:register-verification": "npx tsx --test scripts/register-verification-email.test.ts",
     "test:moderation": "npx tsx --test scripts/moderation.test.ts",
     "test:watermark": "npx tsx --test scripts/watermark.test.ts",
+    "test:cloud-function-auth": "npx tsx --test scripts/cloud-function-auth.test.ts",
     "verify:audit-backend": "node scripts/audit-backend-fixes.verify.mjs",
     "test:byteplus-beauty-smoke": "npx tsx scripts/byteplus-beauty-smoke.mjs",
     "test:try-on-invalid-json": "npx tsx --test scripts/try-on-invalid-json.test.mjs",

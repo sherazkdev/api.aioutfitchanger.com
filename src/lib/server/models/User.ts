@@ -4,6 +4,8 @@ const UserSchema = new Schema(
   {
     email: { type: String, trim: true, lowercase: true, unique: true, sparse: true },
     googleId: { type: String, unique: true, sparse: true },
+    /** Firebase Auth UID (anonymous or linked). Optional — legacy users have none. */
+    firebaseUid: { type: String, trim: true, unique: true, sparse: true },
     displayName: { type: String, trim: true },
     photoUrl: { type: String },
     gender: { type: String, enum: ["male", "female"] },

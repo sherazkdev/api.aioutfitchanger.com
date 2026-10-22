@@ -47,6 +47,22 @@ const envSchema = z.object({
   RESEND_FROM_EMAIL: z.string().email().optional(),
   RESEND_FROM_NAME: z.string().default("AI Wardrobe"),
   RESET_PASSWORD_URL: z.string().url().optional(),
+  /**
+   * Cloud Function → Next.js server-to-server auth (Phase 1 foundation).
+   * Optional: unset values do not block legacy routes or app boot.
+   * Empty / whitespace-only env values are treated as unset.
+   */
+  CLOUD_FUNCTION_INTERNAL_API_KEY: z.preprocess((val) => {
+    if (val === undefined || val === null) return undefined;
+    const s = String(val).trim();
+    return s.length ? s : undefined;
+  }, z.string().min(16).optional()),
+  CLOUD_FUNCTION_HMAC_SECRET: z.preprocess((val) => {
+    if (val === undefined || val === null) return undefined;
+    const s = String(val).trim();
+    return s.length ? s : undefined;
+  }, z.string().min(16).optional()),
+  CLOUD_FUNCTION_REQUEST_MAX_SKEW_SECONDS: optionalIntEnv(300, 1, 3600),
 });
 
 export type ServerEnv = z.infer<typeof envSchema>;
