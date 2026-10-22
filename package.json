@@ -49,11 +49,9 @@
     "test:gateway-auth": "npx tsx --test scripts/gateway-auth.test.ts",
     "test:gateway-api-key": "npx tsx --test scripts/gateway-api-key.test.ts",
     "test:gateway-quota": "npx tsx --test scripts/gateway-quota.test.ts",
-    "test:ssrf": "npx tsx --test scripts/ssrf-fetch.test.ts",
-    "test:image-safety": "npx tsx --test scripts/image-safety.test.ts"
+    "test:ssrf": "npx tsx --test scripts/ssrf-fetch.test.ts"
   },
   "dependencies": {
-    "@google-cloud/vision": "^6.2.0",
     "bcryptjs": "^3.0.3",
     "firebase-admin": "^14.4.0",
     "google-auth-library": "^11.1.0",

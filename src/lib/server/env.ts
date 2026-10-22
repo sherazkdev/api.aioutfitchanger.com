@@ -45,16 +45,6 @@ const envSchema = z.object({
     if (val === undefined || val === null || String(val).trim() === "") return "true";
     return String(val).trim().toLowerCase();
   }, z.enum(["true", "false", "1", "0"]).transform((v) => v === "true" || v === "1")),
-  /** Google Vision SafeSearch for person/garment/output images (default on). */
-  IMAGE_SAFETY_MODERATION_ENABLED: z.preprocess((val) => {
-    if (val === undefined || val === null || String(val).trim() === "") return "true";
-    return String(val).trim().toLowerCase();
-  }, z.enum(["true", "false", "1", "0"]).transform((v) => v === "true" || v === "1")),
-  /** If Vision call fails, block expose/persist (default on / fail closed). */
-  IMAGE_SAFETY_FAIL_CLOSED: z.preprocess((val) => {
-    if (val === undefined || val === null || String(val).trim() === "") return "true";
-    return String(val).trim().toLowerCase();
-  }, z.enum(["true", "false", "1", "0"]).transform((v) => v === "true" || v === "1")),
   RESEND_API_KEY: z.string().optional(),
   RESEND_FROM_EMAIL: z.string().email().optional(),
   RESEND_FROM_NAME: z.string().default("AI Wardrobe"),

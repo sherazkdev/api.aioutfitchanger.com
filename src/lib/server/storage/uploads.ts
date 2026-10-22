@@ -82,10 +82,8 @@ export async function persistRemoteImageToUploads(opts: {
     const { moderateGeneratedResultBuffer } = await import("../moderation/moderateTryOn");
     const blocked = await moderateGeneratedResultBuffer(buffer);
     if (blocked) {
-      if (blocked.code === "MODERATION_UNAVAILABLE") {
-        throw new Error("OUTPUT_MODERATION_UNAVAILABLE");
-      }
-      throw new Error("OUTPUT_MODERATION_BLOCKED");
+      // Structural format/size failure — not external NSFW moderation.
+      throw new Error("OUTPUT_VALIDATION_FAILED");
     }
   }
 

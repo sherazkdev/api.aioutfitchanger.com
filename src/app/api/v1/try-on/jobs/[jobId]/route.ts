@@ -21,13 +21,9 @@ async function ensureJobResultPersisted(job: InstanceType<typeof TryOnJob>) {
       await job.save();
     }
   } catch (e) {
-    if (
-      e instanceof Error &&
-      (e.message === "OUTPUT_MODERATION_BLOCKED" || e.message === "OUTPUT_MODERATION_UNAVAILABLE")
-    ) {
+    if (e instanceof Error && e.message === "OUTPUT_VALIDATION_FAILED") {
       job.status = "failed";
-      job.errorMessage =
-        e.message === "OUTPUT_MODERATION_UNAVAILABLE" ? "MODERATION_UNAVAILABLE" : "MODERATION_BLOCKED";
+      job.errorMessage = "VALIDATION";
       job.resultUrl = undefined;
       await job.save();
       return;
@@ -38,9 +34,6 @@ async function ensureJobResultPersisted(job: InstanceType<typeof TryOnJob>) {
 
 function publicJobError(job: InstanceType<typeof TryOnJob>): string | null {
   if (job.status !== "failed") return null;
-  if (job.errorMessage === "MODERATION_UNAVAILABLE") {
-    return "Content safety check is temporarily unavailable. Please try again.";
-  }
   if (isProviderModerationFailure(job.errorMessage)) return MODERATION_USER_MESSAGE;
   return job.errorMessage ?? null;
 }

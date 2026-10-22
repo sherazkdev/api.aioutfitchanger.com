@@ -117,18 +117,16 @@ export async function POST(req: Request) {
       (await resolveCatalogPromptCommand(body.style_id, body.category_id)) ||
       `COMMAND: style_ref=${body.style_id} | category=${body.category_id ?? "virtual_try_on"} | pipeline=neutral | region=outfit | Apply outfit from reference image 2.`;
 
-    // Prompt/structural moderation and/or Google Vision SafeSearch before paid provider.
-    if (env.TRY_ON_MODERATION_ENABLED || env.IMAGE_SAFETY_MODERATION_ENABLED) {
+    // Prompt + structural image validation before paid provider (no external safety vendor).
+    if (env.TRY_ON_MODERATION_ENABLED) {
       let garmentForModeration = null;
       if (body.style_reference_image_base64?.trim()) {
         garmentForModeration = normalizeImageInput(body.style_reference_image_base64, "GARMENT");
       }
-      const safetyCache = new Map();
       const moderation = await moderateTryOnRequest({
-        promptTexts: env.TRY_ON_MODERATION_ENABLED ? [body.prompt, catalogCommand] : [],
+        promptTexts: [body.prompt, catalogCommand],
         person,
         garment: garmentForModeration,
-        safetyCache,
       });
       if (moderation) {
         job.status = "failed";
@@ -233,24 +231,12 @@ export async function POST(req: Request) {
             String(job._id)
           );
         } catch (e) {
-          if (
-            e instanceof Error &&
-            (e.message === "OUTPUT_MODERATION_BLOCKED" || e.message === "OUTPUT_MODERATION_UNAVAILABLE")
-          ) {
+          if (e instanceof Error && e.message === "OUTPUT_VALIDATION_FAILED") {
             job.status = "failed";
-            job.errorMessage =
-              e.message === "OUTPUT_MODERATION_UNAVAILABLE"
-                ? "MODERATION_UNAVAILABLE"
-                : "MODERATION_BLOCKED";
+            job.errorMessage = "VALIDATION";
             job.resultUrl = undefined;
             await job.save();
-            return jsonError(
-              job.errorMessage,
-              e.message === "OUTPUT_MODERATION_UNAVAILABLE"
-                ? "Content safety check is temporarily unavailable. Please try again."
-                : "This result could not be generated because it was blocked by content moderation.",
-              e.message === "OUTPUT_MODERATION_UNAVAILABLE" ? 503 : 422
-            );
+            return jsonError("VALIDATION", "Generated image failed structural validation", 422);
           }
           // Transient persist failure: keep remote URL for retry via job poll (still gated on persist).
           job.resultUrl = byteplus.resultUrl;
