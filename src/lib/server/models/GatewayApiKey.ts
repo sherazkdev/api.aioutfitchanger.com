@@ -12,7 +12,6 @@ const GatewayApiKeySchema = new Schema(
       type: String,
       enum: ["active", "grace", "revoked"],
       required: true,
-      index: true,
     },
     createdAt: { type: Date, required: true, default: Date.now },
     rotatedAt: { type: Date, default: null },
@@ -29,7 +28,11 @@ GatewayApiKeySchema.index({ status: 1, graceExpiresAt: 1 });
 /** At most one active key — enforced in application logic + partial unique index. */
 GatewayApiKeySchema.index(
   { status: 1 },
-  { unique: true, partialFilterExpression: { status: "active" } }
+  {
+    unique: true,
+    name: "status_active_unique",
+    partialFilterExpression: { status: "active" },
+  }
 );
 
 export type GatewayApiKeyDoc = InferSchemaType<typeof GatewayApiKeySchema> & {
