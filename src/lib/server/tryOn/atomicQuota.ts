@@ -56,8 +56,7 @@ export async function reserveDailyGeneration(
 }
 
 export async function releaseDailyGenerationReservation(res: QuotaReservation): Promise<void> {
-  const limit = resolveDailyLimit("free"); // only need to know if unlimited path
-  void limit;
+  if (resolveDailyLimit("free") <= 0) return;
   await connectMongo();
   await DailyGenerationQuota.updateOne(
     { userId: new mongoose.Types.ObjectId(res.userId), utcDate: res.utcDate, used: { $gt: 0 } },

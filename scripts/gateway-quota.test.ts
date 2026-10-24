@@ -3,14 +3,16 @@ import { describe, it } from "node:test";
 import { dailyLimitForPlan, resolveDailyLimit, utcDateKey } from "../src/lib/server/tryOn/planQuota";
 
 describe("plan-aware daily quota", () => {
-  it("free=5 premium=50 admin unlimited(0)", () => {
+  it("free, premium, and admin are unlimited even if env still says 5/50", () => {
     process.env.TRY_ON_DAILY_LIMIT_FREE = "5";
     process.env.TRY_ON_DAILY_LIMIT_PREMIUM = "50";
-    assert.equal(dailyLimitForPlan("free"), 5);
-    assert.equal(dailyLimitForPlan("premium"), 50);
+    process.env.TRY_ON_DAILY_LIMIT_PER_USER = "5";
+    assert.equal(dailyLimitForPlan("free"), 0);
+    assert.equal(dailyLimitForPlan("premium"), 0);
     assert.equal(dailyLimitForPlan("admin"), 0);
-    assert.equal(resolveDailyLimit("free"), 5);
-    assert.equal(resolveDailyLimit("premium"), 50);
+    assert.equal(resolveDailyLimit("free"), 0);
+    assert.equal(resolveDailyLimit("premium"), 0);
+    assert.equal(resolveDailyLimit("admin"), 0);
   });
 
   it("utcDateKey is YYYY-MM-DD", () => {

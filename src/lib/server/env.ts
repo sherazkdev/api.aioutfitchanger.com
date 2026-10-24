@@ -36,10 +36,10 @@ const envSchema = z.object({
   FIREBASE_CLIENT_EMAIL: z.string().optional(),
   FIREBASE_PRIVATE_KEY: z.string().optional(),
   API_RATE_LIMIT_AUTH_PER_MIN: z.coerce.number().default(20),
-  /** Legacy flat daily cap (used when TRY_ON_DAILY_LIMIT_FREE/PREMIUM unset). */
-  TRY_ON_DAILY_LIMIT_PER_USER: optionalIntEnv(5, 0, 10_000),
-  TRY_ON_DAILY_LIMIT_FREE: optionalIntEnv(5, 0, 10_000),
-  TRY_ON_DAILY_LIMIT_PREMIUM: optionalIntEnv(50, 0, 10_000),
+  /** Legacy flat daily cap. Live generate path ignores these (0 = unlimited). */
+  TRY_ON_DAILY_LIMIT_PER_USER: optionalIntEnv(0, 0, 10_000),
+  TRY_ON_DAILY_LIMIT_FREE: optionalIntEnv(0, 0, 10_000),
+  TRY_ON_DAILY_LIMIT_PREMIUM: optionalIntEnv(0, 0, 10_000),
   /** When false, only provider-side moderation applies. */
   TRY_ON_MODERATION_ENABLED: z.preprocess((val) => {
     if (val === undefined || val === null || String(val).trim() === "") return "true";
